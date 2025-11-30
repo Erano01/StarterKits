@@ -1,0 +1,9 @@
+﻿<configs>
+	<append xpath="/blocks">
+		<block name="MyBlock">
+			<property name="Extends" value="woodNoUpgradeMaster"/>
+			<property name="Class" value="MyBlock, SampleProject"/>
+			<property name="Shape" value="Terrain"/>
+		</block>
+	</append>
+</configs>
