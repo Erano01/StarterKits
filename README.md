@@ -24,3 +24,12 @@ To build the project, use the following command:
 ```powershell
 dotnet msbuild ".\StarterKits.csproj" /p:Configuration=Debug
 ```
+
+
+Important Locations:
+```text
+%APPDATA%\7DaysToDie\logs
+C:\Users\rokel\AppData\Roaming\7DaysToDie\Mods
+C:\Program Files (x86)\Steam\steamapps\common\7 Days To Die\Mods
+C:\Program Files (x86)\Steam\steamapps\common\7 Days to Die Dedicated Server\Mods
+```
