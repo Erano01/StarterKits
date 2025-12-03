@@ -2,7 +2,7 @@
 	<append xpath="/blocks">
 		<block name="MyBlock">
 			<property name="Extends" value="woodNoUpgradeMaster"/>
-			<property name="Class" value="MyBlock, SampleProject"/>
+			<property name="Class" value="MyBlock, StarterKits"/>
 			<property name="Shape" value="Terrain"/>
 		</block>
 	</append>
