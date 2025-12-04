@@ -1,0 +1,7 @@
+<configs>
+  <append xpath="/xui/ruleset[@name='default']">
+    <window_group name="kitselectionmenu" anchor="CenterCenter">
+      <window name="KitSelectionMenu"/>
+    </window_group>
+  </append>
+</configs>

@@ -8,8 +8,8 @@
 	<!-- (Required) SemVer version of the mod. Has to be in the format major.minor[.build[.revision]] (i.e. build and revision can be left out, recommend using them though as typically done with Semantic Versioning -->
 	<Description value="Mod to show format of ModInfo v2" />
 	<!-- (Optional) More text to show on UIs -->
-	<Author value="TFP" />
+	<Author value="Erano01" />
 	<!-- (Optional) Name(s) of the author(s) -->
-	<Website value="" />
+	<Website value="https://github.com/Erano01" />
 	<!-- (Optional) URL of a website of the mod -->
 </xml>
