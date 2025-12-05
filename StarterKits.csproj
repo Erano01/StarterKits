@@ -64,7 +64,7 @@
 
   <ItemGroup>
     <Content Include="Config\blocks.xml" />
-    <Content Include="Config\XUi\windows.xml" />
+    <!-- <Content Include="Config\XUi\windows.xml" /> -->
     <Content Include="Config\XUi\xui.xml" />
     <Content Include="ModInfo.xml" />
     <Content Include="Readme.txt" />
