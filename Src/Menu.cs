@@ -1,9 +1,24 @@
+//Map<> and Menu UI Component that game provide fields.
 
+//decorate method here
+
+//override onClick() methods here
 public abstract class Menu : MenuHandler
 {
-    //Map<> and Menu UI Component that game provide fields.
+    
+    public void onClick()
+    {
+        throw new System.NotImplementedException();
+    }
 
-    //decorate method here
+    public void onOpen()
+    {
+        throw new System.NotImplementedException();
+    }
 
-    //override onClick() methods here
+    public void onClose()
+    {
+        throw new System.NotImplementedException();
+    }
+
 }

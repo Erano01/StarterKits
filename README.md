@@ -35,7 +35,9 @@ C:\Program Files (x86)\Steam\steamapps\common\7 Days To Die\Mods
 C:\Program Files (x86)\Steam\steamapps\common\7 Days to Die Dedicated Server\Mods
 ```
 
-
+You have to use dnSPY to view ModAPI documentation like javadoc.
+Edit -> search assemblies -> Sınıf modul arama için
+File -> Open -> API neredeyse oyun dosyaları
 
 ## Notes for development
 
