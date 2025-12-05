@@ -1,0 +1,12 @@
+<configs>
+    <window name="starterKitWindow" controller="XUiC_StarterKitWindow">
+        <panel>
+            <label text="Choose your starter kit!" />
+            <button name="kit1" event_onclick="eventChooseKit" />
+            <button name="kit2" event_onclick="eventChooseKit" />
+            <button name="kit3" event_onclick="eventChooseKit" />
+            <button name="kit4" event_onclick="eventChooseKit" />
+            <button name="kit5" event_onclick="eventChooseKit" />
+        </panel>
+    </window>
+</configs>

@@ -39,6 +39,8 @@ You have to use dnSPY to view ModAPI documentation like javadoc.
 Edit -> search assemblies -> Sınıf modul arama için
 File -> Open -> API neredeyse oyun dosyaları
 
+Assembly-CSharp.dll'i açmak yeterli.
+
 ## Notes for development
 
 --- XUi ---
