@@ -41,6 +41,9 @@ File -> Open -> API neredeyse oyun dosyaları
 
 Assembly-CSharp.dll'i açmak yeterli.
 
+## Development Formula
+use events -(if not possible)> use harmony patches -(if not possible)> use scripts -(if not possible)> use transpilers
+
 ## Notes for development
 
 --- XUi ---
