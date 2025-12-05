@@ -10,6 +10,9 @@ namespace Harmony
             harmony.PatchAll(Assembly.GetExecutingAssembly());
 
             StarterKits.PlayerJoinedGameHandler.Init();
+            // XUi controller tipimizin assembly'yi yüklerken canlı olduğundan emin olalım
+            var t = typeof(StarterKits.XUiC_KitSelectionMenu);
+            Log.Out($"[StarterKits] XUiC_KitSelectionMenu type loaded: {t.Assembly.FullName}");
         }
     }
 }

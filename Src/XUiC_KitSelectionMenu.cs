@@ -63,7 +63,7 @@ namespace StarterKits
 
             if (player.PlayerUI != null &&
                 player.PlayerUI.windowManager != null &&
-                player.PlayerUI.windowManager.IsWindowOpen("starterKitWindow"))
+                player.PlayerUI.windowManager.IsWindowOpen("starterKitGroup"))
             {
                 return;
             }

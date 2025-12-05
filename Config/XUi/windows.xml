@@ -1,7 +1,8 @@
 <configs>
     <append xpath="/windows">
+        <!-- controller="namespace.classname, assemblyname" -->
         <window name="starterKitWindow"
-                controller="StarterKits.XUiC_KitSelectionMenu"
+                controller="StarterKits.XUiC_KitSelectionMenu, StarterKits"
                 is_modal="true"
                 allow_escape="false"
                 pauses_game="true">
