@@ -33,6 +33,9 @@ Important Locations:
 C:\Users\rokel\AppData\Roaming\7DaysToDie\Mods
 C:\Program Files (x86)\Steam\steamapps\common\7 Days To Die\Mods
 C:\Program Files (x86)\Steam\steamapps\common\7 Days to Die Dedicated Server\Mods
+
+--for xml modding doc--
+C:\Program Files (x86)\Steam\steamapps\common\7 Days To Die\Data\Config
 ```
 
 You have to use dnSPY to view ModAPI documentation like javadoc.
@@ -51,6 +54,10 @@ Mantık ve düzen tarafı.
 Pencerelerin, butonların, label’ların, layout’un tanımlandığı sistem.
 windows.xml gibi dosyalarda <window>, <button>, <label> yazdığın yer burası.
 C# tarafında XUiController / XUiC_* sınıflarıyla davranış (event, tıklama, açılma-kapanma) kontrol edilir.
+
+Oyun içinde test için, spawn olduktan sonra konsolda şu komutları dene:
+xui openwindow starterKitWindow
+xui openwindow starterKitGroup
 
 
 --- UIAtlases ---
