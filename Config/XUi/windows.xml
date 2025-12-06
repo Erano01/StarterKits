@@ -5,12 +5,50 @@
                 controller="StarterKits.XUiC_KitSelectionMenu, StarterKits"
                 is_modal="true"
                 allow_escape="false"
-                pauses_game="true">
-            <panel name="root" pos="0,0" width="100%" height="100%">
-                <label name="title" text="Choose your starter kit!" />
-                <button name="kit1" text="Kit 1" event_onclick="eventChooseKit(kit1)" />
-                <button name="kit2" text="Kit 2" event_onclick="eventChooseKit(kit2)" />
-                <button name="kit3" text="Kit 3" event_onclick="eventChooseKit(kit3)" />
+                pauses_game="false">
+
+            <panel name="background" pos="0,0" width="100%" height="100%">
+                <sprite name="bg" color="0,0,0,180" width="100%" height="100%" />
+            </panel>
+
+            <panel name="root"
+                   pos="0,0"
+                   width="60%"
+                   height="40%"
+                   anchor="CenterCenter">
+                <sprite name="frame" color="30,30,30,220" width="100%" height="100%" />
+
+                <label name="title"
+                       pos="0,-30"
+                       width="100%"
+                       height="20"
+                       anchor="CenterTop"
+                       justify="center"
+                       text="Choose your starter kit!" />
+
+                <button name="kit1"
+                        pos="0,-10"
+                        width="100%"
+                        height="20"
+                        anchor="CenterCenter"
+                        text="Kit 1"
+                        event_onclick="eventChooseKit(kit1)" />
+
+                <button name="kit2"
+                        pos="0,15"
+                        width="100%"
+                        height="20"
+                        anchor="CenterCenter"
+                        text="Kit 2"
+                        event_onclick="eventChooseKit(kit2)" />
+
+                <button name="kit3"
+                        pos="0,40"
+                        width="100%"
+                        height="20"
+                        anchor="CenterCenter"
+                        text="Kit 3"
+                        event_onclick="eventChooseKit(kit3)" />
             </panel>
         </window>
     </append>

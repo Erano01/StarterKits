@@ -58,3 +58,7 @@ Görsel kaynak tarafı.
 UI’da kullanılan tüm ikonlar, buton görselleri, arka planlar tek bir texture atlas içinde toplanır.
 Atlas XML’i: “şu görsel atlasın şu koordinatında” bilgisini tutar.
 XUi içindeki <sprite>, <button> vs. elementler görsel olarak ne kullanacaksa sprite/atlas isimleriyle buraya referans verir.
+
+https://7daystodie.fandom.com/wiki/ModAPI
+https://7daystodie.fandom.com/wiki/XPath_Explained#String_Searches
+https://7daystodie.fandom.com/wiki/Mod_Structure
