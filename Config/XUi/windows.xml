@@ -6,9 +6,9 @@
                 allow_escape="false"
                 pauses_game="true"
                 anchor="CenterCenter"
-                pos="-400,-350"
-                width="800"
-                height="500"
+                pos="0, 0"
+                width="1000"
+                height="600"
                 cursor_area="true">
             
             <!-- Başlık paneli -->
