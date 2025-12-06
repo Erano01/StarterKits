@@ -1,15 +1,64 @@
 <configs>
     <append xpath="/windows">
-        <!-- controller="namespace.classname, assemblyname" -->
-        <window name="starterKitWindow" 
-        controller="StarterKits.XUiC_KitSelectionMenu, StarterKits" 
-        is_modal="true" 
-        allow_escape="false" 
-        pauses_game="false">
-
-        
-
+        <window name="starterKitWindow"
+                controller="StarterKits.XUiC_KitSelectionMenu, StarterKits"
+                is_modal="true"
+                allow_escape="false"
+                pauses_game="true"
+                anchor="CenterCenter"
+                pos="-400,-350"
+                width="800"
+                height="500"
+                cursor_area="true">
             
+            <!-- Başlık paneli -->
+            <panel name="header" pos="0,0" height="43" depth="1" disableautobackground="true">
+                <sprite depth="1" name="backgroundMain" sprite="menu_empty3px" pos="0,0" height="43" color="[black]" type="sliced" fillcenter="true" globalopacity="true" globalopacitymod="0.7" />
+                <label depth="2" pos="6,-6" font_size="32" color="[white]" text="Choose Your Starter Kit" style="header.name" />
+            </panel>
+            
+            <!-- Ana içerik paneli -->
+            <panel name="content" pos="0,-46" height="450" depth="1" pivot="center" disableautobackground="true">
+                <sprite depth="6" name="border" sprite="menu_empty3px" pos="0,0" height="450" color="[black]" type="sliced" fillcenter="false" globalopacity="true" globalopacitymod="0.9" />
+                <sprite depth="1" name="backgroundMain" sprite="menu_empty3px" pos="2,-2" height="446" width="796" color="[darkGrey]" type="sliced" fillcenter="true" globalopacity="true" globalopacitymod="0.65" />
+                
+                <!-- Açıklama metni -->
+                <label depth="2" pos="20,-20" width="760" height="60" font_size="24" color="[white]" justify="center" text="Welcome to 7 Days to Die! Choose a starter kit to begin your survival journey.&#10;This choice is permanent for this game session." />
+                
+                <!-- Kit butonları - Grid yerine manuel yerleştirme -->
+                <!-- Survivor Kit -->
+                <rect pos="20,-100" width="760" height="80">
+                    <sprite depth="1" name="background" sprite="menu_empty3px" color="[darkGrey]" type="sliced" globalopacity="true" />
+                    <sprite depth="2" name="border" sprite="menu_empty3px" color="[grey]" type="sliced" fillcenter="false" />
+                    <button depth="3" name="kit1" pos="0,0" width="760" height="80" style="press" event_onclick="eventChooseKit(kit1)">
+                        <sprite depth="1" name="icon" pos="20,-40" size="60,60" pivot="center" sprite="ui_game_symbol_tool" />
+                        <label depth="2" pos="90,-20" width="500" height="30" font_size="28" color="[white]" text="Survivor Kit" justify="left" />
+                        <label depth="2" pos="90,-45" width="500" height="20" font_size="20" color="[lightGrey]" text="Stone axe, bow, arrows, food, and basic supplies" justify="left" />
+                    </button>
+                </rect>
+                
+                <!-- Builder Kit -->
+                <rect pos="20,-190" width="760" height="80">
+                    <sprite depth="1" name="background" sprite="menu_empty3px" color="[darkGrey]" type="sliced" globalopacity="true" />
+                    <sprite depth="2" name="border" sprite="menu_empty3px" color="[grey]" type="sliced" fillcenter="false" />
+                    <button depth="3" name="kit2" pos="0,0" width="760" height="80" style="press" event_onclick="eventChooseKit(kit2)">
+                        <sprite depth="1" name="icon" pos="20,-40" size="60,60" pivot="center" sprite="ui_game_symbol_hammer" />
+                        <label depth="2" pos="90,-20" width="500" height="30" font_size="28" color="[white]" text="Builder Kit" justify="left" />
+                        <label depth="2" pos="90,-45" width="500" height="20" font_size="20" color="[lightGrey]" text="Wood frames, nails, hammer, and construction materials" justify="left" />
+                    </button>
+                </rect>
+                
+                <!-- Fighter Kit -->
+                <rect pos="20,-280" width="760" height="80">
+                    <sprite depth="1" name="background" sprite="menu_empty3px" color="[darkGrey]" type="sliced" globalopacity="true" />
+                    <sprite depth="2" name="border" sprite="menu_empty3px" color="[grey]" type="sliced" fillcenter="false" />
+                    <button depth="3" name="kit3" pos="0,0" width="760" height="80" style="press" event_onclick="eventChooseKit(kit3)">
+                        <sprite depth="1" name="icon" pos="20,-40" size="60,60" pivot="center" sprite="ui_game_symbol_skull" />
+                        <label depth="2" pos="90,-20" width="500" height="30" font_size="28" color="[white]" text="Fighter Kit" justify="left" />
+                        <label depth="2" pos="90,-45" width="500" height="20" font_size="20" color="[lightGrey]" text="Club, pistol, ammunition, and combat gear" justify="left" />
+                    </button>
+                </rect>
+            </panel>
         </window>
     </append>
 </configs>
