@@ -6,7 +6,14 @@
 				These values are also accessible from window and control xml files 
 				as long as this style file is included in a window file.
 		-->
-
+		
+		<!--STARTER KIT COLORS-->
+		<style_entry name="black" 			value="0,0,0,255"/>
+		<style_entry name="white" 			value="255,255,255,255"/>
+		<style_entry name="darkGrey" 		value="64,64,64,255"/>
+		<style_entry name="grey" 			value="96,96,96,255"/>
+		<style_entry name="lightGrey" 		value="160,160,160,255"/>
+		
 	</global>
 
 
