@@ -24,22 +24,26 @@
                         text="Choose Your Starter Kit" />
                 </panel>
 
-                <grid name="kitOptions" pos="0,-45"
+                <grid name="kitOptions" pos="0,-45" padding="10"
                     rows="2" cols="2" cell_width="600" cell_height="400">
 
                     <rect name="Builder" backgroundcolor="[lightGrey]">
+                        <sprite depth="1" sprite="menu_empty3px" color="[white]" type="sliced" fillcenter="false" />
                         <label text="Builder" color="[white]"/>
                     </rect>
 
                     <rect name="Archer" backgroundcolor="[lightGrey]">
+                        <sprite depth="1" sprite="menu_empty3px" color="[white]" type="sliced" fillcenter="false" />
                         <label text="Archer" color="[white]" />
                     </rect>
 
                     <rect name="Tyson" backgroundcolor="[lightGrey]">
+                        <sprite depth="1" sprite="menu_empty3px" color="[white]" type="sliced" fillcenter="false" />
                         <label text="Tyson" color="[white]" />
                     </rect>
 
                     <rect name="Spearman" backgroundcolor="[lightGrey]">
+                        <sprite depth="1" sprite="menu_empty3px" color="[white]" type="sliced" fillcenter="false"/>
                         <label text="Spearman" color="[white]" />
                     </rect>
 
