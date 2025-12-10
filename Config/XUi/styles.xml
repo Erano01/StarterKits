@@ -1,20 +1,28 @@
-<styles>
-	<global>
-		<!-- 	
-			GLOBAL STYLE ENTRIES
-				Any entry in global is accessible by [name] example: value="[white]" 
-				These values are also accessible from window and control xml files 
-				as long as this style file is included in a window file.
-		-->
-		
+<configs>
+	<append xpath="/styles/global">
 		<!--STARTER KIT COLORS-->
 		<style_entry name="black" 			value="0,0,0,255"/>
 		<style_entry name="white" 			value="255,255,255,255"/>
 		<style_entry name="darkGrey" 		value="64,64,64,255"/>
 		<style_entry name="grey" 			value="96,96,96,255"/>
 		<style_entry name="lightGrey" 		value="160,160,160,255"/>
-		
-	</global>
+	</append>
 
+	<append xpath="/styles">
+		<!-- CONTROL STYLES -->
+		<style_entry name="header.name">
+			<attribute name="font_size" value="32" />
+			<attribute name="color" value="[white]" />
+			<attribute name="effect" value="outline" />
+			<attribute name="effect_distance" value="1,1" />
+			<attribute name="effect_color" value="[black]" />
+		</style_entry>
 
-</styles>
+		<style_entry name="press">
+			<attribute name="sound_onclick" value="ui_menu_click" />
+			<attribute name="on_press" value="true" />
+			<attribute name="effect_color" value="[white]" />
+			<attribute name="sound_on_hover" value="ui_menu_over" />
+		</style_entry>
+	</append>
+</configs>

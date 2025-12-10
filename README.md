@@ -47,6 +47,13 @@ Assembly-CSharp.dll'i açmak yeterli.
 ## Development Formula
 use events -(if not possible)> use harmony patches -(if not possible)> use scripts -(if not possible)> use transpilers
 
+if you are developing UI's(XML) you can reload UI without restarting game.
+
+use this in game when you change the UI: 
+```text
+xui reload
+```
+
 ## Notes for development
 
 --- XUi ---

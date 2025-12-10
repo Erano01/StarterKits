@@ -70,5 +70,29 @@ namespace StarterKits
 
             player.PlayerUI.windowManager.Open("starterKitGroup", true);
         }
+
+        /// <summary>
+        /// ESC menüsünden starter kit menüsünü açmak için kullanılır.
+        /// </summary>
+        public static void OpenStarterKitMenu()
+        {
+            var world = GameManager.Instance.World;
+            if (world == null)
+            {
+                return;
+            }
+
+            var player = world.GetPrimaryPlayer();
+            if (player == null)
+            {
+                return;
+            }
+
+            if (player.PlayerUI != null &&
+                player.PlayerUI.windowManager != null)
+            {
+                player.PlayerUI.windowManager.Open("starterKitGroup", true);
+            }
+        }
     }
 }
