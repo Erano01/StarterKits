@@ -24,24 +24,24 @@
                         text="Choose Your Starter Kit" />
                 </panel>
 
-                <grid name="kitOptions" pos="0,0" top_pad="45"
-                    rows="2" cols="2" width="1200" height="800">
+                <grid name="kitOptions" pos="0,-45"
+                    rows="2" cols="2" cell_width="600" cell_height="400">
 
-                    <panel name="Builder" backgroundcolor="[darkGrey]">
-                        <label text="Builder" color="[white]" />
-                    </panel>
+                    <rect name="Builder" backgroundcolor="[lightGrey]">
+                        <label text="Builder" color="[white]"/>
+                    </rect>
 
-                    <panel name="Archer" backgroundcolor="[darkGrey]">
+                    <rect name="Archer" backgroundcolor="[lightGrey]">
                         <label text="Archer" color="[white]" />
-                    </panel>
+                    </rect>
 
-                    <panel name="Tyson" backgroundcolor="[darkGrey]">
+                    <rect name="Tyson" backgroundcolor="[lightGrey]">
                         <label text="Tyson" color="[white]" />
-                    </panel>
+                    </rect>
 
-                    <panel name="Spearman" backgroundcolor="[darkGrey]">
+                    <rect name="Spearman" backgroundcolor="[lightGrey]">
                         <label text="Spearman" color="[white]" />
-                    </panel>
+                    </rect>
 
                 </grid>
             </panel>
