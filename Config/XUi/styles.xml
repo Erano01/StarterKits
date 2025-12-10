@@ -8,21 +8,5 @@
 		<style_entry name="lightGrey" 		value="160,160,160,255"/>
 	</append>
 
-	<append xpath="/styles">
-		<!-- CONTROL STYLES -->
-		<style_entry name="header.name">
-			<attribute name="font_size" value="32" />
-			<attribute name="color" value="[white]" />
-			<attribute name="effect" value="outline" />
-			<attribute name="effect_distance" value="1,1" />
-			<attribute name="effect_color" value="[black]" />
-		</style_entry>
-
-		<style_entry name="press">
-			<attribute name="sound_onclick" value="ui_menu_click" />
-			<attribute name="on_press" value="true" />
-			<attribute name="effect_color" value="[white]" />
-			<attribute name="sound_on_hover" value="ui_menu_over" />
-		</style_entry>
-	</append>
+	
 </configs>
