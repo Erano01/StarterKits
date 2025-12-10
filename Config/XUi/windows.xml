@@ -19,30 +19,28 @@
             <panel name="rootPanel">
                 <!-- Header -->
                 <panel name="header" pos="0,0" width="1200" height="45" depth="1"
-                backgroundcolor="[black]">
+                    backgroundcolor="[black]">
                     <label depth="2" pos="490,-6" font_size="32" color="[white]"
-                        text="Choose Your Starter Kit"/>
+                        text="Choose Your Starter Kit" />
                 </panel>
 
-                <grid name="kitOpitons" pos="0,0" top_pad="45"
-                    rows="2" cols="2">
+                <grid name="kitOptions" pos="0,0" top_pad="45"
+                    rows="2" cols="2" width="1200" height="800">
 
-                    <panel name="Builder">
-
+                    <panel name="Builder" backgroundcolor="[darkGrey]">
+                        <label text="Builder" color="[white]" />
                     </panel>
 
-                    <panel name="Archer">
-                        
+                    <panel name="Archer" backgroundcolor="[darkGrey]">
+                        <label text="Archer" color="[white]" />
                     </panel>
-                    
-                    
-                    
-                    <panel name="Tyson">
-                        
-                    </panel>
-                    
-                    <panel name="Spearman">
 
+                    <panel name="Tyson" backgroundcolor="[darkGrey]">
+                        <label text="Tyson" color="[white]" />
+                    </panel>
+
+                    <panel name="Spearman" backgroundcolor="[darkGrey]">
+                        <label text="Spearman" color="[white]" />
                     </panel>
 
                 </grid>
