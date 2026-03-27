@@ -45,7 +45,7 @@ File -> Open -> API neredeyse oyun dosyaları
 Assembly-CSharp.dll'i açmak yeterli.
 
 ## Development Formula
-use events -(if not possible)> use harmony patches -(if not possible)> use scripts -(if not possible)> use transpilers
+use xml(modlet) -(if not possible)> use GameAPI events -(if not possible)> use harmony patches -(if not possible)> use scripts -(if not possible)> use transpilers
 
 if you are developing UI's(XML) you can reload UI without restarting game.
 

@@ -56,6 +56,6 @@
     <!-- ESC menüsüne starter kit butonu ekle -->
     <append xpath="//window[@name='ingameMenu']//grid[@name='buttons']">
         <simplebutton name="btnStarterKit" depth="3" width="250" height="46"
-            caption_key="Starter Kit" font_size="40" />
+            caption_key="Choose Your Kit" font_size="40" />
     </append>
 </configs>
