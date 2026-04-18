@@ -10,12 +10,17 @@ Install your project under:
 
 ```text
 C:\Program Files (x86)\Steam\steamapps\common\7 Days To Die\Mods
+or
+
+"/home/{user}/.local/share/Steam/steamapps/common/7 Days To Die/Mods"
 ```
 
 In the same folder, manually copy the `0_TFP_Harmony` mod from:
 
 ```text
 C:\Program Files (x86)\Steam\steamapps\common\7 Days to Die Dedicated Server\Mods
+
+"/home/{user}/.local/share/Steam/steamapps/common/7 Days to Die Dedicated Server/"
 ```
 
 Make sure the C# Dev Kit extension is installed in VS Code.
@@ -23,7 +28,11 @@ Make sure the C# Dev Kit extension is installed in VS Code.
 To build the project, use the following command:
 
 ```powershell
+// windows
 dotnet msbuild ".\StarterKits.csproj" /p:Configuration=Debug
+
+// linux
+dotnet msbuild StarterKits.csproj /restore /p:Configuration=Debug
 ```
 
 
