@@ -3,48 +3,48 @@
         <!-- Styles dosyasını dahil et -->
         <include path="styles.xml" />
 
-        <!-- Menü penceremiz-->
-        <!-- CenterCenter bile desek merkezi merkez nokta alıp sağ altta oluşturuyor default-->
-        <!-- O yüzden pos(x,y) ile konumu düzeltiyoruz -->
+        <!-- Basit starter kit secim penceresi -->
         <window name="starterKitWindow"
             controller="StarterKits.XUiC_KitSelectionMenu, StarterKits"
             is_modal="true"
             allow_escape="false"
             anchor="CenterCenter"
-            pos="-600,430"
-            width="1200"
-            height="800"
+            pos="-220,180"
+            width="440"
+            height="360"
             cursor_area="true">
 
             <panel name="rootPanel">
-                <!-- Header -->
-                <panel name="header" pos="0,0" width="1200" height="45" depth="1"
-                    backgroundcolor="[black]">
-                    <label depth="2" pos="490,-6" font_size="32" color="[white]"
-                        text="Choose Your Starter Kit" />
+                <panel name="header" pos="0,0" width="440" height="45" depth="1" backgroundcolor="[black]">
+                    <label depth="2" pos="10,-6" width="420" font_size="28" color="[white]" justify="center" text="Starter Kits" />
                 </panel>
 
-                <grid name="kitOptions" pos="0,-45" padding="10"
-                    rows="2" cols="2" cell_width="600" cell_height="400">
+                <!-- Dinamik kullanim icin kitRows/kitCols degiskenleri set edilirse onlar kullanilir, yoksa 2x2 -->
+                <grid name="kitOptions"
+                    pos="25,-65"
+                    width="390"
+                    height="270"
+                    rows="{# defined('kitRows') ? int(kitRows) : 2}"
+                    cols="{# defined('kitCols') ? int(kitCols) : 2}"
+                    cell_width="190"
+                    cell_height="130"
+                    arrangement="horizontal"
+                    repeat_content="false">
 
-                    <rect name="Builder" backgroundcolor="[lightGrey]">
-                        <sprite depth="1" sprite="menu_empty3px" color="[white]" type="sliced" fillcenter="false" />
-                        <label text="Builder" color="[white]"/>
+                    <rect name="Builder" depth="1" style="hover" backgroundcolor="[darkGrey]">
+                        <simplebutton name="btnBuilder" width="180" height="120" pos="5,-5" caption="Builder" font_size="26" event_onclick="eventChooseKit(Builder)" />
                     </rect>
 
-                    <rect name="Archer" backgroundcolor="[lightGrey]">
-                        <sprite depth="1" sprite="menu_empty3px" color="[white]" type="sliced" fillcenter="false" />
-                        <label text="Archer" color="[white]" />
+                    <rect name="Archer" depth="1" style="hover" backgroundcolor="[darkGrey]">
+                        <simplebutton name="btnArcher" width="180" height="120" pos="5,-5" caption="Archer" font_size="26" event_onclick="eventChooseKit(Archer)" />
                     </rect>
 
-                    <rect name="Tyson" backgroundcolor="[lightGrey]">
-                        <sprite depth="1" sprite="menu_empty3px" color="[white]" type="sliced" fillcenter="false" />
-                        <label text="Tyson" color="[white]" />
+                    <rect name="Tyson" depth="1" style="hover" backgroundcolor="[darkGrey]">
+                        <simplebutton name="btnTyson" width="180" height="120" pos="5,-5" caption="Tyson" font_size="26" event_onclick="eventChooseKit(Tyson)" />
                     </rect>
 
-                    <rect name="Spearman" backgroundcolor="[lightGrey]">
-                        <sprite depth="1" sprite="menu_empty3px" color="[white]" type="sliced" fillcenter="false"/>
-                        <label text="Spearman" color="[white]" />
+                    <rect name="Spearman" depth="1" style="hover" backgroundcolor="[darkGrey]">
+                        <simplebutton name="btnSpearman" width="180" height="120" pos="5,-5" caption="Spearman" font_size="26" event_onclick="eventChooseKit(Spearman)" />
                     </rect>
 
                 </grid>

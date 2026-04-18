@@ -74,8 +74,9 @@
 		
 		<window_group name="dewcollector" left_panel_valign_top="false" controller="XUiC_DewCollectorWindowGroup" close_compass_on_open="true" defaultSelected="0">
 			<window name="windowDewCollector"/>
-			<window name="windowDewCollectorMods" />
-			<window name="windowNonPagingHeader" />
+      <window name="windowDewCollectorMods" />
+      <window name="windowCollectorFuel" />
+      <window name="windowNonPagingHeader" />
 		</window_group>
 		
 		<window_group name="creative" controller="XUiC_Creative2WindowGroup" open_backpack_on_open="true" defaultSelected="queue">
@@ -351,7 +352,7 @@
 			<window name="ingameDebugMenu" />
 		</window_group>
 		
-		<window_group name="levelTools" defaultSelected="buttons">
+		<window_group name="levelTools" defaultSelected="content">
 			<window name="levelTools" />
 		</window_group>
 		
@@ -373,6 +374,10 @@
 		
 		<window_group name="prefabList" defaultSelected="content">
 			<window name="prefabList" />
+		</window_group>
+		
+		<window_group name="createPoi">
+			<window name="createPoi" />
 		</window_group>
 		
 		<window_group name="prefabeditorhelp" defaultSelected="buttons">

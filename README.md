@@ -58,10 +58,13 @@ use xml(modlet) -(if not possible)> use GameAPI events -(if not possible)> use h
 
 if you are developing UI's(XML) you can reload UI without restarting game.
 
-use this in game when you change the UI: 
+use this To easily test changes in the UI, use f1 and then
 ```text
 xui reload
 ```
+To quickly see changes you made.
+
+dm -> debugmenu for godmode
 
 ## Notes for development
 
@@ -72,8 +75,10 @@ windows.xml gibi dosyalarda <window>, <button>, <label> yazdığın yer burası.
 C# tarafında XUiController / XUiC_* sınıflarıyla davranış (event, tıklama, açılma-kapanma) kontrol edilir.
 
 Oyun içinde test için, spawn olduktan sonra konsolda şu komutları dene:
+```
 xui openwindow starterKitWindow
 xui openwindow starterKitGroup
+```
 
 
 --- UIAtlases ---

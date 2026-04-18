@@ -836,7 +836,7 @@
 				
 				<rect name="tabsContents" depth="2">
 					<rect controller="TabSelectorTab" tab_key="xuiGameSettingsGeneral">
-						<grid pos="6,-77" rows="13" cell_width="525" cell_height="45" repeat_content="false" arrangement="vertical" >
+						<grid pos="6,-51" rows="14" cell_width="525" cell_height="45" repeat_content="false" arrangement="vertical" >
 							<gameoption name="ServerEnabled" title="goServerEnabled" value_wrap="false" value_type="bool" values="" display_names="goServerEnabledOff,goServerEnabledOn" value_localization_prefix="" />
 							<gameoption name="Region" title="goRegion" value_wrap="true" value_type="string" values="NorthAmericaEast,NorthAmericaWest,CentralAmerica,SouthAmerica,Europe,Russia,Asia,MiddleEast,Africa,Oceania" display_names="" value_localization_prefix="goRegionName" has_default="false" always_show="true" />
 							<gameoption name="ServerVisibility" title="goServerVisibility" value_wrap="false" value_type="int" values="" display_names="goServerVisibility0,goServerVisibility1,goServerVisibility2" value_localization_prefix="" />
@@ -859,7 +859,7 @@
 					</rect>
 
 					<rect controller="TabSelectorTab" tab_key="xuiGameSettingsBasic">
-						<grid pos="6,-77" rows="13" cell_width="525" cell_height="45" repeat_content="false" arrangement="vertical" >
+						<grid pos="6,-51" rows="14" cell_width="525" cell_height="45" repeat_content="false" arrangement="vertical" >
 							<gameoption name="BloodMoonFrequency" title="goBloodMoonFrequency" value_wrap="false" value_type="int" values="0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 14, 20, 30" display_names="goDisabled" value_localization_prefix="goDay" />
 							<gameoption name="BloodMoonRange" title="goBloodMoonRange" value_wrap="false" value_type="int" values="0, 1, 2, 3, 4, 7, 10, 14, 20" display_names="" value_localization_prefix="goDay" />
 							<gameoption name="BloodMoonWarning" title="goBloodMoonWarning" value_wrap="false" value_type="int" values="-1, 8, 18" display_names="goDisabled,goMorning,goEvening" value_localization_prefix="" />
@@ -869,6 +869,7 @@
 							<gameoption name="ZombieFeralMove" title="goZombieFeralMove" value_wrap="false" value_type="int" values="" display_names="goZMWalk,goZMJog,goZMRun,goZMSprint,goZMNightmare" value_localization_prefix="" />
 							<gameoption name="ZombieBMMove" title="goZombieBMMove" value_wrap="false" value_type="int" values="" display_names="goZMWalk,goZMJog,goZMRun,goZMSprint,goZMNightmare" value_localization_prefix="" />
 							<gameoption name="ZombieFeralSense" title="goZombieFeralSense" value_wrap="false" value_type="int" values="" display_names="goOff,goZMDay,goZMNight,goZMAll" value_localization_prefix="" />
+							<gameoption name="AISmellMode" title="goAISmellMode" value_wrap="false" value_type="int" values="" display_names="goOff,goZMWalk,goZMJog,goZMRun,goZMSprint,goZMNightmare" value_localization_prefix="" />
 							<!--
 							<gameoption name="MaxSpawnedZombies" title="goMaxSpawnedZombies" value_wrap="false" value_type="int" values="0, 10, 30, 60" display_names="" value_localization_prefix="" />
 							<gameoption name="MaxSpawnedAnimals" title="goMaxSpawnedAnimals" value_wrap="false" value_type="int" values="0, 10, 30, 50" display_names="" value_localization_prefix="" />
@@ -881,7 +882,7 @@
 					</rect>
 
 					<rect controller="TabSelectorTab" tab_key="xuiGameSettingsAdvanced">
-						<grid pos="6,-77" rows="13" cell_width="525" cell_height="45" repeat_content="false" arrangement="vertical" >
+						<grid pos="6,-51" rows="14" cell_width="525" cell_height="45" repeat_content="false" arrangement="vertical" >
 							<!--<gameoption name="BlockDurabilityModifier" title="goBlockDurability" value_wrap="false" value_type="int" values="25, 50, 100, 200" display_names="" value_localization_prefix="goBlockDurabilityValue" />-->
 							<gameoption name="BlockDamagePlayer" title="goBlockDamagePlayer" value_wrap="false" value_type="int" values="25, 50, 75, 100, 125, 150, 175, 200, 300" display_names="" value_localization_prefix="goBlockDamageValue" />
 							<gameoption name="BlockDamageAI" title="goBlockDamageAI" value_wrap="false" value_type="int" values="25, 33, 50, 67, 75, 100, 125, 150, 175, 200, 300" display_names="" value_localization_prefix="goBlockDamageValue" />
@@ -898,11 +899,13 @@
 							<gameoption name="BuildCreate" title="goBuildCreate" value_wrap="false" value_type="bool" values="" display_names="" value_localization_prefix="" tooltip_key="goBuildCreateDescPS5" platform="PS5" />
 							<gameoption name="BuildCreate" title="goBuildCreate" value_wrap="false" value_type="bool" values="" display_names="" value_localization_prefix="" tooltip_key="goBuildCreateDescXBOX" platform="XBOX" />
 							<gameoption name="QuestProgressionDailyLimit" title="goQuestProgressionDailyLimit" value_wrap="false" value_type="int" values="-1,1,2,3,4,5,6,7,8" display_names="goUnlimited"/>
+							<gameoption name="CameraRestrictionMode" title="goCameraRestrictionMode" value_wrap="false" value_type="int" values="" display_names="goDisabled,goFP,goTP" value_localization_prefix="" tooltip_key="goCameraRestrictionModeDesc" always_show="true"/>
+							<gameoption name="JarRefund" title="goJarRefund" value_wrap="false" value_type="int" values="0, 5, 10, 20, 30, 40, 50, 60, 70, 80, 90, 100" display_names="" value_localization_prefix="goLootAbundanceValue" />
 						</grid>
 					</rect>
 					
 					<rect controller="TabSelectorTab" tab_key="xuiGameSettingsMultiplayer">
-						<grid pos="6,-77" rows="14" cell_width="525" cell_height="45" repeat_content="false" arrangement="vertical" >
+						<grid pos="6,-51" rows="14" cell_width="525" cell_height="45" repeat_content="false" arrangement="vertical" >
 							<gameoption name="PlayerKillingMode" title="goPlayerKillingMode" value_wrap="false" value_type="int" values="" display_names="goPlayerKillingModeNoKilling,goPlayerKillingModeKillAlliesOnly,goPlayerKillingModeKillStrangersOnly,goPlayerKillingModeKillEveryone" value_localization_prefix="" />
 							<gameoption name="LandClaimSize" title="goLandClaimSize" value_wrap="false" value_type="int" values="21, 31, 41, 51, 71" display_names="" value_localization_prefix="goLandClaimSizeValue" />
 							<gameoption name="LandClaimDeadZone" title="goLandClaimDeadZone" value_wrap="false" value_type="int" values="0, 5, 10, 15, 20, 30, 40, 50" display_names="goLandClaimNoDeadzone" value_localization_prefix="goLandClaimDeadZoneValue" />
@@ -1452,8 +1455,6 @@
 				<generaloption name="QuestsAutoShare" type="ComboBoxBool" localization_prefix="xuiComboYesNo" width="900" />
 				<generaloption name="QuestsAutoAccept" type="ComboBoxBool" localization_prefix="xuiComboYesNo" width="900" />
 
-				<generaloption name="LnlMtuWorkaround" type="ComboBoxBool" localization_prefix="xuiComboOnOff" width="900" />
-				
 				<generaloption name="AutoParty" type="ComboBoxBool" localization_prefix="xuiComboOnOff" width="900" />
 				<generaloption name="ChatComms" type="ComboBoxBool" localization_prefix="xuiComboOnOff" width="900" />
 				<generaloption name="Crossplay" type="ComboBoxBool" localization_prefix="xuiComboOnOff" width="900" tooltip_key="{crossplayTooltip}"/>
@@ -1520,9 +1521,21 @@
 							<simplebutton name="btnDefaultBrightness" depth="3" pos="675, 0" pivot="left" width="150" height="32" font_size="28" caption_key="xuiDefault" />
 						</rect>
 
+						<videooption name="defaultCamera" type="ComboBoxList`1[System.String]" values="FirstPerson, ThirdPerson" localization_prefix="xuiOptionsVideoCameraMode" value_wrap="false" />
 						<rect>
 							<videooption name="FieldOfView" type="ComboBoxInt" value_increment="2" value_wrap="false" />
 							<simplebutton name="btnDefaultFOV" depth="3" pos="675, 0" pivot="left" width="150" height="32" font_size="28" caption_key="xuiDefault" />
+						</rect>						
+						
+						<rect>
+							<videooption name="FieldOfView3P" type="ComboBoxInt" value_increment="2" value_wrap="false" />
+							<simplebutton name="btnDefaultFOV3P" depth="3" pos="675, 0" pivot="left" width="150" height="32" font_size="28" caption_key="xuiDefault" />
+						</rect>
+
+						<videooption name="3PCameraMode" type="ComboBoxList`1[System.String]" values="Free,Locked,Ranged" localization_prefix="xuiOptions3PCameraMode" value_wrap="false"  />
+						<rect>
+							<videooption name="CameraDistance3P" type="ComboBoxFloat" value_increment="0.05" value_wrap="false" format_string="0%"/>
+							<simplebutton name="btnDefaultCameraDistance" depth="3" pos="675, 0" pivot="left" width="150" height="32" font_size="28" caption_key="xuiDefault" />
 						</rect>
 
 					</grid>
@@ -1644,16 +1657,29 @@
 							<videooption name="Brightness" type="ComboBoxFloat" value_increment="0.05" value_wrap="false" format_string="0%" />
 							<simplebutton name="btnDefaultBrightness" depth="3" pos="675, 0" pivot="left" width="150" height="32" font_size="28" caption_key="xuiDefault" />
 						</rect>
-
-						<rect>
-							<videooption name="FieldOfViewSimplified" type="ComboBoxInt" value_increment="2" value_wrap="false" />
-							<simplebutton name="btnDefaultFOV" depth="3" pos="675, 0" pivot="left" width="150" height="32" font_size="28" caption_key="xuiDefault" />
-						</rect>
-						
 						<videooption name="MotionBlurToggle" type="ComboBoxBool" values="Off,On" localization_prefix="xuiComboOnOff" />
 						<videooption name="GraphicsMode" type="ComboBoxList`1[System.String]" values="ConsolePerformance, ConsoleQuality, Custom" localization_prefix="xuiOptionsVideoPresets" value_wrap="false" />
 						<videooption name="ConsoleUpscaler" type="ComboBoxList`1[System.String]" values="FSR3,Scale" localization_prefix="xuiOptionsVideoUpscaler" value_wrap="false" />
 						<!-- For use with FRAME_LIMIT_WIP: <videooption name="FramerateLimit" type="ComboBoxList`1[System.String]" values="Off, Half, Third, Quarter" value_wrap="false" /> -->
+
+						<videooption name="defaultCamera" type="ComboBoxList`1[System.String]" values="FirstPerson, ThirdPerson" localization_prefix="xuiOptionsVideoCameraMode" value_wrap="false" />
+						<rect>
+							<videooption name="FieldOfViewSimplified" type="ComboBoxInt" value_increment="2" value_wrap="false" />
+							<simplebutton name="btnDefaultFOV" depth="3" pos="675, 0" pivot="left" width="150" height="32" font_size="28" caption_key="xuiDefault" />
+						</rect>
+
+						<rect>
+							<videooption name="FieldOfView3P" type="ComboBoxInt" value_increment="2" value_wrap="false" />
+							<simplebutton name="btnDefaultFOV3P" depth="3" pos="675, 0" pivot="left" width="150" height="32" font_size="28" caption_key="xuiDefault" />
+						</rect>
+
+						<videooption name="3PCameraMode" type="ComboBoxList`1[System.String]" values="Free,Locked,Ranged" localization_prefix="xuiOptions3PCameraMode" value_wrap="false" format_string="0%" />
+						<rect>
+							<videooption name="CameraDistance3P" type="ComboBoxFloat" value_increment="0.05" value_wrap="false" format_string="0%"/>
+							<simplebutton name="btnDefaultCameraDistance" depth="3" pos="675, 0" pivot="left" width="150" height="32" font_size="28" caption_key="xuiDefault" />
+						</rect>
+						
+
 					</grid>
 				</rect>			
 				
@@ -1897,7 +1923,7 @@
 						</rect>
 					
 						<rect width="560" height="32" visible="{onlyconnected}">
-							<label depth="4" pos="0,0" width="250" height="30" style="hover" tooltip_key="xuiOptionsTwitchActionSpamDelayTooltip" text_key="xuiOptionsTwitchActionSpamDelay" font_size="28" color="[white]" justify="right" pivot="topleft" visible="${visible|true}" /> <!--text_key="xuiOptionsTwitch${name}"-->
+							<label depth="4" pos="0,0" width="250" height="30" style="hover" tooltip_key="xuiOptionsTwitchActionSpamDelayTooltip" text_key="xuiOptionsTwitchActionSpamDelay" font_size="28" color="[white]" justify="right" pivot="topleft" /> <!--text_key="xuiOptionsTwitch${name}"-->
 							<combobox name="ActionSpamDelay" type="ComboBoxList`1[System.String]" value_wrap="false" pos="255,0" width="300" height="32" />
 						</rect>
 			
@@ -1917,26 +1943,26 @@
 					<grid pos="8,-40" rows="13" cell_width="525" cell_height="45" repeat_content="false" arrangement="vertical" >
 						
 						<rect width="560" height="32">
-							<label depth="4" pos="0,0" width="250" height="30" style="hover" tooltip_key="xuiOptionsTwitchBloodmoonActionsTooltip" text_key="xuiOptionsTwitchBloodMoonActions" font_size="28" color="[white]" justify="right" pivot="topleft" visible="${visible|true}" />
+							<label depth="4" pos="0,0" width="250" height="30" style="hover" tooltip_key="xuiOptionsTwitchBloodmoonActionsTooltip" text_key="xuiOptionsTwitchBloodMoonActions" font_size="28" color="[white]" justify="right" pivot="topleft" />
 							<combobox name="AllowActionsDuringBloodmoon" type="ComboBoxEnum`1[XUiC_OptionsTwitch+TwitchBloodMoonOptions]" value_wrap="false" pos="255,0" width="300" height="32" localization_prefix="xuiTwitchBloodMoonOptions" />
 						</rect>
 						
 						<rect width="560" height="32">
-							<label depth="4" pos="0,0" width="250" height="30" style="hover" tooltip_key="xuiOptionsTwitchQuestsActionsTooltip" text_key="xuiOptionsTwitchQuestsActions" font_size="28" color="[white]" justify="right" pivot="topleft" visible="${visible|true}" />
+							<label depth="4" pos="0,0" width="250" height="30" style="hover" tooltip_key="xuiOptionsTwitchQuestsActionsTooltip" text_key="xuiOptionsTwitchQuestsActions" font_size="28" color="[white]" justify="right" pivot="topleft" />
 							<combobox name="AllowActionsDuringQuests" type="ComboBoxEnum`1[XUiC_OptionsTwitch+TwitchBloodMoonOptions]" value_wrap="false" pos="255,0" width="300" height="32" localization_prefix="xuiTwitchBloodMoonOptions" />
 						</rect>
 						
 						<rect />
 						
 						<rect width="560" height="32">
-							<label depth="4" pos="0,0" width="250" height="30" style="hover" tooltip_key="xuiOptionsTwitchBitPricesTooltip" text_key="xuiOptionsTwitchBitPrices" font_size="28" color="[white]" justify="right" pivot="topleft" visible="${visible|true}" /> <!--text_key="xuiOptionsTwitch${name}"-->
+							<label depth="4" pos="0,0" width="250" height="30" style="hover" tooltip_key="xuiOptionsTwitchBitPricesTooltip" text_key="xuiOptionsTwitchBitPrices" font_size="28" color="[white]" justify="right" pivot="topleft" /> <!--text_key="xuiOptionsTwitch${name}"-->
 							<combobox name="BitPrices" type="ComboBoxList`1[System.String]" value_min=".25" value_max="1" value_increment=".25" value_wrap="false" pos="255,0" width="300" height="32" format_string="0%" reverse_list="true" usesmarkers="false" />
 						</rect>
 						
 						<rect />
 						
 						<rect width="560" height="32">
-							<label depth="4" pos="0,0" width="250" height="30" style="hover" tooltip_key="xuiOptionsTwitchBitPotPercentTooltip" text_key="xuiOptionsTwitchBitPotPercent" font_size="28" color="[white]" justify="right" pivot="topleft" visible="${visible|true}" /> <!--text_key="xuiOptionsTwitch${name}"-->
+							<label depth="4" pos="0,0" width="250" height="30" style="hover" tooltip_key="xuiOptionsTwitchBitPotPercentTooltip" text_key="xuiOptionsTwitchBitPotPercent" font_size="28" color="[white]" justify="right" pivot="topleft" /> <!--text_key="xuiOptionsTwitch${name}"-->
 							<combobox name="BitPotPercent" type="ComboBoxList`1[System.String]" value_min=".15" value_max="1" value_increment=".05" value_wrap="false" pos="255,0" width="300" height="32" format_string="0%" reverse_list="true" usesmarkers="false" />
 						</rect>
 						
@@ -2001,30 +2027,30 @@
 						<rect />
 						
 						<rect width="560" height="32">
-							<label depth="4" pos="0,0" width="250" height="30" style="hover" tooltip_key="xuiOptionsTwitchViewerDefeatRewardTooltip" text_key="xuiOptionsTwitchViewerDefeatReward" font_size="28" color="[white]" justify="right" pivot="topleft" visible="${visible|true}" /> <!--text_key="xuiOptionsTwitch${name}"-->
+							<label depth="4" pos="0,0" width="250" height="30" style="hover" tooltip_key="xuiOptionsTwitchViewerDefeatRewardTooltip" text_key="xuiOptionsTwitchViewerDefeatReward" font_size="28" color="[white]" justify="right" pivot="topleft" /> <!--text_key="xuiOptionsTwitch${name}"-->
 							<combobox name="ViewerDefeatReward" type="ComboBoxList`1[System.String]" value_wrap="false" pos="255,0" width="300" height="32" />
 						</rect>
 			
 						<rect />
 						
 						<rect width="560" height="32">
-							<label depth="4" pos="0,0" width="250" height="30" style="hover" tooltip_key="xuiOptionsTwitchMaxDailyVotesTooltip" text_key="xuiOptionsTwitchMaxDailyVotes" font_size="28" color="[white]" justify="right" pivot="topleft" visible="${visible|true}" /> <!--text_key="xuiOptionsTwitch${name}"-->
+							<label depth="4" pos="0,0" width="250" height="30" style="hover" tooltip_key="xuiOptionsTwitchMaxDailyVotesTooltip" text_key="xuiOptionsTwitchMaxDailyVotes" font_size="28" color="[white]" justify="right" pivot="topleft" /> <!--text_key="xuiOptionsTwitch${name}"-->
 							<combobox name="MaxDailyVotes" type="ComboBoxList`1[System.String]" value_wrap="false" pos="255,0" width="300" height="32" />
 						</rect>
 						
 						<rect width="560" height="32">
-							<label depth="4" pos="0,0" width="250" height="30" style="hover" tooltip_key="xuiOptionsTwitchVoteTimeTooltip" text_key="xuiOptionsTwitchVoteTime" font_size="28" color="[white]" justify="right" pivot="topleft" visible="${visible|true}" /> <!--text_key="xuiOptionsTwitch${name}"-->
+							<label depth="4" pos="0,0" width="250" height="30" style="hover" tooltip_key="xuiOptionsTwitchVoteTimeTooltip" text_key="xuiOptionsTwitchVoteTime" font_size="28" color="[white]" justify="right" pivot="topleft" /> <!--text_key="xuiOptionsTwitch${name}"-->
 							<combobox name="VoteTime" type="ComboBoxList`1[System.String]" value_wrap="false" pos="255,0" width="300" height="32" />
 						</rect>
 						
 						<rect />
 						
 						<rect width="560" height="32">
-							<label depth="4" pos="0,0" width="250" height="30" style="hover" tooltip_key="xuiOptionsTwitchVoteDayTimeRangeTooltip" text_key="xuiOptionsTwitchVoteDayTimeRange" font_size="28" color="[white]" justify="right" pivot="topleft" visible="${visible|true}" /> <!--text_key="xuiOptionsTwitch${name}"-->
+							<label depth="4" pos="0,0" width="250" height="30" style="hover" tooltip_key="xuiOptionsTwitchVoteDayTimeRangeTooltip" text_key="xuiOptionsTwitchVoteDayTimeRange" font_size="28" color="[white]" justify="right" pivot="topleft" /> <!--text_key="xuiOptionsTwitch${name}"-->
 							<combobox name="VoteDayTimeRange" type="ComboBoxList`1[System.String]" value_wrap="false" pos="255,0" width="300" height="32" />
 							
 							<sprite depth="2" pos="576,0" width="559" height="33" name="backgroundMainTabs" sprite="menu_empty3px" color="0,0,0,150" type="sliced" fillcenter="true" globalopacity="true" />
-							<label depth="4" pos="576,-3" width="550" height="30" style="hover" text="{votedaytimerange}" font_size="28" color="[white]" justify="center" pivot="topleft" visible="${visible|true}"  /> <!--text_key="xuiOptionsTwitch${name}"-->
+							<label depth="4" pos="576,-3" width="550" height="30" style="hover" text="{votedaytimerange}" font_size="28" color="[white]" justify="center" pivot="topleft" /> <!--text_key="xuiOptionsTwitch${name}"-->
 						</rect>
 					
 					</grid>
@@ -2098,61 +2124,61 @@
 					<grid pos="8,-40" rows="13" cell_width="525" cell_height="45" repeat_content="false" arrangement="vertical" >
 			
 						<rect width="560" height="32">
-							<label depth="4" pos="0,0" width="250" height="30" style="hover" tooltip_key="xuiOptionsTwitchViewerStartingPointsTooltip" text_key="xuiOptionsTwitchViewerStartingPoints" font_size="28" color="[white]" justify="right" pivot="topleft" visible="${visible|true}" /> <!--text_key="xuiOptionsTwitch${name}"-->
+							<label depth="4" pos="0,0" width="250" height="30" style="hover" tooltip_key="xuiOptionsTwitchViewerStartingPointsTooltip" text_key="xuiOptionsTwitchViewerStartingPoints" font_size="28" color="[white]" justify="right" pivot="topleft" /> <!--text_key="xuiOptionsTwitch${name}"-->
 							<combobox name="ViewerStartingPoints" type="ComboBoxList`1[System.String]" value_wrap="false" pos="255,0" width="300" height="32" />
 						</rect>
 			
 			
 						<rect width="560" height="32">
-							<label depth="4" pos="0,0" width="250" height="30" style="hover" tooltip_key="xuiOptionsTwitchFreePointsTooltip" text_key="xuiOptionsTwitchFreePoints" font_size="28" color="[white]" justify="right" pivot="topleft" visible="${visible|true}" /> <!--text_key="xuiOptionsTwitch${name}"-->
+							<label depth="4" pos="0,0" width="250" height="30" style="hover" tooltip_key="xuiOptionsTwitchFreePointsTooltip" text_key="xuiOptionsTwitchFreePoints" font_size="28" color="[white]" justify="right" pivot="topleft" /> <!--text_key="xuiOptionsTwitch${name}"-->
 							<combobox name="PointGeneration" type="ComboBoxEnum`1[XUiC_OptionsTwitch+PointsGenerationOptions]" value_wrap="false" pos="255,0" width="300" height="32" localization_prefix="xuiTwitchPointGeneration" />
 						</rect>
 			
 						<rect />
 			
 						<rect width="560" height="32">
-							<label depth="4" pos="0,0" width="250" height="30" style="hover" tooltip_key="xuiOptionsTwitchHelperRewardAmountTooltip" text_key="xuiOptionsTwitchHelperRewardAmount" font_size="28" color="[white]" justify="right" pivot="topleft" visible="${visible|true}" /> <!--text_key="xuiOptionsTwitch${name}"-->
+							<label depth="4" pos="0,0" width="250" height="30" style="hover" tooltip_key="xuiOptionsTwitchHelperRewardAmountTooltip" text_key="xuiOptionsTwitchHelperRewardAmount" font_size="28" color="[white]" justify="right" pivot="topleft" /> <!--text_key="xuiOptionsTwitch${name}"-->
 							<combobox name="HelperRewardAmount" type="ComboBoxList`1[System.String]" value_wrap="false" pos="255,0" width="300" height="32" />
 						</rect>
 						
 						<rect width="560" height="32">
-							<label depth="4" pos="0,0" width="250" height="30" style="hover" tooltip_key="xuiOptionsTwitchHelperRewardIntervalTooltip" text_key="xuiOptionsTwitchHelperRewardInterval" font_size="28" color="[white]" justify="right" pivot="topleft" visible="${visible|true}" /> <!--text_key="xuiOptionsTwitch${name}"-->
+							<label depth="4" pos="0,0" width="250" height="30" style="hover" tooltip_key="xuiOptionsTwitchHelperRewardIntervalTooltip" text_key="xuiOptionsTwitchHelperRewardInterval" font_size="28" color="[white]" justify="right" pivot="topleft" /> <!--text_key="xuiOptionsTwitch${name}"-->
 							<combobox name="HelperRewardTime" type="ComboBoxList`1[System.String]" value_wrap="false" pos="255,0" width="300" height="32" />
 						</rect>
 						
 						<rect />
 			
 						<rect width="560" height="32">
-							<label depth="4" pos="0,0" width="250" height="30" style="hover" tooltip_key="xuiOptionsTwitchBitPointsAddTooltip" text_key="xuiOptionsTwitchBitPointsAdd" font_size="28" color="[white]" justify="right" pivot="topleft" visible="${visible|true}" /> <!--text_key="xuiOptionsTwitch${name}"-->
+							<label depth="4" pos="0,0" width="250" height="30" style="hover" tooltip_key="xuiOptionsTwitchBitPointsAddTooltip" text_key="xuiOptionsTwitchBitPointsAdd" font_size="28" color="[white]" justify="right" pivot="topleft" /> <!--text_key="xuiOptionsTwitch${name}"-->
 							<combobox name="BitPointsAdd" type="ComboBoxEnum`1[XUiC_OptionsTwitch+BitAddOptions]" value_wrap="false" pos="255,0" width="300" height="32" localization_prefix="xuiTwitchPointGeneration" />
 						</rect>
 						
 						<rect width="560" height="32">
-							<label depth="4" pos="0,0" width="250" height="30" style="hover" tooltip_key="xuiOptionsTwitchRaidPointsAddTooltip" text_key="xuiOptionsTwitchRaidPointsAdd" font_size="28" color="[white]" justify="right" pivot="topleft" visible="${visible|true}" /> <!--text_key="xuiOptionsTwitch${name}"-->
+							<label depth="4" pos="0,0" width="250" height="30" style="hover" tooltip_key="xuiOptionsTwitchRaidPointsAddTooltip" text_key="xuiOptionsTwitchRaidPointsAdd" font_size="28" color="[white]" justify="right" pivot="topleft" /> <!--text_key="xuiOptionsTwitch${name}"-->
 							<combobox name="RaidPointsAdd" type="ComboBoxList`1[System.String]" value_wrap="false" pos="255,0" width="300" height="32" />
 						</rect>
 						
 						<rect width="560" height="32">
-							<label depth="4" pos="0,0" width="250" height="30" style="hover" tooltip_key="xuiOptionsTwitchRaidViewerMinimumTooltip" text_key="xuiOptionsTwitchRaidViewerMinimum" font_size="28" color="[white]" justify="right" pivot="topleft" visible="${visible|true}" /> <!--text_key="xuiOptionsTwitch${name}"-->
+							<label depth="4" pos="0,0" width="250" height="30" style="hover" tooltip_key="xuiOptionsTwitchRaidViewerMinimumTooltip" text_key="xuiOptionsTwitchRaidViewerMinimum" font_size="28" color="[white]" justify="right" pivot="topleft" /> <!--text_key="xuiOptionsTwitch${name}"-->
 							<combobox name="RaidViewerMinimum" type="ComboBoxList`1[System.String]" value_wrap="false" pos="255,0" width="300" height="32" />
 						</rect>
 						
 						<rect />
 						
 						<rect width="560" height="32">
-							<label depth="4" pos="0,0" width="250" height="30" style="hover" tooltip_key="xuiOptionsTwitchSubPointsAddTooltip" text_key="xuiOptionsTwitchSubPointsAdd" font_size="28" color="[white]" justify="right" pivot="topleft" visible="${visible|true}" /> <!--text_key="xuiOptionsTwitch${name}"-->
+							<label depth="4" pos="0,0" width="250" height="30" style="hover" tooltip_key="xuiOptionsTwitchSubPointsAddTooltip" text_key="xuiOptionsTwitchSubPointsAdd" font_size="28" color="[white]" justify="right" pivot="topleft" /> <!--text_key="xuiOptionsTwitch${name}"-->
 							<combobox name="SubPointsAdd" type="ComboBoxEnum`1[XUiC_OptionsTwitch+PointsGenerationOptions]" value_wrap="false" pos="255,0" width="300" height="32" localization_prefix="xuiTwitchPointGeneration" />
 							
 							<sprite depth="2" pos="574,0" width="559" height="33" name="backgroundMainTabs" sprite="menu_empty3px" color="0,0,0,150" type="sliced" fillcenter="true" globalopacity="true" />
-							<label depth="4" pos="574,-3" width="550" height="30" style="hover" text="{subvalues}" font_size="28" color="[white]" justify="center" pivot="topleft" visible="${visible|true}"  /> <!--text_key="xuiOptionsTwitch${name}"-->
+							<label depth="4" pos="574,-3" width="550" height="30" style="hover" text="{subvalues}" font_size="28" color="[white]" justify="center" pivot="topleft" /> <!--text_key="xuiOptionsTwitch${name}"-->
 						</rect>
 						
 						<rect width="560" height="32">
-							<label depth="4" pos="0,0" width="250" height="30" style="hover" tooltip_key="xuiOptionsTwitchGiftSubPointsAddTooltip" text_key="xuiOptionsTwitchGiftSubPointsAdd" font_size="28" color="[white]" justify="right" pivot="topleft" visible="${visible|true}" /> <!--text_key="xuiOptionsTwitch${name}"-->
+							<label depth="4" pos="0,0" width="250" height="30" style="hover" tooltip_key="xuiOptionsTwitchGiftSubPointsAddTooltip" text_key="xuiOptionsTwitchGiftSubPointsAdd" font_size="28" color="[white]" justify="right" pivot="topleft" /> <!--text_key="xuiOptionsTwitch${name}"-->
 							<combobox name="GiftSubPointsAdd" type="ComboBoxEnum`1[XUiC_OptionsTwitch+PointsGenerationOptions]" value_wrap="false" pos="255,0" width="300" height="32" localization_prefix="xuiTwitchPointGeneration" />
 							
 							<sprite depth="2" pos="574,0" width="559" height="33" name="backgroundMainTabs" sprite="menu_empty3px" color="0,0,0,150" type="sliced" fillcenter="true" globalopacity="true" />
-							<label depth="4" pos="574,-3" width="550" height="30" style="hover" text="{giftsubvalues}" font_size="28" color="[white]" justify="center" pivot="topleft" visible="${visible|true}"  /> <!--text_key="xuiOptionsTwitch${name}"-->
+							<label depth="4" pos="574,-3" width="550" height="30" style="hover" text="{giftsubvalues}" font_size="28" color="[white]" justify="center" pivot="topleft"  /> <!--text_key="xuiOptionsTwitch${name}"-->
 						</rect>
 						
 					</grid>
@@ -2213,6 +2239,8 @@
 						<controloption name="InvertMouseLookY" type="ComboBoxBool" localization_prefix="xuiComboYesNo" />
 
 						<controloption name="SprintLock" type="ComboBoxList`1[System.String]" values="Hold,Toggle,Autorun" localization_prefix="xuiSprintLock" />
+
+						<controloption name="QuickAction" type="ComboBoxList`1[System.String]" values="ChangeCamera, ToggleItem" localization_prefix="xuiQuickAction" />
 					</grid>
 				</rect>
 				
@@ -2320,7 +2348,7 @@
 				<sprite depth="0" pos="2,0" width="1396" name="backgroundMain" sprite="menu_empty3px" color="[mediumGrey]" type="sliced" fillcenter="true" />
 			
 				<rect controller="TabSelectorTab" tab_key="xuiOptionsControlsGeneric">
-					<grid pos="8,-40" rows="10" cell_width="700" cell_height="45" repeat_content="false" arrangement="vertical" >
+					<grid pos="8,-40" rows="12" cell_width="700" cell_height="45" repeat_content="false" arrangement="vertical" >
 
 						<controloption name="AllowController" type="ComboBoxBool" localization_prefix="xuiComboYesNo" platform="STANDALONE"/>
 
@@ -2349,6 +2377,8 @@
 						<controloption name="WeaponAiming" type="ComboBoxBool" localization_prefix="xuiWeaponAimingCombo" />
 
 						<controloption name="SprintLock" type="ComboBoxList`1[System.String]" values="Hold,Toggle,Autorun" localization_prefix="xuiSprintLock" />
+
+						<controloption name="QuickAction" type="ComboBoxList`1[System.String]" values="ChangeCamera, ToggleItem" localization_prefix="xuiQuickAction" />
 						
 						<controloption name="ControllerVibration" type="ComboBoxList`1[System.String]" values="Off, Subtle, Standard, Strong" localization_prefix="xuiControllerVibrationStrength" />
 
@@ -2364,13 +2394,25 @@
 				</rect>
 
 				<rect controller="TabSelectorTab">
-					<grid name="controlsGrid" pos="8,-40" cols="2" cell_width="600" cell_height="66" rows="8" repeat_content="true" arrangement="vertical" >
+					<grid name="controlsGrid" pos="8,-40" cols="2" cell_width="650" cell_height="66" rows="9" repeat_content="true" arrangement="vertical" >
 						<controller_binding_entry/>
 					</grid>
 				</rect>
 
 				<rect controller="TabSelectorTab">
-					<grid name="controlsGrid" pos="8,-40" cols="2" cell_width="600" cell_height="66" rows="8" repeat_content="true" arrangement="vertical" >
+					<grid name="controlsGrid" pos="8,-40" cols="2" cell_width="650" cell_height="66" rows="9" repeat_content="true" arrangement="vertical" >
+						<controller_binding_entry/>
+					</grid>
+				</rect>
+
+				<rect controller="TabSelectorTab">
+					<grid name="controlsGrid" pos="8,-40" cols="2" cell_width="650" cell_height="66" rows="9" repeat_content="true" arrangement="vertical" >
+						<controller_binding_entry/>
+					</grid>
+				</rect>
+
+				<rect controller="TabSelectorTab">
+					<grid name="controlsGrid" pos="8,-40" cols="2" cell_width="650" cell_height="66" rows="9" repeat_content="true" arrangement="vertical" >
 						<controller_binding_entry/>
 					</grid>
 				</rect>
@@ -2687,6 +2729,7 @@
 
 		<rect name="buttons" visible="{buttonsVisible}" pos="0,130" >
 			<panel name="header" pos="0,0" height="43" depth="2" createuipanel="true" backgroundspritename="ui_game_panel_header" bordercolor="[black]" borderthickness="0" >
+				<rect createuiwidget="true" on_press="true" />
 				<label style="header.name" pos="6,-6" width="490" text_key="respawnTitleMessage" justify="center" />
 			</panel>
 

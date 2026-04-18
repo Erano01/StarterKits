@@ -1,0 +1,6 @@
+<configs>
+    <!-- Styles dosyasını dahil et -->
+    <include path="styles.xml" />
+
+    
+</configs>
