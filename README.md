@@ -45,6 +45,10 @@ C:\Program Files (x86)\Steam\steamapps\common\7 Days to Die Dedicated Server\Mod
 
 --for xml modding doc--
 C:\Program Files (x86)\Steam\steamapps\common\7 Days To Die\Data\Config
+
+
+//linux
+/home/erano/.local/share/7DaysToDie/logs/
 ```
 
 You have to use dnSPY to view ModAPI documentation like javadoc.
