@@ -27,13 +27,20 @@ anchor="CenterCenter" ise tam ortaya almak istiyorsan ve width 1024 ise -512 ver
 			cursor_area="true">
 
 			<panel name="rootPanel">
+                <!-- HEADER -->
                 <!-- panel height - label font_size = label pos y value  -->
 				<panel name="header" pos="0,0" width="1024" height="50" depth="1" backgroundcolor="[black]">
 					<label depth="2" pos="0,-12" width="1024" font_size="28" color="[white]" justify="center" text="Starter Kits" />
 				</panel>
 
+                <!-- TITLE FOR SELECTION GRID -->
+                <panel name="grid_title" pos="0,-45" width="512" height="50" depth="1" backgroundcolor="[white]">
+					<label depth="2" pos="0,-12" width="512" font_size="28" color="[black]" justify="center" text="Choose one of these: " />
+				</panel>
+
+                <!-- SELECTION GRID -->
 				<grid name="kitOptions"
-					pos="25,-65"
+					pos="35,-100"
 					width="390"
 					height="270"
 					rows="2"
@@ -60,6 +67,11 @@ anchor="CenterCenter" ise tam ortaya almak istiyorsan ve width 1024 ise -512 ver
 					</rect>
 
 				</grid>
+
+                <!-- TITLE FOR OVERVİEW -->
+                <panel name="overview_title" pos="512,-45" width="512" height="50" depth="1" backgroundcolor="[black]">
+					<label depth="2" pos="0,-12" width="512" font_size="28" color="[white]" justify="center" text="Selection Overview" />
+				</panel>
 			</panel>
 		</window>
 	</append>
