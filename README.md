@@ -10,12 +10,17 @@ Install your project under:
 
 ```text
 C:\Program Files (x86)\Steam\steamapps\common\7 Days To Die\Mods
+or
+
+"/home/{user}/.local/share/Steam/steamapps/common/7 Days To Die/Mods"
 ```
 
 In the same folder, manually copy the `0_TFP_Harmony` mod from:
 
 ```text
 C:\Program Files (x86)\Steam\steamapps\common\7 Days to Die Dedicated Server\Mods
+
+"/home/{user}/.local/share/Steam/steamapps/common/7 Days to Die Dedicated Server/"
 ```
 
 Make sure the C# Dev Kit extension is installed in VS Code.
@@ -23,7 +28,11 @@ Make sure the C# Dev Kit extension is installed in VS Code.
 To build the project, use the following command:
 
 ```powershell
+// windows
 dotnet msbuild ".\StarterKits.csproj" /p:Configuration=Debug
+
+// linux
+dotnet msbuild StarterKits.csproj /restore /p:Configuration=Debug
 ```
 
 
@@ -45,7 +54,14 @@ File -> Open -> API neredeyse oyun dosyaları
 Assembly-CSharp.dll'i açmak yeterli.
 
 ## Development Formula
-use events -(if not possible)> use harmony patches -(if not possible)> use scripts -(if not possible)> use transpilers
+use xml(modlet) -(if not possible)> use GameAPI events -(if not possible)> use harmony patches -(if not possible)> use scripts -(if not possible)> use transpilers
+
+if you are developing UI's(XML) you can reload UI without restarting game.
+
+use this in game when you change the UI: 
+```text
+xui reload
+```
 
 ## Notes for development
 
