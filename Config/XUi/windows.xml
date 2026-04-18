@@ -1,5 +1,18 @@
 <configs>
 	<append xpath="/windows">
+<!--
+1. 
+window width = 440, window height = 360
+grid width = 390, grid height = 270
+row count = 2, column count = 2
+
+2.
+(window width - grid width) / row count = horizontal spacing  (x-axis)      
+header - (header + spacing) = vertical spacing (y-axis) 
+
+3.
+pos değeri, elemanın anchor/pivot referans noktasına göre offset’idir.
+-->
 		<window name="starterKitWindow"
 			controller="StarterKits.XUiC_KitSelectionMenu, StarterKits"
 			is_modal="true"
