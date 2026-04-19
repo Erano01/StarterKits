@@ -39,9 +39,9 @@ anchor -> parent'a göre konumlandırma
 					<label depth="2" pos="0,-12" width="1024" font_size="28" color="[white]" justify="center" text="Starter Kits" />
 				</panel>
 
-                <panel name="selection_panel" pos="0,-55" width="509" height="745" depth="1" backgroundcolor="[white]">
+                <panel name="selection_panel" pos="0,-55" width="509" height="745" depth="1" backgroundcolor="[black]">
                     <!-- SELECTION TITLE -->
-                    <label depth="2" pos="0,-12" width="509" font_size="28" color="[black]" justify="center" text="Choose one of these: " />
+                    <label depth="2" pos="0,-12" width="509" font_size="28" color="[white]" justify="center" text="Choose one of these: " />
                     
                     <!-- SELECTION GRID -->
                     <grid name="kitOptions"
@@ -190,8 +190,6 @@ anchor -> parent'a göre konumlandırma
                         <label depth="4" pos="20,-320" width="180" font_size="20" color="222,206,163,255" justify="left" text="Attributes" />
                         <label name="lblKitAttributes" depth="4" pos="20,-350" width="400" font_size="18" color="[white]" justify="left" text="Select a kit to inspect its attribute focus." max_line_count="4" />
 
-                        <label depth="4" pos="20,-430" width="180" font_size="20" color="222,206,163,255" justify="left" text="Bonuses" />
-                        <label name="lblKitBonuses" depth="4" pos="20,-460" width="400" font_size="18" color="[white]" justify="left" text="Bonus details will appear here after you choose a kit." max_line_count="4" />
                     </rect>
 
                     <simplebutton name="btnConfirmKit" depth="3" pos="55,-625" width="400" height="52" font_size="28" caption="Select &amp; Confirm" upper_case="false" enabled="false" />

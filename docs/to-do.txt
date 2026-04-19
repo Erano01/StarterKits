@@ -1,8 +1,3 @@
-
-
-tab -> inventory menu implementasyonunu bul
-
------------------------------------------
 Güncel harita: docs/xml/XUi -> windows.xml + xui.xml + controls.xml.
 
 
@@ -14,20 +9,135 @@ Genel slot kontrolü item_stack: controls.xml:130
 Backpack slot kontrolü backpack_item_stack: controls.xml:173
 
 -----------------------------------------
+-----------------------------------------
+-----------------------------------------
+-----------------------------------------
+-----------------------------------------
+-----------------------------------------
+
+HUNTSMAN ->
+- Dead Eye 5/5
+- Animal Tracker 5/5
+- The Penetrator 5/5
+- The Huntsman 5/5
+- Iron Gut 5/5
+- Hidden Strike 2/5
+- Sniper Perk Book 7/7
+- Rifles 26/100
 
 
-12 kit olacak. her bir cell'i biraz küçültelim ve 4 tane daha ekleyelim. height olarak yarı yarıya küçülsün kutucuklar.
-Kitler:
+Tyson ->
+- The Brawler 5/5
+- Lightning Hands 5/5
+- Pain Tolerance 5/5
+- Fortitude Mastery 5/5
+- Siphoning Strikes 5/5
+- Healing Factor 5/5
+- Iron Gut 5/5
+- Bar Brawling 7/7
+- Knuckles 11/75
 
-Scavenger
-Huntsman
-Athlete
-Tyson
-Archer
-Farmer
-Engineer
-Ex-Soldier
-Doctor
-Miner
-Demoman
-Hitman
+
+Farmer ->
+- Living off The Land 3/3
+- Armor Crafting Skill 11/100
+- Seeds Crafting Skill 20/20
+- Food Crafting Skill 100/100
+- Super Corn Crafting Magazine (Automatically Readed)
+- Fullset Farmer Armor 
+- Spear Master 5/5
+- Quick and Perceptive 5/5
+- Spear Hunter 7/7
+- Spear Crafting Skill 11/75
+
+
+Miner ->
+- Skull Crusher 5/5
+- Grand Slam 5/5
+- Strength Master 5/5
+- Pack Mule 5/5
+- Miner 69'er 5/5
+- Mother Lode 5/5
+- Sledge Saga 7/7
+- Harvesting Tools 11/100
+- Sledge Hammer 11/75
+- Workstations 34/75
+
+
+Ex Soldier ->
+- Machine Gunner 5/5
+- Run and Gun 5/5
+- Commando Armor Fullset
+- Armor Crafting Skill 11/100
+- Medium Armor 4/4
+- Urban Combat 7/7
+- The Automatic Weapon Handbook 7/7
+- Machine Guns 11/100
+
+Hitman ->
+- Gunslinger 5/5
+- Run and Gun 5/5
+- Agility Mastery 2/5
+- Hidden Strike 5/5
+- From the Shadows 5/5
+- Pistol Pete 7/7
+- Magnum Enforcer 7/7
+- Handguns 26/100
+
+Dumb Luck ->
+- Lucky Looter (Skill) 5/5
+- Lucky Looter (Perk Book) 7/7
+- Wasteland Treasures 7/7
+- The Daring Adventurer 5/5
+- Treasure Hunter 5/5
+
+Burgler ->
+- Better Barter 5/5
+- Lock Picking 3/3
+- Workstations 12/75
+- Blades 36/75
+- Deep Cuts 5/5
+- Hidden Strike 3/5
+- From the Shadows 3/5
+- Whirlwind 5/5
+
+Engineer ->
+- Electrician Crafting Skills 55/100
+- Vehicles Crafting Skill 20/100
+- Robotics 76/100
+- Tech Junkie 7/7
+- Workstations 34/75
+- Advanced Engineering 5/5
+- Grease Monkey 5/5
+
+Doctor ->
+- Physician 5/5
+- Charismatic Nature 3/5
+- Medical 75/75
+- Foot 27/100
+
+Demoman ->
+- Demolition Expert 5/5
+- The Infiltrator 5/5
+- Explosives 50/100
+
+Archer ->
+- Archery 5/5
+- From the Shadows 2/5
+- Hidden Strike 3/5
+- Ranger's Guide to Archery 7/7
+- Bows 11/75
+
+Scavenger ->
+- Salvage Operations 5/5
+- Perception Mastery 2/5
+- Salvage TOols 4/75
+
+Athlete ->
+- Parkour 5/5
+- Hard Target 5/5
+- Run and Gun 3/5
+- Armor Crafting Skill 11/100
+- Rule 1: Cardio 5/5
+
+
