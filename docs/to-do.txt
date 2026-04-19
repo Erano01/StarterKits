@@ -24,7 +24,7 @@ HUNTSMAN ->
 - Hidden Strike 2/5
 - Sniper Perk Book 7/7
 - Rifles 26/100
-
+// The wasteland is your hunting ground. You don't miss. You don't get hungry. They never hear you coming.
 
 Tyson ->
 - The Brawler 5/5
@@ -36,7 +36,7 @@ Tyson ->
 - Iron Gut 5/5
 - Bar Brawling 7/7
 - Knuckles 11/75
-
+// No guns. No problem. Your fists are the only weapon the apocalypse couldn't rust.
 
 Farmer ->
 - Living off The Land 3/3
@@ -49,7 +49,7 @@ Farmer ->
 - Quick and Perceptive 5/5
 - Spear Hunter 7/7
 - Spear Crafting Skill 11/75
-
+// While others loot, you grow. Dirt under your nails, spear in your hand, food on everyone's table.
 
 Miner ->
 - Skull Crusher 5/5
@@ -62,7 +62,7 @@ Miner ->
 - Harvesting Tools 11/100
 - Sledge Hammer 11/75
 - Workstations 34/75
-
+// You hit rocks for a living. Zombies are just rocks that bleed.
 
 Ex Soldier ->
 - Machine Gunner 5/5
@@ -73,6 +73,7 @@ Ex Soldier ->
 - Urban Combat 7/7
 - The Automatic Weapon Handbook 7/7
 - Machine Guns 11/100
+// Old rank, new rules. Keep moving, keep firing. Discipline is the last thing that survived.
 
 Hitman ->
 - Gunslinger 5/5
@@ -83,6 +84,7 @@ Hitman ->
 - Pistol Pete 7/7
 - Magnum Enforcer 7/7
 - Handguns 26/100
+// Clean. Quiet. Gone before they hit the floor. Getting paid in cans these days, but the craft stays the same.
 
 Dumb Luck ->
 - Lucky Looter (Skill) 5/5
@@ -90,8 +92,9 @@ Dumb Luck ->
 - Wasteland Treasures 7/7
 - The Daring Adventurer 5/5
 - Treasure Hunter 5/5
+// You're not skilled. You're not smart. But somehow you always find the good stuff. Don't question it.
 
-Burgler ->
+Burglar ->
 - Better Barter 5/5
 - Lock Picking 3/3
 - Workstations 12/75
@@ -100,6 +103,7 @@ Burgler ->
 - Hidden Strike 3/5
 - From the Shadows 3/5
 - Whirlwind 5/5
+// Why fight when you can just... take it? Locks open, shadows hide, blades finish the conversation.
 
 Engineer ->
 - Electrician Crafting Skills 55/100
@@ -109,17 +113,20 @@ Engineer ->
 - Workstations 34/75
 - Advanced Engineering 5/5
 - Grease Monkey 5/5
+// Turrets, vehicles, electricity — if it runs on volts or wheels, you built it. The apocalypse has a power grid now. Yours.
 
 Doctor ->
 - Physician 5/5
 - Charismatic Nature 3/5
 - Medical 75/75
 - Foot 27/100
+// Someone has to keep the idiots alive. Might as well be you.
 
 Demoman ->
 - Demolition Expert 5/5
 - The Infiltrator 5/5
 - Explosives 50/100
+// Collateral damage is just a fancy word for fun. If it's still standing, use a bigger one.
 
 Archer ->
 - Archery 5/5
@@ -127,11 +134,13 @@ Archer ->
 - Hidden Strike 3/5
 - Ranger's Guide to Archery 7/7
 - Bows 11/75
+// Silent. Precise. Deeply judged by everyone until the horde drops. Then suddenly everyone loves the bow guy.
 
 Scavenger ->
 - Salvage Operations 5/5
 - Perception Mastery 2/5
-- Salvage TOols 4/75
+- Salvage Tools 4/75
+// One man's trash is another man's entire inventory. You built a life out of what others stepped over.
 
 Athlete ->
 - Parkour 5/5
@@ -139,5 +148,5 @@ Athlete ->
 - Run and Gun 3/5
 - Armor Crafting Skill 11/100
 - Rule 1: Cardio 5/5
-
+// You're not running away. You're tactically relocating. Very fast. Every single time.
 
