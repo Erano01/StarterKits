@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using System.Reflection;
 using HarmonyLib;
 
@@ -12,67 +13,216 @@ namespace StarterKits.Harmony
     {
         private static bool loggedFirstHit;
 
+        public static void Register(HarmonyLib.Harmony harmony)
+        {
+            if (harmony == null)
+            {
+                return;
+            }
+
+            var patched = new List<string>();
+
+            TryPatch(
+                harmony,
+                AccessTools.PropertyGetter(typeof(ProgressionValue), "Level"),
+                typeof(DoctorPerkFloorPatch).GetMethod(nameof(PostfixGetProperty), BindingFlags.Static | BindingFlags.NonPublic),
+                patched,
+                "ProgressionValue.Level(get)");
+
+            TryPatch(
+                harmony,
+                AccessTools.Method(typeof(ProgressionValue), "GetLevel"),
+                typeof(DoctorPerkFloorPatch).GetMethod(nameof(PostfixGetMethod), BindingFlags.Static | BindingFlags.NonPublic),
+                patched,
+                "ProgressionValue.GetLevel()");
+
+            TryPatch(
+                harmony,
+                AccessTools.Method(typeof(ProgressionValue), "CalculatedMaxLevel", new[] { typeof(EntityAlive) }),
+                typeof(DoctorPerkFloorPatch).GetMethod(nameof(PostfixCalculatedMaxLevel), BindingFlags.Static | BindingFlags.NonPublic),
+                patched,
+                "ProgressionValue.CalculatedMaxLevel(EntityAlive)");
+
+            TryPatch(
+                harmony,
+                AccessTools.Method(typeof(ProgressionClass), "GetCalculatedMaxLevel", new[] { typeof(EntityAlive), typeof(ProgressionValue) }),
+                typeof(DoctorPerkFloorPatch).GetMethod(nameof(PostfixStaticCalculatedMaxLevel), BindingFlags.Static | BindingFlags.NonPublic),
+                patched,
+                "ProgressionClass.GetCalculatedMaxLevel(EntityAlive, ProgressionValue)");
+
+            TryPatch(
+                harmony,
+                AccessTools.Method(typeof(ProgressionValue), "CalculatedLevel", new[] { typeof(EntityAlive) }),
+                typeof(DoctorPerkFloorPatch).GetMethod(nameof(PostfixCalculatedLevel), BindingFlags.Static | BindingFlags.NonPublic),
+                patched,
+                "ProgressionValue.CalculatedLevel(EntityAlive)");
+
+            TryPatch(
+                harmony,
+                AccessTools.Method(typeof(ProgressionValue), "GetCalculatedLevel", new[] { typeof(EntityAlive) }),
+                typeof(DoctorPerkFloorPatch).GetMethod(nameof(PostfixGetCalculatedLevel), BindingFlags.Static | BindingFlags.NonPublic),
+                patched,
+                "ProgressionValue.GetCalculatedLevel(EntityAlive)");
+
+            TryPatch(
+                harmony,
+                AccessTools.Method(typeof(ProgressionValue), "IsLocked", new[] { typeof(EntityAlive) }),
+                typeof(DoctorPerkFloorPatch).GetMethod(nameof(PostfixIsLocked), BindingFlags.Static | BindingFlags.NonPublic),
+                patched,
+                "ProgressionValue.IsLocked(EntityAlive)");
+
+            Log.Out($"[StarterKits] DoctorPerkFloorPatch register complete. Patched targets: {string.Join(", ", patched)}");
+        }
+
         [HarmonyPatch(typeof(ProgressionValue), "get_Level")]
         [HarmonyPostfix]
         private static void PostfixGetProperty(ProgressionValue __instance, ref int __result)
         {
-            ApplyFloor(__instance, ref __result);
+            ApplyLevelFloor(__instance, ResolvePrimaryPlayer(), ref __result);
         }
 
         [HarmonyPatch(typeof(ProgressionValue), "GetLevel")]
         [HarmonyPostfix]
         private static void PostfixGetMethod(ProgressionValue __instance, ref int __result)
         {
-            ApplyFloor(__instance, ref __result);
+            ApplyLevelFloor(__instance, ResolvePrimaryPlayer(), ref __result);
         }
 
-        private static void ApplyFloor(ProgressionValue __instance, ref int __result)
+        [HarmonyPatch(typeof(ProgressionValue), "CalculatedMaxLevel")]
+        [HarmonyPostfix]
+        private static void PostfixCalculatedMaxLevel(ProgressionValue __instance, EntityAlive _ea, ref int __result)
+        {
+            ApplyMaxFloor(__instance, _ea, ref __result);
+        }
+
+        [HarmonyPatch(typeof(ProgressionValue), "CalculatedLevel")]
+        [HarmonyPostfix]
+        private static void PostfixCalculatedLevel(ProgressionValue __instance, EntityAlive _ea, ref int __result)
+        {
+            ApplyLevelFloor(__instance, ResolvePlayer(_ea), ref __result);
+        }
+
+        [HarmonyPatch(typeof(ProgressionValue), "GetCalculatedLevel")]
+        [HarmonyPostfix]
+        private static void PostfixGetCalculatedLevel(ProgressionValue __instance, EntityAlive _ea, ref float __result)
         {
             try
             {
-                string progressionName = ResolveProgressionName(__instance);
-                if (string.IsNullOrEmpty(progressionName))
-                {
-                    return;
-                }
-
-                if (!string.Equals(progressionName, "perkPhysician", StringComparison.OrdinalIgnoreCase) &&
-                    !string.Equals(progressionName, "perkCharismaticNature", StringComparison.OrdinalIgnoreCase))
-                {
-                    return;
-                }
-
-                EntityPlayer player = ResolveOwnerPlayer(__instance) ?? ResolvePrimaryPlayer();
-                if (player?.Buffs == null || !player.Buffs.HasCustomVar("skDoctorFloorEnabled"))
-                {
-                    return;
-                }
-
-                int floor = 0;
-                if (string.Equals(progressionName, "perkPhysician", StringComparison.OrdinalIgnoreCase))
-                {
-                    floor = (int)player.Buffs.GetCustomVar("skDoctorFloorPhysician");
-                }
-                else if (string.Equals(progressionName, "perkCharismaticNature", StringComparison.OrdinalIgnoreCase))
-                {
-                    floor = (int)player.Buffs.GetCustomVar("skDoctorFloorCharismatic");
-                }
-
-                if (floor > __result)
+                int floor = GetConfiguredFloor(__instance, ResolvePlayer(_ea));
+                if (floor > 0 && __result < floor)
                 {
                     __result = floor;
-                }
-
-                if (!loggedFirstHit)
-                {
-                    loggedFirstHit = true;
-                    Log.Out("[StarterKits] DoctorPerkFloorPatch active.");
+                    LogFirstHit("GetCalculatedLevel");
                 }
             }
             catch (Exception ex)
             {
-                Log.Warning($"[StarterKits] DoctorPerkFloorPatch exception: {ex.Message}");
+                Log.Warning($"[StarterKits] DoctorPerkFloorPatch CalcLevel(float) exception: {ex.Message}");
             }
+        }
+
+        [HarmonyPatch(typeof(ProgressionClass), "GetCalculatedMaxLevel")]
+        [HarmonyPostfix]
+        private static void PostfixStaticCalculatedMaxLevel(EntityAlive _ea, ProgressionValue _pv, ref int __result)
+        {
+            ApplyMaxFloor(_pv, _ea, ref __result);
+        }
+
+        [HarmonyPatch(typeof(ProgressionValue), "IsLocked")]
+        [HarmonyPostfix]
+        private static void PostfixIsLocked(ProgressionValue __instance, EntityAlive _ea, ref bool __result)
+        {
+            try
+            {
+                int floor = GetConfiguredFloor(__instance, ResolvePlayer(_ea));
+                if (floor > 0)
+                {
+                    __result = false;
+                    LogFirstHit("IsLocked");
+                }
+            }
+            catch (Exception ex)
+            {
+                Log.Warning($"[StarterKits] DoctorPerkFloorPatch IsLocked exception: {ex.Message}");
+            }
+        }
+
+        private static void ApplyLevelFloor(ProgressionValue value, EntityPlayer player, ref int result)
+        {
+            try
+            {
+                int floor = GetConfiguredFloor(value, player);
+                if (floor > result)
+                {
+                    result = floor;
+                    LogFirstHit("Level");
+                }
+            }
+            catch (Exception ex)
+            {
+                Log.Warning($"[StarterKits] DoctorPerkFloorPatch Level exception: {ex.Message}");
+            }
+        }
+
+        private static void ApplyMaxFloor(ProgressionValue value, EntityAlive entity, ref int result)
+        {
+            try
+            {
+                int floor = GetConfiguredFloor(value, ResolvePlayer(entity));
+                if (floor > result)
+                {
+                    result = floor;
+                    LogFirstHit("CalculatedMaxLevel");
+                }
+            }
+            catch (Exception ex)
+            {
+                Log.Warning($"[StarterKits] DoctorPerkFloorPatch Max exception: {ex.Message}");
+            }
+        }
+
+        private static int GetConfiguredFloor(ProgressionValue value, EntityPlayer player)
+        {
+            if (player?.Buffs == null)
+            {
+                return 0;
+            }
+
+            bool doctorEnabled = player.Buffs.HasCustomVar("skDoctorFloorEnabled")
+                              || player.Buffs.HasBuff("buffStarterKitDoctorPersist")
+                              || player.Buffs.HasBuff("buffStarterKitDoctor");
+            if (!doctorEnabled)
+            {
+                return 0;
+            }
+
+            string progressionName = ResolveProgressionName(value);
+            if (string.IsNullOrEmpty(progressionName))
+            {
+                return 0;
+            }
+
+            if (string.Equals(progressionName, "perkPhysician", StringComparison.OrdinalIgnoreCase))
+            {
+                if (player.Buffs.HasCustomVar("skDoctorFloorPhysician"))
+                {
+                    return (int)player.Buffs.GetCustomVar("skDoctorFloorPhysician");
+                }
+
+                return 5;
+            }
+
+            if (string.Equals(progressionName, "perkCharismaticNature", StringComparison.OrdinalIgnoreCase))
+            {
+                if (player.Buffs.HasCustomVar("skDoctorFloorCharismatic"))
+                {
+                    return (int)player.Buffs.GetCustomVar("skDoctorFloorCharismatic");
+                }
+
+                return 3;
+            }
+
+            return 0;
         }
 
         private static string ResolveProgressionName(ProgressionValue value)
@@ -80,6 +230,19 @@ namespace StarterKits.Harmony
             if (value == null)
             {
                 return null;
+            }
+
+            try
+            {
+                string typedName = value.ProgressionClass?.Name;
+                if (!string.IsNullOrWhiteSpace(typedName))
+                {
+                    return typedName;
+                }
+            }
+            catch
+            {
+                // Fallback to reflection below for compatibility.
             }
 
             const BindingFlags flags = BindingFlags.Instance | BindingFlags.Public | BindingFlags.NonPublic;
@@ -108,44 +271,14 @@ namespace StarterKits.Harmony
             return null;
         }
 
-        private static EntityPlayer ResolveOwnerPlayer(ProgressionValue value)
+        private static EntityPlayer ResolvePlayer(EntityAlive entity)
         {
-            if (value == null)
+            if (entity is EntityPlayer player)
             {
-                return null;
+                return player;
             }
 
-            const BindingFlags flags = BindingFlags.Instance | BindingFlags.Public | BindingFlags.NonPublic;
-            Type t = value.GetType();
-
-            object progression = ReadMember(t, value, "Progression", flags)
-                              ?? ReadMember(t, value, "progression", flags)
-                              ?? ReadMember(t, value, "Parent", flags)
-                              ?? ReadMember(t, value, "parent", flags);
-            if (progression == null)
-            {
-                return null;
-            }
-
-            Type pt = progression.GetType();
-            object entity = ReadMember(pt, progression, "Entity", flags)
-                         ?? ReadMember(pt, progression, "entity", flags)
-                         ?? ReadMember(pt, progression, "Owner", flags)
-                         ?? ReadMember(pt, progression, "owner", flags)
-                         ?? ReadMember(pt, progression, "Parent", flags)
-                         ?? ReadMember(pt, progression, "parent", flags);
-
-            if (entity is EntityPlayer ep)
-            {
-                return ep;
-            }
-
-            if (entity is EntityAlive alive)
-            {
-                return alive as EntityPlayer;
-            }
-
-            return null;
+            return ResolvePrimaryPlayer();
         }
 
         private static EntityPlayer ResolvePrimaryPlayer()
@@ -157,6 +290,41 @@ namespace StarterKits.Harmony
             catch
             {
                 return null;
+            }
+        }
+
+        private static void LogFirstHit(string source)
+        {
+            if (loggedFirstHit)
+            {
+                return;
+            }
+
+            loggedFirstHit = true;
+            Log.Out($"[StarterKits] DoctorPerkFloorPatch active via {source}.");
+        }
+
+        private static void TryPatch(
+            HarmonyLib.Harmony harmony,
+            MethodBase target,
+            MethodInfo postfix,
+            List<string> patched,
+            string label)
+        {
+            try
+            {
+                if (target == null || postfix == null)
+                {
+                    Log.Warning($"[StarterKits] DoctorPerkFloorPatch target not found: {label}");
+                    return;
+                }
+
+                harmony.Patch(target, postfix: new HarmonyMethod(postfix));
+                patched.Add(label);
+            }
+            catch (Exception ex)
+            {
+                Log.Warning($"[StarterKits] DoctorPerkFloorPatch patch failed for {label}: {ex.Message}");
             }
         }
 

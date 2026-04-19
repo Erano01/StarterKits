@@ -431,6 +431,7 @@ namespace StarterKits
                 player.Buffs.SetCustomVar("skDoctorFloorEnabled", 1f, false);
                 player.Buffs.SetCustomVar("skDoctorFloorPhysician", 5f, false);
                 player.Buffs.SetCustomVar("skDoctorFloorCharismatic", 3f, false);
+                Log.Out("[StarterKits] Doctor floor CVars set: enabled=1 physician=5 charismatic=3");
             }
             catch
             {
@@ -439,6 +440,7 @@ namespace StarterKits
                     player.Buffs.AddCustomVar("skDoctorFloorEnabled", 1f);
                     player.Buffs.AddCustomVar("skDoctorFloorPhysician", 5f);
                     player.Buffs.AddCustomVar("skDoctorFloorCharismatic", 3f);
+                    Log.Out("[StarterKits] Doctor floor CVars added: enabled=1 physician=5 charismatic=3");
                 }
                 catch (Exception ex)
                 {
