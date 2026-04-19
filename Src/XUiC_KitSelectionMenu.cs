@@ -25,6 +25,12 @@ namespace StarterKits
             public XUiController SelectedOverlay;
         }
 
+        private sealed class KitPreviewImageEntry
+        {
+            public string KitName;
+            public XUiController TextureController;
+        }
+
         private static readonly Dictionary<string, KitOverviewData> KitOverview = new Dictionary<string, KitOverviewData>(StringComparer.OrdinalIgnoreCase)
         {
             ["Scavenger"] = new KitOverviewData
@@ -131,10 +137,12 @@ namespace StarterKits
         private static readonly string[] CandidateTextKeyPropertyNames = { "TextKey", "CaptionKey" };
 
         private readonly List<KitButtonEntry> kitButtons = new List<KitButtonEntry>();
+        private readonly List<KitPreviewImageEntry> kitPreviewImages = new List<KitPreviewImageEntry>();
         private string selectedKitName;
         private XUiController selectedKitNameLabel;
         private XUiController overviewHintLabel;
         private XUiController previewLabel;
+        private XUiController previewHintLabel;
         private XUiController attributesLabel;
         private XUiController bonusesLabel;
         private XUiController confirmButtonController;
@@ -165,9 +173,25 @@ namespace StarterKits
             this.RegisterKitButton("Dumb Luck", "btnDumbLuck", "selDumbLuck");
             this.RegisterKitButton("Burglar", "btnBurglar", "selBurglar");
 
+            this.RegisterKitTexture("Scavenger", "texScavenger");
+            this.RegisterKitTexture("Huntsman", "texHuntsman");
+            this.RegisterKitTexture("Athlete", "texAthlete");
+            this.RegisterKitTexture("Tyson", "texTyson");
+            this.RegisterKitTexture("Archer", "texArcher");
+            this.RegisterKitTexture("Farmer", "texFarmer");
+            this.RegisterKitTexture("Engineer", "texEngineer");
+            this.RegisterKitTexture("Ex-Soldier", "texExSoldier");
+            this.RegisterKitTexture("Doctor", "texDoctor");
+            this.RegisterKitTexture("Miner", "texMiner");
+            this.RegisterKitTexture("Demoman", "texDemoman");
+            this.RegisterKitTexture("Hitman", "texHitman");
+            this.RegisterKitTexture("Dumb Luck", "texDumbLuck");
+            this.RegisterKitTexture("Burglar", "texBurglar");
+
             this.selectedKitNameLabel = this.GetChildById("lblSelectedKitName");
             this.overviewHintLabel = this.GetChildById("lblOverviewHint");
             this.previewLabel = this.GetChildById("lblKitImagePlaceholder");
+            this.previewHintLabel = this.GetChildById("lblKitImageHint");
             this.attributesLabel = this.GetChildById("lblKitAttributes");
             this.bonusesLabel = this.GetChildById("lblKitBonuses");
             this.confirmButtonController = this.GetChildById("btnConfirmKit");
@@ -176,6 +200,8 @@ namespace StarterKits
             {
                 this.confirmButton.OnPressed += this.OnConfirmButtonPressed;
             }
+
+            Log.Out($"[StarterKits] Init complete. Buttons={this.kitButtons.Count}, previews={this.kitPreviewImages.Count}");
 
             this.ClearSelection();
         }
@@ -219,6 +245,23 @@ namespace StarterKits
                 KitName = kitName,
                 Button = button,
                 SelectedOverlay = overlay
+            });
+        }
+
+        private void RegisterKitTexture(string kitName, string textureId)
+        {
+            var textureController = this.GetChildById(textureId);
+            if (textureController?.ViewComponent == null)
+            {
+                Log.Warning($"[StarterKits] Failed to register kit texture '{kitName}'. texture={textureId}");
+                return;
+            }
+
+            Log.Out($"[StarterKits] Registered kit preview '{kitName}' with controller '{textureId}' ({textureController.ViewComponent.GetType().Name}).");
+            this.kitPreviewImages.Add(new KitPreviewImageEntry
+            {
+                KitName = kitName,
+                TextureController = textureController
             });
         }
 
@@ -301,6 +344,9 @@ namespace StarterKits
                 this.SetText(this.previewLabel, "Select A Kit");
                 this.SetText(this.attributesLabel, "Select a kit to inspect its description.");
                 this.SetText(this.bonusesLabel, "Select a kit to see its perk and skill levels.");
+                this.SetVisible(this.previewLabel, true);
+                this.SetVisible(this.previewHintLabel, true);
+                this.UpdatePreviewTexture(null);
                 this.SetEnabled(this.confirmButtonController, false);
                 return;
             }
@@ -310,7 +356,30 @@ namespace StarterKits
             this.SetText(this.previewLabel, data.PreviewTitle);
             this.SetText(this.attributesLabel, data.Description);
             this.SetText(this.bonusesLabel, this.BuildStatsText(data));
+            this.SetVisible(this.previewLabel, false);
+            this.SetVisible(this.previewHintLabel, false);
+            this.UpdatePreviewTexture(kitName);
             this.SetEnabled(this.confirmButtonController, true);
+        }
+
+        private void UpdatePreviewTexture(string selectedKit)
+        {
+            int visibleCount = 0;
+            for (int i = 0; i < this.kitPreviewImages.Count; i++)
+            {
+                bool visible = !string.IsNullOrEmpty(selectedKit) &&
+                    string.Equals(this.kitPreviewImages[i].KitName, selectedKit, StringComparison.OrdinalIgnoreCase);
+                this.SetVisible(this.kitPreviewImages[i].TextureController, visible);
+                if (visible)
+                {
+                    visibleCount++;
+                }
+            }
+
+            if (!string.IsNullOrEmpty(selectedKit))
+            {
+                Log.Out($"[StarterKits] Preview selected={selectedKit}, visible={visibleCount}/{this.kitPreviewImages.Count}");
+            }
         }
 
         private string BuildStatsText(KitOverviewData data)
@@ -331,6 +400,17 @@ namespace StarterKits
             }
 
             controller.ViewComponent.Enabled = enabled;
+            controller.ViewComponent.IsDirty = true;
+        }
+
+        private void SetVisible(XUiController controller, bool visible)
+        {
+            if (controller?.ViewComponent == null)
+            {
+                return;
+            }
+
+            controller.ViewComponent.IsVisible = visible;
             controller.ViewComponent.IsDirty = true;
         }
 
