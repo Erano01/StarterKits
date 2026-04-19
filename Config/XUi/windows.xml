@@ -178,7 +178,7 @@ anchor -> parent'a göre konumlandırma
                         <sprite depth="3" pos="0,0" width="440" height="655" sprite="menu_empty3px" color="[mediumGrey]" type="sliced" fillcenter="false" />
 
                         <label name="lblSelectedKitName" depth="4" pos="0,-18" width="440" font_size="26" color="[white]" justify="center" text="No Kit Selected" />
-                        <label name="lblOverviewHint" depth="4" pos="30,-52" width="380" font_size="18" color="180,180,180,255" justify="center" text="Pick a starter kit on the left to preview its role, stat boosts, and bonuses." />
+                        <label name="lblOverviewHint" depth="4" pos="30,-52" width="380" font_size="18" color="180,180,180,255" justify="center" text="Pick a starter kit on the left to preview its description and perk stats." />
 
                         <rect name="imgContainer" depth="3" pos="120,-95" width="200" height="200" backgroundcolor="36,36,36,255">
                             <sprite depth="4" pos="0,0" width="200" height="200" sprite="menu_empty3px" color="[white]" type="sliced" fillcenter="false" />
@@ -187,11 +187,11 @@ anchor -> parent'a göre konumlandırma
                             <label depth="5" pos="0,-105" width="200" font_size="16" color="170,170,170,255" justify="center" text="200 x 200 preview area" />
                         </rect>
 
-                        <label depth="4" pos="20,-320" width="180" font_size="20" color="222,206,163,255" justify="left" text="Attributes" />
-                        <label name="lblKitAttributes" depth="4" pos="20,-350" width="400" font_size="18" color="[white]" justify="left" text="Select a kit to inspect its attribute focus." max_line_count="4" />
+                        <label depth="4" pos="20,-320" width="180" font_size="20" color="222,206,163,255" justify="left" text="Description" />
+                        <label name="lblKitAttributes" depth="4" pos="20,-350" width="400" font_size="18" color="[white]" justify="left" text="Select a kit to inspect its description." max_line_count="4" />
 
-                        <label depth="4" pos="20,-430" width="220" font_size="20" color="222,206,163,255" justify="left" text="Kit Stats" />
-                        <label name="lblKitBonuses" depth="4" pos="20,-460" width="400" font_size="16" color="[white]" justify="left" text="Select a kit to see its perk and skill levels." max_line_count="9" />
+                        <label depth="4" pos="20,-390" width="220" font_size="20" color="222,206,163,255" justify="left" text="Kit Stats" />
+                        <label name="lblKitBonuses" depth="4" pos="20,-415" width="400" font_size="16" color="[white]" justify="left" text="Select a kit to see its perk and skill levels." max_line_count="9" />
 
                     </rect>
 
