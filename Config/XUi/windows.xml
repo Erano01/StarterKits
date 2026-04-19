@@ -2,10 +2,9 @@
 	<append xpath="/windows">
 <!--
 1. 
-window width = 440, window height = 360, window pos="-220,180", anchor="CenterCenter"
+window width = 1024, window height = 800, window pos="-512,400", anchor="CenterCenter"
 grid width = 390, grid height = 270
 row count = 2, column count = 2
-
 
 2.
 (window width - grid width) / row count = horizontal spacing  (x-axis)      
@@ -13,12 +12,15 @@ header - (header + spacing) = vertical spacing (y-axis)
 
 3.
 pos değeri, elemanın anchor/pivot referans noktasına göre offset’idir.
-pos değerini belirlerken anchor'dan sonra önemsemen gereken 2 değer width ve height'tir.
+anchor -> mevcut element'i nereye sabitleyeceğin. (css position: absolute; gibi düşünebilirsin)
+ancak bu tam olarak ortalamaz sadece başlangıç noktası olarak alır.
+Tam ortalamak için mevcut elementin width'inin yarısı kadar negatif offset vermen gerekir.
+Misal window=starterKitWindow için:
 anchor="CenterCenter" ise tam ortaya almak istiyorsan ve width 1024 ise -512 verirsin pos'un x değerine.
 
 4.
-panel elementleri ile pixel perfect design yapılamadığı için. padding 5 px ayarladık.
-pixel perfect'dan kastımız elemanların birbirine tam yapışık olması.
+pivot -> pivot, child elementin kendi içindeki referans noktasını belirler.
+anchor -> parent'a göre konumlandırma
 -->
 		<window name="starterKitWindow"
 			controller="StarterKits.XUiC_KitSelectionMenu, StarterKits"
@@ -43,30 +45,126 @@ pixel perfect'dan kastımız elemanların birbirine tam yapışık olması.
                     
                     <!-- SELECTION GRID -->
                     <grid name="kitOptions"
-                        pos="35,-100"
+                        pos="60,-65"
                         width="390"
-                        height="270"
-                        rows="2"
+                        height="525"
+                        rows="7"
                         cols="2"
                         cell_width="190"
-                        cell_height="130"
+                        cell_height="75"
                         arrangement="horizontal"
                         repeat_content="false">
 
-                        <rect name="Builder" depth="1" backgroundcolor="[darkGrey]">
-                            <simplebutton name="btnBuilder" style="press, hover" width="190" height="130" pos="0,0" caption="Builder" font_size="26" />
+                        <rect name="Scavenger" depth="1" backgroundcolor="[darkGrey]">
+                            <simplebutton name="btnScavenger" style="press, hover" width="190" height="75" pos="0,0" caption="Scavenger" font_size="20" />
+                            <rect name="selScavenger" depth="2" pos="0,0" width="190" height="75" visible="false" gamepad_selectable="false">
+                                <sprite depth="3" pos="0,0" width="190" height="75" sprite="menu_empty" color="222,206,163,48" type="sliced" />
+                                <sprite depth="4" pos="0,0" width="190" height="75" sprite="menu_empty3px" color="[selectedColor]" type="sliced" fillcenter="false" />
+                            </rect>
                         </rect>
 
-                        <rect name="Archer" depth="1" backgroundcolor="[darkGrey]">
-                            <simplebutton name="btnArcher" style="press, hover" width="190" height="130" pos="0,0" caption="Archer" font_size="26" />
+                        <rect name="Huntsman" depth="1" backgroundcolor="[darkGrey]">
+                            <simplebutton name="btnHuntsman" style="press, hover" width="190" height="75" pos="0,0" caption="Huntsman" font_size="20" />
+                            <rect name="selHuntsman" depth="2" pos="0,0" width="190" height="75" visible="false" gamepad_selectable="false">
+                                <sprite depth="3" pos="0,0" width="190" height="75" sprite="menu_empty" color="222,206,163,48" type="sliced" />
+                                <sprite depth="4" pos="0,0" width="190" height="75" sprite="menu_empty3px" color="[selectedColor]" type="sliced" fillcenter="false" />
+                            </rect>
+                        </rect>
+
+                        <rect name="Athlete" depth="1" backgroundcolor="[darkGrey]">
+                            <simplebutton name="btnAthlete" style="press, hover" width="190" height="75" pos="0,0" caption="Athlete" font_size="20" />
+                            <rect name="selAthlete" depth="2" pos="0,0" width="190" height="75" visible="false" gamepad_selectable="false">
+                                <sprite depth="3" pos="0,0" width="190" height="75" sprite="menu_empty" color="222,206,163,48" type="sliced" />
+                                <sprite depth="4" pos="0,0" width="190" height="75" sprite="menu_empty3px" color="[selectedColor]" type="sliced" fillcenter="false" />
+                            </rect>
                         </rect>
 
                         <rect name="Tyson" depth="1" backgroundcolor="[darkGrey]">
-                            <simplebutton name="btnTyson" style="press, hover" width="190" height="130" pos="0,0" caption="Tyson" font_size="26" />
+                            <simplebutton name="btnTyson" style="press, hover" width="190" height="75" pos="0,0" caption="Tyson" font_size="20" />
+                            <rect name="selTyson" depth="2" pos="0,0" width="190" height="75" visible="false" gamepad_selectable="false">
+                                <sprite depth="3" pos="0,0" width="190" height="75" sprite="menu_empty" color="222,206,163,48" type="sliced" />
+                                <sprite depth="4" pos="0,0" width="190" height="75" sprite="menu_empty3px" color="[selectedColor]" type="sliced" fillcenter="false" />
+                            </rect>
                         </rect>
 
-                        <rect name="Spearman" depth="1" backgroundcolor="[darkGrey]">
-                            <simplebutton name="btnSpearman" style="press, hover" width="190" height="130" pos="0,0" caption="Spearman" font_size="26" />
+                        <rect name="Archer" depth="1" backgroundcolor="[darkGrey]">
+                            <simplebutton name="btnArcher" style="press, hover" width="190" height="75" pos="0,0" caption="Archer" font_size="20" />
+                            <rect name="selArcher" depth="2" pos="0,0" width="190" height="75" visible="false" gamepad_selectable="false">
+                                <sprite depth="3" pos="0,0" width="190" height="75" sprite="menu_empty" color="222,206,163,48" type="sliced" />
+                                <sprite depth="4" pos="0,0" width="190" height="75" sprite="menu_empty3px" color="[selectedColor]" type="sliced" fillcenter="false" />
+                            </rect>
+                        </rect>
+
+                        <rect name="Farmer" depth="1" backgroundcolor="[darkGrey]">
+                            <simplebutton name="btnFarmer" style="press, hover" width="190" height="75" pos="0,0" caption="Farmer" font_size="20" />
+                            <rect name="selFarmer" depth="2" pos="0,0" width="190" height="75" visible="false" gamepad_selectable="false">
+                                <sprite depth="3" pos="0,0" width="190" height="75" sprite="menu_empty" color="222,206,163,48" type="sliced" />
+                                <sprite depth="4" pos="0,0" width="190" height="75" sprite="menu_empty3px" color="[selectedColor]" type="sliced" fillcenter="false" />
+                            </rect>
+                        </rect>
+
+                        <rect name="Engineer" depth="1" backgroundcolor="[darkGrey]">
+                            <simplebutton name="btnEngineer" style="press, hover" width="190" height="75" pos="0,0" caption="Engineer" font_size="20" />
+                            <rect name="selEngineer" depth="2" pos="0,0" width="190" height="75" visible="false" gamepad_selectable="false">
+                                <sprite depth="3" pos="0,0" width="190" height="75" sprite="menu_empty" color="222,206,163,48" type="sliced" />
+                                <sprite depth="4" pos="0,0" width="190" height="75" sprite="menu_empty3px" color="[selectedColor]" type="sliced" fillcenter="false" />
+                            </rect>
+                        </rect>
+
+                        <rect name="ExSoldier" depth="1" backgroundcolor="[darkGrey]">
+                            <simplebutton name="btnExSoldier" style="press, hover" width="190" height="75" pos="0,0" caption="Ex-Soldier" font_size="20" />
+                            <rect name="selExSoldier" depth="2" pos="0,0" width="190" height="75" visible="false" gamepad_selectable="false">
+                                <sprite depth="3" pos="0,0" width="190" height="75" sprite="menu_empty" color="222,206,163,48" type="sliced" />
+                                <sprite depth="4" pos="0,0" width="190" height="75" sprite="menu_empty3px" color="[selectedColor]" type="sliced" fillcenter="false" />
+                            </rect>
+                        </rect>
+
+                        <rect name="Doctor" depth="1" backgroundcolor="[darkGrey]">
+                            <simplebutton name="btnDoctor" style="press, hover" width="190" height="75" pos="0,0" caption="Doctor" font_size="20" />
+                            <rect name="selDoctor" depth="2" pos="0,0" width="190" height="75" visible="false" gamepad_selectable="false">
+                                <sprite depth="3" pos="0,0" width="190" height="75" sprite="menu_empty" color="222,206,163,48" type="sliced" />
+                                <sprite depth="4" pos="0,0" width="190" height="75" sprite="menu_empty3px" color="[selectedColor]" type="sliced" fillcenter="false" />
+                            </rect>
+                        </rect>
+
+                        <rect name="Miner" depth="1" backgroundcolor="[darkGrey]">
+                            <simplebutton name="btnMiner" style="press, hover" width="190" height="75" pos="0,0" caption="Miner" font_size="20" />
+                            <rect name="selMiner" depth="2" pos="0,0" width="190" height="75" visible="false" gamepad_selectable="false">
+                                <sprite depth="3" pos="0,0" width="190" height="75" sprite="menu_empty" color="222,206,163,48" type="sliced" />
+                                <sprite depth="4" pos="0,0" width="190" height="75" sprite="menu_empty3px" color="[selectedColor]" type="sliced" fillcenter="false" />
+                            </rect>
+                        </rect>
+
+                        <rect name="Demoman" depth="1" backgroundcolor="[darkGrey]">
+                            <simplebutton name="btnDemoman" style="press, hover" width="190" height="75" pos="0,0" caption="Demoman" font_size="20" />
+                            <rect name="selDemoman" depth="2" pos="0,0" width="190" height="75" visible="false" gamepad_selectable="false">
+                                <sprite depth="3" pos="0,0" width="190" height="75" sprite="menu_empty" color="222,206,163,48" type="sliced" />
+                                <sprite depth="4" pos="0,0" width="190" height="75" sprite="menu_empty3px" color="[selectedColor]" type="sliced" fillcenter="false" />
+                            </rect>
+                        </rect>
+
+                        <rect name="Hitman" depth="1" backgroundcolor="[darkGrey]">
+                            <simplebutton name="btnHitman" style="press, hover" width="190" height="75" pos="0,0" caption="Hitman" font_size="20" />
+                            <rect name="selHitman" depth="2" pos="0,0" width="190" height="75" visible="false" gamepad_selectable="false">
+                                <sprite depth="3" pos="0,0" width="190" height="75" sprite="menu_empty" color="222,206,163,48" type="sliced" />
+                                <sprite depth="4" pos="0,0" width="190" height="75" sprite="menu_empty3px" color="[selectedColor]" type="sliced" fillcenter="false" />
+                            </rect>
+                        </rect>
+
+                        <rect name="DumbLuck" depth="1" backgroundcolor="[darkGrey]">
+                            <simplebutton name="btnDumbLuck" style="press, hover" width="190" height="75" pos="0,0" caption="Dumb Luck" font_size="20" />
+                            <rect name="selDumbLuck" depth="2" pos="0,0" width="190" height="75" visible="false" gamepad_selectable="false">
+                                <sprite depth="3" pos="0,0" width="190" height="75" sprite="menu_empty" color="222,206,163,48" type="sliced" />
+                                <sprite depth="4" pos="0,0" width="190" height="75" sprite="menu_empty3px" color="[selectedColor]" type="sliced" fillcenter="false" />
+                            </rect>
+                        </rect>
+
+                        <rect name="Burglar" depth="1" backgroundcolor="[darkGrey]">
+                            <simplebutton name="btnBurglar" style="press, hover" width="190" height="75" pos="0,0" caption="Burglar" font_size="20" />
+                            <rect name="selBurglar" depth="2" pos="0,0" width="190" height="75" visible="false" gamepad_selectable="false">
+                                <sprite depth="3" pos="0,0" width="190" height="75" sprite="menu_empty" color="222,206,163,48" type="sliced" />
+                                <sprite depth="4" pos="0,0" width="190" height="75" sprite="menu_empty3px" color="[selectedColor]" type="sliced" fillcenter="false" />
+                            </rect>
                         </rect>
 
                     </grid>
