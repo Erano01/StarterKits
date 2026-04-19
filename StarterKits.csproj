@@ -70,6 +70,7 @@
 
   <ItemGroup>
     <Content Include="Config\blocks.xml" />
+    <Content Include="Config\buffs.xml" />
     <!-- <Content Include="Config\XUi\windows.xml" /> -->
     <Content Include="Config\XUi\xui.xml" />
     <Content Include="ModInfo.xml" />

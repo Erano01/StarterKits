@@ -33,6 +33,9 @@ dotnet msbuild ".\StarterKits.csproj" /p:Configuration=Debug
 
 // linux
 dotnet msbuild StarterKits.csproj /restore /p:Configuration=Debug
+//or
+dotnet build StarterKits.csproj -v minimal
+
 ```
 
 
