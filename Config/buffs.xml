@@ -1,0 +1,41 @@
+<configs>
+    <append xpath="/buffs">
+        <buff name="buffStarterKitDoctor" hidden="true" remove_on_death="false" duration="1">
+            <effect_group>
+                <triggered_effect trigger="onSelfBuffStart" action="AddBuff" buff="buffStarterKitDoctorPersist"/>
+                <triggered_effect trigger="onSelfBuffStart" action="RemoveBuff" buff="buffStarterKitDoctor"/>
+            </effect_group>
+        </buff>
+
+        <!--
+            Doctor floor buff:
+            - Does NOT change base attribute (Intellect remains player-controlled/vanilla)
+            - Preserves only minimum levels granted by our mod
+            - Never downgrades player progress above the granted floor
+        -->
+        <buff name="buffStarterKitDoctorPersist" hidden="true" remove_on_death="false">
+            <effect_group>
+                <!-- Effective perk floors without touching base attribute levels -->
+                <passive_effect name="PerkLevel" operation="base_set" value="5" tags="perkPhysician"/>
+                <passive_effect name="PerkLevel" operation="base_set" value="3" tags="perkCharismaticNature"/>
+
+                <triggered_effect trigger="onSelfBuffStart" action="SetProgressionLevel" progression_name="craftingMedical" level="75">
+                    <requirement name="ProgressionLevel" progression_name="craftingMedical" operation="LT" value="75"/>
+                </triggered_effect>
+                <triggered_effect trigger="onSelfBuffStart" action="SetProgressionLevel" progression_name="craftingArmor" level="27">
+                    <requirement name="ProgressionLevel" progression_name="craftingArmor" operation="LT" value="27"/>
+                </triggered_effect>
+
+                <triggered_effect trigger="onSelfBuffUpdate" action="SetProgressionLevel" progression_name="craftingMedical" level="75">
+                    <requirement name="ProgressionLevel" progression_name="craftingMedical" operation="LT" value="75"/>
+                </triggered_effect>
+                <triggered_effect trigger="onSelfBuffUpdate" action="SetProgressionLevel" progression_name="craftingArmor" level="27">
+                    <requirement name="ProgressionLevel" progression_name="craftingArmor" operation="LT" value="27"/>
+                </triggered_effect>
+
+                <triggered_effect trigger="onSelfBuffStart" action="RefreshPerks"/>
+                <triggered_effect trigger="onSelfBuffUpdate" action="RefreshPerks"/>
+            </effect_group>
+        </buff>
+    </append>
+</configs>

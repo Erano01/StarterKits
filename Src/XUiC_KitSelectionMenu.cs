@@ -10,6 +10,9 @@ namespace StarterKits
 {
     public class XUiC_KitSelectionMenu : XUiController
     {
+        // Keep this false during development; set true when you want strict one-time selection.
+        private const bool EnableOneTimeSelectionLock = false;
+
         private sealed class KitOverviewData
         {
             public string DisplayName;
@@ -195,10 +198,20 @@ namespace StarterKits
             this.attributesLabel = this.GetChildById("lblKitAttributes");
             this.bonusesLabel = this.GetChildById("lblKitBonuses");
             this.confirmButtonController = this.GetChildById("btnConfirmKit");
-            this.confirmButton = this.confirmButtonController?.GetChildByType<XUiC_SimpleButton>();
+            this.confirmButton = this.confirmButtonController as XUiC_SimpleButton;
+            if (this.confirmButton == null)
+            {
+                this.confirmButton = this.confirmButtonController?.GetChildByType<XUiC_SimpleButton>();
+            }
+
             if (this.confirmButton != null)
             {
                 this.confirmButton.OnPressed += this.OnConfirmButtonPressed;
+                Log.Out("[StarterKits] Confirm button OnPressed handler attached.");
+            }
+            else
+            {
+                Log.Warning("[StarterKits] Confirm button could not be resolved; confirm will not trigger rewards.");
             }
 
             Log.Out($"[StarterKits] Init complete. Buttons={this.kitButtons.Count}, previews={this.kitPreviewImages.Count}");
@@ -225,6 +238,12 @@ namespace StarterKits
             }
 
             this.SelectKit(kitName);
+        }
+
+        public void eventConfirmKit(XUiController sender, string _onClick)
+        {
+            Log.Out("[StarterKits] eventConfirmKit invoked from XML event_onclick.");
+            this.OnConfirmButtonPressed(sender, -1);
         }
 
         private void RegisterKitButton(string kitName, string buttonId, string overlayId)
@@ -327,12 +346,178 @@ namespace StarterKits
 
         private void OnConfirmButtonPressed(XUiController sender, int mouseButton)
         {
-            if (mouseButton != -1 || string.IsNullOrEmpty(this.selectedKitName))
+            Log.Out($"[StarterKits] Confirm pressed. mouseButton={mouseButton}, selectedKit={this.selectedKitName ?? "<null>"}");
+
+            if (string.IsNullOrEmpty(this.selectedKitName))
             {
                 return;
             }
 
-            Log.Out($"[StarterKits] Confirm button pressed for kit '{this.selectedKitName}'.");
+            var player = this.xui?.playerUI?.entityPlayer;
+            if (player == null)
+            {
+                Log.Warning("[StarterKits] Confirm ignored: no local entityPlayer.");
+                return;
+            }
+
+            if (EnableOneTimeSelectionLock && player.Buffs != null && player.Buffs.HasCustomVar("starterKitSelected"))
+            {
+                Log.Warning("[StarterKits] Confirm ignored: starter kit already selected (custom var).");
+                this.SetEnabled(this.confirmButtonController, false);
+                return;
+            }
+
+            if (EnableOneTimeSelectionLock && StarterKitSelectionStore.HasSelected(player))
+            {
+                Log.Warning("[StarterKits] Confirm ignored: starter kit already selected (persistent store).");
+                this.SetEnabled(this.confirmButtonController, false);
+                return;
+            }
+
+            if (EnableOneTimeSelectionLock)
+            {
+                this.TrySetStarterKitSelectedVar(player, this.selectedKitName);
+                StarterKitSelectionStore.MarkSelected(player, this.selectedKitName);
+            }
+
+            this.ApplySelectedKitRewards(player, this.selectedKitName);
+
+            if (EnableOneTimeSelectionLock)
+            {
+                Log.Out($"[StarterKits] Confirm button pressed for kit '{this.selectedKitName}'. Player selection locked.");
+            }
+            else
+            {
+                Log.Out($"[StarterKits] Confirm button pressed for kit '{this.selectedKitName}'. One-time lock is disabled.");
+            }
+
+            if (this.xui?.playerUI?.windowManager != null)
+            {
+                this.xui.playerUI.windowManager.Close("starterKitGroup");
+            }
+        }
+
+        private void ApplySelectedKitRewards(EntityPlayer player, string kitName)
+        {
+            if (player == null || string.IsNullOrEmpty(kitName))
+            {
+                return;
+            }
+
+            // First concrete implementation: Doctor kit stats are applied by a dedicated XML buff.
+            if (string.Equals(kitName, "Doctor", StringComparison.OrdinalIgnoreCase))
+            {
+                this.TrySetDoctorFloors(player);
+                if (this.TryAddBuffByName(player, "buffStarterKitDoctor"))
+                {
+                    Log.Out("[StarterKits] Doctor kit rewards applied via buffStarterKitDoctor.");
+                }
+                else
+                {
+                    Log.Warning("[StarterKits] Doctor kit reward apply failed: buffStarterKitDoctor could not be added.");
+                }
+            }
+        }
+
+        private void TrySetDoctorFloors(EntityPlayer player)
+        {
+            if (player?.Buffs == null)
+            {
+                return;
+            }
+
+            try
+            {
+                player.Buffs.SetCustomVar("skDoctorFloorEnabled", 1f, false);
+                player.Buffs.SetCustomVar("skDoctorFloorPhysician", 5f, false);
+                player.Buffs.SetCustomVar("skDoctorFloorCharismatic", 3f, false);
+            }
+            catch
+            {
+                try
+                {
+                    player.Buffs.AddCustomVar("skDoctorFloorEnabled", 1f);
+                    player.Buffs.AddCustomVar("skDoctorFloorPhysician", 5f);
+                    player.Buffs.AddCustomVar("skDoctorFloorCharismatic", 3f);
+                }
+                catch (Exception ex)
+                {
+                    Log.Warning($"[StarterKits] Failed to set Doctor floor CVars: {ex.Message}");
+                }
+            }
+        }
+
+        private bool TryAddBuffByName(EntityPlayer player, string buffName)
+        {
+            if (player?.Buffs == null || string.IsNullOrEmpty(buffName))
+            {
+                return false;
+            }
+
+            const BindingFlags Flags = BindingFlags.Instance | BindingFlags.Public | BindingFlags.NonPublic;
+            object buffs = player.Buffs;
+            Type buffsType = buffs.GetType();
+
+            // Try common signatures first.
+            MethodInfo addBuffSimple = buffsType.GetMethod("AddBuff", Flags, null, new[] { typeof(string) }, null);
+            if (addBuffSimple != null)
+            {
+                addBuffSimple.Invoke(buffs, new object[] { buffName });
+                return true;
+            }
+
+            // Fallback: try any AddBuff overload where first argument is the buff name.
+            MethodInfo[] methods = buffsType.GetMethods(Flags);
+            for (int i = 0; i < methods.Length; i++)
+            {
+                MethodInfo method = methods[i];
+                if (!string.Equals(method.Name, "AddBuff", StringComparison.Ordinal))
+                {
+                    continue;
+                }
+
+                ParameterInfo[] parameters = method.GetParameters();
+                if (parameters.Length == 0 || parameters[0].ParameterType != typeof(string))
+                {
+                    continue;
+                }
+
+                object[] args = new object[parameters.Length];
+                args[0] = buffName;
+
+                for (int p = 1; p < parameters.Length; p++)
+                {
+                    Type parameterType = parameters[p].ParameterType;
+                    if (parameterType == typeof(int))
+                    {
+                        args[p] = 0;
+                    }
+                    else if (parameterType == typeof(float))
+                    {
+                        args[p] = 0f;
+                    }
+                    else if (parameterType == typeof(bool))
+                    {
+                        args[p] = false;
+                    }
+                    else
+                    {
+                        args[p] = null;
+                    }
+                }
+
+                try
+                {
+                    method.Invoke(buffs, args);
+                    return true;
+                }
+                catch
+                {
+                    // Keep trying other overloads.
+                }
+            }
+
+            return false;
         }
 
         private void UpdateOverview(string kitName)
@@ -394,13 +579,35 @@ namespace StarterKits
 
         private void SetEnabled(XUiController controller, bool enabled)
         {
-            if (controller?.ViewComponent == null)
+            if (controller == null)
             {
                 return;
             }
 
-            controller.ViewComponent.Enabled = enabled;
-            controller.ViewComponent.IsDirty = true;
+            this.TrySetBoolMember(controller.GetType(), controller, "Enabled", enabled);
+            this.TrySetBoolMember(controller.GetType(), controller, "IsEnabled", enabled);
+
+            if (controller.ViewComponent != null)
+            {
+                Type viewType = controller.ViewComponent.GetType();
+                this.TrySetBoolMember(viewType, controller.ViewComponent, "Enabled", enabled);
+                this.TrySetBoolMember(viewType, controller.ViewComponent, "IsEnabled", enabled);
+                this.TrySetBoolMember(viewType, controller.ViewComponent, "CanInteract", enabled);
+                controller.ViewComponent.IsDirty = true;
+            }
+
+            for (int i = 0; i < controller.Children.Count; i++)
+            {
+                this.TrySetBoolMember(controller.Children[i].GetType(), controller.Children[i], "Enabled", enabled);
+                this.TrySetBoolMember(controller.Children[i].GetType(), controller.Children[i], "IsEnabled", enabled);
+                if (controller.Children[i].ViewComponent != null)
+                {
+                    Type childViewType = controller.Children[i].ViewComponent.GetType();
+                    this.TrySetBoolMember(childViewType, controller.Children[i].ViewComponent, "Enabled", enabled);
+                    this.TrySetBoolMember(childViewType, controller.Children[i].ViewComponent, "IsEnabled", enabled);
+                    controller.Children[i].ViewComponent.IsDirty = true;
+                }
+            }
         }
 
         private void SetVisible(XUiController controller, bool visible)
@@ -480,6 +687,55 @@ namespace StarterKits
             return false;
         }
 
+        private bool TrySetBoolMember(Type targetType, object target, string memberName, bool value)
+        {
+            const BindingFlags Flags = BindingFlags.Instance | BindingFlags.Public | BindingFlags.NonPublic;
+
+            PropertyInfo property = targetType.GetProperty(memberName, Flags);
+            if (property != null && property.CanWrite && property.PropertyType == typeof(bool))
+            {
+                property.SetValue(target, value, null);
+                return true;
+            }
+
+            FieldInfo field = targetType.GetField(memberName, Flags);
+            if (field != null && field.FieldType == typeof(bool))
+            {
+                field.SetValue(target, value);
+                return true;
+            }
+
+            return false;
+        }
+
+        private void TrySetStarterKitSelectedVar(EntityPlayer player, string kitName)
+        {
+            if (player?.Buffs == null)
+            {
+                return;
+            }
+
+            try
+            {
+                player.Buffs.SetCustomVar("starterKitSelected", 1f, false);
+                player.Buffs.SetCustomVar("starterKitName", 1f, false);
+                Log.Out($"[StarterKits] SetCustomVar applied for kit '{kitName}'.");
+            }
+            catch
+            {
+                try
+                {
+                    player.Buffs.AddCustomVar("starterKitSelected", 1f);
+                    player.Buffs.AddCustomVar("starterKitName", 1f);
+                    Log.Out($"[StarterKits] AddCustomVar fallback applied for kit '{kitName}'.");
+                }
+                catch (Exception ex)
+                {
+                    Log.Warning($"[StarterKits] Could not set custom vars for kit '{kitName}': {ex.Message}");
+                }
+            }
+        }
+
         public static void TryOpenForPlayer()
         {
             var world = GameManager.Instance.World;
@@ -494,7 +750,12 @@ namespace StarterKits
                 return;
             }
 
-            if (player.Buffs.HasCustomVar("starterKitSelected"))
+            if (EnableOneTimeSelectionLock && player.Buffs.HasCustomVar("starterKitSelected"))
+            {
+                return;
+            }
+
+            if (EnableOneTimeSelectionLock && StarterKitSelectionStore.HasSelected(player))
             {
                 return;
             }
@@ -522,6 +783,12 @@ namespace StarterKits
 
             var player = world.GetPrimaryPlayer();
             if (player == null)
+            {
+                return;
+            }
+
+            if ((EnableOneTimeSelectionLock && player.Buffs != null && player.Buffs.HasCustomVar("starterKitSelected")) ||
+                (EnableOneTimeSelectionLock && StarterKitSelectionStore.HasSelected(player)))
             {
                 return;
             }
