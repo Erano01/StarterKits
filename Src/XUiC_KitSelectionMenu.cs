@@ -44,10 +44,13 @@ namespace StarterKits
             this.RegisterKitButton("Dumb Luck", "btnDumbLuck", "selDumbLuck");
             this.RegisterKitButton("Burglar", "btnBurglar", "selBurglar");
 
-            if (this.kitButtons.Count > 0)
-            {
-                this.SelectKit(this.kitButtons[0].KitName);
-            }
+            this.ClearSelection();
+        }
+
+        public override void OnOpen()
+        {
+            base.OnOpen();
+            this.ClearSelection();
         }
 
         /// <summary>
@@ -125,6 +128,19 @@ namespace StarterKits
                 if (this.kitButtons[i].SelectedOverlay?.ViewComponent != null)
                 {
                     this.kitButtons[i].SelectedOverlay.ViewComponent.IsVisible = isSelected;
+                }
+            }
+        }
+
+        private void ClearSelection()
+        {
+            this.selectedKitName = null;
+
+            for (int i = 0; i < this.kitButtons.Count; i++)
+            {
+                if (this.kitButtons[i].SelectedOverlay?.ViewComponent != null)
+                {
+                    this.kitButtons[i].SelectedOverlay.ViewComponent.IsVisible = false;
                 }
             }
         }
