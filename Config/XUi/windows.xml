@@ -190,6 +190,9 @@ anchor -> parent'a göre konumlandırma
                         <label depth="4" pos="20,-320" width="180" font_size="20" color="222,206,163,255" justify="left" text="Attributes" />
                         <label name="lblKitAttributes" depth="4" pos="20,-350" width="400" font_size="18" color="[white]" justify="left" text="Select a kit to inspect its attribute focus." max_line_count="4" />
 
+                        <label depth="4" pos="20,-430" width="220" font_size="20" color="222,206,163,255" justify="left" text="Kit Stats" />
+                        <label name="lblKitBonuses" depth="4" pos="20,-460" width="400" font_size="16" color="[white]" justify="left" text="Select a kit to see its perk and skill levels." max_line_count="9" />
+
                     </rect>
 
                     <simplebutton name="btnConfirmKit" depth="3" pos="55,-625" width="400" height="52" font_size="28" caption="Select &amp; Confirm" upper_case="false" enabled="false" />

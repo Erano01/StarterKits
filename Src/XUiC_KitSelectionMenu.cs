@@ -16,6 +16,7 @@ namespace StarterKits
             public string Attributes;
             public string Bonuses;
             public string PreviewTitle;
+            public string[] StatLines;
         }
 
         private sealed class KitButtonEntry
@@ -27,20 +28,118 @@ namespace StarterKits
 
         private static readonly Dictionary<string, KitOverviewData> KitOverview = new Dictionary<string, KitOverviewData>(StringComparer.OrdinalIgnoreCase)
         {
-            ["Scavenger"] = new KitOverviewData { DisplayName = "Scavenger", PreviewTitle = "Urban Scavenger", Attributes = "Fortitude, carry capacity, and loot sustain.", Bonuses = "Starts focused on longer scavenging runs, resource recovery, and staying stocked while exploring." },
-            ["Huntsman"] = new KitOverviewData { DisplayName = "Huntsman", PreviewTitle = "Field Tracker", Attributes = "Perception, tracking, and ranged survival.", Bonuses = "Built around hunting efficiency, animal harvesting, and steady wilderness pressure." },
-            ["Athlete"] = new KitOverviewData { DisplayName = "Athlete", PreviewTitle = "Mobility Focus", Attributes = "Agility, stamina flow, and recovery.", Bonuses = "Favours sprint uptime, evasive movement, and fast repositioning in the early game." },
-            ["Tyson"] = new KitOverviewData { DisplayName = "Tyson", PreviewTitle = "Close Quarters", Attributes = "Strength, brawling, and direct damage.", Bonuses = "A bruiser-style opener with heavier melee pressure and stronger point-blank engagements." },
-            ["Archer"] = new KitOverviewData { DisplayName = "Archer", PreviewTitle = "Precision Hunter", Attributes = "Perception, bow control, and precision damage.", Bonuses = "Leans into quiet kills, efficient ranged shots, and safer target picks at distance." },
-            ["Farmer"] = new KitOverviewData { DisplayName = "Farmer", PreviewTitle = "Sustain Specialist", Attributes = "Fortitude, harvesting, and food stability.", Bonuses = "Optimized for farming loops, renewable supplies, and smoother long-term camp sustain." },
-            ["Engineer"] = new KitOverviewData { DisplayName = "Engineer", PreviewTitle = "Tech Builder", Attributes = "Intellect, crafting, and trap support.", Bonuses = "Geared toward advanced utility, workstation progress, and stronger base setup tempo." },
-            ["Ex-Soldier"] = new KitOverviewData { DisplayName = "Ex-Soldier", PreviewTitle = "Combat Veteran", Attributes = "Perception, toughness, and firearm readiness.", Bonuses = "A disciplined combat opener aimed at efficient firefights and dependable frontline pressure." },
-            ["Doctor"] = new KitOverviewData { DisplayName = "Doctor", PreviewTitle = "Field Medic", Attributes = "Intellect, healing, and status recovery.", Bonuses = "Favours medical sustain, support utility, and faster stabilization after bad trades." },
-            ["Miner"] = new KitOverviewData { DisplayName = "Miner", PreviewTitle = "Resource Breaker", Attributes = "Strength, harvesting speed, and ore yield.", Bonuses = "Centered on gathering momentum, faster material extraction, and stronger crafting feed." },
-            ["Demoman"] = new KitOverviewData { DisplayName = "Demoman", PreviewTitle = "Explosive Expert", Attributes = "Perception, demolition, and burst damage.", Bonuses = "Pushes explosive utility, crowd control potential, and aggressive horde clear options." },
-            ["Hitman"] = new KitOverviewData { DisplayName = "Hitman", PreviewTitle = "Silent Elimination", Attributes = "Agility, stealth, and critical damage.", Bonuses = "Ideal for surgical picks, stealth openings, and clean high-value target removals." },
-            ["Dumb Luck"] = new KitOverviewData { DisplayName = "Dumb Luck", PreviewTitle = "Risk Reward", Attributes = "Luck-driven economy, looting, and swing potential.", Bonuses = "A volatile kit theme with stronger payoff spikes, gamble-heavy progression, and opportunistic gains." },
-            ["Burglar"] = new KitOverviewData { DisplayName = "Burglar", PreviewTitle = "Infiltration", Attributes = "Agility, stealth entry, and loot access.", Bonuses = "Designed around silent movement, infiltration routes, and cleaner high-value loot runs." }
+            ["Scavenger"] = new KitOverviewData
+            {
+                DisplayName = "Scavenger",
+                PreviewTitle = "Urban Scavenger",
+                Attributes = "Fortitude, carry capacity, and loot sustain.",
+                Bonuses = "Starts focused on longer scavenging runs, resource recovery, and staying stocked while exploring.",
+                StatLines = new[] { "Salvage Operations 5/5", "Perception Mastery 2/5", "Salvage Tools 4/75" }
+            },
+            ["Huntsman"] = new KitOverviewData
+            {
+                DisplayName = "Huntsman",
+                PreviewTitle = "Field Tracker",
+                Attributes = "Perception, tracking, and ranged survival.",
+                Bonuses = "Built around hunting efficiency, animal harvesting, and steady wilderness pressure.",
+                StatLines = new[] { "Dead Eye 5/5", "Animal Tracker 5/5", "The Penetrator 5/5", "The Huntsman 5/5", "Iron Gut 5/5", "Hidden Strike 2/5", "Sniper Perk Book 7/7", "Rifles 26/100" }
+            },
+            ["Athlete"] = new KitOverviewData
+            {
+                DisplayName = "Athlete",
+                PreviewTitle = "Mobility Focus",
+                Attributes = "Agility, stamina flow, and recovery.",
+                Bonuses = "Favours sprint uptime, evasive movement, and fast repositioning in the early game.",
+                StatLines = new[] { "Parkour 5/5", "Hard Target 5/5", "Run and Gun 3/5", "Armor Crafting Skill 11/100", "Rule 1: Cardio 5/5" }
+            },
+            ["Tyson"] = new KitOverviewData
+            {
+                DisplayName = "Tyson",
+                PreviewTitle = "Close Quarters",
+                Attributes = "Strength, brawling, and direct damage.",
+                Bonuses = "A bruiser-style opener with heavier melee pressure and stronger point-blank engagements.",
+                StatLines = new[] { "The Brawler 5/5", "Lightning Hands 5/5", "Pain Tolerance 5/5", "Fortitude Mastery 5/5", "Siphoning Strikes 5/5", "Healing Factor 5/5", "Iron Gut 5/5", "Bar Brawling 7/7", "Knuckles 11/75" }
+            },
+            ["Archer"] = new KitOverviewData
+            {
+                DisplayName = "Archer",
+                PreviewTitle = "Precision Hunter",
+                Attributes = "Perception, bow control, and precision damage.",
+                Bonuses = "Leans into quiet kills, efficient ranged shots, and safer target picks at distance.",
+                StatLines = new[] { "Archery 5/5", "From the Shadows 2/5", "Hidden Strike 3/5", "Ranger's Guide to Archery 7/7", "Bows 11/75" }
+            },
+            ["Farmer"] = new KitOverviewData
+            {
+                DisplayName = "Farmer",
+                PreviewTitle = "Sustain Specialist",
+                Attributes = "Fortitude, harvesting, and food stability.",
+                Bonuses = "Optimized for farming loops, renewable supplies, and smoother long-term camp sustain.",
+                StatLines = new[] { "Living off The Land 3/3", "Armor Crafting Skill 11/100", "Seeds Crafting Skill 20/20", "Food Crafting Skill 100/100", "Super Corn Crafting Magazine (Automatically Readed)", "Fullset Farmer Armor", "Spear Master 5/5", "Quick and Perceptive 5/5", "Spear Hunter 7/7", "Spear Crafting Skill 11/75" }
+            },
+            ["Engineer"] = new KitOverviewData
+            {
+                DisplayName = "Engineer",
+                PreviewTitle = "Tech Builder",
+                Attributes = "Intellect, crafting, and trap support.",
+                Bonuses = "Geared toward advanced utility, workstation progress, and stronger base setup tempo.",
+                StatLines = new[] { "Electrician Crafting Skills 55/100", "Vehicles Crafting Skill 20/100", "Robotics 76/100", "Tech Junkie 7/7", "Workstations 34/75", "Advanced Engineering 5/5", "Grease Monkey 5/5" }
+            },
+            ["Ex-Soldier"] = new KitOverviewData
+            {
+                DisplayName = "Ex-Soldier",
+                PreviewTitle = "Combat Veteran",
+                Attributes = "Perception, toughness, and firearm readiness.",
+                Bonuses = "A disciplined combat opener aimed at efficient firefights and dependable frontline pressure.",
+                StatLines = new[] { "Machine Gunner 5/5", "Run and Gun 5/5", "Commando Armor Fullset", "Armor Crafting Skill 11/100", "Medium Armor 4/4", "Urban Combat 7/7", "The Automatic Weapon Handbook 7/7", "Machine Guns 11/100" }
+            },
+            ["Doctor"] = new KitOverviewData
+            {
+                DisplayName = "Doctor",
+                PreviewTitle = "Field Medic",
+                Attributes = "Intellect, healing, and status recovery.",
+                Bonuses = "Favours medical sustain, support utility, and faster stabilization after bad trades.",
+                StatLines = new[] { "Physician 5/5", "Charismatic Nature 3/5", "Medical 75/75", "Foot 27/100" }
+            },
+            ["Miner"] = new KitOverviewData
+            {
+                DisplayName = "Miner",
+                PreviewTitle = "Resource Breaker",
+                Attributes = "Strength, harvesting speed, and ore yield.",
+                Bonuses = "Centered on gathering momentum, faster material extraction, and stronger crafting feed.",
+                StatLines = new[] { "Skull Crusher 5/5", "Grand Slam 5/5", "Strength Master 5/5", "Pack Mule 5/5", "Miner 69'er 5/5", "Mother Lode 5/5", "Sledge Saga 7/7", "Harvesting Tools 11/100", "Sledge Hammer 11/75", "Workstations 34/75" }
+            },
+            ["Demoman"] = new KitOverviewData
+            {
+                DisplayName = "Demoman",
+                PreviewTitle = "Explosive Expert",
+                Attributes = "Perception, demolition, and burst damage.",
+                Bonuses = "Pushes explosive utility, crowd control potential, and aggressive horde clear options.",
+                StatLines = new[] { "Demolition Expert 5/5", "The Infiltrator 5/5", "Explosives 50/100" }
+            },
+            ["Hitman"] = new KitOverviewData
+            {
+                DisplayName = "Hitman",
+                PreviewTitle = "Silent Elimination",
+                Attributes = "Agility, stealth, and critical damage.",
+                Bonuses = "Ideal for surgical picks, stealth openings, and clean high-value target removals.",
+                StatLines = new[] { "Gunslinger 5/5", "Run and Gun 5/5", "Agility Mastery 2/5", "Hidden Strike 5/5", "From the Shadows 5/5", "Pistol Pete 7/7", "Magnum Enforcer 7/7", "Handguns 26/100" }
+            },
+            ["Dumb Luck"] = new KitOverviewData
+            {
+                DisplayName = "Dumb Luck",
+                PreviewTitle = "Risk Reward",
+                Attributes = "Luck-driven economy, looting, and swing potential.",
+                Bonuses = "A volatile kit theme with stronger payoff spikes, gamble-heavy progression, and opportunistic gains.",
+                StatLines = new[] { "Lucky Looter (Skill) 5/5", "Lucky Looter (Perk Book) 7/7", "Wasteland Treasures 7/7", "The Daring Adventurer 5/5", "Treasure Hunter 5/5" }
+            },
+            ["Burglar"] = new KitOverviewData
+            {
+                DisplayName = "Burglar",
+                PreviewTitle = "Infiltration",
+                Attributes = "Agility, stealth entry, and loot access.",
+                Bonuses = "Designed around silent movement, infiltration routes, and cleaner high-value loot runs.",
+                StatLines = new[] { "Better Barter 5/5", "Lock Picking 3/3", "Workstations 12/75", "Blades 36/75", "Deep Cuts 5/5", "Hidden Strike 3/5", "From the Shadows 3/5", "Whirlwind 5/5" }
+            }
         };
 
         private static readonly string[] CandidateTextPropertyNames = { "Text", "Caption" };
@@ -216,7 +315,7 @@ namespace StarterKits
                 this.SetText(this.overviewHintLabel, "Pick a starter kit on the left to preview its role, stat boosts, and bonuses.");
                 this.SetText(this.previewLabel, "Select A Kit");
                 this.SetText(this.attributesLabel, "Select a kit to inspect its attribute focus.");
-                this.SetText(this.bonusesLabel, "Bonus details will appear here after you choose a kit.");
+                this.SetText(this.bonusesLabel, "Select a kit to see its perk and skill levels.");
                 this.SetEnabled(this.confirmButtonController, false);
                 return;
             }
@@ -225,8 +324,18 @@ namespace StarterKits
             this.SetText(this.overviewHintLabel, "Review the preview, then lock in the kit when you're ready.");
             this.SetText(this.previewLabel, data.PreviewTitle);
             this.SetText(this.attributesLabel, data.Attributes);
-            this.SetText(this.bonusesLabel, data.Bonuses);
+            this.SetText(this.bonusesLabel, this.BuildStatsText(data));
             this.SetEnabled(this.confirmButtonController, true);
+        }
+
+        private string BuildStatsText(KitOverviewData data)
+        {
+            if (data?.StatLines == null || data.StatLines.Length == 0)
+            {
+                return data?.Bonuses ?? string.Empty;
+            }
+
+            return "- " + string.Join("\n- ", data.StatLines);
         }
 
         private void SetEnabled(XUiController controller, bool enabled)
