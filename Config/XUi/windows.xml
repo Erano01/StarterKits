@@ -182,9 +182,23 @@ anchor -> parent'a göre konumlandırma
 
                         <rect name="imgContainer" depth="3" pos="120,-95" width="200" height="200" backgroundcolor="36,36,36,255">
                             <sprite depth="4" pos="0,0" width="200" height="200" sprite="menu_empty3px" color="[white]" type="sliced" fillcenter="false" />
-                            <sprite depth="4" pos="20,-20" width="160" height="160" sprite="menu_empty" color="255,255,255,12" type="sliced" />
+                            <sprite depth="3" pos="20,-20" width="160" height="160" sprite="menu_empty" color="255,255,255,12" type="sliced" />
+                            <sprite name="texScavenger" depth="6" pos="100,-100" width="180" height="180" pivot="center" atlas="ItemIconAtlas" sprite="Scavenger" color="[white]" visible="false" />
+                            <sprite name="texHuntsman" depth="6" pos="100,-100" width="180" height="180" pivot="center" atlas="ItemIconAtlas" sprite="Huntsman" color="[white]" visible="false" />
+                            <sprite name="texAthlete" depth="6" pos="100,-100" width="180" height="180" pivot="center" atlas="ItemIconAtlas" sprite="Athlete" color="[white]" visible="false" />
+                            <sprite name="texTyson" depth="6" pos="100,-100" width="180" height="180" pivot="center" atlas="ItemIconAtlas" sprite="Tyson" color="[white]" visible="false" />
+                            <sprite name="texArcher" depth="6" pos="100,-100" width="180" height="180" pivot="center" atlas="ItemIconAtlas" sprite="Archer" color="[white]" visible="false" />
+                            <sprite name="texFarmer" depth="6" pos="100,-100" width="180" height="180" pivot="center" atlas="ItemIconAtlas" sprite="Farmer" color="[white]" visible="false" />
+                            <sprite name="texEngineer" depth="6" pos="100,-100" width="180" height="180" pivot="center" atlas="ItemIconAtlas" sprite="Engineer" color="[white]" visible="false" />
+                            <sprite name="texExSoldier" depth="6" pos="100,-100" width="180" height="180" pivot="center" atlas="ItemIconAtlas" sprite="ExSoldier" color="[white]" visible="false" />
+                            <sprite name="texDoctor" depth="6" pos="100,-100" width="180" height="180" pivot="center" atlas="ItemIconAtlas" sprite="Doctor" color="[white]" visible="false" />
+                            <sprite name="texMiner" depth="6" pos="100,-100" width="180" height="180" pivot="center" atlas="ItemIconAtlas" sprite="Miner" color="[white]" visible="false" />
+                            <sprite name="texDemoman" depth="6" pos="100,-100" width="180" height="180" pivot="center" atlas="ItemIconAtlas" sprite="Demoman" color="[white]" visible="false" />
+                            <sprite name="texHitman" depth="6" pos="100,-100" width="180" height="180" pivot="center" atlas="ItemIconAtlas" sprite="Hitman" color="[white]" visible="false" />
+                            <sprite name="texDumbLuck" depth="6" pos="100,-100" width="180" height="180" pivot="center" atlas="ItemIconAtlas" sprite="DumbLuck" color="[white]" visible="false" />
+                            <sprite name="texBurglar" depth="6" pos="100,-100" width="180" height="180" pivot="center" atlas="ItemIconAtlas" sprite="Burglar" color="[white]" visible="false" />
                             <label name="lblKitImagePlaceholder" depth="5" pos="0,-75" width="200" font_size="24" color="[white]" justify="center" text="Select A Kit" />
-                            <label depth="5" pos="0,-105" width="200" font_size="16" color="170,170,170,255" justify="center" text="200 x 200 preview area" />
+                            <label name="lblKitImageHint" depth="5" pos="0,-105" width="200" font_size="16" color="170,170,170,255" justify="center" text="200 x 200 preview area" />
                         </rect>
 
                         <label depth="4" pos="20,-320" width="180" font_size="20" color="222,206,163,255" justify="left" text="Description" />
