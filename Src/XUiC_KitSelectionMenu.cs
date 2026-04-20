@@ -84,7 +84,7 @@ namespace StarterKits
                 DisplayName = "Farmer",
                 PreviewTitle = "Sustain Specialist",
                 Description = "While others loot, you grow. Dirt under your nails, spear in your hand, food on everyone's table.",
-                StatLines = new[] { "Living off The Land 3/3", "Armor Crafting Skill 11/100", "Seeds Crafting Skill 20/20", "Food Crafting Skill 100/100", "Super Corn Crafting Magazine (Automatically Readed)", "Fullset Farmer Armor", "Spear Master 5/5", "Quick and Perceptive 5/5", "Spear Hunter 7/7", "Spear Crafting Skill 11/75" }
+                StatLines = new[] { "Living off The Land 3/3", "Armor Crafting Skill 11/100", "Seeds Crafting Skill 20/20", "Food Crafting Skill 100/100", "Super Corn Crafting Magazine (Automatically Readed)", "Medium Armor 4/4 & Fullset Farmer Armor (1 lvl set)", "Spear Master 5/5", "Quick and Perceptive 5/5", "Spear Hunter 7/7", "Spear Crafting Skill 11/75" }
             },
             ["Engineer"] = new KitOverviewData
             {
@@ -233,6 +233,7 @@ namespace StarterKits
                 {
                     ["perkLivingOffTheLand"] = 3,
                     ["craftingArmor"] = 11,
+                    ["perkMediumArmor"] = 4,
                     ["craftingSeeds"] = 20,
                     ["craftingFood"] = 100,
                     ["perkJavelinMaster"] = 5,
@@ -844,14 +845,23 @@ namespace StarterKits
                     continue;
                 }
 
+                ushort quality = this.GetArmorRewardQuality(kitName, kvp.Key);
+                if (quality > 0)
+                {
+                    itemValue.Quality = quality;
+                }
+
                 var stack = new ItemStack(itemValue, kvp.Value);
+                
                 if (this.TryAddItemToInventory(player, stack))
                 {
                     delivered += kvp.Value;
+                    Log.Out($"[StarterKits] Item '{kvp.Key}' (qty={kvp.Value}) added to inventory for kit '{kitName}'.");
                 }
                 else
                 {
                     overflow.Add(stack);
+                    Log.Out($"[StarterKits] Item '{kvp.Key}' (qty={kvp.Value}) could not fit in inventory, will drop as loot.");
                 }
             }
 
@@ -878,7 +888,7 @@ namespace StarterKits
                 }
             }
 
-            Log.Out($"[StarterKits] Kit '{kitName}' item rewards delivered count={delivered}, overflowStacks={overflow.Count}.");
+            Log.Out($"[StarterKits] Kit '{kitName}' completed: {delivered} items to inventory, {overflow.Count} stacks to loot bag.");
         }
 
         private bool TryAddItemToInventory(EntityPlayer player, ItemStack stack)
@@ -896,48 +906,33 @@ namespace StarterKits
                     return true;
                 }
             }
-            catch
+            catch (Exception ex)
             {
-                // Fallback to reflection below.
-            }
-
-            try
-            {
-                object inventoryObj = player.inventory;
-                Type inventoryType = inventoryObj.GetType();
-                MethodInfo addItemWithSlot = inventoryType.GetMethod(
-                    "AddItem",
-                    BindingFlags.Instance | BindingFlags.Public | BindingFlags.NonPublic,
-                    null,
-                    new[] { typeof(ItemStack), typeof(int).MakeByRefType() },
-                    null);
-                if (addItemWithSlot != null)
-                {
-                    object[] args = { stack, 0 };
-                    bool ok = (bool)addItemWithSlot.Invoke(inventoryObj, args);
-                    if (ok)
-                    {
-                        return true;
-                    }
-                }
-
-                MethodInfo addItem = inventoryType.GetMethod(
-                    "AddItem",
-                    BindingFlags.Instance | BindingFlags.Public | BindingFlags.NonPublic,
-                    null,
-                    new[] { typeof(ItemStack) },
-                    null);
-                if (addItem != null)
-                {
-                    return (bool)addItem.Invoke(inventoryObj, new object[] { stack });
-                }
-            }
-            catch
-            {
-                // Ignore and report false.
+                Log.Warning($"[StarterKits] AddItem failed: {ex.Message}");
             }
 
             return false;
+        }
+
+        private ushort GetArmorRewardQuality(string kitName, string itemName)
+        {
+            if (string.IsNullOrEmpty(itemName) || string.IsNullOrEmpty(kitName))
+            {
+                return 0;
+            }
+
+            // Farmer and Ex-Soldier armor sets are granted as level 1 quality set pieces.
+            if (string.Equals(kitName, "Farmer", StringComparison.OrdinalIgnoreCase) && itemName.StartsWith("armorFarmer", StringComparison.OrdinalIgnoreCase))
+            {
+                return 1;
+            }
+
+            if (string.Equals(kitName, "Ex-Soldier", StringComparison.OrdinalIgnoreCase) && itemName.StartsWith("armorCommando", StringComparison.OrdinalIgnoreCase))
+            {
+                return 1;
+            }
+
+            return 0;
         }
 
         private bool TryAddBuffByName(EntityPlayer player, string buffName)

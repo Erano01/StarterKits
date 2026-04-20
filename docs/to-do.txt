@@ -21,12 +21,15 @@ use xml(modlet) -(if not possible)> use GameAPI events -(if not possible)> use h
 - Oyuncunun okuduğu Crafting Skil book Artırma Nasıl yapılıyor (tamamlandı)
 - Oyuncunun okuduğu Perk book sayısı nasıl artırılıyor (tamamlandı)
 - Perk'ler nasıl artırılıyor. (tamamlandı)
-- Oyuncuya armor ve silah verme (Yapılacak)
+- sub-skilleri artırırken base attribute’a dokunmadan, sadece modun verdiği seviyeyi 
+“alt sınır” olarak koruyacağız. (tamamlandı)
+
+
+- Oyuncuya armor ve silah verme (Tamamlandı)
 
 - Eğer üzerinde armor yoksa ilk üzerine giydir eğer üzerinde armor giyili ise inventory'sinde boş yer varsa 
 inventorysine ver armoru eğer ordada yer yoksa hotbar'a ver eğer ordada yoksa loot bag olarak at yanına.
-
-sub-skilleri artırırken base attribute’a dokunmadan, sadece modun verdiği seviyeyi “alt sınır” olarak koruyacağız.
+(Tamamlandı) ama -> hot bar ve lot bag çalışıyor sadece
 
 
 Bu mod server side'da çalışabilmesi gerektiği için:
