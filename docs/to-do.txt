@@ -21,7 +21,8 @@ use xml(modlet) -(if not possible)> use GameAPI events -(if not possible)> use h
 - Oyuncunun okuduğu Crafting Skil book Artırma Nasıl yapılıyor
 - Oyuncunun okuduğu Perk book sayısı nasıl artırılıyor
 - Perk'ler nasıl artırılıyor.
-- Oyuncuya armor veya silah verilirken bunu nasıl yapabiliriz.
+- Oyuncuya armor veya silah verilirken bunu nasıl yapabiliriz. (Daha sonra yapacağız)
+
 
 sub-skilleri artırırken base attribute’a dokunmadan, sadece modun verdiği seviyeyi “alt sınır” olarak koruyacağız.
 
@@ -30,3 +31,145 @@ Bu mod server side'da çalışabilmesi gerektiği için:
 - 1 Oyuncu sadece 1 kez seçim yapabilmeli. (Bunu en son ekleyeceğiz, test aşamasını zorlaştırmaması için)
 - Oyuncular bunun bir açığını bulup sınırsız sayıda stat artırımı yapamamalı sadece server-side taraf izin vermeli.
 
+
+-----------------------------------------
+-----------------------------------------
+-----------------------------------------
+-----------------------------------------
+-----------------------------------------
+-----------------------------------------
+
+HUNTSMAN ->
+- Dead Eye 5/5  -> Perception (base-skill)
+- Animal Tracker 5/5 -> Perception (base-skill)
+- The Penetrator 5/5 -> Perception (base-skill)
+- The Huntsman 5/5 -> Fortitude (base-skill)
+- Iron Gut 5/5 -> Fortitude (base-skill)
+- Hidden Strike 2/5 -> Agility (base-skill)
+- Sniper Perk Book 7/7
+- Rifles 26/100
+// The wasteland is your hunting ground. You don't miss. You don't get hungry. They never hear you coming.
+
+Tyson ->
+- The Brawler 5/5 -> Fortitude (base-skill)
+- Lightning Hands 5/5 -> Fortitude (base-skill)
+- Pain Tolerance 5/5 -> Fortitude (base-skill)
+- Fortitude Mastery 5/5 -> Fortitude (base-skill)
+- Siphoning Strikes 5/5 -> Fortitude (base-skill)
+- Healing Factor 5/5 -> Fortitude (base-skill)
+- Iron Gut 5/5 -> Fortitude (base-skill)
+- Bar Brawling 7/7
+- Knuckles 11/75
+// No guns. No problem. Your fists are the only weapon the apocalypse couldn't rust.
+
+Farmer ->
+- Living off The Land 3/3 -> General (base-skill)
+- Armor Crafting Skill 11/100
+- Seeds Crafting Skill 20/20
+- Food Crafting Skill 100/100
+- Super Corn Seed Recipe (Automatically Readed)
+- Fullset Farmer Armor 
+- Spear Master 5/5 -> Perception (base-skill)
+- Quick and Perceptive 5/5 -> Perception (base-skill)
+- Spear Hunter 7/7
+- Spear Crafting Skill 11/75
+// While others loot, you grow. Dirt under your nails, spear in your hand, food on everyone's table.
+
+Miner ->
+- Skull Crusher 5/5 -> Strength (base-skill)
+- Grand Slam 5/5 -> Strength (base-skill)
+- Strength Master 5/5 -> Strength (base-skill)
+- Pack Mule 5/5 -> Strength (base-skill)
+- Miner 69'er 5/5 -> Strength (base-skill)
+- Mother Lode 5/5 -> Strength (base-skill)
+- Sledge Saga 7/7
+- Harvesting Tools 11/100
+- Sledge Hammer 11/75
+- Workstations 34/75
+// You hit rocks for a living. Zombies are just rocks that bleed.
+
+Ex Soldier ->
+- Machine Gunner 5/5 -> Fortitude (base-skill)
+- Run and Gun 5/5 -> Agility (base-skill)
+- Commando Armor Fullset
+- Armor Crafting Skill 11/100
+- Medium Armor 4/4 -> General (base-skill)
+- Urban Combat 7/7
+- The Automatic Weapon Handbook 7/7
+- Machine Guns 11/100
+// Old rank, new rules. Keep moving, keep firing. Discipline is the last thing that survived.
+
+Hitman ->
+- Gunslinger 5/5 -> Agility (base-skill)
+- Run and Gun 5/5 -> Agility (base-skill)
+- Agility Mastery 2/5 -> Agility (base-skill)
+- Hidden Strike 5/5 -> Agility (base-skill)
+- From the Shadows 5/5 -> Agility (base-skill)
+- Pistol Pete 7/7
+- Magnum Enforcer 7/7
+- Handguns 26/100
+// Clean. Quiet. Gone before they hit the floor. Getting paid in cans these days, but the craft stays the same.
+
+Dumb Luck ->
+- Lucky Looter (Skill) 5/5 -> General (base-skill)
+- Lucky Looter (Perk Book) 7/7
+- Wasteland Treasures 7/7
+- The Daring Adventurer 5/5 -> Intellect (base-skill)
+- Treasure Hunter 5/5 -> Perception (base-skill)
+// You're not skilled. You're not smart. But somehow you always find the good stuff. Don't question it.
+
+Burglar ->
+- Better Barter 5/5 -> Intellect (base-skill)
+- Lock Picking 3/3 -> General (base-skill)
+- Workstations 12/75
+- Blades 36/75
+- Deep Cuts 5/5 -> Agility (base-skill)
+- Hidden Strike 3/5 -> Agility (base-skill)
+- From the Shadows 3/5 -> Agility (base-skill)
+- Whirlwind 5/5 -> Agility (base-skill)
+// Why fight when you can just... take it? Locks open, shadows hide, blades finish the conversation.
+
+Engineer ->
+- Electrician Crafting Skills 55/100
+- Vehicles Crafting Skill 20/100
+- Robotics 76/100
+- Tech Junkie 7/7
+- Workstations 34/75
+- Advanced Engineering 5/5 -> Intellect (base-skill)
+- Grease Monkey 5/5 -> Intellect (base-skill)
+// Turrets, vehicles, electricity — if it runs on volts or wheels, you built it. The apocalypse has a power grid now. Yours.
+
+Doctor ->
+- Physician 5/5 -> Intellect (base-skill)
+- Charismatic Nature 3/5 -> Intellect (base-skill)
+- Medical 75/75
+- Foot 27/100
+// Someone has to keep the idiots alive. Might as well be you.
+
+Demoman ->
+- Demolition Expert 5/5 -> Perception (base-skill)
+- The Infiltrator 5/5 -> Perception (base-skill)
+- Explosives 50/100
+// Collateral damage is just a fancy word for fun. If it's still standing, use a bigger one.
+
+Archer ->
+- Archery 5/5 -> Agility (base-skill)
+- From the Shadows 2/5 -> Agility (base-skill)
+- Hidden Strike 3/5 -> Agility (base-skill)
+- Ranger's Guide to Archery 7/7
+- Bows 11/75
+// Silent. Precise. Deeply judged by everyone until the horde drops. Then suddenly everyone loves the bow guy.
+
+Scavenger ->
+- Salvage Operations 5/5 -> Perception (base-skill)
+- Perception Mastery 2/5 -> Perception (base-skill)
+- Salvage Tools 4/75
+// One man's trash is another man's entire inventory. You built a life out of what others stepped over.
+
+Athlete ->
+- Parkour 5/5 -> Agility (base-skill)
+- Hard Target 5/5 -> Agility (base-skill)
+- Run and Gun 3/5 -> Agility (base-skill)
+- Armor Crafting Skill 11/100
+- Rule 1: Cardio 5/5 -> Fortitude (base-skill)
+// You're not running away. You're tactically relocating. Very fast. Every single time.

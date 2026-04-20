@@ -34,6 +34,12 @@ namespace StarterKits
             public XUiController TextureController;
         }
 
+        private sealed class KitRewardData
+        {
+            public Dictionary<string, int> ProgressionFloors;
+            public Dictionary<string, float> CustomVars;
+        }
+
         private static readonly Dictionary<string, KitOverviewData> KitOverview = new Dictionary<string, KitOverviewData>(StringComparer.OrdinalIgnoreCase)
         {
             ["Scavenger"] = new KitOverviewData
@@ -135,6 +141,274 @@ namespace StarterKits
                 StatLines = new[] { "Better Barter 5/5", "Lock Picking 3/3", "Workstations 12/75", "Blades 36/75", "Deep Cuts 5/5", "Hidden Strike 3/5", "From the Shadows 3/5", "Whirlwind 5/5" }
             }
         };
+
+        private static readonly Dictionary<string, KitRewardData> KitRewards = new Dictionary<string, KitRewardData>(StringComparer.OrdinalIgnoreCase)
+        {
+            ["Scavenger"] = new KitRewardData
+            {
+                ProgressionFloors = new Dictionary<string, int>(StringComparer.OrdinalIgnoreCase)
+                {
+                    ["perkSalvageOperations"] = 5,
+                    ["perkPerceptionMastery"] = 2,
+                    ["craftingSalvageTools"] = 4
+                }
+            },
+            ["Huntsman"] = new KitRewardData
+            {
+                ProgressionFloors = new Dictionary<string, int>(StringComparer.OrdinalIgnoreCase)
+                {
+                    ["perkDeadEye"] = 5,
+                    ["perkAnimalTracker"] = 5,
+                    ["perkPenetrator"] = 5,
+                    ["perkTheHuntsman"] = 5,
+                    ["perkIronGut"] = 5,
+                    ["perkHiddenStrike"] = 2,
+                    ["craftingRifles"] = 26,
+                    ["perkSniperDamage"] = 1,
+                    ["perkSniperCripplingShot"] = 1,
+                    ["perkSniperHeadShot"] = 1,
+                    ["perkSniperReload"] = 1,
+                    ["perkSniperControlledBreathing"] = 1,
+                    ["perkSniperAPAmmo"] = 1,
+                    ["perkSniperHPAmmo"] = 1,
+                    ["perkSniperComplete"] = 1
+                }
+            },
+            ["Athlete"] = new KitRewardData
+            {
+                ProgressionFloors = new Dictionary<string, int>(StringComparer.OrdinalIgnoreCase)
+                {
+                    ["perkParkour"] = 5,
+                    ["perkHardTarget"] = 5,
+                    ["perkRunAndGun"] = 3,
+                    ["craftingArmor"] = 11,
+                    ["perkRuleOneCardio"] = 5
+                }
+            },
+            ["Tyson"] = new KitRewardData
+            {
+                ProgressionFloors = new Dictionary<string, int>(StringComparer.OrdinalIgnoreCase)
+                {
+                    ["perkBrawler"] = 5,
+                    ["perkFlurryOfFortitude"] = 5,
+                    ["perkPainTolerance"] = 5,
+                    ["perkFortitudeMastery"] = 5,
+                    ["perkSiphoningStrikes"] = 5,
+                    ["perkHealingFactor"] = 5,
+                    ["perkIronGut"] = 5,
+                    ["craftingKnuckles"] = 11,
+                    ["perkBarBrawling1BasicMoves"] = 1,
+                    ["perkBarBrawling2DropABomb"] = 1,
+                    ["perkBarBrawling3KillerInstinct"] = 1,
+                    ["perkBarBrawling4FinishingMoves"] = 1,
+                    ["perkBarBrawling5AdrenalineHealing"] = 1,
+                    ["perkBarBrawling6RageMode"] = 1,
+                    ["perkBarBrawling7BoozedUp"] = 1,
+                    ["perkBarBrawling8Complete"] = 1
+                }
+            },
+            ["Archer"] = new KitRewardData
+            {
+                ProgressionFloors = new Dictionary<string, int>(StringComparer.OrdinalIgnoreCase)
+                {
+                    ["perkArchery"] = 5,
+                    ["perkFromTheShadows"] = 2,
+                    ["perkHiddenStrike"] = 3,
+                    ["craftingBows"] = 11,
+                    ["perkRangersArrowRecovery"] = 1,
+                    ["perkRangersExplodingBolts"] = 1,
+                    ["perkRangersCripplingShot"] = 1,
+                    ["perkRangersAPAmmo"] = 1,
+                    ["perkRangersFlamingArrows"] = 1,
+                    ["perkRangersForestGuide"] = 1,
+                    ["perkRangersKnockdown"] = 1,
+                    ["perkRangersComplete"] = 1
+                }
+            },
+            ["Farmer"] = new KitRewardData
+            {
+                ProgressionFloors = new Dictionary<string, int>(StringComparer.OrdinalIgnoreCase)
+                {
+                    ["perkLivingOffTheLand"] = 3,
+                    ["craftingArmor"] = 11,
+                    ["craftingSeeds"] = 20,
+                    ["craftingFood"] = 100,
+                    ["perkJavelinMaster"] = 5,
+                    ["perkFlurryOfPerception"] = 5,
+                    ["craftingSpears"] = 11,
+                    ["perkSpearHunter1Damage"] = 1,
+                    ["perkSpearHunter2Maintenance"] = 1,
+                    ["perkSpearHunter3Bleed"] = 1,
+                    ["perkSpearHunter4KillMove"] = 1,
+                    ["perkSpearHunter5RapidStrike"] = 1,
+                    ["perkSpearHunter6PenetratingShaft"] = 1,
+                    ["perkSpearHunter7QuickStrike"] = 1,
+                    ["perkSpearHunter8Complete"] = 1
+                },
+                CustomVars = new Dictionary<string, float>(StringComparer.OrdinalIgnoreCase)
+                {
+                    ["plantedGraceCorn1"] = 1f
+                }
+            },
+            ["Engineer"] = new KitRewardData
+            {
+                ProgressionFloors = new Dictionary<string, int>(StringComparer.OrdinalIgnoreCase)
+                {
+                    ["craftingElectrician"] = 55,
+                    ["craftingVehicles"] = 20,
+                    ["craftingRobotics"] = 76,
+                    ["craftingWorkstations"] = 34,
+                    ["perkAdvancedEngineering"] = 5,
+                    ["perkGreaseMonkey"] = 5,
+                    ["perkTechJunkie1Damage"] = 1,
+                    ["perkTechJunkie2Maintenance"] = 1,
+                    ["perkTechJunkie3APAmmo"] = 1,
+                    ["perkTechJunkie4Shells"] = 1,
+                    ["perkTechJunkie5Repulsor"] = 1,
+                    ["perkTechJunkie6BatonCharge"] = 1,
+                    ["perkTechJunkie7Hydraulics"] = 1,
+                    ["perkTechJunkie8Complete"] = 1
+                }
+            },
+            ["Ex-Soldier"] = new KitRewardData
+            {
+                ProgressionFloors = new Dictionary<string, int>(StringComparer.OrdinalIgnoreCase)
+                {
+                    ["perkMachineGunner"] = 5,
+                    ["perkRunAndGun"] = 5,
+                    ["craftingArmor"] = 11,
+                    ["perkMediumArmor"] = 4,
+                    ["craftingMachineGuns"] = 11,
+                    ["perkUrbanCombatLanding"] = 1,
+                    ["perkUrbanCombatCigar"] = 1,
+                    ["perkUrbanCombatSneaking"] = 1,
+                    ["perkUrbanCombatJumping"] = 1,
+                    ["perkUrbanCombatLandMines"] = 1,
+                    ["perkUrbanCombatAdrenalineRush"] = 1,
+                    ["perkUrbanCombatRoomClearing"] = 1,
+                    ["perkUrbanCombatComplete"] = 1,
+                    ["perkAutoWeaponsDamage"] = 1,
+                    ["perkAutoWeaponsUncontrolledBurst"] = 1,
+                    ["perkAutoWeaponsMaintenance"] = 1,
+                    ["perkAutoWeaponsDrumMag"] = 1,
+                    ["perkAutoWeaponsRecoil"] = 1,
+                    ["perkAutoWeaponsRagdoll"] = 1,
+                    ["perkAutoWeaponsMachineGuns"] = 1,
+                    ["perkAutoWeaponsComplete"] = 1
+                }
+            },
+            ["Doctor"] = new KitRewardData
+            {
+                ProgressionFloors = new Dictionary<string, int>(StringComparer.OrdinalIgnoreCase)
+                {
+                    ["perkPhysician"] = 5,
+                    ["perkCharismaticNature"] = 3,
+                    ["craftingMedical"] = 75,
+                    ["craftingArmor"] = 27
+                }
+            },
+            ["Miner"] = new KitRewardData
+            {
+                ProgressionFloors = new Dictionary<string, int>(StringComparer.OrdinalIgnoreCase)
+                {
+                    ["perkSkullCrusher"] = 5,
+                    ["perkGrandSlam"] = 5,
+                    ["perkStrengthMastery"] = 5,
+                    ["perkPackMule"] = 5,
+                    ["perkMiner69r"] = 5,
+                    ["perkMotherLode"] = 5,
+                    ["craftingHarvestingTools"] = 11,
+                    ["craftingSledgehammers"] = 11,
+                    ["craftingWorkstations"] = 34,
+                    ["perkSledgeSagaKnockdown"] = 1,
+                    ["perkSledgeSagaDegradation"] = 1,
+                    ["perkSledgeSagaCrippledMorale"] = 1,
+                    ["perkSledgeSagaPulverizingFinishers"] = 1,
+                    ["perkSledgeSagaSavageReaper"] = 1,
+                    ["perkSledgeSagaConcussiveStrike"] = 1,
+                    ["perkSledgeSagaArmorCrusher"] = 1,
+                    ["perkSledgeSagaComplete"] = 1
+                }
+            },
+            ["Demoman"] = new KitRewardData
+            {
+                ProgressionFloors = new Dictionary<string, int>(StringComparer.OrdinalIgnoreCase)
+                {
+                    ["perkDemolitionsExpert"] = 5,
+                    ["perkInfiltrator"] = 5,
+                    ["craftingExplosives"] = 50
+                }
+            },
+            ["Hitman"] = new KitRewardData
+            {
+                ProgressionFloors = new Dictionary<string, int>(StringComparer.OrdinalIgnoreCase)
+                {
+                    ["perkGunslinger"] = 5,
+                    ["perkRunAndGun"] = 5,
+                    ["perkAgilityMastery"] = 2,
+                    ["perkHiddenStrike"] = 5,
+                    ["perkFromTheShadows"] = 5,
+                    ["craftingHandguns"] = 26,
+                    ["perkPistolPeteTakeAim"] = 1,
+                    ["perkPistolPeteSwissKnees"] = 1,
+                    ["perkPistolPeteSteadyHand"] = 1,
+                    ["perkPistolPeteMaintenance"] = 1,
+                    ["perkPistolPeteHPAmmo"] = 1,
+                    ["perkPistolPeteAPAmmo"] = 1,
+                    ["perkPistolPeteDamage"] = 1,
+                    ["perkPistolPeteComplete"] = 1,
+                    ["perkEnforcerDamage"] = 1,
+                    ["perkEnforcerApparel"] = 1,
+                    ["perkEnforcerPunks"] = 1,
+                    ["perkEnforcerIntimidation"] = 1,
+                    ["perkEnforcerAPAmmo"] = 1,
+                    ["perkEnforcerHPAmmo"] = 1,
+                    ["perkEnforcerCriminalPursuit"] = 1,
+                    ["perkEnforcerComplete"] = 1
+                }
+            },
+            ["Dumb Luck"] = new KitRewardData
+            {
+                ProgressionFloors = new Dictionary<string, int>(StringComparer.OrdinalIgnoreCase)
+                {
+                    ["perkLuckyLooter"] = 5,
+                    ["perkLuckyLooterDukes"] = 1,
+                    ["perkLuckyLooterAmmunition"] = 1,
+                    ["perkLuckyLooterBrass"] = 1,
+                    ["perkLuckyLooterLead"] = 1,
+                    ["perkLuckyLooterBooks"] = 1,
+                    ["perkLuckyLooterFood"] = 1,
+                    ["perkLuckyLooterMedical"] = 1,
+                    ["perkLuckyLooterComplete"] = 1,
+                    ["perkWasteTreasuresHoney"] = 1,
+                    ["perkWasteTreasuresCoffins"] = 1,
+                    ["perkWasteTreasuresAcid"] = 1,
+                    ["perkWasteTreasuresWater"] = 1,
+                    ["perkWasteTreasuresDoors"] = 1,
+                    ["perkWasteTreasuresCloth"] = 1,
+                    ["perkWasteTreasuresSinks"] = 1,
+                    ["perkWasteTreasuresComplete"] = 1,
+                    ["perkDaringAdventurer"] = 5,
+                    ["perkTreasureHunter"] = 5
+                }
+            },
+            ["Burglar"] = new KitRewardData
+            {
+                ProgressionFloors = new Dictionary<string, int>(StringComparer.OrdinalIgnoreCase)
+                {
+                    ["perkBetterBarter"] = 5,
+                    ["perkLockPicking"] = 3,
+                    ["craftingWorkstations"] = 12,
+                    ["craftingBlades"] = 36,
+                    ["perkDeepCuts"] = 5,
+                    ["perkHiddenStrike"] = 3,
+                    ["perkFromTheShadows"] = 3
+                }
+            }
+        };
+
+        private const string FloorEnabledVar = "skFloorEnabled";
+        private const string FloorVarPrefix = "skFloor_";
 
         private static readonly string[] CandidateTextPropertyNames = { "Text", "Caption" };
         private static readonly string[] CandidateTextKeyPropertyNames = { "TextKey", "CaptionKey" };
@@ -404,47 +678,126 @@ namespace StarterKits
                 return;
             }
 
-            // First concrete implementation: Doctor kit stats are applied by a dedicated XML buff.
-            if (string.Equals(kitName, "Doctor", StringComparison.OrdinalIgnoreCase))
+            if (!KitRewards.TryGetValue(kitName, out KitRewardData reward) || reward?.ProgressionFloors == null)
             {
-                this.TrySetDoctorFloors(player);
-                if (this.TryAddBuffByName(player, "buffStarterKitDoctor"))
-                {
-                    Log.Out("[StarterKits] Doctor kit rewards applied via buffStarterKitDoctor.");
-                }
-                else
-                {
-                    Log.Warning("[StarterKits] Doctor kit reward apply failed: buffStarterKitDoctor could not be added.");
-                }
+                Log.Warning($"[StarterKits] No reward definition found for kit '{kitName}'.");
+                return;
             }
+
+            this.ApplyKitFloors(player, kitName, reward);
         }
 
-        private void TrySetDoctorFloors(EntityPlayer player)
+        private void ApplyKitFloors(EntityPlayer player, string kitName, KitRewardData reward)
         {
             if (player?.Buffs == null)
             {
                 return;
             }
 
+            // During development one-time lock is disabled, so clear previous kit floors first.
+            this.ClearAllFloorVars(player);
+
+            int applied = 0;
             try
             {
-                player.Buffs.SetCustomVar("skDoctorFloorEnabled", 1f, false);
-                player.Buffs.SetCustomVar("skDoctorFloorPhysician", 5f, false);
-                player.Buffs.SetCustomVar("skDoctorFloorCharismatic", 3f, false);
-                Log.Out("[StarterKits] Doctor floor CVars set: enabled=1 physician=5 charismatic=3");
+                this.SetBuffCustomVar(player, FloorEnabledVar, 1f);
+
+                if (reward?.ProgressionFloors != null)
+                {
+                    foreach (var kvp in reward.ProgressionFloors)
+                    {
+                        if (string.IsNullOrEmpty(kvp.Key) || kvp.Value <= 0)
+                        {
+                            continue;
+                        }
+
+                        string varName = FloorVarPrefix + kvp.Key;
+                        this.SetBuffCustomVar(player, varName, kvp.Value);
+                        applied++;
+                    }
+                }
+
+                if (reward?.CustomVars != null)
+                {
+                    foreach (var kvp in reward.CustomVars)
+                    {
+                        if (string.IsNullOrEmpty(kvp.Key))
+                        {
+                            continue;
+                        }
+
+                        this.SetBuffCustomVar(player, kvp.Key, kvp.Value);
+                    }
+                }
+
+                Log.Out($"[StarterKits] Applied kit floors for '{kitName}': {applied} progression floors.");
+            }
+            catch (Exception ex)
+            {
+                Log.Warning($"[StarterKits] Failed to apply kit floors for '{kitName}': {ex.Message}");
+            }
+        }
+
+        private void ClearAllFloorVars(EntityPlayer player)
+        {
+            if (player?.Buffs == null)
+            {
+                return;
+            }
+
+            this.SetBuffCustomVar(player, FloorEnabledVar, 0f);
+
+            foreach (var reward in KitRewards.Values)
+            {
+                if (reward?.ProgressionFloors == null)
+                {
+                    continue;
+                }
+
+                foreach (var progressionName in reward.ProgressionFloors.Keys)
+                {
+                    if (string.IsNullOrEmpty(progressionName))
+                    {
+                        continue;
+                    }
+
+                    this.SetBuffCustomVar(player, FloorVarPrefix + progressionName, 0f);
+                }
+            }
+        }
+
+        private void SetBuffCustomVar(EntityPlayer player, string varName, float value)
+        {
+            if (player?.Buffs == null || string.IsNullOrEmpty(varName))
+            {
+                return;
+            }
+
+            try
+            {
+                player.Buffs.SetCustomVar(varName, value, false);
             }
             catch
             {
                 try
                 {
-                    player.Buffs.AddCustomVar("skDoctorFloorEnabled", 1f);
-                    player.Buffs.AddCustomVar("skDoctorFloorPhysician", 5f);
-                    player.Buffs.AddCustomVar("skDoctorFloorCharismatic", 3f);
-                    Log.Out("[StarterKits] Doctor floor CVars added: enabled=1 physician=5 charismatic=3");
+                    if (player.Buffs.HasCustomVar(varName))
+                    {
+                        player.Buffs.RemoveCustomVar(varName);
+                    }
                 }
-                catch (Exception ex)
+                catch
                 {
-                    Log.Warning($"[StarterKits] Failed to set Doctor floor CVars: {ex.Message}");
+                    // Ignore and try AddCustomVar fallback.
+                }
+
+                try
+                {
+                    player.Buffs.AddCustomVar(varName, value);
+                }
+                catch
+                {
+                    // Final fallback intentionally ignored.
                 }
             }
         }
