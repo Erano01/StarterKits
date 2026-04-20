@@ -18,11 +18,13 @@ Backpack slot kontrolü backpack_item_stack: controls.xml:173
 Formul şu:
 use xml(modlet) -(if not possible)> use GameAPI events -(if not possible)> use harmony patches -(if not possible)> use scripts -(if not possible)> use transpilers
 
-- Oyuncunun okuduğu Crafting Skil book Artırma Nasıl yapılıyor
-- Oyuncunun okuduğu Perk book sayısı nasıl artırılıyor
-- Perk'ler nasıl artırılıyor.
-- Oyuncuya armor veya silah verilirken bunu nasıl yapabiliriz. (Daha sonra yapacağız)
+- Oyuncunun okuduğu Crafting Skil book Artırma Nasıl yapılıyor (tamamlandı)
+- Oyuncunun okuduğu Perk book sayısı nasıl artırılıyor (tamamlandı)
+- Perk'ler nasıl artırılıyor. (tamamlandı)
+- Oyuncuya armor ve silah verme (Yapılacak)
 
+- Eğer üzerinde armor yoksa ilk üzerine giydir eğer üzerinde armor giyili ise inventory'sinde boş yer varsa 
+inventorysine ver armoru eğer ordada yer yoksa hotbar'a ver eğer ordada yoksa loot bag olarak at yanına.
 
 sub-skilleri artırırken base attribute’a dokunmadan, sadece modun verdiği seviyeyi “alt sınır” olarak koruyacağız.
 
@@ -68,7 +70,7 @@ Farmer ->
 - Seeds Crafting Skill 20/20
 - Food Crafting Skill 100/100
 - Super Corn Seed Recipe (Automatically Readed)
-- Fullset Farmer Armor 
+- Medium Armor 4/4 & Fullset Farmer Armor (1 lvl set)
 - Spear Master 5/5 -> Perception (base-skill)
 - Quick and Perceptive 5/5 -> Perception (base-skill)
 - Spear Hunter 7/7

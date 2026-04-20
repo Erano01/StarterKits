@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Reflection;
+using UnityEngine;
 
 /// <summary>
 /// Starter kit seçim menüsü controller'ı.
@@ -38,6 +39,7 @@ namespace StarterKits
         {
             public Dictionary<string, int> ProgressionFloors;
             public Dictionary<string, float> CustomVars;
+            public Dictionary<string, int> ItemRewards;
         }
 
         private static readonly Dictionary<string, KitOverviewData> KitOverview = new Dictionary<string, KitOverviewData>(StringComparer.OrdinalIgnoreCase)
@@ -248,6 +250,13 @@ namespace StarterKits
                 CustomVars = new Dictionary<string, float>(StringComparer.OrdinalIgnoreCase)
                 {
                     ["plantedGraceCorn1"] = 1f
+                },
+                ItemRewards = new Dictionary<string, int>(StringComparer.OrdinalIgnoreCase)
+                {
+                    ["armorFarmerHelmet"] = 1,
+                    ["armorFarmerOutfit"] = 1,
+                    ["armorFarmerGloves"] = 1,
+                    ["armorFarmerBoots"] = 1
                 }
             },
             ["Engineer"] = new KitRewardData
@@ -295,6 +304,13 @@ namespace StarterKits
                     ["perkAutoWeaponsRagdoll"] = 1,
                     ["perkAutoWeaponsMachineGuns"] = 1,
                     ["perkAutoWeaponsComplete"] = 1
+                },
+                ItemRewards = new Dictionary<string, int>(StringComparer.OrdinalIgnoreCase)
+                {
+                    ["armorCommandoHelmet"] = 1,
+                    ["armorCommandoOutfit"] = 1,
+                    ["armorCommandoGloves"] = 1,
+                    ["armorCommandoBoots"] = 1
                 }
             },
             ["Doctor"] = new KitRewardData
@@ -686,6 +702,7 @@ namespace StarterKits
             }
 
             this.ApplyKitFloors(player, kitName, reward);
+            this.ApplyKitItems(player, kitName, reward.ItemRewards);
         }
 
         private void ApplyKitFloors(EntityPlayer player, string kitName, KitRewardData reward)
@@ -801,6 +818,126 @@ namespace StarterKits
                     // Final fallback intentionally ignored.
                 }
             }
+        }
+
+        private void ApplyKitItems(EntityPlayer player, string kitName, Dictionary<string, int> itemRewards)
+        {
+            if (player == null || itemRewards == null || itemRewards.Count == 0)
+            {
+                return;
+            }
+
+            var overflow = new List<ItemStack>();
+            int delivered = 0;
+
+            foreach (var kvp in itemRewards)
+            {
+                if (string.IsNullOrEmpty(kvp.Key) || kvp.Value <= 0)
+                {
+                    continue;
+                }
+
+                ItemValue itemValue = ItemClass.GetItem(kvp.Key, true);
+                if (itemValue == null || itemValue.IsEmpty())
+                {
+                    Log.Warning($"[StarterKits] Item reward skipped for '{kitName}': unknown item '{kvp.Key}'.");
+                    continue;
+                }
+
+                var stack = new ItemStack(itemValue, kvp.Value);
+                if (this.TryAddItemToInventory(player, stack))
+                {
+                    delivered += kvp.Value;
+                }
+                else
+                {
+                    overflow.Add(stack);
+                }
+            }
+
+            if (overflow.Count > 0)
+            {
+                Vector3 dropPos = player.position;
+                dropPos.y += 0.25f;
+
+                try
+                {
+                    GameManager.Instance.DropContentInLootContainerServer(
+                        player.entityId,
+                        "EntityLootContainerRegular",
+                        dropPos,
+                        overflow.ToArray(),
+                        false,
+                        null);
+
+                    Log.Out($"[StarterKits] Kit '{kitName}' item overflow dropped as loot bag(s): {overflow.Count} stack(s).");
+                }
+                catch (Exception ex)
+                {
+                    Log.Warning($"[StarterKits] Failed to drop overflow loot bag for '{kitName}': {ex.Message}");
+                }
+            }
+
+            Log.Out($"[StarterKits] Kit '{kitName}' item rewards delivered count={delivered}, overflowStacks={overflow.Count}.");
+        }
+
+        private bool TryAddItemToInventory(EntityPlayer player, ItemStack stack)
+        {
+            if (player?.inventory == null || stack == null || stack.IsEmpty())
+            {
+                return false;
+            }
+
+            try
+            {
+                int slot;
+                if (player.inventory.AddItem(stack, out slot))
+                {
+                    return true;
+                }
+            }
+            catch
+            {
+                // Fallback to reflection below.
+            }
+
+            try
+            {
+                object inventoryObj = player.inventory;
+                Type inventoryType = inventoryObj.GetType();
+                MethodInfo addItemWithSlot = inventoryType.GetMethod(
+                    "AddItem",
+                    BindingFlags.Instance | BindingFlags.Public | BindingFlags.NonPublic,
+                    null,
+                    new[] { typeof(ItemStack), typeof(int).MakeByRefType() },
+                    null);
+                if (addItemWithSlot != null)
+                {
+                    object[] args = { stack, 0 };
+                    bool ok = (bool)addItemWithSlot.Invoke(inventoryObj, args);
+                    if (ok)
+                    {
+                        return true;
+                    }
+                }
+
+                MethodInfo addItem = inventoryType.GetMethod(
+                    "AddItem",
+                    BindingFlags.Instance | BindingFlags.Public | BindingFlags.NonPublic,
+                    null,
+                    new[] { typeof(ItemStack) },
+                    null);
+                if (addItem != null)
+                {
+                    return (bool)addItem.Invoke(inventoryObj, new object[] { stack });
+                }
+            }
+            catch
+            {
+                // Ignore and report false.
+            }
+
+            return false;
         }
 
         private bool TryAddBuffByName(EntityPlayer player, string buffName)
