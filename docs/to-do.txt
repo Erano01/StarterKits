@@ -67,7 +67,7 @@ Farmer ->
 - Armor Crafting Skill 11/100
 - Seeds Crafting Skill 20/20
 - Food Crafting Skill 100/100
-- Super Corn Crafting Magazine (Automatically Readed)
+- Super Corn Seed Recipe (Automatically Readed)
 - Fullset Farmer Armor 
 - Spear Master 5/5 -> Perception (base-skill)
 - Quick and Perceptive 5/5 -> Perception (base-skill)

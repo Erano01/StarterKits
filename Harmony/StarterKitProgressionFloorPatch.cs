@@ -9,7 +9,7 @@ namespace StarterKits.Harmony
     /// Keeps starter kit progression floors active without touching base attributes.
     /// Floors are stored in player buff custom vars: skFloor_<progressionName>.
     /// </summary>
-    public static class DoctorPerkFloorPatch
+    public static class StarterKitProgressionFloorPatch
     {
         private static bool loggedFirstHit;
         private const string FloorEnabledVar = "skFloorEnabled";
@@ -27,49 +27,49 @@ namespace StarterKits.Harmony
             TryPatch(
                 harmony,
                 AccessTools.PropertyGetter(typeof(ProgressionValue), "Level"),
-                typeof(DoctorPerkFloorPatch).GetMethod(nameof(PostfixGetProperty), BindingFlags.Static | BindingFlags.NonPublic),
+                typeof(StarterKitProgressionFloorPatch).GetMethod(nameof(PostfixGetProperty), BindingFlags.Static | BindingFlags.NonPublic),
                 patched,
                 "ProgressionValue.Level(get)");
 
             TryPatch(
                 harmony,
                 AccessTools.Method(typeof(ProgressionValue), "GetLevel"),
-                typeof(DoctorPerkFloorPatch).GetMethod(nameof(PostfixGetMethod), BindingFlags.Static | BindingFlags.NonPublic),
+                typeof(StarterKitProgressionFloorPatch).GetMethod(nameof(PostfixGetMethod), BindingFlags.Static | BindingFlags.NonPublic),
                 patched,
                 "ProgressionValue.GetLevel()");
 
             TryPatch(
                 harmony,
                 AccessTools.Method(typeof(ProgressionValue), "CalculatedMaxLevel", new[] { typeof(EntityAlive) }),
-                typeof(DoctorPerkFloorPatch).GetMethod(nameof(PostfixCalculatedMaxLevel), BindingFlags.Static | BindingFlags.NonPublic),
+                typeof(StarterKitProgressionFloorPatch).GetMethod(nameof(PostfixCalculatedMaxLevel), BindingFlags.Static | BindingFlags.NonPublic),
                 patched,
                 "ProgressionValue.CalculatedMaxLevel(EntityAlive)");
 
             TryPatch(
                 harmony,
                 AccessTools.Method(typeof(ProgressionClass), "GetCalculatedMaxLevel", new[] { typeof(EntityAlive), typeof(ProgressionValue) }),
-                typeof(DoctorPerkFloorPatch).GetMethod(nameof(PostfixStaticCalculatedMaxLevel), BindingFlags.Static | BindingFlags.NonPublic),
+                typeof(StarterKitProgressionFloorPatch).GetMethod(nameof(PostfixStaticCalculatedMaxLevel), BindingFlags.Static | BindingFlags.NonPublic),
                 patched,
                 "ProgressionClass.GetCalculatedMaxLevel(EntityAlive, ProgressionValue)");
 
             TryPatch(
                 harmony,
                 AccessTools.Method(typeof(ProgressionValue), "CalculatedLevel", new[] { typeof(EntityAlive) }),
-                typeof(DoctorPerkFloorPatch).GetMethod(nameof(PostfixCalculatedLevel), BindingFlags.Static | BindingFlags.NonPublic),
+                typeof(StarterKitProgressionFloorPatch).GetMethod(nameof(PostfixCalculatedLevel), BindingFlags.Static | BindingFlags.NonPublic),
                 patched,
                 "ProgressionValue.CalculatedLevel(EntityAlive)");
 
             TryPatch(
                 harmony,
                 AccessTools.Method(typeof(ProgressionValue), "GetCalculatedLevel", new[] { typeof(EntityAlive) }),
-                typeof(DoctorPerkFloorPatch).GetMethod(nameof(PostfixGetCalculatedLevel), BindingFlags.Static | BindingFlags.NonPublic),
+                typeof(StarterKitProgressionFloorPatch).GetMethod(nameof(PostfixGetCalculatedLevel), BindingFlags.Static | BindingFlags.NonPublic),
                 patched,
                 "ProgressionValue.GetCalculatedLevel(EntityAlive)");
 
             TryPatch(
                 harmony,
                 AccessTools.Method(typeof(ProgressionValue), "IsLocked", new[] { typeof(EntityAlive) }),
-                typeof(DoctorPerkFloorPatch).GetMethod(nameof(PostfixIsLocked), BindingFlags.Static | BindingFlags.NonPublic),
+                typeof(StarterKitProgressionFloorPatch).GetMethod(nameof(PostfixIsLocked), BindingFlags.Static | BindingFlags.NonPublic),
                 patched,
                 "ProgressionValue.IsLocked(EntityAlive)");
 
@@ -119,7 +119,7 @@ namespace StarterKits.Harmony
             }
             catch (Exception ex)
             {
-                Log.Warning($"[StarterKits] DoctorPerkFloorPatch CalcLevel(float) exception: {ex.Message}");
+                Log.Warning($"[StarterKits] StarterKitProgressionFloorPatch CalcLevel(float) exception: {ex.Message}");
             }
         }
 
@@ -145,7 +145,7 @@ namespace StarterKits.Harmony
             }
             catch (Exception ex)
             {
-                Log.Warning($"[StarterKits] DoctorPerkFloorPatch IsLocked exception: {ex.Message}");
+                Log.Warning($"[StarterKits] StarterKitProgressionFloorPatch IsLocked exception: {ex.Message}");
             }
         }
 
@@ -162,7 +162,7 @@ namespace StarterKits.Harmony
             }
             catch (Exception ex)
             {
-                Log.Warning($"[StarterKits] DoctorPerkFloorPatch Level exception: {ex.Message}");
+                Log.Warning($"[StarterKits] StarterKitProgressionFloorPatch Level exception: {ex.Message}");
             }
         }
 
@@ -179,7 +179,7 @@ namespace StarterKits.Harmony
             }
             catch (Exception ex)
             {
-                Log.Warning($"[StarterKits] DoctorPerkFloorPatch Max exception: {ex.Message}");
+                Log.Warning($"[StarterKits] StarterKitProgressionFloorPatch Max exception: {ex.Message}");
             }
         }
 
