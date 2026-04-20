@@ -63,6 +63,33 @@ Assembly-CSharp.dll'i açmak yeterli.
 ## Development Formula
 use xml(modlet) -(if not possible)> use GameAPI events -(if not possible)> use harmony patches -(if not possible)> use scripts -(if not possible)> use transpilers
 
+## Starter Kit DB Behavior
+
+Starter kit selection is persisted per active world/save slot.
+
+Path format:
+
+```text
+Mods/StarterKits/Data/saves/<world-name>/<save-name>/db.txt
+```
+
+Examples:
+
+```text
+Mods/StarterKits/Data/saves/Navezgane/test/db.txt
+Mods/StarterKits/Data/saves/Navezgane/test2/db.txt
+Mods/StarterKits/Data/saves/RWG8K02/Survival/db.txt
+Mods/StarterKits/Data/saves/RWG10K01/Hardcore/db.txt
+```
+
+Rules:
+
+- A player can select a starter kit only once for that save.
+- Rejoin/reconnect does not reopen selection if already chosen.
+- This restriction applies regardless of admin status.
+- On mod load, the mod scans known worlds/saves and logs them for diagnostics.
+- If save path is not ready yet during early load, the selection lock is still kept in memory and flushed when save path becomes available.
+
 if you are developing UI's(XML) you can reload UI without restarting game.
 
 use this To easily test changes in the UI, use f1 and then

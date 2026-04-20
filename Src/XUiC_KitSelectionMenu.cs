@@ -11,8 +11,8 @@ namespace StarterKits
 {
     public class XUiC_KitSelectionMenu : XUiController
     {
-        // Keep this false during development; set true when you want strict one-time selection.
-        private const bool EnableOneTimeSelectionLock = false;
+        // Enable server-side one-time selection lock.
+        private const bool EnableOneTimeSelectionLock = true;
 
         private sealed class KitOverviewData
         {
@@ -427,6 +427,7 @@ namespace StarterKits
 
         private const string FloorEnabledVar = "skFloorEnabled";
         private const string FloorVarPrefix = "skFloor_";
+        private static readonly Color32 LockedKitBorderColor = new Color32(220, 64, 64, 255);
 
         private static readonly string[] CandidateTextPropertyNames = { "Text", "Caption" };
         private static readonly string[] CandidateTextKeyPropertyNames = { "TextKey", "CaptionKey" };
@@ -434,7 +435,9 @@ namespace StarterKits
         private readonly List<KitButtonEntry> kitButtons = new List<KitButtonEntry>();
         private readonly List<KitPreviewImageEntry> kitPreviewImages = new List<KitPreviewImageEntry>();
         private string selectedKitName;
+        private string playerLockedKitName;
         private XUiController selectedKitNameLabel;
+        private XUiController lockedKitLabel;
         private XUiController overviewHintLabel;
         private XUiController previewLabel;
         private XUiController previewHintLabel;
@@ -484,6 +487,7 @@ namespace StarterKits
             this.RegisterKitTexture("Burglar", "texBurglar");
 
             this.selectedKitNameLabel = this.GetChildById("lblSelectedKitName");
+            this.lockedKitLabel = this.GetChildById("lblLockedKit");
             this.overviewHintLabel = this.GetChildById("lblOverviewHint");
             this.previewLabel = this.GetChildById("lblKitImagePlaceholder");
             this.previewHintLabel = this.GetChildById("lblKitImageHint");
@@ -508,13 +512,15 @@ namespace StarterKits
 
             Log.Out($"[StarterKits] Init complete. Buttons={this.kitButtons.Count}, previews={this.kitPreviewImages.Count}");
 
-            this.ClearSelection();
+            this.LoadPlayerLockedKit();
+            this.RefreshUI();
         }
 
         public override void OnOpen()
         {
             base.OnOpen();
-            this.ClearSelection();
+            this.LoadPlayerLockedKit();
+            this.RefreshUI();
         }
 
         /// <summary>
@@ -605,8 +611,61 @@ namespace StarterKits
             return null;
         }
 
+        private void LoadPlayerLockedKit()
+        {
+            var player = this.xui?.playerUI?.entityPlayer;
+            if (player == null)
+            {
+                this.playerLockedKitName = null;
+                return;
+            }
+
+            if (player.Buffs != null && player.Buffs.HasCustomVar("starterKitSelected"))
+            {
+                try
+                {
+                    float kitValue = player.Buffs.GetCustomVar("starterKitSelected");
+                    if (kitValue > 0)
+                    {
+                        var lockedKit = StarterKitSelectionStore.GetSelected(player);
+                        this.playerLockedKitName = lockedKit;
+                        return;
+                    }
+                }
+                catch
+                {
+                    // Ignore and try store below.
+                }
+            }
+
+            this.playerLockedKitName = StarterKitSelectionStore.GetSelected(player);
+        }
+
+        private void RefreshUI()
+        {
+            if (string.IsNullOrEmpty(this.playerLockedKitName))
+            {
+                this.selectedKitName = null;
+                this.ClearSelection();
+            }
+            else
+            {
+                // Player already locked a kit; show it with no further selection allowed.
+                this.selectedKitName = this.playerLockedKitName;
+                this.UpdateLockedKitDisplay();
+            }
+        }
+
         private void SelectKit(string kitName)
         {
+            if (!string.IsNullOrEmpty(this.playerLockedKitName))
+            {
+                // Already locked: allow browsing all kits, but keep confirm blocked.
+                this.selectedKitName = kitName;
+                this.UpdateLockedKitDisplay();
+                return;
+            }
+
             this.selectedKitName = kitName;
 
             for (int i = 0; i < this.kitButtons.Count; i++)
@@ -636,9 +695,136 @@ namespace StarterKits
             this.UpdateOverview(null);
         }
 
+        private void UpdateLockedKitDisplay()
+        {
+            this.UpdateLockedKitSelectionVisual();
+            this.UpdateLockedKitLabel();
+
+            string overviewKit = string.IsNullOrEmpty(this.selectedKitName)
+                ? this.playerLockedKitName
+                : this.selectedKitName;
+            this.UpdateOverview(overviewKit);
+
+            if (!string.IsNullOrEmpty(this.playerLockedKitName))
+            {
+                this.SetText(this.overviewHintLabel,
+                    $"Kit lock active: {this.playerLockedKitName}. You can preview all kits, but cannot confirm a new one.");
+            }
+        }
+
+        private void UpdateLockedKitSelectionVisual()
+        {
+            for (int i = 0; i < this.kitButtons.Count; i++)
+            {
+                bool isLocked = string.Equals(this.kitButtons[i].KitName, this.playerLockedKitName, StringComparison.OrdinalIgnoreCase);
+                bool isSelected = string.Equals(this.kitButtons[i].KitName, this.selectedKitName, StringComparison.OrdinalIgnoreCase);
+                if (this.kitButtons[i].SelectedOverlay?.ViewComponent != null)
+                {
+                    this.kitButtons[i].SelectedOverlay.ViewComponent.IsVisible = isLocked || isSelected;
+                    if (isLocked)
+                    {
+                        this.TrySetLockedBorderColor(this.kitButtons[i].SelectedOverlay);
+                    }
+                }
+            }
+        }
+
+        private void TrySetLockedBorderColor(XUiController overlayController)
+        {
+            if (overlayController == null || overlayController.Children == null || overlayController.Children.Count == 0)
+            {
+                return;
+            }
+
+            // Overlay structure in XML: child[0]=fill sprite, child[1]=border sprite.
+            for (int i = 0; i < overlayController.Children.Count; i++)
+            {
+                bool isBorderSprite = i == 1;
+                if (isBorderSprite)
+                {
+                    this.TrySetViewColor(overlayController.Children[i].ViewComponent, LockedKitBorderColor);
+                }
+            }
+        }
+
+        private void TrySetViewColor(object viewComponent, Color32 color)
+        {
+            if (viewComponent == null)
+            {
+                return;
+            }
+
+            const BindingFlags Flags = BindingFlags.Instance | BindingFlags.Public | BindingFlags.NonPublic;
+            Type viewType = viewComponent.GetType();
+
+            PropertyInfo colorProp = viewType.GetProperty("Color", Flags);
+            if (colorProp != null && colorProp.CanWrite)
+            {
+                if (colorProp.PropertyType == typeof(Color))
+                {
+                    colorProp.SetValue(viewComponent, (Color)color, null);
+                    return;
+                }
+
+                if (colorProp.PropertyType == typeof(Color32))
+                {
+                    colorProp.SetValue(viewComponent, color, null);
+                    return;
+                }
+            }
+
+            FieldInfo colorField = viewType.GetField("Color", Flags);
+            if (colorField != null)
+            {
+                if (colorField.FieldType == typeof(Color))
+                {
+                    colorField.SetValue(viewComponent, (Color)color);
+                    return;
+                }
+
+                if (colorField.FieldType == typeof(Color32))
+                {
+                    colorField.SetValue(viewComponent, color);
+                }
+            }
+        }
+
+        private void UpdateLockedKitLabel()
+        {
+            if (this.lockedKitLabel?.ViewComponent == null)
+            {
+                return;
+            }
+
+            if (string.IsNullOrEmpty(this.playerLockedKitName))
+            {
+                this.lockedKitLabel.ViewComponent.IsVisible = false;
+                return;
+            }
+
+            this.lockedKitLabel.ViewComponent.IsVisible = true;
+            
+            try
+            {
+                Type viewType = this.lockedKitLabel.ViewComponent?.GetType();
+                if (viewType != null)
+                {
+                    var textProp = viewType.GetProperty("Text", System.Reflection.BindingFlags.Instance | System.Reflection.BindingFlags.Public | System.Reflection.BindingFlags.NonPublic);
+                    if (textProp != null && textProp.CanWrite)
+                    {
+                        textProp.SetValue(this.lockedKitLabel.ViewComponent, $"Your Kit: {this.playerLockedKitName}", null);
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                Log.Warning($"[StarterKits] Could not set locked kit label text: {ex.Message}");
+            }
+        }
+
         private void OnConfirmButtonPressed(XUiController sender, int mouseButton)
         {
-            Log.Out($"[StarterKits] Confirm pressed. mouseButton={mouseButton}, selectedKit={this.selectedKitName ?? "<null>"}");
+            Log.Out($"[StarterKits] Confirm pressed. mouseButton={mouseButton}, selectedKit={this.selectedKitName ?? "<null>"}, playerLocked={this.playerLockedKitName ?? "<none>"}");
 
             if (string.IsNullOrEmpty(this.selectedKitName))
             {
@@ -652,40 +838,36 @@ namespace StarterKits
                 return;
             }
 
-            if (EnableOneTimeSelectionLock && player.Buffs != null && player.Buffs.HasCustomVar("starterKitSelected"))
+            // If player already has a locked kit, prevent re-selection.
+            if (!string.IsNullOrEmpty(this.playerLockedKitName))
             {
-                Log.Warning("[StarterKits] Confirm ignored: starter kit already selected (custom var).");
-                this.SetEnabled(this.confirmButtonController, false);
+                Log.Warning($"[StarterKits] Confirm ignored: player already has kit '{this.playerLockedKitName}' locked.");
                 return;
             }
 
-            if (EnableOneTimeSelectionLock && StarterKitSelectionStore.HasSelected(player))
-            {
-                Log.Warning("[StarterKits] Confirm ignored: starter kit already selected (persistent store).");
-                this.SetEnabled(this.confirmButtonController, false);
-                return;
-            }
-
+            // Lock the kit server-side.
             if (EnableOneTimeSelectionLock)
             {
                 this.TrySetStarterKitSelectedVar(player, this.selectedKitName);
                 StarterKitSelectionStore.MarkSelected(player, this.selectedKitName);
+                this.playerLockedKitName = this.selectedKitName;
             }
 
             this.ApplySelectedKitRewards(player, this.selectedKitName);
 
-            if (EnableOneTimeSelectionLock)
-            {
-                Log.Out($"[StarterKits] Confirm button pressed for kit '{this.selectedKitName}'. Player selection locked.");
-            }
-            else
-            {
-                Log.Out($"[StarterKits] Confirm button pressed for kit '{this.selectedKitName}'. One-time lock is disabled.");
-            }
+            Log.Out($"[StarterKits] Confirm button pressed for kit '{this.selectedKitName}'. Player selection locked.");
 
-            if (this.xui?.playerUI?.windowManager != null)
+            // Auto-close the selection window after confirming.
+            try
             {
-                this.xui.playerUI.windowManager.Close("starterKitGroup");
+                if (this.xui?.playerUI?.windowManager != null)
+                {
+                    this.xui.playerUI.windowManager.Close("starterKitGroup");
+                }
+            }
+            catch (Exception ex)
+            {
+                Log.Warning($"[StarterKits] Could not auto-close kit window: {ex.Message}");
             }
         }
 
@@ -1020,7 +1202,6 @@ namespace StarterKits
                 this.SetVisible(this.previewLabel, true);
                 this.SetVisible(this.previewHintLabel, true);
                 this.UpdatePreviewTexture(null);
-                this.SetEnabled(this.confirmButtonController, false);
                 return;
             }
 
@@ -1032,7 +1213,6 @@ namespace StarterKits
             this.SetVisible(this.previewLabel, false);
             this.SetVisible(this.previewHintLabel, false);
             this.UpdatePreviewTexture(kitName);
-            this.SetEnabled(this.confirmButtonController, true);
         }
 
         private void UpdatePreviewTexture(string selectedKit)
@@ -1260,6 +1440,7 @@ namespace StarterKits
 
         /// <summary>
         /// ESC menüsünden starter kit menüsünü açmak için kullanılır.
+        /// Kit seçimi zaten yapılmış oyuncular da menüyü görüntüleme amaçlı açabilir.
         /// </summary>
         public static void OpenStarterKitMenu()
         {
@@ -1271,12 +1452,6 @@ namespace StarterKits
 
             var player = world.GetPrimaryPlayer();
             if (player == null)
-            {
-                return;
-            }
-
-            if ((EnableOneTimeSelectionLock && player.Buffs != null && player.Buffs.HasCustomVar("starterKitSelected")) ||
-                (EnableOneTimeSelectionLock && StarterKitSelectionStore.HasSelected(player)))
             {
                 return;
             }
