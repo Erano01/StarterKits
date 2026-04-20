@@ -21,7 +21,8 @@ use xml(modlet) -(if not possible)> use GameAPI events -(if not possible)> use h
 - Oyuncunun okuduğu Crafting Skil book Artırma Nasıl yapılıyor
 - Oyuncunun okuduğu Perk book sayısı nasıl artırılıyor
 - Perk'ler nasıl artırılıyor.
-- Oyuncuya armor veya silah verilirken bunu nasıl yapabiliriz.
+- Oyuncuya armor veya silah verilirken bunu nasıl yapabiliriz. (Daha sonra yapacağız)
+
 
 sub-skilleri artırırken base attribute’a dokunmadan, sadece modun verdiği seviyeyi “alt sınır” olarak koruyacağız.
 

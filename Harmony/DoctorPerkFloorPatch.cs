@@ -6,12 +6,14 @@ using HarmonyLib;
 namespace StarterKits.Harmony
 {
     /// <summary>
-    /// Keeps Doctor kit perk levels at a player-specific floor without touching base attributes.
-    /// Applies only when the player has skDoctorFloorEnabled custom var.
+    /// Keeps starter kit progression floors active without touching base attributes.
+    /// Floors are stored in player buff custom vars: skFloor_<progressionName>.
     /// </summary>
     public static class DoctorPerkFloorPatch
     {
         private static bool loggedFirstHit;
+        private const string FloorEnabledVar = "skFloorEnabled";
+        private const string FloorVarPrefix = "skFloor_";
 
         public static void Register(HarmonyLib.Harmony harmony)
         {
@@ -71,7 +73,7 @@ namespace StarterKits.Harmony
                 patched,
                 "ProgressionValue.IsLocked(EntityAlive)");
 
-            Log.Out($"[StarterKits] DoctorPerkFloorPatch register complete. Patched targets: {string.Join(", ", patched)}");
+            Log.Out($"[StarterKits] StarterKitFloorPatch register complete. Patched targets: {string.Join(", ", patched)}");
         }
 
         [HarmonyPatch(typeof(ProgressionValue), "get_Level")]
@@ -188,10 +190,7 @@ namespace StarterKits.Harmony
                 return 0;
             }
 
-            bool doctorEnabled = player.Buffs.HasCustomVar("skDoctorFloorEnabled")
-                              || player.Buffs.HasBuff("buffStarterKitDoctorPersist")
-                              || player.Buffs.HasBuff("buffStarterKitDoctor");
-            if (!doctorEnabled)
+            if (!player.Buffs.HasCustomVar(FloorEnabledVar) || player.Buffs.GetCustomVar(FloorEnabledVar) < 0.5f)
             {
                 return 0;
             }
@@ -202,27 +201,14 @@ namespace StarterKits.Harmony
                 return 0;
             }
 
-            if (string.Equals(progressionName, "perkPhysician", StringComparison.OrdinalIgnoreCase))
+            string floorVar = FloorVarPrefix + progressionName;
+            if (!player.Buffs.HasCustomVar(floorVar))
             {
-                if (player.Buffs.HasCustomVar("skDoctorFloorPhysician"))
-                {
-                    return (int)player.Buffs.GetCustomVar("skDoctorFloorPhysician");
-                }
-
-                return 5;
+                return 0;
             }
 
-            if (string.Equals(progressionName, "perkCharismaticNature", StringComparison.OrdinalIgnoreCase))
-            {
-                if (player.Buffs.HasCustomVar("skDoctorFloorCharismatic"))
-                {
-                    return (int)player.Buffs.GetCustomVar("skDoctorFloorCharismatic");
-                }
-
-                return 3;
-            }
-
-            return 0;
+            int floor = (int)player.Buffs.GetCustomVar(floorVar);
+            return floor > 0 ? floor : 0;
         }
 
         private static string ResolveProgressionName(ProgressionValue value)
@@ -301,7 +287,7 @@ namespace StarterKits.Harmony
             }
 
             loggedFirstHit = true;
-            Log.Out($"[StarterKits] DoctorPerkFloorPatch active via {source}.");
+            Log.Out($"[StarterKits] StarterKitFloorPatch active via {source}.");
         }
 
         private static void TryPatch(
@@ -315,7 +301,7 @@ namespace StarterKits.Harmony
             {
                 if (target == null || postfix == null)
                 {
-                    Log.Warning($"[StarterKits] DoctorPerkFloorPatch target not found: {label}");
+                    Log.Warning($"[StarterKits] StarterKitFloorPatch target not found: {label}");
                     return;
                 }
 
@@ -324,7 +310,7 @@ namespace StarterKits.Harmony
             }
             catch (Exception ex)
             {
-                Log.Warning($"[StarterKits] DoctorPerkFloorPatch patch failed for {label}: {ex.Message}");
+                Log.Warning($"[StarterKits] StarterKitFloorPatch patch failed for {label}: {ex.Message}");
             }
         }
 
