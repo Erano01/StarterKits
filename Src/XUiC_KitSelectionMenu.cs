@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Reflection;
+using UnityEngine;
 
 /// <summary>
 /// Starter kit seçim menüsü controller'ı.
@@ -38,6 +39,7 @@ namespace StarterKits
         {
             public Dictionary<string, int> ProgressionFloors;
             public Dictionary<string, float> CustomVars;
+            public Dictionary<string, int> ItemRewards;
         }
 
         private static readonly Dictionary<string, KitOverviewData> KitOverview = new Dictionary<string, KitOverviewData>(StringComparer.OrdinalIgnoreCase)
@@ -82,7 +84,7 @@ namespace StarterKits
                 DisplayName = "Farmer",
                 PreviewTitle = "Sustain Specialist",
                 Description = "While others loot, you grow. Dirt under your nails, spear in your hand, food on everyone's table.",
-                StatLines = new[] { "Living off The Land 3/3", "Armor Crafting Skill 11/100", "Seeds Crafting Skill 20/20", "Food Crafting Skill 100/100", "Super Corn Crafting Magazine (Automatically Readed)", "Fullset Farmer Armor", "Spear Master 5/5", "Quick and Perceptive 5/5", "Spear Hunter 7/7", "Spear Crafting Skill 11/75" }
+                StatLines = new[] { "Living off The Land 3/3", "Armor Crafting Skill 11/100", "Seeds Crafting Skill 20/20", "Food Crafting Skill 100/100", "Super Corn Crafting Magazine (Automatically Readed)", "Medium Armor 4/4 & Fullset Farmer Armor (1 lvl set)", "Spear Master 5/5", "Quick and Perceptive 5/5", "Spear Hunter 7/7", "Spear Crafting Skill 11/75" }
             },
             ["Engineer"] = new KitOverviewData
             {
@@ -231,6 +233,7 @@ namespace StarterKits
                 {
                     ["perkLivingOffTheLand"] = 3,
                     ["craftingArmor"] = 11,
+                    ["perkMediumArmor"] = 4,
                     ["craftingSeeds"] = 20,
                     ["craftingFood"] = 100,
                     ["perkJavelinMaster"] = 5,
@@ -248,6 +251,13 @@ namespace StarterKits
                 CustomVars = new Dictionary<string, float>(StringComparer.OrdinalIgnoreCase)
                 {
                     ["plantedGraceCorn1"] = 1f
+                },
+                ItemRewards = new Dictionary<string, int>(StringComparer.OrdinalIgnoreCase)
+                {
+                    ["armorFarmerHelmet"] = 1,
+                    ["armorFarmerOutfit"] = 1,
+                    ["armorFarmerGloves"] = 1,
+                    ["armorFarmerBoots"] = 1
                 }
             },
             ["Engineer"] = new KitRewardData
@@ -295,6 +305,13 @@ namespace StarterKits
                     ["perkAutoWeaponsRagdoll"] = 1,
                     ["perkAutoWeaponsMachineGuns"] = 1,
                     ["perkAutoWeaponsComplete"] = 1
+                },
+                ItemRewards = new Dictionary<string, int>(StringComparer.OrdinalIgnoreCase)
+                {
+                    ["armorCommandoHelmet"] = 1,
+                    ["armorCommandoOutfit"] = 1,
+                    ["armorCommandoGloves"] = 1,
+                    ["armorCommandoBoots"] = 1
                 }
             },
             ["Doctor"] = new KitRewardData
@@ -686,6 +703,7 @@ namespace StarterKits
             }
 
             this.ApplyKitFloors(player, kitName, reward);
+            this.ApplyKitItems(player, kitName, reward.ItemRewards);
         }
 
         private void ApplyKitFloors(EntityPlayer player, string kitName, KitRewardData reward)
@@ -801,6 +819,120 @@ namespace StarterKits
                     // Final fallback intentionally ignored.
                 }
             }
+        }
+
+        private void ApplyKitItems(EntityPlayer player, string kitName, Dictionary<string, int> itemRewards)
+        {
+            if (player == null || itemRewards == null || itemRewards.Count == 0)
+            {
+                return;
+            }
+
+            var overflow = new List<ItemStack>();
+            int delivered = 0;
+
+            foreach (var kvp in itemRewards)
+            {
+                if (string.IsNullOrEmpty(kvp.Key) || kvp.Value <= 0)
+                {
+                    continue;
+                }
+
+                ItemValue itemValue = ItemClass.GetItem(kvp.Key, true);
+                if (itemValue == null || itemValue.IsEmpty())
+                {
+                    Log.Warning($"[StarterKits] Item reward skipped for '{kitName}': unknown item '{kvp.Key}'.");
+                    continue;
+                }
+
+                ushort quality = this.GetArmorRewardQuality(kitName, kvp.Key);
+                if (quality > 0)
+                {
+                    itemValue.Quality = quality;
+                }
+
+                var stack = new ItemStack(itemValue, kvp.Value);
+                
+                if (this.TryAddItemToInventory(player, stack))
+                {
+                    delivered += kvp.Value;
+                    Log.Out($"[StarterKits] Item '{kvp.Key}' (qty={kvp.Value}) added to inventory for kit '{kitName}'.");
+                }
+                else
+                {
+                    overflow.Add(stack);
+                    Log.Out($"[StarterKits] Item '{kvp.Key}' (qty={kvp.Value}) could not fit in inventory, will drop as loot.");
+                }
+            }
+
+            if (overflow.Count > 0)
+            {
+                Vector3 dropPos = player.position;
+                dropPos.y += 0.25f;
+
+                try
+                {
+                    GameManager.Instance.DropContentInLootContainerServer(
+                        player.entityId,
+                        "EntityLootContainerRegular",
+                        dropPos,
+                        overflow.ToArray(),
+                        false,
+                        null);
+
+                    Log.Out($"[StarterKits] Kit '{kitName}' item overflow dropped as loot bag(s): {overflow.Count} stack(s).");
+                }
+                catch (Exception ex)
+                {
+                    Log.Warning($"[StarterKits] Failed to drop overflow loot bag for '{kitName}': {ex.Message}");
+                }
+            }
+
+            Log.Out($"[StarterKits] Kit '{kitName}' completed: {delivered} items to inventory, {overflow.Count} stacks to loot bag.");
+        }
+
+        private bool TryAddItemToInventory(EntityPlayer player, ItemStack stack)
+        {
+            if (player?.inventory == null || stack == null || stack.IsEmpty())
+            {
+                return false;
+            }
+
+            try
+            {
+                int slot;
+                if (player.inventory.AddItem(stack, out slot))
+                {
+                    return true;
+                }
+            }
+            catch (Exception ex)
+            {
+                Log.Warning($"[StarterKits] AddItem failed: {ex.Message}");
+            }
+
+            return false;
+        }
+
+        private ushort GetArmorRewardQuality(string kitName, string itemName)
+        {
+            if (string.IsNullOrEmpty(itemName) || string.IsNullOrEmpty(kitName))
+            {
+                return 0;
+            }
+
+            // Farmer and Ex-Soldier armor sets are granted as level 1 quality set pieces.
+            if (string.Equals(kitName, "Farmer", StringComparison.OrdinalIgnoreCase) && itemName.StartsWith("armorFarmer", StringComparison.OrdinalIgnoreCase))
+            {
+                return 1;
+            }
+
+            if (string.Equals(kitName, "Ex-Soldier", StringComparison.OrdinalIgnoreCase) && itemName.StartsWith("armorCommando", StringComparison.OrdinalIgnoreCase))
+            {
+                return 1;
+            }
+
+            return 0;
         }
 
         private bool TryAddBuffByName(EntityPlayer player, string buffName)
