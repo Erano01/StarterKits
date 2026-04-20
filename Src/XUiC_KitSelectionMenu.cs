@@ -401,6 +401,7 @@ namespace StarterKits
                     ["craftingWorkstations"] = 12,
                     ["craftingBlades"] = 36,
                     ["perkDeepCuts"] = 5,
+                    ["perkFlurryOfAgility"] = 5,
                     ["perkHiddenStrike"] = 3,
                     ["perkFromTheShadows"] = 3
                 }
