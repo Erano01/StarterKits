@@ -31,12 +31,30 @@ use xml(modlet) -(if not possible)> use GameAPI events -(if not possible)> use h
 inventorysine ver armoru eğer ordada yer yoksa hotbar'a ver eğer ordada yoksa loot bag olarak at yanına.
 (Tamamlandı) ama -> hot bar ve lot bag çalışıyor sadece
 
+- DB mantığı, mod oyuna her load'landığında/inject edildiğinde save dosyalarını kontrol edecek.
+kaç adet dünya var ve save adları nedir bunu çekecek.
+- Çünkü Singleplayer da olsa Multiplayer da olsa eğer kullanıcı server'a daha önce girdi ve seçim yaptıysa birdaha seçim yapamamalı admin bile olsa.
 
-Bu mod server side'da çalışabilmesi gerektiği için:
-- 1 Oyuncu sadece 1 kez seçim yapabilmeli. (Bunu en son ekleyeceğiz, test aşamasını zorlaştırmaması için)
-- Oyuncular bunun bir açığını bulup sınırsız sayıda stat artırımı yapamamalı sadece server-side taraf izin vermeli.
+Eğer bu save'ler Data/<world-name>/<save-name> eşlemelerine uyuyor ise oyuncu bilgilerini çekecek eğer oyuncu yeni oyuncu ise
+kit seçme ekranı gösterecek, ve bir kereye mahsus kit seçmesine izin verecek.
 
+Eğer bu save'ler Data/<world-name>/<save-name> eşlemelerine uymuyor ise bu save yeni bir save'dir. Ve oyuncu datalarını
+yeni alacak demektir. Eğer ki yeni oluşturuluyor ise load'landığında bu bilgi yakalanmamış olabilir, kullanıcı oyunu kapatmadan
+tekrar girmeye çalışabilir aynı save'e buda kit seçme abuse'i ortaya koyabilir bunada dikkat etmeliyiz.
 
+PlayerJoinedGame event'imizi buna göre ayarlamamız lazım.
+
+Data/<world-name>/<save-name>/db.txt veya farklı formatta dosyalarda tutabiliriz 
+sen ne karar verirsen, bu modu bilgisayardan hiç anlamayan kişiler kullanıcak gidipte mysql çalıştırma.
+
+// %APPDATA% gibi klöserleri checkleyen birşey de yapabiliriz veya oyunun kendisi bu bilgiyi
+modlarla paylaşıyorsa ordan da alabiliriz, bu data olayı çok önemli !!!
+
+Example:
+Data/Navezgane/test/db.txt
+Data/Navezgane/test2/db.txt
+Data/RWG8K02/Survival/db.txt
+Data/RWG10K01/Hardcore/db.txt
 -----------------------------------------
 -----------------------------------------
 -----------------------------------------

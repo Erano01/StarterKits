@@ -12,9 +12,42 @@ namespace StarterKits
     {
         private static readonly object Sync = new object();
         private static readonly HashSet<string> SelectedPlayers = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
-        private static bool loaded;
+        private static string loadedFromPath;
 
-        private static string FilePath => Path.Combine(Environment.CurrentDirectory, "Mods", "StarterKits", "Data", "selected-players.txt");
+        private static string FilePath
+        {
+            get
+            {
+                // Primary: use the game's save root dir so data is co-located with the active world save.
+                // GameIO.m_CachedSaveGameRootDir = e.g. /home/user/.local/share/7DaysToDie/Saves/WorldName/SaveName
+                string saveRoot = null;
+                try
+                {
+                    var gameIOType = Type.GetType("GameIO") ?? typeof(GameManager).Assembly.GetType("GameIO");
+                    if (gameIOType != null)
+                    {
+                        var field = gameIOType.GetField("m_CachedSaveGameRootDir",
+                            BindingFlags.Public | BindingFlags.Static);
+                        if (field != null)
+                        {
+                            saveRoot = field.GetValue(null) as string;
+                        }
+                    }
+                }
+                catch
+                {
+                    // Ignore; fall back to Mods folder.
+                }
+
+                if (!string.IsNullOrWhiteSpace(saveRoot))
+                {
+                    return Path.Combine(saveRoot, "StarterKits", "selected-players.txt");
+                }
+
+                // Fallback: Mods/StarterKits/Data/selected-players.txt
+                return Path.Combine(Environment.CurrentDirectory, "Mods", "StarterKits", "Data", "selected-players.txt");
+            }
+        }
 
         public static bool HasSelected(EntityPlayer player)
         {
@@ -29,6 +62,56 @@ namespace StarterKits
             {
                 return SelectedPlayers.Contains(stableId);
             }
+        }
+
+        public static string GetSelected(EntityPlayer player)
+        {
+            string stableId = GetStablePlayerId(player);
+            if (string.IsNullOrEmpty(stableId))
+            {
+                return null;
+            }
+
+            EnsureLoaded();
+
+            lock (Sync)
+            {
+                try
+                {
+                    if (File.Exists(FilePath))
+                    {
+                        foreach (var line in File.ReadAllLines(FilePath))
+                        {
+                            if (string.IsNullOrWhiteSpace(line))
+                            {
+                                continue;
+                            }
+
+                            int separator = line.IndexOf('|');
+                            string id = separator >= 0 ? line.Substring(0, separator) : line;
+                            if (string.Equals(id.Trim(), stableId, StringComparison.Ordinal))
+                            {
+                                int kitSeparator = line.IndexOf('|', separator + 1);
+                                if (kitSeparator > separator + 1)
+                                {
+                                    string kitName = line.Substring(separator + 1, kitSeparator - separator - 1).Trim();
+                                    if (!string.IsNullOrEmpty(kitName))
+                                    {
+                                        return kitName;
+                                    }
+                                }
+                                break;
+                            }
+                        }
+                    }
+                }
+                catch (Exception ex)
+                {
+                    Log.Warning($"[StarterKits] Could not read selected kit for player: {ex.Message}");
+                }
+            }
+
+            return null;
         }
 
         public static void MarkSelected(EntityPlayer player, string kitName)
@@ -66,23 +149,26 @@ namespace StarterKits
 
         private static void EnsureLoaded()
         {
-            if (loaded)
+            string currentPath = FilePath;
+            if (string.Equals(loadedFromPath, currentPath, StringComparison.Ordinal))
             {
                 return;
             }
 
             lock (Sync)
             {
-                if (loaded)
+                if (string.Equals(loadedFromPath, currentPath, StringComparison.Ordinal))
                 {
                     return;
                 }
 
+                SelectedPlayers.Clear();
+
                 try
                 {
-                    if (File.Exists(FilePath))
+                    if (File.Exists(currentPath))
                     {
-                        foreach (var line in File.ReadAllLines(FilePath))
+                        foreach (var line in File.ReadAllLines(currentPath))
                         {
                             if (string.IsNullOrWhiteSpace(line))
                             {
@@ -103,7 +189,7 @@ namespace StarterKits
                     Log.Warning($"[StarterKits] Could not load selection store: {ex.Message}");
                 }
 
-                loaded = true;
+                loadedFromPath = currentPath;
             }
         }
 
