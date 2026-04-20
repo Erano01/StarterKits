@@ -209,7 +209,7 @@ anchor -> parent'a göre konumlandırma
 
                     </rect>
 
-                    <simplebutton name="btnConfirmKit" depth="3" pos="55,-625" width="400" height="52" font_size="28" caption="Select &amp; Confirm" upper_case="false" enabled="false" event_onclick="eventConfirmKit" />
+                    <simplebutton name="btnConfirmKit" depth="3" pos="55,-625" width="400" height="52" font_size="28" caption="Select &amp; Confirm" upper_case="false" event_onclick="eventConfirmKit" />
                 </panel>
 			</panel>
 		</window>

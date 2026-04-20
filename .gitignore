@@ -23,6 +23,9 @@ bld/
 [Oo]bj/
 [Ll]og/
 
+# StarterKits runtime data (per-save db files)
+Data/saves/
+
 # MSBuild Binary and Structured Log
 *.binlog
 

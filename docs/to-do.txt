@@ -49,6 +49,11 @@ sen ne karar verirsen, bu modu bilgisayardan hiç anlamayan kişiler kullanıcak
 
 // %APPDATA% gibi klöserleri checkleyen birşey de yapabiliriz veya oyunun kendisi bu bilgiyi
 modlarla paylaşıyorsa ordan da alabiliriz, bu data olayı çok önemli !!!
+// OS independent yapmamız lazım. (linux + windows vb)
+
+
+- Eğer gerekiyorsa event yazabiliriz yeni bir save dosyası oluşturuldu mu oluşturulmadı mı kontrolu için. Oyunun içinde böyle bir mekanizma varsa bunu patchleyebiliriz, save yaratma komutu hooklanıp save adını ve GameWorld tipini/adını (Navezgane, New Random World, West Xuyofu Territory, Pregen6k01, Pregen6K02, Pregen8k01, Pregen8k02 gibi) çekmek için.
+Daha sonrasında her biri için farklı bir db dosyası oluşturtabiliriz.
 
 Example:
 Data/Navezgane/test/db.txt
