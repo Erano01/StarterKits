@@ -22,8 +22,6 @@ C:\Program Files (x86)\Steam\steamapps\common\7 Days to Die Dedicated Server\Mod
 
 "/home/{user}/.local/share/Steam/steamapps/common/7 Days to Die Dedicated Server/"
 
-//dlls are here:
-/home/{user}/.local/share/Steam/steamapps/common/7 Days To Die/7DaysToDie_Data/Managed/
 ```
 
 Make sure the C# Dev Kit extension is installed in VS Code.
@@ -53,8 +51,15 @@ C:\Program Files (x86)\Steam\steamapps\common\7 Days to Die Dedicated Server\Mod
 C:\Program Files (x86)\Steam\steamapps\common\7 Days To Die\Data\Config
 
 
-//linux
+//linux log files
 /home/erano/.local/share/7DaysToDie/logs/
+
+//dlls are here:
+/home/{user}/.local/share/Steam/steamapps/common/7 Days To Die/7DaysToDie_Data/Managed/
+
+//if you are linux and using dnspy via AUR:
+Z:\home\{user}\.local\share\Steam\steamapps\common\7 Days To Die\7DaysToDie_Data\Managed\Assembly-CSharp.dll
+
 ```
 
 You have to use dnSPY to view ModAPI documentation like javadoc.
