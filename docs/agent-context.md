@@ -176,6 +176,12 @@ Kalıcı çözüm gerekirse iki seçenek var: (a) bu satırlara elle generic bir
 
 **Denendi ama geri alındı (kullanıcı beğenmedi, "olmamış" dedi):** 4 satıra generic ikon atanmıştı (Iron Gut→medical, Super Corn Crafting→book, Commando/Fullset Farmer Outfit→light_armor) — kullanıcı bunu istemedi, 4'ü de tekrar ikonsuz haline döndürüldü. Bu satırlar hâlâ progression karşılığı yok (bkz. yukarı), ikon eklenmesi gerekirse farklı bir yaklaşım denenmeli — kullanıcıya sorulmadan tekrar otomatik ikon atanmasın.
 
+## Restart sonrası: 6 satırlık kolonlar (Farmer, Engineer) hâlâ butona taşıyordu
+
+Kullanıcı tam restart yaptı (C# tarafı güncellendi), ama en dolu kolonlar (6/6 satır dolu) yine de "Select & Confirm" butonuna taşıyordu — önceki `row_h=30` marjı yetersiz kalmış (muhtemelen gerçek font satır yüksekliği tahminimden fazla). Bu sadece XML değişikliği, `xui reload` yeterli, restart gerekmez.
+
+Fix: `row_h` 30→24, `font_size` 16→15, icon 22→20. Son satır artık y=-535'te bitiyor (önceden -565), butona (y=-630) olan boşluk ~30px arttı. Bu sadece XML değişikliği.
+
 ## Farmer: uzun satırlar kısaltma yerine ayrı satıra bölündü, grid 10→12 slot
 
 Kullanıcı kısaltmaları beğenmedi ("o kadar küçültmene gerek yok"), tam metin istedi. `MaxStatRows` 10'dan 12'ye çıkarıldı (6 satır x 2 sütun), C# array boyutları ve XML grid'i buna göre yeniden üretildi (`start_y=-415, row_h=30`, aynı sütun x konumları). Farmer'ın "Farmer Armor Set (Lvl 1)" tek satırı ikiye bölündü: "Medium Armor 4/4" (`ui_game_symbol_light_armor2`) + "Fullset Farmer Outfit" (`ui_game_symbol_light_armor`). "Super Corn Magazine (Auto)" → "Super Corn Crafting" oldu. Tüm kitler 12 slot sınırının altında (en yüksek: Farmer 11).
