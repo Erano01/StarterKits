@@ -1,9 +1,9 @@
 ## StarterKits - 7 Days To Die Mod
-Starter Kits lets players choose a starting kit that shapes not just their gear, but their character build. Each kit unlocks a curated set of sub-skills within specific skill categories — without requiring the root skill that would normally gate them — so players can jump straight into the playstyle they want (e.g. a stealth archer, a demolitions specialist, a medic) instead of spending hours grinding skill points just to reach the perks that make that build actually work.
+Starter Kits lets players choose a starting kit that shapes not just their gear, but their character build. Each kit unlocks a curated set of sub-skills within specific skill categories, without requiring the root skill that would normally gate them, so players can jump straight into the playstyle they want (e.g. a stealth archer, a demolitions specialist, a medic) instead of spending hours grinding skill points just to reach the perks that make that build actually work.
 
-In vanilla 7 Days to Die, committing to a roleplay build usually means a long detour through the skill tree before it becomes viable. Starter Kits removes that friction: pick a kit, and the relevant sub-skills are already active, letting the player express their chosen build from the very start — without the game forcing a generic, one-size-fits-all early game on them.
+In vanilla 7 Days to Die, committing to a roleplay build usually means a long detour through the skill tree before it becomes viable. Starter Kits removes that friction: pick a kit, and the relevant sub-skills are already active, letting the player express their chosen build from the very start, without the game forcing a generic, one-size-fits-all early game on them.
 
-Kit selection is tracked per world and per save slot — once chosen, it's locked in for that save (reconnecting won't reopen the selection, even for admins), and picks are made through a custom in-game UI built on 7DTD's XUi system.
+Kit selection is tracked per world and per save slot, once chosen, it's locked in for that save (reconnecting won't reopen the selection, even for admins), and picks are made through a custom in-game UI built on 7DTD's XUi system.
 
 ## Notes for the Contributers
 
