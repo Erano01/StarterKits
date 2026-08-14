@@ -1,0 +1,65 @@
+Erano (me):
+Guys what is the best practice for version-independent project architecture. Harmony patch floor sometimes crashes when new update relases. My mod works fine with v2.5 and v2.6 but i just tested 3.1 and its crashed.
+I'm a Java developer who isn't very familiar with the C# ecosystem. I would appreciate it if you could give me some useful tricks specific to this ecosystem.
+My project is open-source if anyone wants to look at it.
+https://github.com/Erano01/StarterKits
+im normally providing version-independency via good abstraction and SPI in java.
+If there are simpler solutions, I'd like to hear them; otherwise, I'll try to solve it using my own methods.
+
+Haidr'Gna:
+Well they remove/change a lot of stuff each update, so not sure how you plan to do that. You will need to check your mod every big update, recompile it against the new version and solve any issues. 
+
+Erano:
+Hmm, that's really bad. But i'm curious, is there any specific discipline related to this within the field of harmony?
+im trying to avoid using harmony but my mod need it at this point.
+
+Haidr'Gna:
+Hm, Harmony is just a tool to patch existing methods, so no reason to avoid it. Unless you mean BepInEx, that is not recommended to use.
+Harmony allows you to insert functionality to existing code, usually easier than adding things from scratch.
+
+Erano:
+My concern is more about fragility: GameAPI and XML tend to survive updates better since they're not tied to internal method signatures, while Harmony patches break the moment TFP changes something under the hood, like what just happened with 3.1.
+That's really the discipline I'm asking about: is there a known way to make Harmony patches more resilient to that, or is "recompile and fix every major update" just the accepted reality?
+For example, in Minecraft, you can support both Forge and Fabric ecosystems simultaneously in a single mod, even though they are completely different ecosystems, and support multiple versions. This is possible thanks to a few tools. 
+
+using stonecutter & architectury -> 
+https://github.com/stonecutter-versioning/stonecutter-template-architectury/tree/master
+
+
+Haidr'Gna:
+I have no experience with Minecraft, but TFP can just change method signatures at random with no warning.
+
+This has been the reality since Harmony support was added. Making sure to use nameof instead of strings makes it a bit easier to notice when methods no longer exist. But a new version almost always needs a recompile and checkup to fix renamed stuff and adapt for removed stuff. I guess if you keep your mod small the process is not that hard.
+
+I have an extensive overhaul with a load of patches, usually takes me 4-8 hours to adapt to a new major version and just a recompile for minor versions.
+The xml changes usually take a lot more work, that was several weeks for 3.0
+
+
+Erano:
+Thank you, that was quite clear.
+oh so XML also break in new updates ?
+
+ALo:
+yes, for example from v2 to v3 they renamed the xui folder to xui_ingame, and the controls.xml to templates.xml
+
+Haidr'Gna:
+The impact varies per mod though, since I do pretty extensive changes, a seemingly minor change to syntax can hurt a lot or not matter at all.
+
+Erano:
+i guess thats really a lot of work to maintain overhaul or complex mods, specially if you arent c# dev. It sounds discouraging for me. 
+
+Haidr'Gna:
+Building the mod is more work, but yeah you have to keep updating if you want to move with the bigger updates. It's probably why some of the bigger overhauls lag behind sometimes.
+
+Laydor:
+The best you can probably do is instead of doing a patchall when your mod is loaded, you check the version and load the harmony patches based on what version is loaded.
+But keep in mind, you will still likely need to update your mod every version still. It just means it can run on older versions
+
+Haidr'Gna:
+Yeah that could be an option if you want to maintain backwards compatibility, but also will need to leverage conditionals in xml the same way. Lot of extra work though.
+
+Erano:
+Thats very good advise thanks. I think i have to manually design this, currently im vibe coding a bit for this project.
+I got a bit trapped in debug-driven development on this one  just firefighting instead of designing. Probably time to step back and actually architect the version handling properly.
+
+

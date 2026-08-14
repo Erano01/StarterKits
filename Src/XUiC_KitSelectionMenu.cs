@@ -1117,79 +1117,6 @@ namespace StarterKits
             return 0;
         }
 
-        private bool TryAddBuffByName(EntityPlayer player, string buffName)
-        {
-            if (player?.Buffs == null || string.IsNullOrEmpty(buffName))
-            {
-                return false;
-            }
-
-            const BindingFlags Flags = BindingFlags.Instance | BindingFlags.Public | BindingFlags.NonPublic;
-            object buffs = player.Buffs;
-            Type buffsType = buffs.GetType();
-
-            // Try common signatures first.
-            MethodInfo addBuffSimple = buffsType.GetMethod("AddBuff", Flags, null, new[] { typeof(string) }, null);
-            if (addBuffSimple != null)
-            {
-                addBuffSimple.Invoke(buffs, new object[] { buffName });
-                return true;
-            }
-
-            // Fallback: try any AddBuff overload where first argument is the buff name.
-            MethodInfo[] methods = buffsType.GetMethods(Flags);
-            for (int i = 0; i < methods.Length; i++)
-            {
-                MethodInfo method = methods[i];
-                if (!string.Equals(method.Name, "AddBuff", StringComparison.Ordinal))
-                {
-                    continue;
-                }
-
-                ParameterInfo[] parameters = method.GetParameters();
-                if (parameters.Length == 0 || parameters[0].ParameterType != typeof(string))
-                {
-                    continue;
-                }
-
-                object[] args = new object[parameters.Length];
-                args[0] = buffName;
-
-                for (int p = 1; p < parameters.Length; p++)
-                {
-                    Type parameterType = parameters[p].ParameterType;
-                    if (parameterType == typeof(int))
-                    {
-                        args[p] = 0;
-                    }
-                    else if (parameterType == typeof(float))
-                    {
-                        args[p] = 0f;
-                    }
-                    else if (parameterType == typeof(bool))
-                    {
-                        args[p] = false;
-                    }
-                    else
-                    {
-                        args[p] = null;
-                    }
-                }
-
-                try
-                {
-                    method.Invoke(buffs, args);
-                    return true;
-                }
-                catch
-                {
-                    // Keep trying other overloads.
-                }
-            }
-
-            return false;
-        }
-
         private void UpdateOverview(string kitName)
         {
             if (string.IsNullOrEmpty(kitName) || !KitOverview.TryGetValue(kitName, out KitOverviewData data))
@@ -1245,39 +1172,6 @@ namespace StarterKits
             return "- " + string.Join("\n- ", data.StatLines);
         }
 
-        private void SetEnabled(XUiController controller, bool enabled)
-        {
-            if (controller == null)
-            {
-                return;
-            }
-
-            this.TrySetBoolMember(controller.GetType(), controller, "Enabled", enabled);
-            this.TrySetBoolMember(controller.GetType(), controller, "IsEnabled", enabled);
-
-            if (controller.ViewComponent != null)
-            {
-                Type viewType = controller.ViewComponent.GetType();
-                this.TrySetBoolMember(viewType, controller.ViewComponent, "Enabled", enabled);
-                this.TrySetBoolMember(viewType, controller.ViewComponent, "IsEnabled", enabled);
-                this.TrySetBoolMember(viewType, controller.ViewComponent, "CanInteract", enabled);
-                controller.ViewComponent.IsDirty = true;
-            }
-
-            for (int i = 0; i < controller.Children.Count; i++)
-            {
-                this.TrySetBoolMember(controller.Children[i].GetType(), controller.Children[i], "Enabled", enabled);
-                this.TrySetBoolMember(controller.Children[i].GetType(), controller.Children[i], "IsEnabled", enabled);
-                if (controller.Children[i].ViewComponent != null)
-                {
-                    Type childViewType = controller.Children[i].ViewComponent.GetType();
-                    this.TrySetBoolMember(childViewType, controller.Children[i].ViewComponent, "Enabled", enabled);
-                    this.TrySetBoolMember(childViewType, controller.Children[i].ViewComponent, "IsEnabled", enabled);
-                    controller.Children[i].ViewComponent.IsDirty = true;
-                }
-            }
-        }
-
         private void SetVisible(XUiController controller, bool visible)
         {
             if (controller?.ViewComponent == null)
@@ -1286,7 +1180,7 @@ namespace StarterKits
             }
 
             controller.ViewComponent.IsVisible = visible;
-            controller.ViewComponent.IsDirty = true;
+            controller.ViewComponent.SetDirty();
         }
 
         private void SetText(XUiController controller, string value)
@@ -1330,7 +1224,7 @@ namespace StarterKits
                 changed |= this.TrySetMember(viewType, controller.ViewComponent, CandidateTextPropertyNames[i], value);
             }
 
-            controller.ViewComponent.IsDirty = true;
+            controller.ViewComponent.SetDirty();
             return changed;
         }
 
@@ -1355,27 +1249,6 @@ namespace StarterKits
             return false;
         }
 
-        private bool TrySetBoolMember(Type targetType, object target, string memberName, bool value)
-        {
-            const BindingFlags Flags = BindingFlags.Instance | BindingFlags.Public | BindingFlags.NonPublic;
-
-            PropertyInfo property = targetType.GetProperty(memberName, Flags);
-            if (property != null && property.CanWrite && property.PropertyType == typeof(bool))
-            {
-                property.SetValue(target, value, null);
-                return true;
-            }
-
-            FieldInfo field = targetType.GetField(memberName, Flags);
-            if (field != null && field.FieldType == typeof(bool))
-            {
-                field.SetValue(target, value);
-                return true;
-            }
-
-            return false;
-        }
-
         private void TrySetStarterKitSelectedVar(EntityPlayer player, string kitName)
         {
             if (player?.Buffs == null)
@@ -1386,7 +1259,6 @@ namespace StarterKits
             try
             {
                 player.Buffs.SetCustomVar("starterKitSelected", 1f, false);
-                player.Buffs.SetCustomVar("starterKitName", 1f, false);
                 Log.Out($"[StarterKits] SetCustomVar applied for kit '{kitName}'.");
             }
             catch
@@ -1394,7 +1266,6 @@ namespace StarterKits
                 try
                 {
                     player.Buffs.AddCustomVar("starterKitSelected", 1f);
-                    player.Buffs.AddCustomVar("starterKitName", 1f);
                     Log.Out($"[StarterKits] AddCustomVar fallback applied for kit '{kitName}'.");
                 }
                 catch (Exception ex)

@@ -1,5 +1,5 @@
 <configs>
-	<append xpath="/xui/ruleset[@name='default']">
+	<append xpath="/xui">
 		<window_group name="starterKitGroup">
 			<window name="starterKitWindow" />
 		</window_group>
