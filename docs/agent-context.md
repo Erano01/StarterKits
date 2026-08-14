@@ -174,7 +174,34 @@ Kullanıcı tekrar sordu. İkisi de gerçek bir `ProgressionClass` değil:
 
 Kalıcı çözüm gerekirse iki seçenek var: (a) bu satırlara elle generic bir ikon ata (örn. "gift"/"unlock" sembolü), (b) `perkIronGut` bug'ını gerçek bir progression'a çevirip düzelt.
 
-**Denendi ama geri alındı (kullanıcı beğenmedi, "olmamış" dedi):** 4 satıra generic ikon atanmıştı (Iron Gut→medical, Super Corn Crafting→book, Commando/Fullset Farmer Outfit→light_armor) — kullanıcı bunu istemedi, 4'ü de tekrar ikonsuz haline döndürüldü. Bu satırlar hâlâ progression karşılığı yok (bkz. yukarı), ikon eklenmesi gerekirse farklı bir yaklaşım denenmeli — kullanıcıya sorulmadan tekrar otomatik ikon atanmasın.
+**Denendi ama geri alındı (kullanıcı beğenmedi, "olmamış" dedi):** 4 satıra generic ikon atanmıştı (Iron Gut→medical, Super Corn Crafting→book, Commando/Fullset Farmer Outfit→light_armor) — kullanıcı bunu istemedi, 4'ü de tekrar ikonsuz haline döndürüldü.
+
+## ÇÖZÜLDÜ — Iron Gut aslında GERÇEK bir perk'miş, yanlış aranmış
+
+Kullanıcı oyun içinde Fortitude attribute'unda "Iron Gut" perkini gördü ve bunu bildirdi. `perkIronGut` diye aramıştım ama gerçek internal ad bu değilmiş — `Localization.csv`'de arayınca bulundu: **`perkSlowMetabolism`** (`perkSlowMetabolismName` key'i "Iron Gut" olarak lokalize ediliyor). `progression.xml`'de: `icon="ui_game_symbol_stomach"`, `parent="skillFortitudeRecovery"`.
+
+**İki ayrı bug'ı birden düzeltti:**
+1. İkon: Iron Gut satırlarına (Huntsman + Tyson) `ui_game_symbol_stomach` atandı.
+2. **Gerçek gameplay bug'ı**: `KitRewards.ProgressionFloors["perkIronGut"]` yanlış key'di — bu floor GERÇEKTE HİÇ UYGULANMIYORDU (ResolveProgressionName eşleşmediği için sessizce atlanıyordu). `"perkIronGut"` → `"perkSlowMetabolism"` olarak düzeltildi, artık Huntsman/Tyson oyuncuları gerçekten Iron Gut floor'unu alıyor.
+
+Ders: kullanıcının oyun içi gözlemi ("bu perk gerçekten var, Fortitude'da gördüm") extraction/dnSpy aramasından daha güvenilir kanıt oldu — ilk bulamayışımın sebebi yanlış varsayılan isimdi, mekanizma sorunu değildi.
+
+## Super Corn Crafting badge — "schematics" ipucuyla bulundu
+
+dnSpy'da kod tarafında ("Schematic", "ismagazine") ve XML'de ("magazine") sıfır sonuç almıştım. Kullanıcı "schematics olarak geçiyor olabilir" deyince `XUi_InGame/windows.xml:512`'de gerçek, doğrulanmış bir ikon bulundu: `ui_game_symbol_shape_schematics` (vanilla'nın "Schematics Only" creative filtre butonunda kullanılıyor — küçük doküman/kağıt şekli, tam kullanıcının tarif ettiği gibi).
+
+Uygulandı: `StatEntry`'ye 5. parametre eklendi — `BadgeSpriteName` (küçük köşe rozeti, ana ikonun üstüne bindirilen ikinci bir sprite). XML'de her 12 `statIconN`'in yanına 12x12'lik bir `statBadgeN` sprite'ı eklendi (ana ikonun sağ-alt köşesine offset'li, `pos="icon_x+14,icon_y-14"`, `depth="5"` — ana icon'un üstünde render olsun diye). `ApplyStatRows` artık badge'i de set/gizliyor. Super Corn Crafting artık: mısır ikonu (turuncu tint) + sağ-alt köşede küçük schematic rozeti.
+
+Ders: bazen doğru arama terimi kullanıcıdan geliyor — "magazine" yanlış terimdi, oyunun kendi terminolojisi "schematic"miş, XML araması buna göre tekrar denenince hemen bulundu.
+
+**Geri alındı:** Kullanıcı ikonun ismini/görselini doğrulayamadığımızı (UIAtlas sıkıştırılmış, render edemiyoruz) belirtince badge fikrinden vazgeçildi — "mevcut haliyle kalsın, schematics shape'i kaldır" dendi. Badge tamamen kaldırıldı: `StatEntry.BadgeSpriteName`, `statBadgeControllers` array, `Init()`'teki kayıt, `ApplyStatRows`'taki badge bloğu, XML'deki 12 `statBadgeN` sprite'ı — hepsi silindi (artık hiç kullanılmayacaktı, ölü kod bırakılmadı). Super Corn Crafting şu an sadece turuncu tint'li mısır ikonu (`plantedCorn1`), badge yok.
+
+## Diğer ikon atamaları (kullanıcı isteğiyle)
+
+- Farmer "Fullset Farmer Outfit" + Ex-Soldier "Commando Armor Fullset" → `ui_game_symbol_armor_iron` (Armor Skill satırlarıyla aynı ikon, kullanıcı isteği).
+- Farmer "Super Corn Crafting" → gerçek item ikonu `plantedCorn1` (`ItemIconAtlas`'tan, `progression.xml` değil çünkü bu bir progression değil). Bunun için `StatEntry`'ye üçüncü parametre eklendi: `IconAtlas` (default `"UIAtlas"`, per-satır override edilebiliyor artık) — `ApplyStatRows` artık `spriteView.UIAtlas` değerini de her satırda set ediyor.
+
+**Düzeltme — renk tonu eksikti:** Kullanıcı gerçek item'ın ("Super Corn (Seed) Recipe") tooltip görselini paylaştı, ikon turuncu/altın renkli mısır kümesi, benim koyduğumsa düz sarı görünüyordu. `items.xml`'de `plantedGraceCorn1Schematic`'in `CustomIconTint value="ff9f9f"` tanımı var — sprite'ın kendisi (`plantedCorn1.png`, `Data/ItemIcons/`'ta doğrulandı) sarı, ama oyun bu tint'i çarparak turuncu/altın rengi elde ediyor. `StatEntry`'ye 4. parametre eklendi: `IconColorHex` (default null = beyaz). `ApplyStatRows` artık her satırda `spriteView.Color`'ı da set ediyor (önceden hiç set edilmiyordu, satır slotları kitler arası reuse edildiği için varsayılan renk hep beyazdı — bu yan etki olarak potansiyel bir "önceki kit'in tint'i kalıyor" bug'ını da önledi). Super Corn Crafting artık `"ff9f9f"` tint'iyle çağrılıyor.
 
 ## Restart sonrası: 6 satırlık kolonlar (Farmer, Engineer) hâlâ butona taşıyordu
 

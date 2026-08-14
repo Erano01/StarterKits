@@ -26,11 +26,15 @@ namespace StarterKits
         {
             public string Text;
             public string IconSpriteName;
+            public string IconAtlas;
+            public string IconColorHex;
 
-            public StatEntry(string text, string iconSpriteName = null)
+            public StatEntry(string text, string iconSpriteName = null, string iconAtlas = "UIAtlas", string iconColorHex = null)
             {
                 Text = text;
                 IconSpriteName = iconSpriteName;
+                IconAtlas = iconAtlas;
+                IconColorHex = iconColorHex;
             }
         }
 
@@ -68,7 +72,7 @@ namespace StarterKits
                 DisplayName = "Huntsman",
                 PreviewTitle = "Field Tracker",
                 Description = "The wasteland is your hunting ground. You don't miss. You don't get hungry. They never hear you coming.",
-                StatLines = new[] { new StatEntry("Dead Eye 5/5", "ui_game_symbol_map_cursor"), new StatEntry("Animal Tracker 5/5", "ui_game_symbol_animal_tracker"), new StatEntry("The Penetrator 5/5", "ui_game_symbol_paint_copy_block"), new StatEntry("The Huntsman 5/5", "ui_game_symbol_archery"), new StatEntry("Iron Gut 5/5"), new StatEntry("Hidden Strike 2/5", "ui_game_symbol_sneak_attack"), new StatEntry("Sniper Perk Book 7/7", "ui_game_symbol_long_shot"), new StatEntry("Rifles 26/100", "ui_game_symbol_long_shot") }
+                StatLines = new[] { new StatEntry("Dead Eye 5/5", "ui_game_symbol_map_cursor"), new StatEntry("Animal Tracker 5/5", "ui_game_symbol_animal_tracker"), new StatEntry("The Penetrator 5/5", "ui_game_symbol_paint_copy_block"), new StatEntry("The Huntsman 5/5", "ui_game_symbol_archery"), new StatEntry("Iron Gut 5/5", "ui_game_symbol_stomach"), new StatEntry("Hidden Strike 2/5", "ui_game_symbol_sneak_attack"), new StatEntry("Sniper Perk Book 7/7", "ui_game_symbol_long_shot"), new StatEntry("Rifles 26/100", "ui_game_symbol_long_shot") }
             },
             ["Athlete"] = new KitOverviewData
             {
@@ -82,7 +86,7 @@ namespace StarterKits
                 DisplayName = "Tyson",
                 PreviewTitle = "Close Quarters",
                 Description = "No guns. No problem. Your fists are the only weapon the apocalypse couldn't rust.",
-                StatLines = new[] { new StatEntry("The Brawler 5/5", "ui_game_symbol_boxer"), new StatEntry("Lightning Hands 5/5", "ui_game_symbol_knunchuck"), new StatEntry("Pain Tolerance 5/5", "ui_game_symbol_character"), new StatEntry("Fortitude Mastery 5/5", "ui_game_symbol_fortitude_mastery"), new StatEntry("Siphoning Strikes 5/5", "ui_game_symbol_siphoning_strikes"), new StatEntry("Healing Factor 5/5", "ui_game_symbol_healing_factor"), new StatEntry("Iron Gut 5/5"), new StatEntry("Bar Brawling 7/7", "ui_game_symbol_boxer"), new StatEntry("Knuckles 11/75", "ui_game_symbol_boxer") }
+                StatLines = new[] { new StatEntry("The Brawler 5/5", "ui_game_symbol_boxer"), new StatEntry("Lightning Hands 5/5", "ui_game_symbol_knunchuck"), new StatEntry("Pain Tolerance 5/5", "ui_game_symbol_character"), new StatEntry("Fortitude Mastery 5/5", "ui_game_symbol_fortitude_mastery"), new StatEntry("Siphoning Strikes 5/5", "ui_game_symbol_siphoning_strikes"), new StatEntry("Healing Factor 5/5", "ui_game_symbol_healing_factor"), new StatEntry("Iron Gut 5/5", "ui_game_symbol_stomach"), new StatEntry("Bar Brawling 7/7", "ui_game_symbol_boxer"), new StatEntry("Knuckles 11/75", "ui_game_symbol_boxer") }
             },
             ["Archer"] = new KitOverviewData
             {
@@ -96,7 +100,7 @@ namespace StarterKits
                 DisplayName = "Farmer",
                 PreviewTitle = "Sustain Specialist",
                 Description = "While others loot, you grow. Dirt under your nails, spear in your hand, food on everyone's table.",
-                StatLines = new[] { new StatEntry("Living off The Land 3/3", "ui_game_symbol_tree"), new StatEntry("Armor Skill 11/100", "ui_game_symbol_armor_iron"), new StatEntry("Seeds Skill 20/20", "ui_game_symbol_crops"), new StatEntry("Food Skill 100/100", "ui_game_symbol_fork"), new StatEntry("Super Corn Crafting"), new StatEntry("Medium Armor 4/4", "ui_game_symbol_light_armor2"), new StatEntry("Fullset Farmer Outfit"), new StatEntry("Spear Master 5/5", "ui_game_symbol_spear"), new StatEntry("Quick and Perceptive 5/5", "ui_game_symbol_knunchuck"), new StatEntry("Spear Hunter 7/7", "ui_game_symbol_spear"), new StatEntry("Spear Skill 11/75", "ui_game_symbol_spear") }
+                StatLines = new[] { new StatEntry("Living off The Land 3/3", "ui_game_symbol_tree"), new StatEntry("Armor Skill 11/100", "ui_game_symbol_armor_iron"), new StatEntry("Seeds Skill 20/20", "ui_game_symbol_crops"), new StatEntry("Food Skill 100/100", "ui_game_symbol_fork"), new StatEntry("Super Corn Crafting", "plantedCorn1", "ItemIconAtlas", "ff9f9f"), new StatEntry("Medium Armor 4/4", "ui_game_symbol_light_armor2"), new StatEntry("Fullset Farmer Outfit", "ui_game_symbol_armor_iron"), new StatEntry("Spear Master 5/5", "ui_game_symbol_spear"), new StatEntry("Quick and Perceptive 5/5", "ui_game_symbol_knunchuck"), new StatEntry("Spear Hunter 7/7", "ui_game_symbol_spear"), new StatEntry("Spear Skill 11/75", "ui_game_symbol_spear") }
             },
             ["Engineer"] = new KitOverviewData
             {
@@ -110,7 +114,7 @@ namespace StarterKits
                 DisplayName = "Ex-Soldier",
                 PreviewTitle = "Combat Veteran",
                 Description = "Old rank, new rules. Keep moving, keep firing. Discipline is the last thing that survived.",
-                StatLines = new[] { new StatEntry("Machine Gunner 5/5", "ui_game_symbol_rifle"), new StatEntry("Run and Gun 5/5", "ui_game_symbol_run_and_gun"), new StatEntry("Commando Armor Fullset"), new StatEntry("Armor Skill 11/100", "ui_game_symbol_armor_iron"), new StatEntry("Medium Armor 4/4", "ui_game_symbol_light_armor2"), new StatEntry("Urban Combat 7/7", "ui_game_symbol_light_armor2"), new StatEntry("Auto Weapon Handbook 7/7", "ui_game_symbol_rifle"), new StatEntry("Machine Guns 11/100", "ui_game_symbol_rifle") }
+                StatLines = new[] { new StatEntry("Machine Gunner 5/5", "ui_game_symbol_rifle"), new StatEntry("Run and Gun 5/5", "ui_game_symbol_run_and_gun"), new StatEntry("Commando Armor Fullset", "ui_game_symbol_armor_iron"), new StatEntry("Armor Skill 11/100", "ui_game_symbol_armor_iron"), new StatEntry("Medium Armor 4/4", "ui_game_symbol_light_armor2"), new StatEntry("Urban Combat 7/7", "ui_game_symbol_light_armor2"), new StatEntry("Auto Weapon Handbook 7/7", "ui_game_symbol_rifle"), new StatEntry("Machine Guns 11/100", "ui_game_symbol_rifle") }
             },
             ["Doctor"] = new KitOverviewData
             {
@@ -175,7 +179,7 @@ namespace StarterKits
                     ["perkAnimalTracker"] = 5,
                     ["perkPenetrator"] = 5,
                     ["perkTheHuntsman"] = 5,
-                    ["perkIronGut"] = 5,
+                    ["perkSlowMetabolism"] = 5,
                     ["perkHiddenStrike"] = 2,
                     ["craftingRifles"] = 26,
                     ["perkSniperDamage"] = 1,
@@ -209,7 +213,7 @@ namespace StarterKits
                     ["perkFortitudeMastery"] = 5,
                     ["perkSiphoningStrikes"] = 5,
                     ["perkHealingFactor"] = 5,
-                    ["perkIronGut"] = 5,
+                    ["perkSlowMetabolism"] = 5,
                     ["craftingKnuckles"] = 11,
                     ["perkBarBrawling1BasicMoves"] = 1,
                     ["perkBarBrawling2DropABomb"] = 1,
@@ -1180,6 +1184,21 @@ namespace StarterKits
             }
         }
 
+        private static Color ParseIconColor(string hex)
+        {
+            if (string.IsNullOrEmpty(hex))
+            {
+                return Color.white;
+            }
+
+            if (ColorUtility.TryParseHtmlString("#" + hex, out Color color))
+            {
+                return color;
+            }
+
+            return Color.white;
+        }
+
         private void ApplyStatRows(StatEntry[] entries)
         {
             int count = entries?.Length ?? 0;
@@ -1201,7 +1220,9 @@ namespace StarterKits
 
                 if (!string.IsNullOrEmpty(entry.IconSpriteName) && iconController?.ViewComponent is XUiV_Sprite spriteView)
                 {
+                    spriteView.UIAtlas = entry.IconAtlas;
                     spriteView.SpriteName = entry.IconSpriteName;
+                    spriteView.Color = ParseIconColor(entry.IconColorHex);
                     this.SetVisible(iconController, true);
                 }
                 else
