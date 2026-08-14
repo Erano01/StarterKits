@@ -139,3 +139,7 @@ XUi içindeki <sprite>, <button> vs. elementler görsel olarak ne kullanacaksa s
 https://7daystodie.fandom.com/wiki/ModAPI
 https://7daystodie.fandom.com/wiki/XPath_Explained#String_Searches
 https://7daystodie.fandom.com/wiki/Mod_Structure
+
+--- Quartz is also good for viewing UIAtlases ---
+// Console command -> Quartz UIAtlas
+https://github.com/s7092910/Quartz
