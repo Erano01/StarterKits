@@ -213,6 +213,20 @@ Fix: `row_h` 30→24, `font_size` 16→15, icon 22→20. Son satır artık y=-53
 
 Kullanıcı kısaltmaları beğenmedi ("o kadar küçültmene gerek yok"), tam metin istedi. `MaxStatRows` 10'dan 12'ye çıkarıldı (6 satır x 2 sütun), C# array boyutları ve XML grid'i buna göre yeniden üretildi (`start_y=-415, row_h=30`, aynı sütun x konumları). Farmer'ın "Farmer Armor Set (Lvl 1)" tek satırı ikiye bölündü: "Medium Armor 4/4" (`ui_game_symbol_light_armor2`) + "Fullset Farmer Outfit" (`ui_game_symbol_light_armor`). "Super Corn Magazine (Auto)" → "Super Corn Crafting" oldu. Tüm kitler 12 slot sınırının altında (en yüksek: Farmer 11).
 
+## CurseForge/dağıtım paketi hazırlandı
+
+`deployscript.sh` zaten repo'da vardı, mantığı doğruydu ama bir bug'ı vardı: `DEPLOY_DIR`'ı her çalıştırmada temizlemiyordu (`rm -rf` yoktu), bu yüzden kaynaktan silinen dosyalar (örn. `Dumb Luck.png`/`Ex Soldier.png` — kullanılmayan çift portreler, silindi) eski deploy klasöründe kalıp tekrar zip'e giriyordu. `rm -rf "${DEPLOY_DIR}"` eklendi, script artık her çalıştırmada temiz başlıyor.
+
+**Deploy edilen içerik** (`ModInfo.xml`, `StarterKits.dll`, `Config/` [blocks.xml, buffs.xml, XUi_InGame/*], `UIAtlases/ItemIconAtlas/*.png`) — kaynak kod (.cs), `obj/`, `.sln`/`.csproj`, `docs/`, dev `README.md`, `Data/` (kişisel save verisi + runtime'da otomatik oluşuyor), `.git`, `.claude` hiçbiri dahil değil.
+
+`0_TFP_Harmony` bağımlılığı ayrıca dağıtılmasına gerek yok — vanilla oyun kurulumunun kendi `Mods/` klasöründe zaten hazır geliyor (doğrulandı).
+
+Zip yapısı doğrulandı: tek üst klasör (`StarterKits/...`), `Mods/` altına doğrudan sürükle-bırak için hazır.
+
+**Açık soru (kullanıcıya soruldu, henüz cevap yok):** Deploy klasör/zip adı şu an düz `StarterKits`, ama `ModInfo.xml`'deki gerçek `Name` alanı `StarterKits_Erano01` (collision-safe). CurseForge convention'ına göre bunları eşleştirmek daha güvenli olabilir — henüz karar verilmedi, değiştirilmedi.
+
+GitHub Releases sorusuna cevap verildi: CI/CD şart değil, manuel `gh release create` + zip upload yeterli; Actions sadece opsiyonel otomasyon kolaylığı.
+
 ## Sıradaki adımlar
 
 - Oyun içinde gerçek testi yapılmadı henüz (mod yüklenip crash olmadan açılıyor mu, starterKitGroup penceresi çalışıyor mu, floor patch'in 6/7 hedefi çalışıyor mu — `GetLevel()` hâlâ eksik ama try/catch'li, crash etmiyor).
