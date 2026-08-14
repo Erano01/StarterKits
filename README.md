@@ -21,6 +21,9 @@ In the same folder, manually copy the `0_TFP_Harmony` mod from:
 C:\Program Files (x86)\Steam\steamapps\common\7 Days to Die Dedicated Server\Mods
 
 "/home/{user}/.local/share/Steam/steamapps/common/7 Days to Die Dedicated Server/"
+
+//dlls are here:
+/home/{user}/.local/share/Steam/steamapps/common/7 Days To Die/7DaysToDie_Data/Managed/
 ```
 
 Make sure the C# Dev Kit extension is installed in VS Code.
