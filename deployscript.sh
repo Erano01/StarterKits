@@ -18,6 +18,7 @@ echo "[StarterKits] Deploy dir  : ${DEPLOY_DIR}"
 echo "[StarterKits] Zip path    : ${ZIP_PATH}"
 echo "[StarterKits] Include PDB : ${INCLUDE_PDB}"
 
+rm -rf "${DEPLOY_DIR}"
 mkdir -p "${DEPLOY_DIR}"
 mkdir -p "${DEPLOY_DIR}/Config" "${DEPLOY_DIR}/UIAtlases"
 

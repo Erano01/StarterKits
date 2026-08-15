@@ -19,7 +19,23 @@ namespace StarterKits
             public string DisplayName;
             public string Description;
             public string PreviewTitle;
-            public string[] StatLines;
+            public StatEntry[] StatLines;
+        }
+
+        private sealed class StatEntry
+        {
+            public string Text;
+            public string IconSpriteName;
+            public string IconAtlas;
+            public string IconColorHex;
+
+            public StatEntry(string text, string iconSpriteName = null, string iconAtlas = "UIAtlas", string iconColorHex = null)
+            {
+                Text = text;
+                IconSpriteName = iconSpriteName;
+                IconAtlas = iconAtlas;
+                IconColorHex = iconColorHex;
+            }
         }
 
         private sealed class KitButtonEntry
@@ -49,98 +65,98 @@ namespace StarterKits
                 DisplayName = "Scavenger",
                 PreviewTitle = "Urban Scavenger",
                 Description = "One man's trash is another man's entire inventory. You built a life out of what others stepped over.",
-                StatLines = new[] { "Salvage Operations 5/5", "Perception Mastery 2/5", "Salvage Tools 4/75" }
+                StatLines = new[] { new StatEntry("Salvage Operations 5/5", "ui_game_symbol_scrap"), new StatEntry("Perception Mastery 2/5", "ui_game_symbol_perception_mastery"), new StatEntry("Salvage Tools 4/75", "ui_game_symbol_wrench") }
             },
             ["Huntsman"] = new KitOverviewData
             {
                 DisplayName = "Huntsman",
                 PreviewTitle = "Field Tracker",
                 Description = "The wasteland is your hunting ground. You don't miss. You don't get hungry. They never hear you coming.",
-                StatLines = new[] { "Dead Eye 5/5", "Animal Tracker 5/5", "The Penetrator 5/5", "The Huntsman 5/5", "Iron Gut 5/5", "Hidden Strike 2/5", "Sniper Perk Book 7/7", "Rifles 26/100" }
+                StatLines = new[] { new StatEntry("Dead Eye 5/5", "ui_game_symbol_map_cursor"), new StatEntry("Animal Tracker 5/5", "ui_game_symbol_animal_tracker"), new StatEntry("The Penetrator 5/5", "ui_game_symbol_paint_copy_block"), new StatEntry("The Huntsman 5/5", "ui_game_symbol_archery"), new StatEntry("Iron Gut 5/5", "ui_game_symbol_stomach"), new StatEntry("Hidden Strike 2/5", "ui_game_symbol_sneak_attack"), new StatEntry("Sniper Perk Book 7/7", "ui_game_symbol_long_shot"), new StatEntry("Rifles 26/100", "ui_game_symbol_long_shot") }
             },
             ["Athlete"] = new KitOverviewData
             {
                 DisplayName = "Athlete",
                 PreviewTitle = "Mobility Focus",
                 Description = "You're not running away. You're tactically relocating. Very fast. Every single time.",
-                StatLines = new[] { "Parkour 5/5", "Hard Target 5/5", "Run and Gun 3/5", "Armor Crafting Skill 11/100", "Rule 1: Cardio 5/5" }
+                StatLines = new[] { new StatEntry("Parkour 5/5", "ui_game_symbol_parkour"), new StatEntry("Hard Target 5/5", "ui_game_symbol_hard_target"), new StatEntry("Run and Gun 3/5", "ui_game_symbol_run_and_gun"), new StatEntry("Armor Skill 11/100", "ui_game_symbol_armor_iron"), new StatEntry("Rule 1: Cardio 5/5", "ui_game_symbol_cardio") }
             },
             ["Tyson"] = new KitOverviewData
             {
                 DisplayName = "Tyson",
                 PreviewTitle = "Close Quarters",
                 Description = "No guns. No problem. Your fists are the only weapon the apocalypse couldn't rust.",
-                StatLines = new[] { "The Brawler 5/5", "Lightning Hands 5/5", "Pain Tolerance 5/5", "Fortitude Mastery 5/5", "Siphoning Strikes 5/5", "Healing Factor 5/5", "Iron Gut 5/5", "Bar Brawling 7/7", "Knuckles 11/75" }
+                StatLines = new[] { new StatEntry("The Brawler 5/5", "ui_game_symbol_boxer"), new StatEntry("Lightning Hands 5/5", "ui_game_symbol_knunchuck"), new StatEntry("Pain Tolerance 5/5", "ui_game_symbol_character"), new StatEntry("Fortitude Mastery 5/5", "ui_game_symbol_fortitude_mastery"), new StatEntry("Siphoning Strikes 5/5", "ui_game_symbol_siphoning_strikes"), new StatEntry("Healing Factor 5/5", "ui_game_symbol_healing_factor"), new StatEntry("Iron Gut 5/5", "ui_game_symbol_stomach"), new StatEntry("Bar Brawling 7/7", "ui_game_symbol_boxer"), new StatEntry("Knuckles 11/75", "ui_game_symbol_boxer") }
             },
             ["Archer"] = new KitOverviewData
             {
                 DisplayName = "Archer",
                 PreviewTitle = "Precision Hunter",
                 Description = "Silent. Precise. Deeply judged by everyone until the horde drops. Then suddenly everyone loves the bow guy.",
-                StatLines = new[] { "Archery 5/5", "From the Shadows 2/5", "Hidden Strike 3/5", "Ranger's Guide to Archery 7/7", "Bows 11/75" }
+                StatLines = new[] { new StatEntry("Archery 5/5", "ui_game_symbol_archery"), new StatEntry("From the Shadows 2/5", "ui_game_symbol_bat"), new StatEntry("Hidden Strike 3/5", "ui_game_symbol_sneak_attack"), new StatEntry("Ranger's Guide 7/7", "ui_game_symbol_archery"), new StatEntry("Bows 11/75", "ui_game_symbol_archery") }
             },
             ["Farmer"] = new KitOverviewData
             {
                 DisplayName = "Farmer",
                 PreviewTitle = "Sustain Specialist",
                 Description = "While others loot, you grow. Dirt under your nails, spear in your hand, food on everyone's table.",
-                StatLines = new[] { "Living off The Land 3/3", "Armor Crafting Skill 11/100", "Seeds Crafting Skill 20/20", "Food Crafting Skill 100/100", "Super Corn Crafting Magazine (Automatically Readed)", "Medium Armor 4/4 & Fullset Farmer Armor (1 lvl set)", "Spear Master 5/5", "Quick and Perceptive 5/5", "Spear Hunter 7/7", "Spear Crafting Skill 11/75" }
+                StatLines = new[] { new StatEntry("Living off The Land 3/3", "ui_game_symbol_tree"), new StatEntry("Armor Skill 11/100", "ui_game_symbol_armor_iron"), new StatEntry("Seeds Skill 20/20", "ui_game_symbol_crops"), new StatEntry("Food Skill 100/100", "ui_game_symbol_fork"), new StatEntry("Super Corn Crafting", "plantedCorn1", "ItemIconAtlas", "ff9f9f"), new StatEntry("Medium Armor 4/4", "ui_game_symbol_light_armor2"), new StatEntry("Fullset Farmer Outfit", "ui_game_symbol_armor_iron"), new StatEntry("Spear Master 5/5", "ui_game_symbol_spear"), new StatEntry("Quick and Perceptive 5/5", "ui_game_symbol_knunchuck"), new StatEntry("Spear Hunter 7/7", "ui_game_symbol_spear"), new StatEntry("Spear Skill 11/75", "ui_game_symbol_spear") }
             },
             ["Engineer"] = new KitOverviewData
             {
                 DisplayName = "Engineer",
                 PreviewTitle = "Tech Builder",
                 Description = "Turrets, vehicles, electricity - if it runs on volts or wheels, you built it. The apocalypse has a power grid now. Yours.",
-                StatLines = new[] { "Electrician Crafting Skills 55/100", "Vehicles Crafting Skill 20/100", "Robotics 76/100", "Tech Junkie 7/7", "Workstations 34/75", "Advanced Engineering 5/5", "Grease Monkey 5/5" }
+                StatLines = new[] { new StatEntry("Electrician Skill 55/100", "ui_game_symbol_electric_generator"), new StatEntry("Vehicles Skill 20/100", "ui_game_symbol_4x4"), new StatEntry("Robotics 76/100", "ui_game_symbol_junk_turret"), new StatEntry("Tech Junkie 7/7", "ui_game_symbol_electric_turret"), new StatEntry("Workstations 34/75", "ui_game_symbol_workbench"), new StatEntry("Advanced Engineering 5/5", "ui_game_symbol_workbench"), new StatEntry("Grease Monkey 5/5", "ui_game_symbol_service") }
             },
             ["Ex-Soldier"] = new KitOverviewData
             {
                 DisplayName = "Ex-Soldier",
                 PreviewTitle = "Combat Veteran",
                 Description = "Old rank, new rules. Keep moving, keep firing. Discipline is the last thing that survived.",
-                StatLines = new[] { "Machine Gunner 5/5", "Run and Gun 5/5", "Commando Armor Fullset", "Armor Crafting Skill 11/100", "Medium Armor 4/4", "Urban Combat 7/7", "The Automatic Weapon Handbook 7/7", "Machine Guns 11/100" }
+                StatLines = new[] { new StatEntry("Machine Gunner 5/5", "ui_game_symbol_rifle"), new StatEntry("Run and Gun 5/5", "ui_game_symbol_run_and_gun"), new StatEntry("Commando Armor Fullset", "ui_game_symbol_armor_iron"), new StatEntry("Armor Skill 11/100", "ui_game_symbol_armor_iron"), new StatEntry("Medium Armor 4/4", "ui_game_symbol_light_armor2"), new StatEntry("Urban Combat 7/7", "ui_game_symbol_light_armor2"), new StatEntry("Auto Weapon Handbook 7/7", "ui_game_symbol_rifle"), new StatEntry("Machine Guns 11/100", "ui_game_symbol_rifle") }
             },
             ["Doctor"] = new KitOverviewData
             {
                 DisplayName = "Doctor",
                 PreviewTitle = "Field Medic",
                 Description = "Someone has to keep the idiots alive. Might as well be you.",
-                StatLines = new[] { "Physician 5/5", "Charismatic Nature 3/5", "Medical 75/75", "Foot 27/100" }
+                StatLines = new[] { new StatEntry("Physician 5/5", "ui_game_symbol_medical"), new StatEntry("Charismatic Nature 3/5", "ui_game_symbol_talk"), new StatEntry("Medical 75/75", "ui_game_symbol_medical"), new StatEntry("Foot 27/100", "ui_game_symbol_armor_iron") }
             },
             ["Miner"] = new KitOverviewData
             {
                 DisplayName = "Miner",
                 PreviewTitle = "Resource Breaker",
                 Description = "You hit rocks for a living. Zombies are just rocks that bleed.",
-                StatLines = new[] { "Skull Crusher 5/5", "Grand Slam 5/5", "Strength Master 5/5", "Pack Mule 5/5", "Miner 69'er 5/5", "Mother Lode 5/5", "Sledge Saga 7/7", "Harvesting Tools 11/100", "Sledge Hammer 11/75", "Workstations 34/75" }
+                StatLines = new[] { new StatEntry("Skull Crusher 5/5", "ui_game_symbol_sledge"), new StatEntry("Grand Slam 5/5", "ui_game_symbol_grand_slam"), new StatEntry("Strength Master 5/5", "ui_game_symbol_strength_mastery"), new StatEntry("Pack Mule 5/5", "ui_game_symbol_pack_mule"), new StatEntry("Miner 69'er 5/5", "ui_game_symbol_mining"), new StatEntry("Mother Lode 5/5", "ui_game_symbol_mother_load"), new StatEntry("Sledge Saga 7/7", "ui_game_symbol_sledge"), new StatEntry("Harvesting Tools 11/100", "ui_game_symbol_tool"), new StatEntry("Sledge Hammer 11/75", "ui_game_symbol_sledge"), new StatEntry("Workstations 34/75", "ui_game_symbol_workbench") }
             },
             ["Demoman"] = new KitOverviewData
             {
                 DisplayName = "Demoman",
                 PreviewTitle = "Explosive Expert",
                 Description = "Collateral damage is just a fancy word for fun. If it's still standing, use a bigger one.",
-                StatLines = new[] { "Demolition Expert 5/5", "The Infiltrator 5/5", "Explosives 50/100" }
+                StatLines = new[] { new StatEntry("Demolition Expert 5/5", "ui_game_symbol_explosion"), new StatEntry("The Infiltrator 5/5", "ui_game_symbol_stealth"), new StatEntry("Explosives 50/100", "ui_game_symbol_explosion") }
             },
             ["Hitman"] = new KitOverviewData
             {
                 DisplayName = "Hitman",
                 PreviewTitle = "Silent Elimination",
                 Description = "Clean. Quiet. Gone before they hit the floor. Getting paid in cans these days, but the craft stays the same.",
-                StatLines = new[] { "Gunslinger 5/5", "Run and Gun 5/5", "Agility Mastery 2/5", "Hidden Strike 5/5", "From the Shadows 5/5", "Pistol Pete 7/7", "Magnum Enforcer 7/7", "Handguns 26/100" }
+                StatLines = new[] { new StatEntry("Gunslinger 5/5", "ui_game_symbol_gunslinger"), new StatEntry("Run and Gun 5/5", "ui_game_symbol_run_and_gun"), new StatEntry("Agility Mastery 2/5", "ui_game_symbol_agility_mastery"), new StatEntry("Hidden Strike 5/5", "ui_game_symbol_sneak_attack"), new StatEntry("From the Shadows 5/5", "ui_game_symbol_bat"), new StatEntry("Pistol Pete 7/7", "ui_game_symbol_pistol"), new StatEntry("Magnum Enforcer 7/7", "ui_game_symbol_gunslinger"), new StatEntry("Handguns 26/100", "ui_game_symbol_pistol") }
             },
             ["Dumb Luck"] = new KitOverviewData
             {
                 DisplayName = "Dumb Luck",
                 PreviewTitle = "Risk Reward",
                 Description = "You're not skilled. You're not smart. But somehow you always find the good stuff. Don't question it.",
-                StatLines = new[] { "Lucky Looter (Skill) 5/5", "Lucky Looter (Perk Book) 7/7", "Wasteland Treasures 7/7", "The Daring Adventurer 5/5", "Treasure Hunter 5/5" }
+                StatLines = new[] { new StatEntry("Lucky Looter (Skill) 5/5", "ui_game_symbol_shopping_cart"), new StatEntry("Lucky Looter Book 7/7", "ui_game_symbol_shopping_cart"), new StatEntry("Wasteland Treasures 7/7", "ui_game_symbol_treasure"), new StatEntry("Daring Adventurer 5/5", "ui_game_symbol_adventure"), new StatEntry("Treasure Hunter 5/5", "ui_game_symbol_treasure") }
             },
             ["Burglar"] = new KitOverviewData
             {
                 DisplayName = "Burglar",
                 PreviewTitle = "Infiltration",
                 Description = "Why fight when you can just... take it? Locks open, shadows hide, blades finish the conversation.",
-                StatLines = new[] { "Better Barter 5/5", "Lock Picking 3/3", "Workstations 12/75", "Blades 36/75", "Deep Cuts 5/5", "Hidden Strike 3/5", "From the Shadows 3/5", "Whirlwind 5/5" }
+                StatLines = new[] { new StatEntry("Better Barter 5/5", "ui_game_symbol_barter"), new StatEntry("Lock Picking 3/3", "ui_game_symbol_unlock"), new StatEntry("Workstations 12/75", "ui_game_symbol_workbench"), new StatEntry("Blades 36/75", "ui_game_symbol_knife"), new StatEntry("Deep Cuts 5/5", "ui_game_symbol_deep_cuts"), new StatEntry("Hidden Strike 3/5", "ui_game_symbol_sneak_attack"), new StatEntry("From the Shadows 3/5", "ui_game_symbol_bat"), new StatEntry("Whirlwind 5/5", "ui_game_symbol_knunchuck") }
             }
         };
 
@@ -442,7 +458,9 @@ namespace StarterKits
         private XUiController previewLabel;
         private XUiController previewHintLabel;
         private XUiController attributesLabel;
-        private XUiController bonusesLabel;
+        private const int MaxStatRows = 12;
+        private readonly XUiController[] statIconControllers = new XUiController[MaxStatRows];
+        private readonly XUiController[] statLabelControllers = new XUiController[MaxStatRows];
         private XUiController confirmButtonController;
         private XUiC_SimpleButton confirmButton;
 
@@ -492,7 +510,11 @@ namespace StarterKits
             this.previewLabel = this.GetChildById("lblKitImagePlaceholder");
             this.previewHintLabel = this.GetChildById("lblKitImageHint");
             this.attributesLabel = this.GetChildById("lblKitAttributes");
-            this.bonusesLabel = this.GetChildById("lblKitBonuses");
+            for (int i = 0; i < MaxStatRows; i++)
+            {
+                this.statIconControllers[i] = this.GetChildById("statIcon" + i);
+                this.statLabelControllers[i] = this.GetChildById("statLabel" + i);
+            }
             this.confirmButtonController = this.GetChildById("btnConfirmKit");
             this.confirmButton = this.confirmButtonController as XUiC_SimpleButton;
             if (this.confirmButton == null)
@@ -1198,7 +1220,7 @@ namespace StarterKits
                 this.SetText(this.overviewHintLabel, "Pick a starter kit on the left to preview its description and perk stats.");
                 this.SetText(this.previewLabel, "Select A Kit");
                 this.SetText(this.attributesLabel, "Select a kit to inspect its description.");
-                this.SetText(this.bonusesLabel, "Select a kit to see its perk and skill levels.");
+                this.ApplyStatRows(null);
                 this.SetVisible(this.previewLabel, true);
                 this.SetVisible(this.previewHintLabel, true);
                 this.UpdatePreviewTexture(null);
@@ -1209,7 +1231,7 @@ namespace StarterKits
             this.SetText(this.overviewHintLabel, "Review the preview, then lock in the kit when you're ready.");
             this.SetText(this.previewLabel, data.PreviewTitle);
             this.SetText(this.attributesLabel, data.Description);
-            this.SetText(this.bonusesLabel, this.BuildStatsText(data));
+            this.ApplyStatRows(data.StatLines);
             this.SetVisible(this.previewLabel, false);
             this.SetVisible(this.previewHintLabel, false);
             this.UpdatePreviewTexture(kitName);
@@ -1235,14 +1257,52 @@ namespace StarterKits
             }
         }
 
-        private string BuildStatsText(KitOverviewData data)
+        private static Color ParseIconColor(string hex)
         {
-            if (data?.StatLines == null || data.StatLines.Length == 0)
+            if (string.IsNullOrEmpty(hex))
             {
-                return string.Empty;
+                return Color.white;
             }
 
-            return "- " + string.Join("\n- ", data.StatLines);
+            if (ColorUtility.TryParseHtmlString("#" + hex, out Color color))
+            {
+                return color;
+            }
+
+            return Color.white;
+        }
+
+        private void ApplyStatRows(StatEntry[] entries)
+        {
+            int count = entries?.Length ?? 0;
+
+            for (int i = 0; i < MaxStatRows; i++)
+            {
+                XUiController labelController = this.statLabelControllers[i];
+                XUiController iconController = this.statIconControllers[i];
+
+                if (i >= count)
+                {
+                    this.SetText(labelController, string.Empty);
+                    this.SetVisible(iconController, false);
+                    continue;
+                }
+
+                StatEntry entry = entries[i];
+                this.SetText(labelController, entry.Text);
+
+                if (!string.IsNullOrEmpty(entry.IconSpriteName) && iconController?.ViewComponent is XUiV_Sprite spriteView)
+                {
+                    spriteView.UIAtlas = entry.IconAtlas;
+                    spriteView.SpriteName = entry.IconSpriteName;
+                    spriteView.Color = ParseIconColor(entry.IconColorHex);
+                    this.SetVisible(iconController, true);
+                }
+                else
+                {
+                    this.SetVisible(iconController, false);
+                }
+            }
         }
 
         private void SetEnabled(XUiController controller, bool enabled)

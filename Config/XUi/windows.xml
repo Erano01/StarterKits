@@ -205,11 +205,34 @@ anchor -> parent'a göre konumlandırma
                         <label name="lblKitAttributes" depth="4" pos="20,-350" width="400" font_size="18" color="[white]" justify="left" text="Select a kit to inspect its description." max_line_count="4" />
 
                         <label depth="4" pos="20,-390" width="220" font_size="20" color="222,206,163,255" justify="left" text="Kit Stats" />
-                        <label name="lblKitBonuses" depth="4" pos="20,-415" width="400" font_size="16" color="[white]" justify="left" text="Select a kit to see its perk and skill levels." max_line_count="9" />
+                        <sprite name="statIcon0" depth="4" atlas="UIAtlas" pos="20,-415" width="24" height="24" color="[white]" visible="false" foregroundlayer="true" globalopacitymod="0" />
+                        <label name="statLabel0" depth="4" pos="46,-417" width="187" font_size="18" color="[white]" justify="left" max_line_count="1" text="" />
+                        <sprite name="statIcon1" depth="4" atlas="UIAtlas" pos="20,-441" width="24" height="24" color="[white]" visible="false" foregroundlayer="true" globalopacitymod="0" />
+                        <label name="statLabel1" depth="4" pos="46,-443" width="187" font_size="18" color="[white]" justify="left" max_line_count="1" text="" />
+                        <sprite name="statIcon2" depth="4" atlas="UIAtlas" pos="20,-467" width="24" height="24" color="[white]" visible="false" foregroundlayer="true" globalopacitymod="0" />
+                        <label name="statLabel2" depth="4" pos="46,-469" width="187" font_size="18" color="[white]" justify="left" max_line_count="1" text="" />
+                        <sprite name="statIcon3" depth="4" atlas="UIAtlas" pos="20,-493" width="24" height="24" color="[white]" visible="false" foregroundlayer="true" globalopacitymod="0" />
+                        <label name="statLabel3" depth="4" pos="46,-495" width="187" font_size="18" color="[white]" justify="left" max_line_count="1" text="" />
+                        <sprite name="statIcon4" depth="4" atlas="UIAtlas" pos="20,-519" width="24" height="24" color="[white]" visible="false" foregroundlayer="true" globalopacitymod="0" />
+                        <label name="statLabel4" depth="4" pos="46,-521" width="187" font_size="18" color="[white]" justify="left" max_line_count="1" text="" />
+                        <sprite name="statIcon5" depth="4" atlas="UIAtlas" pos="20,-545" width="24" height="24" color="[white]" visible="false" foregroundlayer="true" globalopacitymod="0" />
+                        <label name="statLabel5" depth="4" pos="46,-547" width="187" font_size="18" color="[white]" justify="left" max_line_count="1" text="" />
+                        <sprite name="statIcon6" depth="4" atlas="UIAtlas" pos="245,-415" width="24" height="24" color="[white]" visible="false" foregroundlayer="true" globalopacitymod="0" />
+                        <label name="statLabel6" depth="4" pos="271,-417" width="162" font_size="18" color="[white]" justify="left" max_line_count="1" text="" />
+                        <sprite name="statIcon7" depth="4" atlas="UIAtlas" pos="245,-441" width="24" height="24" color="[white]" visible="false" foregroundlayer="true" globalopacitymod="0" />
+                        <label name="statLabel7" depth="4" pos="271,-443" width="162" font_size="18" color="[white]" justify="left" max_line_count="1" text="" />
+                        <sprite name="statIcon8" depth="4" atlas="UIAtlas" pos="245,-467" width="24" height="24" color="[white]" visible="false" foregroundlayer="true" globalopacitymod="0" />
+                        <label name="statLabel8" depth="4" pos="271,-469" width="162" font_size="18" color="[white]" justify="left" max_line_count="1" text="" />
+                        <sprite name="statIcon9" depth="4" atlas="UIAtlas" pos="245,-493" width="24" height="24" color="[white]" visible="false" foregroundlayer="true" globalopacitymod="0" />
+                        <label name="statLabel9" depth="4" pos="271,-495" width="162" font_size="18" color="[white]" justify="left" max_line_count="1" text="" />
+                        <sprite name="statIcon10" depth="4" atlas="UIAtlas" pos="245,-519" width="24" height="24" color="[white]" visible="false" foregroundlayer="true" globalopacitymod="0" />
+                        <label name="statLabel10" depth="4" pos="271,-521" width="162" font_size="18" color="[white]" justify="left" max_line_count="1" text="" />
+                        <sprite name="statIcon11" depth="4" atlas="UIAtlas" pos="245,-545" width="24" height="24" color="[white]" visible="false" foregroundlayer="true" globalopacitymod="0" />
+                        <label name="statLabel11" depth="4" pos="271,-547" width="162" font_size="18" color="[white]" justify="left" max_line_count="1" text="" />
 
                     </rect>
 
-                    <simplebutton name="btnConfirmKit" depth="3" pos="55,-625" width="400" height="52" font_size="28" caption="Select &amp; Confirm" upper_case="false" event_onclick="eventConfirmKit" />
+                    <simplebutton name="btnConfirmKit" depth="3" pos="55,-630" width="400" height="52" font_size="28" caption="Select &amp; Confirm" upper_case="false" event_onclick="eventConfirmKit" />
                 </panel>
 			</panel>
 		</window>
