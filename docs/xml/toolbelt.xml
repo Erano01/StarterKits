@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<toolbelt>
+	<!--current supported values are between 1-10 slots per bar and 1-2 bars per page, pages are limited to a max 10 in prefab editor-->
+	<!--gameconfig is currently unsupported-->
+	<editorconfig>
+		<slots slot_per_bar="10" bar_per_page="2" page_count="1" />
+	</editorconfig>
+</toolbelt>

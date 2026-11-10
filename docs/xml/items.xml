@@ -17750,6 +17750,148 @@ The example below represents the statement: [sampleVar0 == 0] OR [sampleVar1 == 
 	</property>
 </item>
 
+	<!-- *** KEGBREAKER -->
+		<!-- *** KEGBREAKER_HELMET -->
+<item name="armorKegBreakerHelmet">
+	<property name="Extends" value="armorDLCMaster" param1="CustomIcon"/>
+	<property name="CreativeMode" value="None"/>
+	<property name="DisplayType" value="armorKegBreakerHelmet"/>
+	<property name="ArmorGroup" value="groupKegBreaker"/>
+	<property name="Tags" value="head,armor,armorHead"/>
+	<property name="EquipSlot" value="Head"/>
+	<property name="SoundPickup" value="headwear_cloth_grab"/>
+	<property name="SoundPlace" value="headwear_cloth_place"/>
+
+	<property class="SDCS">
+		<property name="Prefab" value="@:DLC/OktoberfestCosmetic/KegBreaker/Entities/Player/{sex}/Gear/Prefabs/gear{sex}KegBreakerPrefab.prefab"/>
+		<property name="TransformName" value="head"/>
+		<property name="Excludes" value=""/>
+		<property name="HairMaskType" value="Hat"/>
+	</property>
+</item>
+
+		<!-- *** KEGBREAKER_OUTFIT -->
+<item name="armorKegBreakerOutfit">
+	<property name="Extends" value="armorDLCMaster" param1="CustomIcon"/>
+	<property name="CreativeMode" value="None"/>
+	<property name="ArmorGroup" value="groupKegBreaker"/>
+	<property name="Tags" value="upperbody,chest,armor,armorChest"/>
+	<property name="EquipSlot" value="Chest"/>
+	<property name="SoundPickup" value="outfit_cloth_grab"/>
+	<property name="SoundPlace" value="outfit_cloth_place"/>
+
+	<property class="SDCS">
+		<property name="Prefab" value="@:DLC/OktoberfestCosmetic/KegBreaker/Entities/Player/{sex}/Gear/Prefabs/gear{sex}KegBreakerPrefab.prefab"/>
+		<property name="TransformName" value="body"/>
+		<property name="Excludes" value="body"/>
+	</property>
+</item>
+
+		<!-- *** KEGBREAKER_GLOVES -->
+<item name="armorKegBreakerGloves">
+	<property name="Extends" value="armorDLCMaster" param1="CustomIcon"/>
+	<property name="CreativeMode" value="None"/>
+	<property name="ArmorGroup" value="groupKegBreaker"/>
+	<property name="Tags" value="upperbody,hands,armor,armorHands"/>
+	<property name="EquipSlot" value="Hands"/>
+	<property name="SoundPickup" value="gloves_cloth_grab"/>
+	<property name="SoundPlace" value="gloves_cloth_place"/>
+
+	<property class="SDCS">
+		<property name="Prefab" value="@:DLC/OktoberfestCosmetic/KegBreaker/Entities/Player/{sex}/Gear/Prefabs/gear{sex}KegBreakerPrefab.prefab"/>
+		<property name="TransformName" value="hands"/>
+		<property name="Excludes" value="hands"/>
+	</property>
+</item>
+
+		<!-- *** KEGBREAKER_BOOTS -->
+<item name="armorKegBreakerBoots">
+	<property name="Extends" value="armorDLCMaster" param1="CustomIcon"/>
+	<property name="CreativeMode" value="None"/>
+	<property name="ArmorGroup" value="groupKegBreaker"/>
+	<property name="Tags" value="lowerbody,feet,armor,armorFeet"/>
+	<property name="EquipSlot" value="Feet"/>
+	<property name="SoundPickup" value="footwear_cloth_grab"/>
+	<property name="SoundPlace" value="footwear_cloth_place"/>
+
+	<property class="SDCS">
+		<property name="Prefab" value="@:DLC/OktoberfestCosmetic/KegBreaker/Entities/Player/{sex}/Gear/Prefabs/gear{sex}KegBreakerPrefab.prefab"/>
+		<property name="TransformName" value="feet"/>
+		<property name="Excludes" value="feet"/>
+	</property>
+</item>
+
+	<!-- *** WRAITHWOODWITCH -->
+		<!-- *** WRAITHWOODWITCH_HELMET -->
+<item name="armorWraithWoodWitchHelmet">
+	<property name="Extends" value="armorDLCMaster" param1="CustomIcon"/>
+	<property name="CreativeMode" value="None"/>
+	<property name="DisplayType" value="armorWraithWoodWitchHelmet"/>
+	<property name="ArmorGroup" value="groupWraithWoodWitch"/>
+	<property name="Tags" value="head,armor,armorHead"/>
+	<property name="EquipSlot" value="Head"/>
+	<property name="SoundPickup" value="headwear_cloth_grab"/>
+	<property name="SoundPlace" value="headwear_cloth_place"/>
+
+	<property class="SDCS">
+		<property name="Prefab" value="@:DLC/HalloweenCosmetic/WraithWoodWitch/Entities/Player/{sex}/Gear/Prefabs/gear{sex}WraithWoodWitchPrefab.prefab"/>
+		<property name="TransformName" value="head"/>
+		<property name="Excludes" value=""/>
+		<property name="HairMaskType" value="Hat"/>
+	</property>
+</item>
+
+		<!-- *** WRAITHWOODWITCH_OUTFIT -->
+<item name="armorWraithWoodWitchOutfit">
+	<property name="Extends" value="armorDLCMaster" param1="CustomIcon"/>
+	<property name="CreativeMode" value="None"/>
+	<property name="ArmorGroup" value="groupWraithWoodWitch"/>
+	<property name="Tags" value="upperbody,chest,armor,armorChest"/>
+	<property name="EquipSlot" value="Chest"/>
+	<property name="SoundPickup" value="outfit_cloth_grab"/>
+	<property name="SoundPlace" value="outfit_cloth_place"/>
+
+	<property class="SDCS">
+		<property name="Prefab" value="@:DLC/HalloweenCosmetic/WraithWoodWitch/Entities/Player/{sex}/Gear/Prefabs/gear{sex}WraithWoodWitchPrefab.prefab"/>
+		<property name="TransformName" value="body"/>
+		<property name="Excludes" value="body"/>
+	</property>
+</item>
+
+		<!-- *** WRAITHWOODWITCH_GLOVES -->
+<item name="armorWraithWoodWitchGloves">
+	<property name="Extends" value="armorDLCMaster" param1="CustomIcon"/>
+	<property name="CreativeMode" value="None"/>
+	<property name="ArmorGroup" value="groupWraithWoodWitch"/>
+	<property name="Tags" value="upperbody,hands,armor,armorHands"/>
+	<property name="EquipSlot" value="Hands"/>
+	<property name="SoundPickup" value="gloves_cloth_grab"/>
+	<property name="SoundPlace" value="gloves_cloth_place"/>
+
+	<property class="SDCS">
+		<property name="Prefab" value="@:DLC/HalloweenCosmetic/WraithWoodWitch/Entities/Player/{sex}/Gear/Prefabs/gear{sex}WraithWoodWitchPrefab.prefab"/>
+		<property name="TransformName" value="hands"/>
+		<property name="Excludes" value="hands"/>
+	</property>
+</item>
+
+		<!-- *** WRAITHWOODWITCH_BOOTS -->
+<item name="armorWraithWoodWitchBoots">
+	<property name="Extends" value="armorDLCMaster" param1="CustomIcon"/>
+	<property name="CreativeMode" value="None"/>
+	<property name="ArmorGroup" value="groupWraithWoodWitch"/>
+	<property name="Tags" value="lowerbody,feet,armor,armorFeet"/>
+	<property name="EquipSlot" value="Feet"/>
+	<property name="SoundPickup" value="footwear_cloth_grab"/>
+	<property name="SoundPlace" value="footwear_cloth_place"/>
+
+	<property class="SDCS">
+		<property name="Prefab" value="@:DLC/HalloweenCosmetic/WraithWoodWitch/Entities/Player/{sex}/Gear/Prefabs/gear{sex}WraithWoodWitchPrefab.prefab"/>
+		<property name="TransformName" value="feet"/>
+		<property name="Excludes" value="feet"/>
+	</property>
+</item>
+
 	<!-- *** BIGBEAK -->
 		<!-- *** BIGBEAK_HELMET -->
 <item name="armorBigbeakHelmet">
@@ -18571,6 +18713,86 @@ The example below represents the statement: [sampleVar0 == 0] OR [sampleVar1 == 
 		<passive_effect name="ModSlots" operation="base_set" value="0"/>
 		<passive_effect name="HypothermalResist" operation="base_add" value="4.6,4.9,5.2,5.5,5.8,6" tier="1,2,3,4,5,6"/>
 		<passive_effect name="HyperthermalResist" operation="base_add" value="4.6,4.9,5.2,5.5,5.8,6" tier="1,2,3,4,5,6"/>
+	</effect_group>
+</item>
+
+<!-- *** BACKPACK_ITEMS -->
+
+<item name="backpackMaster">
+	<property name="CreativeMode" value="None"/>
+	<property name="Class" value="ItemClassArmor"/>
+	<property name="CustomIcon" value="cntBackpack01"/>
+	<property name="DisplayType" value="armorBackpack"/>
+	<property name="DescriptionKey" value="clothingMasterDesc"/>
+	<property name="EquipSlot" value="ClothingHead"/>
+	<property name="IsCosmetic" value="false"/>
+	<property name="KeepOnDeath" value="false"/>
+	<property name="Material" value="Mcloth"/>
+	<property name="Weight" value="1"/>
+	<property name="ScrapTimeOverride" value="10.0"/>
+	<property name="DegradationBreaksAfter" value="false"/>
+	<property name="HoldType" value="45"/>
+	<property name="Meshfile" value="@:Other/Items/Misc/sackPrefab.prefab"/>
+	<property name="DropMeshfile" value="@:Other/Items/Misc/sack_droppedPrefab.prefab"/>
+	<property name="Group" value="Clothing,Armor,TCArmor"/>
+	<property name="EconomicValue" value="100"/>
+	<property name="TraderStageTemplate" value="clothingTier1"/><!-- clothingMaster -->
+	<property name="ShowQuality" value="true"/>
+	<property name="SoundPickup" value="liners_cloth_grab"/>
+	<property name="SoundPlace" value="liners_cloth_place"/>
+</item>
+
+	<!-- *** SMALL_BACKPACK -->
+<item name="backpackSmall">
+	<property name="Extends" value="backpackMaster" param1="CustomIcon"/>
+	<property name="DescriptionKey" value="backpackSmallDesc"/>
+	<property name="EquipSlot" value="Backpack"/>
+	<!-- <property name="TraderStageTemplate" value="clothingTier1"/> -->
+	<property name="SoundPickup" value="backpack_sm_grab"/>
+	<property name="SoundPlace" value="backpack_sm_place"/>
+	<property name="Tags" value="backpackT1"/>
+	<property name="UnlockedBy" value="craftingBackpack"/>
+	<effect_group>
+		<passive_effect name="ModSlots" operation="base_set" value="0"/>
+		<!-- Increases the number of inventory slots from 48 to 50,52,54,56,60,64 -->
+		<passive_effect name="BagSize" operation="base_add" level="1,2,3,4,5,6" value="2,4,6,8,12,16"/>
+		<display_value name="dSlotCount" value="2,4,6,8,12,16" tier="1,2,3,4,5,6"/>
+	</effect_group>
+</item>
+
+	<!-- *** MEDIUM_BACKPACK -->
+<item name="backpackMedium">
+	<property name="Extends" value="backpackMaster" param1="CustomIcon"/>
+	<property name="DescriptionKey" value="backpackMediumDesc"/>
+	<property name="EquipSlot" value="Backpack"/>
+	<!-- <property name="TraderStageTemplate" value="clothingTier1"/> -->
+	<property name="SoundPickup" value="backpack_md_grab"/>
+	<property name="SoundPlace" value="backpack_md_place"/>
+	<property name="Tags" value="backpackT2"/>
+	<property name="UnlockedBy" value="craftingBackpack"/>
+	<effect_group>
+		<passive_effect name="ModSlots" operation="base_set" value="0"/>
+		<!-- Increases the number of inventory slots from 48 to 66,68,70,72,76,80 -->
+		<passive_effect name="BagSize" operation="base_add" level="1,2,3,4,5,6" value="18,20,22,24,28,32"/>
+		<display_value name="dSlotCount" value="18,20,22,24,28,32" tier="1,2,3,4,5,6"/>
+	</effect_group>
+</item>
+
+	<!-- *** LARGE_BACKPACK -->
+<item name="backpackLarge">
+	<property name="Extends" value="backpackMaster" param1="CustomIcon"/>
+	<property name="DescriptionKey" value="backpackLargeDesc"/>
+	<property name="EquipSlot" value="Backpack"/>
+	<!-- <property name="TraderStageTemplate" value="clothingTier1"/> -->
+	<property name="SoundPickup" value="backpack_lrg_grab"/>
+	<property name="SoundPlace" value="backpack_lrg_place"/>
+	<property name="Tags" value="backpackT3"/>
+	<property name="UnlockedBy" value="craftingBackpack"/>
+	<effect_group>
+		<passive_effect name="ModSlots" operation="base_set" value="0"/>
+		<!-- Increases the number of inventory slots from 48 to 82,84,86,88,92,96 -->
+		<passive_effect name="BagSize" operation="base_add" level="1,2,3,4,5,6" value="34,36,38,40,44,48"/>
+		<display_value name="dSlotCount" value="34,36,38,40,44,48" tier="1,2,3,4,5,6"/>
 	</effect_group>
 </item>
 
@@ -28259,6 +28481,37 @@ The example below represents the statement: [sampleVar0 == 0] OR [sampleVar1 == 
 		<requirement name="CVarCompare" cvar="nerdPointChance" operation="EQ" value="1"/>
 		<requirement name="RandomRoll" seed_type="Random" min_max="0,100" operation="LTE" value="@$nerdOutfitSkillPointChance"/>
 			<triggered_effect trigger="onSelfPrimaryActionEnd" action="AddProgressionLevel" progression_name="craftingArmor" level="1"/>
+			<triggered_effect trigger="onSelfPrimaryActionEnd" action="PlaySound" sound="nerd_outfit_perk" play_in_head="true"/>
+			<triggered_effect trigger="onSelfPrimaryActionEnd" action="RemoveCVar" cvar="nerdPointChance"/>
+			<!-- <triggered_effect trigger="onSelfPrimaryActionEnd" action="ShowToolbeltMessage" message="Extra Point!"/> -->
+	</effect_group>
+</item>
+
+	<!-- *** Backpack_Skill_Magazine -->
+<item name="backpackSkillMagazine">
+	<property name="Extends" value="masterSkillMagazine"/>
+	<property name="Tags" value="backpackCSM,csm"/>
+	<property name="CustomIcon" value="bookPackRat"/>
+	<property name="DescriptionKey" value="backpackSkillMagazineDesc"/>
+	<property name="Unlocks" value="craftingBackpack"/>
+
+	<effect_group tiered="false">
+		<triggered_effect trigger="onSelfPrimaryActionEnd" action="AddProgressionLevel" progression_name="craftingBackpack" level="1"/> <!-- level="-1" sets a perk to max level -->
+		<triggered_effect trigger="onSelfPrimaryActionEnd" action="GiveExp" exp="50"/>
+	</effect_group>
+
+	<effect_group tiered="false">
+		<requirement_group op="or">
+			<requirement name="ProgressionLevel" progression_name="perkIntellectMastery" operation="GTE" value="3"/>
+			<requirement name="HasBuff" buff="buffNerdOutfit"/>
+		</requirement_group>
+			<triggered_effect trigger="onSelfPrimaryActionEnd" action="ModifyCVar" cvar="nerdPointChance" operation="set" value="1"/>
+	</effect_group>
+
+	<effect_group tiered="false">
+		<requirement name="CVarCompare" cvar="nerdPointChance" operation="EQ" value="1"/>
+		<requirement name="RandomRoll" seed_type="Random" min_max="0,100" operation="LTE" value="@$nerdOutfitSkillPointChance"/>
+			<triggered_effect trigger="onSelfPrimaryActionEnd" action="AddProgressionLevel" progression_name="craftingBackpack" level="1"/>
 			<triggered_effect trigger="onSelfPrimaryActionEnd" action="PlaySound" sound="nerd_outfit_perk" play_in_head="true"/>
 			<triggered_effect trigger="onSelfPrimaryActionEnd" action="RemoveCVar" cvar="nerdPointChance"/>
 			<!-- <triggered_effect trigger="onSelfPrimaryActionEnd" action="ShowToolbeltMessage" message="Extra Point!"/> -->

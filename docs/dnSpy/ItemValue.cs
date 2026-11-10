@@ -1,11 +1,13 @@
 using System;
 using System.Collections.Generic;
-using System.IO;
 using System.Linq;
+using System.Runtime.CompilerServices;
+using System.Runtime.InteropServices;
 using UnityEngine;
 
 public class ItemValue : IEquatable<ItemValue>
 {
+	[StructLayout(LayoutKind.Auto)]
 	public struct Stat
 	{
 		public PassiveEffects type;
@@ -32,12 +34,7 @@ public class ItemValue : IEquatable<ItemValue>
 	public const byte MaxModifications = byte.MaxValue;
 
 	[PublicizedFrom(EAccessModifier.Private)]
-	public static readonly ItemValue[] emptyItemValueArray = new ItemValue[0];
-
-	[PublicizedFrom(EAccessModifier.Private)]
 	public static FastTags<TagGroup.Global> noPreinstallCosmeticItemTags = FastTags<TagGroup.Global>.Parse("weapon,tool,armor");
-
-	public int type;
 
 	[PublicizedFrom(EAccessModifier.Private)]
 	public const byte cFlagsActivated = 1;
@@ -45,28 +42,41 @@ public class ItemValue : IEquatable<ItemValue>
 	[PublicizedFrom(EAccessModifier.Private)]
 	public const byte cFlagsWasCombined = 2;
 
-	public byte Flags;
+	[PublicizedFrom(EAccessModifier.Private)]
+	public ItemStack owner;
 
-	public byte SelectedAmmoTypeIndex;
+	[PublicizedFrom(EAccessModifier.Private)]
+	public int typeField;
 
-	public float UseTimes;
+	[PublicizedFrom(EAccessModifier.Private)]
+	public byte flags;
 
-	public int Meta;
+	[PublicizedFrom(EAccessModifier.Private)]
+	public byte selectedAmmoTypeIndex;
+
+	[PublicizedFrom(EAccessModifier.Private)]
+	public float useTimes;
+
+	[PublicizedFrom(EAccessModifier.Private)]
+	public int meta;
+
+	[PublicizedFrom(EAccessModifier.Private)]
+	public ushort quality;
 
 	[PublicizedFrom(EAccessModifier.Private)]
 	public Dictionary<string, TypedMetadataValue> Metadata;
 
-	public ushort Quality;
+	[PublicizedFrom(EAccessModifier.Private)]
+	public ItemValue[] modifications;
 
-	public Stat[] Stats;
+	[PublicizedFrom(EAccessModifier.Private)]
+	public ItemValue[] cosmeticMods;
 
-	public ItemValue[] Modifications;
+	[PublicizedFrom(EAccessModifier.Private)]
+	public ushort seed;
 
-	public ItemValue[] CosmeticMods;
-
-	public ushort Seed;
-
-	public TextureFullArray TextureFullArray;
+	[PublicizedFrom(EAccessModifier.Private)]
+	public TextureFullArray textureFullArray;
 
 	[PublicizedFrom(EAccessModifier.Private)]
 	public const string cDurabilityMetaName = "DurabilityModifier";
@@ -81,6 +91,165 @@ public class ItemValue : IEquatable<ItemValue>
 	public const byte cFlagsStats = 2;
 
 	public static ItemValue None => new ItemValue(0);
+
+	public int type
+	{
+		get
+		{
+			return typeField;
+		}
+		set
+		{
+			if (typeField != value)
+			{
+				typeField = value;
+				NotifyChanged();
+			}
+		}
+	}
+
+	public byte Flags
+	{
+		get
+		{
+			return flags;
+		}
+		set
+		{
+			if (flags != value)
+			{
+				flags = value;
+				NotifyChanged();
+			}
+		}
+	}
+
+	public byte SelectedAmmoTypeIndex
+	{
+		get
+		{
+			return selectedAmmoTypeIndex;
+		}
+		set
+		{
+			if (selectedAmmoTypeIndex != value)
+			{
+				selectedAmmoTypeIndex = value;
+				NotifyChanged();
+			}
+		}
+	}
+
+	public float UseTimes
+	{
+		get
+		{
+			return useTimes;
+		}
+		set
+		{
+			if (useTimes != value)
+			{
+				useTimes = value;
+				NotifyChanged();
+			}
+		}
+	}
+
+	public int Meta
+	{
+		get
+		{
+			return meta;
+		}
+		set
+		{
+			if (meta != value)
+			{
+				meta = value;
+				NotifyChanged();
+			}
+		}
+	}
+
+	public ushort Quality
+	{
+		get
+		{
+			return quality;
+		}
+		set
+		{
+			if (quality != value)
+			{
+				quality = value;
+				NotifyChanged();
+			}
+		}
+	}
+
+	[field: PublicizedFrom(EAccessModifier.Private)]
+	public Stat[] Stats
+	{
+		get; [PublicizedFrom(EAccessModifier.Private)]
+		set;
+	}
+
+	public int ModificationCount
+	{
+		get
+		{
+			if (modifications == null)
+			{
+				return 0;
+			}
+			return modifications.Length;
+		}
+	}
+
+	public int CosmeticModCount
+	{
+		get
+		{
+			if (cosmeticMods == null)
+			{
+				return 0;
+			}
+			return cosmeticMods.Length;
+		}
+	}
+
+	public ushort Seed
+	{
+		get
+		{
+			return seed;
+		}
+		set
+		{
+			if (seed != value)
+			{
+				seed = value;
+				NotifyChanged();
+			}
+		}
+	}
+
+	public TextureFullArray TextureFullArray
+	{
+		get
+		{
+			return textureFullArray;
+		}
+		set
+		{
+			if (!(textureFullArray == value))
+			{
+				textureFullArray = value;
+				NotifyChanged();
+			}
+		}
+	}
 
 	public bool Activated
 	{
@@ -162,7 +331,7 @@ public class ItemValue : IEquatable<ItemValue>
 		}
 	}
 
-	public bool HasModSlots => Modifications.Length != 0;
+	public bool HasModSlots => ModificationCount > 0;
 
 	public bool IsMod
 	{
@@ -216,6 +385,53 @@ public class ItemValue : IEquatable<ItemValue>
 				return itemClass;
 			}
 			return ItemClass.MissingItem;
+		}
+	}
+
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	public ItemValue GetModification(int _index)
+	{
+		return modifications[_index];
+	}
+
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	public ItemValue GetCosmeticMod(int _index)
+	{
+		return cosmeticMods[_index];
+	}
+
+	public void SetModification(int _index, ItemValue _mod)
+	{
+		modifications[_index] = _mod;
+		NotifyChanged();
+	}
+
+	public void SetCosmeticMod(int _index, ItemValue _mod)
+	{
+		cosmeticMods[_index] = _mod;
+		NotifyChanged();
+	}
+
+	public void SetTextureFull(int _index, long _value)
+	{
+		if (textureFullArray[_index] != _value)
+		{
+			textureFullArray[_index] = _value;
+			NotifyChanged();
+		}
+	}
+
+	public void ResizeCosmeticMods(int _length)
+	{
+		if (_length == 0)
+		{
+			cosmeticMods = null;
+			NotifyChanged();
+		}
+		else
+		{
+			Array.Resize(ref cosmeticMods, _length);
+			NotifyChanged();
 		}
 	}
 
@@ -397,8 +613,6 @@ public class ItemValue : IEquatable<ItemValue>
 
 	public ItemValue()
 	{
-		Modifications = emptyItemValueArray;
-		CosmeticMods = emptyItemValueArray;
 	}
 
 	public ItemValue(int _type, bool _bCreateDefaultParts = false)
@@ -409,8 +623,6 @@ public class ItemValue : IEquatable<ItemValue>
 	public ItemValue(int _type, int minQuality, int maxQuality, bool _bCreateDefaultModItems = false, string[] modsToInstall = null, float modInstallDescendingChance = 1f)
 	{
 		type = _type;
-		Modifications = emptyItemValueArray;
-		CosmeticMods = emptyItemValueArray;
 		if (type == 0)
 		{
 			return;
@@ -449,8 +661,9 @@ public class ItemValue : IEquatable<ItemValue>
 			GameRandomManager.Instance.FreeGameRandom(gameRandom);
 			return;
 		}
-		Modifications = new ItemValue[CalcModSlotCount()];
-		CosmeticMods = new ItemValue[itemClass.HasAnyTags(ItemClassModifier.CosmeticItemTags) ? 1 : 0];
+		int num = CalcModSlotCount();
+		modifications = ((num > 0) ? new ItemValue[num] : null);
+		cosmeticMods = (itemClass.HasAnyTags(ItemClassModifier.CosmeticItemTags) ? new ItemValue[1] : null);
 		if (_bCreateDefaultModItems)
 		{
 			if (gameRandom == null)
@@ -462,18 +675,30 @@ public class ItemValue : IEquatable<ItemValue>
 		GameRandomManager.Instance.FreeGameRandom(gameRandom);
 	}
 
+	public void BindItemStack(ItemStack _owner)
+	{
+		owner = _owner;
+	}
+
+	[PublicizedFrom(EAccessModifier.Private)]
+	public void NotifyChanged()
+	{
+		owner?.OnValueChanged();
+	}
+
 	public void Clear()
 	{
-		type = 0;
-		UseTimes = 0f;
-		Quality = 0;
-		Meta = 0;
-		Seed = 0;
+		typeField = 0;
+		useTimes = 0f;
+		quality = 0;
+		meta = 0;
+		seed = 0;
+		selectedAmmoTypeIndex = 0;
 		Stats = null;
-		Modifications = new ItemValue[0];
-		CosmeticMods = new ItemValue[0];
+		modifications = null;
+		cosmeticMods = null;
 		Metadata = null;
-		SelectedAmmoTypeIndex = 0;
+		NotifyChanged();
 	}
 
 	[PublicizedFrom(EAccessModifier.Private)]
@@ -511,23 +736,23 @@ public class ItemValue : IEquatable<ItemValue>
 						flag = true;
 						if (!flag2 && !(random.RandomFloat > modInstallDescendingChance))
 						{
-							CosmeticMods[0] = new ItemValue(itemClassModifier.Id);
+							cosmeticMods[0] = new ItemValue(itemClassModifier.Id);
 							none |= itemClassModifier.ItemTags;
 							flag2 = true;
-							Log.Warning("ItemValue createDefaultModItems cosmetic {0}", CosmeticMods[0]);
+							Log.Warning("ItemValue createDefaultModItems cosmetic {0}", GetCosmeticMod(0));
 						}
 					}
-					else if (num2 < Modifications.Length && !(random.RandomFloat > num))
+					else if (num2 < ModificationCount && !(random.RandomFloat > num))
 					{
-						Modifications[num2] = new ItemValue(itemClassModifier.Id);
+						modifications[num2] = new ItemValue(itemClassModifier.Id);
 						none |= itemClassModifier.ItemTags;
 						num2++;
 						num *= 0.5f;
 					}
 				}
-				for (int j = num2; j < Modifications.Length; j++)
+				for (int j = num2; j < ModificationCount; j++)
 				{
-					Modifications[j] = None;
+					modifications[j] = None;
 				}
 			}
 		}
@@ -535,17 +760,17 @@ public class ItemValue : IEquatable<ItemValue>
 		{
 			return;
 		}
-		for (int k = 0; k < CosmeticMods.Length; k++)
+		for (int k = 0; k < CosmeticModCount; k++)
 		{
 			ItemClassModifier cosmeticItemMod = ItemClassModifier.GetCosmeticItemMod(ic.ItemTags, none, random);
 			if (cosmeticItemMod != null)
 			{
-				CosmeticMods[k] = new ItemValue(cosmeticItemMod.Id);
+				cosmeticMods[k] = new ItemValue(cosmeticItemMod.Id);
 				none |= cosmeticItemMod.ItemTags;
 			}
 			else
 			{
-				CosmeticMods[k] = None;
+				cosmeticMods[k] = None;
 			}
 		}
 	}
@@ -556,10 +781,10 @@ public class ItemValue : IEquatable<ItemValue>
 		{
 			return;
 		}
-		int seed = MinEventParams.CachedEventParam.Seed;
+		int num = MinEventParams.CachedEventParam.Seed;
 		if (_entity != null)
 		{
-			seed = _entity.MinEventContext.Seed;
+			num = _entity.MinEventContext.Seed;
 		}
 		ItemClass itemClass = ItemClass;
 		if (itemClass != null)
@@ -587,7 +812,7 @@ public class ItemValue : IEquatable<ItemValue>
 					_entity.MinEventContext.Seed = MinEventParams.CachedEventParam.Seed;
 					_entity.MinEventContext.ItemValue = this;
 				}
-				float num = _originalValue;
+				float num2 = _originalValue;
 				itemClass.Effects.ModifyValue(_entity, _passiveEffect, ref _originalValue, ref _perc_value, (int)Quality, _tags);
 				if (_useDurability)
 				{
@@ -596,22 +821,22 @@ public class ItemValue : IEquatable<ItemValue>
 					case PassiveEffects.PhysicalDamageResist:
 						if (PercentUsesLeft < 0.5f)
 						{
-							float num3 = _originalValue - num;
-							_originalValue = num + num3 * PercentUsesLeft * 2f;
+							float num4 = _originalValue - num2;
+							_originalValue = num2 + num4 * PercentUsesLeft * 2f;
 						}
 						break;
 					case PassiveEffects.ElementalDamageResist:
 						if (PercentUsesLeft < 0.5f)
 						{
-							float num4 = _originalValue - num;
-							_originalValue = num + num4 * PercentUsesLeft * 2f;
+							float num5 = _originalValue - num2;
+							_originalValue = num2 + num5 * PercentUsesLeft * 2f;
 						}
 						break;
 					case PassiveEffects.BuffResistance:
 						if (PercentUsesLeft < 0.5f)
 						{
-							float num2 = _originalValue - num;
-							_originalValue = num + num2 * PercentUsesLeft * 2f;
+							float num3 = _originalValue - num2;
+							_originalValue = num2 + num3 * PercentUsesLeft * 2f;
 						}
 						break;
 					}
@@ -629,25 +854,27 @@ public class ItemValue : IEquatable<ItemValue>
 		}
 		if (_useMods)
 		{
-			for (int i = 0; i < CosmeticMods.Length; i++)
+			for (int i = 0; i < CosmeticModCount; i++)
 			{
-				if (CosmeticMods[i] != null && CosmeticMods[i].ItemClass is ItemClassModifier)
+				ItemValue cosmeticMod = GetCosmeticMod(i);
+				if (cosmeticMod != null && cosmeticMod.ItemClass is ItemClassModifier)
 				{
-					CosmeticMods[i].ModifyValue(_entity, _originalItemValue, _passiveEffect, ref _originalValue, ref _perc_value, _tags);
+					cosmeticMod.ModifyValue(_entity, _originalItemValue, _passiveEffect, ref _originalValue, ref _perc_value, _tags);
 				}
 			}
-			for (int j = 0; j < Modifications.Length; j++)
+			for (int j = 0; j < ModificationCount; j++)
 			{
-				if (Modifications[j] != null && Modifications[j].ItemClass is ItemClassModifier)
+				ItemValue modification = GetModification(j);
+				if (modification != null && modification.ItemClass is ItemClassModifier)
 				{
-					Modifications[j].ModifyValue(_entity, _originalItemValue, _passiveEffect, ref _originalValue, ref _perc_value, _tags);
+					modification.ModifyValue(_entity, _originalItemValue, _passiveEffect, ref _originalValue, ref _perc_value, _tags);
 				}
 			}
 		}
-		MinEventParams.CachedEventParam.Seed = seed;
+		MinEventParams.CachedEventParam.Seed = num;
 		if (_entity != null)
 		{
-			_entity.MinEventContext.Seed = seed;
+			_entity.MinEventContext.Seed = num;
 		}
 	}
 
@@ -673,18 +900,20 @@ public class ItemValue : IEquatable<ItemValue>
 				itemClass.Effects.GetModifiedValueData(_modValueSources, _sourceType, _entity, _passiveEffect, ref _originalValue, ref _perc_value, (int)Quality, _tags);
 			}
 		}
-		for (int i = 0; i < CosmeticMods.Length; i++)
+		for (int i = 0; i < CosmeticModCount; i++)
 		{
-			if (CosmeticMods[i] != null && CosmeticMods[i].ItemClass is ItemClassModifier)
+			ItemValue cosmeticMod = GetCosmeticMod(i);
+			if (cosmeticMod != null && cosmeticMod.ItemClass is ItemClassModifier)
 			{
-				CosmeticMods[i].GetModifiedValueData(_modValueSources, EffectManager.ModifierValuesAndSources.ValueSourceType.CosmeticMod, _entity, _originalItemValue, _passiveEffect, ref _originalValue, ref _perc_value, _tags);
+				cosmeticMod.GetModifiedValueData(_modValueSources, EffectManager.ModifierValuesAndSources.ValueSourceType.CosmeticMod, _entity, _originalItemValue, _passiveEffect, ref _originalValue, ref _perc_value, _tags);
 			}
 		}
-		for (int j = 0; j < Modifications.Length; j++)
+		for (int j = 0; j < ModificationCount; j++)
 		{
-			if (Modifications[j] != null && Modifications[j].ItemClass is ItemClassModifier)
+			ItemValue modification = GetModification(j);
+			if (modification != null && modification.ItemClass is ItemClassModifier)
 			{
-				Modifications[j].GetModifiedValueData(_modValueSources, EffectManager.ModifierValuesAndSources.ValueSourceType.Mod, _entity, _originalItemValue, _passiveEffect, ref _originalValue, ref _perc_value, _tags);
+				modification.GetModifiedValueData(_modValueSources, EffectManager.ModifierValuesAndSources.ValueSourceType.Mod, _entity, _originalItemValue, _passiveEffect, ref _originalValue, ref _perc_value, _tags);
 			}
 		}
 	}
@@ -709,22 +938,15 @@ public class ItemValue : IEquatable<ItemValue>
 			}
 			itemClass.FireEvent(_eventType, _eventParms);
 		}
-		if (!HasQuality)
+		if (HasQuality)
 		{
-			return;
-		}
-		for (int i = 0; i < Modifications.Length; i++)
-		{
-			if (Modifications[i] != null)
+			for (int i = 0; i < ModificationCount; i++)
 			{
-				Modifications[i].FireEvent(_eventType, _eventParms);
+				GetModification(i)?.FireEvent(_eventType, _eventParms);
 			}
-		}
-		for (int j = 0; j < CosmeticMods.Length; j++)
-		{
-			if (CosmeticMods[j] != null)
+			for (int j = 0; j < CosmeticModCount; j++)
 			{
-				CosmeticMods[j].FireEvent(_eventType, _eventParms);
+				GetCosmeticMod(j)?.FireEvent(_eventType, _eventParms);
 			}
 		}
 	}
@@ -741,7 +963,7 @@ public class ItemValue : IEquatable<ItemValue>
 			itemValue.Stats = new Stat[Stats.Length];
 			Array.Copy(Stats, itemValue.Stats, Stats.Length);
 		}
-		CloneModsTo(itemValue);
+		itemValue.modifications = modifications.CloneItemValueArray();
 		if (Metadata != null)
 		{
 			itemValue.Metadata = new Dictionary<string, TypedMetadataValue>();
@@ -750,7 +972,7 @@ public class ItemValue : IEquatable<ItemValue>
 				itemValue.Metadata.Add(metadatum.Key, metadatum.Value?.Clone());
 			}
 		}
-		CloneCosmeticModsTo(itemValue);
+		itemValue.cosmeticMods = cosmeticMods.CloneItemValueArray();
 		itemValue.Flags = Flags;
 		if (itemValue.type == 0)
 		{
@@ -759,28 +981,6 @@ public class ItemValue : IEquatable<ItemValue>
 		itemValue.Seed = Seed;
 		itemValue.TextureFullArray = TextureFullArray;
 		return itemValue;
-	}
-
-	[PublicizedFrom(EAccessModifier.Private)]
-	public void CloneModsTo(ItemValue _iv)
-	{
-		int num = Modifications.Length;
-		_iv.Modifications = new ItemValue[num];
-		for (int i = 0; i < num; i++)
-		{
-			_iv.Modifications[i] = Modifications[i]?.Clone();
-		}
-	}
-
-	[PublicizedFrom(EAccessModifier.Private)]
-	public void CloneCosmeticModsTo(ItemValue _iv)
-	{
-		int num = CosmeticMods.Length;
-		_iv.CosmeticMods = new ItemValue[num];
-		for (int i = 0; i < num; i++)
-		{
-			_iv.CosmeticMods[i] = CosmeticMods[i]?.Clone();
-		}
 	}
 
 	public bool IsEmpty()
@@ -846,14 +1046,21 @@ public class ItemValue : IEquatable<ItemValue>
 		MergeBestStats(_iv);
 		if (_iv.HasMods())
 		{
-			_iv.CloneModsTo(this);
+			modifications = _iv.modifications.CloneItemValueArray();
 		}
 		if (_iv.HasCosmetics())
 		{
-			_iv.CloneCosmeticModsTo(this);
+			cosmeticMods = _iv.cosmeticMods.CloneItemValueArray();
 		}
-		int newSize = CalcModSlotCount();
-		Array.Resize(ref Modifications, newSize);
+		int num5 = CalcModSlotCount();
+		if (num5 == 0)
+		{
+			modifications = null;
+		}
+		else
+		{
+			Array.Resize(ref modifications, num5);
+		}
 	}
 
 	public void InitStats(int _count)
@@ -1003,11 +1210,11 @@ public class ItemValue : IEquatable<ItemValue>
 		}
 	}
 
-	public void ReadOld(BinaryReader _br)
+	public void ReadOld(PooledBinaryReader _br)
 	{
 	}
 
-	public static ItemValue ReadOrNull(BinaryReader _br)
+	public static ItemValue ReadOrNull(PooledBinaryReader _br)
 	{
 		byte b = _br.ReadByte();
 		if (b == 0)
@@ -1019,7 +1226,7 @@ public class ItemValue : IEquatable<ItemValue>
 		return itemValue;
 	}
 
-	public void Read(BinaryReader _br)
+	public void Read(PooledBinaryReader _br)
 	{
 		byte b = _br.ReadByte();
 		if (b == 0)
@@ -1033,7 +1240,7 @@ public class ItemValue : IEquatable<ItemValue>
 	}
 
 	[PublicizedFrom(EAccessModifier.Private)]
-	public void ReadData(BinaryReader _br, int version)
+	public void ReadData(PooledBinaryReader _br, int version)
 	{
 		int num = 0;
 		if (version >= 8)
@@ -1094,36 +1301,36 @@ public class ItemValue : IEquatable<ItemValue>
 		if ((version > 4 || HasQuality) && !(itemClass is ItemClassModifier))
 		{
 			byte b = _br.ReadByte();
-			Modifications = new ItemValue[b];
+			modifications = ((b > 0) ? new ItemValue[b] : null);
 			if (b != 0)
 			{
 				for (int k = 0; k < b; k++)
 				{
 					if (_br.ReadBoolean())
 					{
-						Modifications[k] = new ItemValue();
-						Modifications[k].Read(_br);
+						modifications[k] = new ItemValue();
+						modifications[k].Read(_br);
 					}
 					else
 					{
-						Modifications[k] = None;
+						modifications[k] = None;
 					}
 				}
 			}
 			b = _br.ReadByte();
-			CosmeticMods = new ItemValue[b];
+			cosmeticMods = ((b > 0) ? new ItemValue[b] : null);
 			if (b != 0)
 			{
 				for (int l = 0; l < b; l++)
 				{
 					if (_br.ReadBoolean())
 					{
-						CosmeticMods[l] = new ItemValue();
-						CosmeticMods[l].Read(_br);
+						cosmeticMods[l] = new ItemValue();
+						cosmeticMods[l].Read(_br);
 					}
 					else
 					{
-						CosmeticMods[l] = None;
+						cosmeticMods[l] = None;
 					}
 				}
 			}
@@ -1162,7 +1369,7 @@ public class ItemValue : IEquatable<ItemValue>
 		}
 	}
 
-	public static void Write(ItemValue _iv, BinaryWriter _bw)
+	public static void Write(ItemValue _iv, PooledBinaryWriter _bw)
 	{
 		if (_iv == null)
 		{
@@ -1174,7 +1381,7 @@ public class ItemValue : IEquatable<ItemValue>
 		}
 	}
 
-	public void Write(BinaryWriter _bw)
+	public void Write(PooledBinaryWriter _bw)
 	{
 		if (IsEmpty())
 		{
@@ -1227,24 +1434,26 @@ public class ItemValue : IEquatable<ItemValue>
 		}
 		if (!(ItemClass is ItemClassModifier))
 		{
-			_bw.Write((byte)Modifications.Length);
-			for (int j = 0; j < Modifications.Length; j++)
+			_bw.Write((byte)ModificationCount);
+			for (int j = 0; j < ModificationCount; j++)
 			{
-				bool flag = Modifications[j] != null && !Modifications[j].IsEmpty();
+				ItemValue modification = GetModification(j);
+				bool flag = modification != null && !modification.IsEmpty();
 				_bw.Write(flag);
 				if (flag)
 				{
-					Modifications[j].Write(_bw);
+					modification.Write(_bw);
 				}
 			}
-			_bw.Write((byte)CosmeticMods.Length);
-			for (int k = 0; k < CosmeticMods.Length; k++)
+			_bw.Write((byte)CosmeticModCount);
+			for (int k = 0; k < CosmeticModCount; k++)
 			{
-				bool flag2 = CosmeticMods[k] != null && !CosmeticMods[k].IsEmpty();
+				ItemValue cosmeticMod = GetCosmeticMod(k);
+				bool flag2 = cosmeticMod != null && !cosmeticMod.IsEmpty();
 				_bw.Write(flag2);
 				if (flag2)
 				{
-					CosmeticMods[k].Write(_bw);
+					cosmeticMod.Write(_bw);
 				}
 			}
 		}
@@ -1257,11 +1466,11 @@ public class ItemValue : IEquatable<ItemValue>
 		_bw.Write(Seed);
 		if (TextureFullArray.IsDefault)
 		{
-			_bw.Write(value: false);
+			_bw.Write(_value: false);
 		}
 		else
 		{
-			_bw.Write(value: true);
+			_bw.Write(_value: true);
 			TextureFullArray.Write(_bw);
 		}
 		ItemClass itemClass = ItemClass.list[type];
@@ -1284,9 +1493,9 @@ public class ItemValue : IEquatable<ItemValue>
 		{
 			return false;
 		}
-		if (_other.type == type && _other.UseTimes == UseTimes && _other.Meta == Meta && _other.Seed == Seed && _other.Quality == Quality && _other.SelectedAmmoTypeIndex == SelectedAmmoTypeIndex && _other.Activated == Activated && Equals(_other.Metadata, Metadata) && Equals(_other.Stats, Stats) && Equals(_other.CosmeticMods, CosmeticMods))
+		if (_other.type == type && _other.UseTimes == UseTimes && _other.Meta == Meta && _other.Seed == Seed && _other.Quality == Quality && _other.SelectedAmmoTypeIndex == SelectedAmmoTypeIndex && _other.Activated == Activated && Equals(_other.Metadata, Metadata) && Equals(_other.Stats, Stats) && Equals(_other.cosmeticMods, cosmeticMods))
 		{
-			return Equals(_other.Modifications, Modifications);
+			return Equals(_other.modifications, modifications);
 		}
 		return false;
 	}
@@ -1300,16 +1509,15 @@ public class ItemValue : IEquatable<ItemValue>
 		return Equals((ItemValue)_other);
 	}
 
-	public bool EqualsExceptUseTimesAndAmmo(ItemValue _other)
+	public bool EqualsExceptUseTimesAndMeta(ItemValue _other)
 	{
 		if (_other == null)
 		{
 			return false;
 		}
-		bool flag = ItemClass != null && ItemClass.Actions != null && ItemClass.Actions.Length != 0 && ItemClass.Actions[0] is ItemActionRanged;
-		if (_other.type == type && (flag || _other.Meta == Meta) && _other.Seed == Seed && _other.Quality == Quality && _other.SelectedAmmoTypeIndex == SelectedAmmoTypeIndex && _other.Activated == Activated && Equals(_other.Metadata, Metadata) && Equals(_other.Stats, Stats) && Equals(_other.CosmeticMods, CosmeticMods))
+		if (_other.type == type && _other.Seed == Seed && _other.Quality == Quality && _other.SelectedAmmoTypeIndex == SelectedAmmoTypeIndex && _other.Activated == Activated && Equals(_other.Metadata, Metadata) && Equals(_other.Stats, Stats) && Equals(_other.cosmeticMods, cosmeticMods))
 		{
-			return Equals(_other.Modifications, Modifications);
+			return Equals(_other.modifications, modifications);
 		}
 		return false;
 	}
@@ -1451,25 +1659,25 @@ public class ItemValue : IEquatable<ItemValue>
 
 	public string GetPropertyOverride(string _propertyName, string _originalValue)
 	{
-		if (Modifications.Length == 0 && CosmeticMods.Length == 0)
+		if (ModificationCount == 0 && CosmeticModCount == 0)
 		{
 			return _originalValue;
 		}
 		string _value = "";
 		string itemName = ItemClass.GetItemName();
-		for (int i = 0; i < Modifications.Length; i++)
+		for (int i = 0; i < ModificationCount; i++)
 		{
-			ItemValue itemValue = Modifications[i];
-			if (itemValue != null && itemValue.ItemClass is ItemClassModifier itemClassModifier && itemClassModifier.GetPropertyOverride(_propertyName, itemName, ref _value))
+			ItemValue modification = GetModification(i);
+			if (modification != null && modification.ItemClass is ItemClassModifier itemClassModifier && itemClassModifier.GetPropertyOverride(_propertyName, itemName, ref _value))
 			{
 				return _value;
 			}
 		}
 		_value = "";
-		for (int j = 0; j < CosmeticMods.Length; j++)
+		for (int j = 0; j < CosmeticModCount; j++)
 		{
-			ItemValue itemValue2 = CosmeticMods[j];
-			if (itemValue2 != null && itemValue2.ItemClass is ItemClassModifier itemClassModifier2 && itemClassModifier2.GetPropertyOverride(_propertyName, itemName, ref _value))
+			ItemValue cosmeticMod = GetCosmeticMod(j);
+			if (cosmeticMod != null && cosmeticMod.ItemClass is ItemClassModifier itemClassModifier2 && itemClassModifier2.GetPropertyOverride(_propertyName, itemName, ref _value))
 			{
 				return _value;
 			}
@@ -1479,15 +1687,12 @@ public class ItemValue : IEquatable<ItemValue>
 
 	public bool HasCosmetics()
 	{
-		if (CosmeticMods != null)
+		for (int i = 0; i < CosmeticModCount; i++)
 		{
-			for (int i = 0; i < CosmeticMods.Length; i++)
+			ItemValue cosmeticMod = GetCosmeticMod(i);
+			if (cosmeticMod != null && !cosmeticMod.IsEmpty())
 			{
-				ItemValue itemValue = CosmeticMods[i];
-				if (itemValue != null && !itemValue.IsEmpty())
-				{
-					return true;
-				}
+				return true;
 			}
 		}
 		return false;
@@ -1495,15 +1700,12 @@ public class ItemValue : IEquatable<ItemValue>
 
 	public bool HasMods()
 	{
-		if (Modifications != null)
+		for (int i = 0; i < ModificationCount; i++)
 		{
-			for (int i = 0; i < Modifications.Length; i++)
+			ItemValue modification = GetModification(i);
+			if (modification != null && !modification.IsEmpty())
 			{
-				ItemValue itemValue = Modifications[i];
-				if (itemValue != null && !itemValue.IsEmpty())
-				{
-					return true;
-				}
+				return true;
 			}
 		}
 		return false;

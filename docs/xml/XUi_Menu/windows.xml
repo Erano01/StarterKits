@@ -2388,14 +2388,6 @@
 	</window>
 
 	<window name="spawnselection" depth="250" pos="-250,50" width="500" height="100" anchor="Center" controller="SpawnSelectionWindow" spawn_sound="@:Sounds/UI/ui_spawn.wav" cursor_area="true">
-		<rect visible="{progressVisible}" >
-			<boxshadow depth="-1" />
-
-			<rect depth="10">
-				<label name="lblProgress" pos="250,-50" width="480" height="80" font_size="32" justify="center" pivot="center" use_ellipsis_animator="true" />
-			</rect>
-		</rect>
-
 		<rect name="buttons" visible="{buttonsVisible}" pos="0,130" >
 			<rect name="header" pos="0,0" height="43" depth="2" on_press="true">
 				<headerbg />

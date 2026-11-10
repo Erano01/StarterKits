@@ -1702,6 +1702,12 @@
 	<item group="groupAllArmor" loot_prob_template="ProbT0Delayed" force_prob="true"/>
 </lootgroup>
 
+<lootgroup name="groupPlayerBackpacks" loot_quality_template="armorQualityTemplate" abundance_type="Armor">
+	<item name="backpackSmall" count="1" loot_prob_template="ProbT1"/>
+	<item name="backpackMedium" count="1" loot_prob_template="ProbT2"/>
+	<item name="backpackLarge" count="1" loot_prob_template="ProbT3"/>
+</lootgroup>
+
 <lootgroup name="groupAmmoRocket">
 	<item name="ammoRocketHE" count="1"/>
 	<item name="ammoRocketFrag" count="1"/>
@@ -2641,6 +2647,7 @@
 	
 	<!-- Savage_Country_AND_Trader_Joel_Magazines -->
 	<item name="armorSkillMagazine"/>
+	<item name="backpackSkillMagazine"/>
 	
 	<!-- Pop-N-Pills_AND_Trader_Jen_Magazines -->
 	<item name="medicalSkillMagazine"/>
@@ -2674,6 +2681,7 @@
 	<item name="machineGunsSkillMagazine" count="2"/>
 	<item name="explosivesSkillMagazine" count="2"/>
 	<item name="armorSkillMagazine" count="2"/>
+	<item name="backpackSkillMagazine" count="2"/>
 	<item name="roboticsSkillMagazine" count="2"/>
 
 	<item name="workstationSkillMagazine" count="2"/>
@@ -2706,6 +2714,7 @@
 	<item name="machineGunsSkillMagazine" count="2"/>
 	<item name="explosivesSkillMagazine" count="2"/>
 	<item name="armorSkillMagazine" count="2"/>
+	<item name="backpackSkillMagazine" count="2"/>
 	<item name="roboticsSkillMagazine" count="2"/>
 
 	<item name="workstationSkillMagazine" count="2"/>
@@ -6463,6 +6472,7 @@
 <!-- *** Savage_Country_Crate -->
 <lootgroup name="groupSavageCountryMagazines" abundance_type="Magazines">
 	<item name="armorSkillMagazine"/>
+	<item name="backpackSkillMagazine"/>
 	<item name="bowsSkillMagazine"/>
 	<item name="spearsSkillMagazine"/>
 	<item name="bladesSkillMagazine"/>
@@ -6514,6 +6524,7 @@
 
 <lootgroup name="groupSavageCountryCrate01">
 	<item name="armorSkillMagazine" loot_prob_template="high"/>
+	<item name="backpackSkillMagazine" loot_prob_template="high"/>
 	<item name="bowsSkillMagazine" loot_prob_template="high"/>
 	<item name="spearsSkillMagazine" loot_prob_template="high"/>
 	<item name="bladesSkillMagazine" loot_prob_template="high"/>
@@ -6525,11 +6536,12 @@
 </lootgroup>
 
 <lootgroup name="groupSavageCountryCrate02">
+	<item name="resourceCloth" count="3,5" loot_prob_template="high"/>
 	<item group="groupSavageCountryBooks" loot_prob_template="medLow" tags="rangersProb,spearHunterProb,huntingProb,batterUpProb"/>
 	<item group="groupSavageCountryMagazines" loot_prob_template="medLow" tags="armorLightSkill,armorMediumSkill,armorHeavySkill,bowSkill,spearSkill,bladeSkill,clubSkill"/>
-	<item name="resourceSewingKit" count="1,2" loot_prob_template="low"/>
-	<item name="resourceCloth" count="3,5" loot_prob_template="high"/>
+	<item group="groupPlayerBackpacks" loot_prob_template="med" tags="armorLightSkill,armorMediumSkill,armorHeavySkill"/>
 	<item group="groupMedicalCommon" loot_prob_template="med" tags="medicalSkill"/>
+	<item name="resourceSewingKit" count="1,2" loot_prob_template="low"/>
 </lootgroup>
 
 <lootgroup name="groupSavageCountryCrate03">
@@ -6740,6 +6752,7 @@
 	<item name="explosivesSkillMagazine"/>
 	<item name="vehiclesSkillMagazine"/>
 	<item name="armorSkillMagazine"/>
+	<item name="backpackSkillMagazine"/>
 	<item group="groupUrbanCombatBooks" loot_prob_template="low" tags="urbanProb"/>
 	<item group="groupPistolBooks" loot_prob_template="low" tags="pistolPeteProb"/>
 	<item group="groupEnforcerBooks" loot_prob_template="low" tags="enforcerProb"/>
@@ -6784,6 +6797,7 @@
 	<item name="explosivesSkillMagazine"/>
 	<item name="vehiclesSkillMagazine"/>
 	<item name="armorSkillMagazine"/>
+	<item name="backpackSkillMagazine"/>
 	<item group="groupBatterUpBooks" loot_prob_template="low" tags="batterUpProb"/>
 	<item group="groupBarBrawlingBooks" loot_prob_template="low" tags="barBrawlingProb"/>
 	<item group="groupLuckyLooterBooks" loot_prob_template="low" tags="luckyProb"/>
@@ -9486,7 +9500,7 @@
 </lootcontainer>
 
 <!-- PLAYER dropped backpacks, they only destroy on close when they are empty -->
-<lootcontainer name="playerBackpack" count="0" size="7,10" destroy_on_close="empty" sound_open="UseActions/open_backpack" sound_close="UseActions/close_backpack" open_time="1" loot_quality_template="qualBaseTemplate">
+<lootcontainer name="playerBackpack" count="0" size="8,15" destroy_on_close="empty" sound_open="UseActions/open_backpack" sound_close="UseActions/close_backpack" open_time="1" loot_quality_template="qualBaseTemplate">
 	<item name="cobweb" count="0"/>
 </lootcontainer>
 
@@ -9521,7 +9535,7 @@
 </lootcontainer>
 
 <!-- "bag" container that gets dropped when another loot container is destroyed -->
-<lootcontainer name="cntDropBag" count="0" size="9,10" sound_open="UseActions/open_backpack" sound_close="UseActions/close_backpack" open_time="1" loot_quality_template="qualBaseTemplate">
+<lootcontainer name="cntDropBag" count="0" size="8,15" sound_open="UseActions/open_backpack" sound_close="UseActions/close_backpack" open_time="1" loot_quality_template="qualBaseTemplate">
 	<item name="cobweb" count="0"/>
 </lootcontainer>
 

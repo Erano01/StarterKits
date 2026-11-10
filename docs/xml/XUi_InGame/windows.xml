@@ -331,13 +331,13 @@
 		</rect>
 	</window>
 
-	<window name="windowLooting" width="{windowWidth}" height="378" controller="LootWindow" panel="Left" cursor_area="true" >
-		<rect name="header" height="43" depth="0" anchor_left="queue,0,-3" anchor_right="queue,1,0" >
-			<sprite depth="1" name="headerbackground" sprite="ui_game_panel_header" anchor_left="queue,0,-3" anchor_right="queue,1,0" />
+	<window name="windowLooting" width="{% v2i_x(gridDimensions) * 75 + 16 }" height="378" controller="LootWindow" panel="Left" cursor_area="true" >
+		<rect name="header" height="43" depth="0" anchor_left="queue,0,-3" anchor_right="scrollbarborder,1,0" >
+			<sprite depth="1" name="headerbackground" sprite="ui_game_panel_header" anchor_left="queue,0,-3" anchor_right="scrollbarborder,1,0" />
 			<sprite depth="3" name="windowIcon" style="icon32px" pivot="center" pos="21,-21" sprite="ui_game_symbol_loot_sack" />
-			<label depth="2" name="lootName" pos="39,-6" width="172" height="32" text="{lootcontainer_name}" font_size="32" pivot="left" anchor_left="queue,0,39" anchor_right="queue,1,-170" anchor_bottom="header,0,2" anchor_top="header,1,-2" />
+			<label depth="2" name="lootName" pos="39,-6" width="172" height="32" text="{lootcontainer_name}" font_size="32" pivot="left" anchor_left="queue,0,39" anchor_right="scrollbarborder,1,-170" anchor_bottom="header,0,2" anchor_top="header,1,-2" />
 			
-			<rect anchor_left="queue,1,-300" anchor_right="queue,1,0" pos="0,0" controller="ContainerStandardControls" visible="{buttons_visible}">
+			<rect anchor_left="scrollbarborder,1,-300" anchor_right="scrollbarborder,1,0" pos="0,0" controller="ContainerStandardControls" visible="{buttons_visible}">
 				<button   depth="3" name="btnToggleLockMode"          sprite="ui_game_symbol_lock"     tooltip_key="xuiStashLockModeToggle"             pos="154, -22" style="icon32px, press, hover" pivot="center" sound="[paging_click]" selected="{userlockmode}" visible="{hasslotlocks}" />
 
 				<button   depth="3" name="btnSort"             sprite="ui_game_symbol_sort"          tooltip_key="lblSortContainer"        pos="194, -22" style="icon32px, press, hover" pivot="center" sound="[paging_click]" />
@@ -353,11 +353,13 @@
 -->
 			</rect>
 		</rect>
-		<rect name="content" pos="3,-49" >
-			<sprite depth="0" name="bg" color="255,255,255,1" type="sliced" sprite="menu_empty" anchor_left="queue,0,-3" anchor_bottom="queue,0,0" anchor_right="queue,1,0" anchor_top="queue,1,49" />
-			<grid depth="12" name="queue" rows="10" cols="9" cell_width="75" cell_height="75" repeat_content="true" controller="LootContainer">
-				<item_stack name="0"/>
-			</grid>
+		<rect name="content" height="753" pos="3,-49" >
+			<defaultscrollbar pos="{% v2i(v2i_x(gridDimensions) * 75 + 3, 0)}" barheight="{% Min( v2i_y(gridDimensions) * 75 + 3, ${parentinnerheight} ) }" thumbheight="{% Min( v2i_y(gridDimensions) * 75 + 3 - 8, ${parentinnerheight-8} ) }" thumb_color_hover="[hoverColor]" thumb_color_active="[white]" thumb_color_inactive="[darkGrey]" border_color_active="[black]" border_color_inactive="[black]" background_color_active="[mediumGrey]" background_color_inactive="[mediumGrey]" />
+			<scrollview width="{% v2i_x(gridDimensions) * 75 + 3 }" showcondition="always" maxboundsdepth="3">
+				<grid pos="3,0" depth="12" name="queue" rows="10" cols="9" cell_width="75" cell_height="75" repeat_content="true" controller="LootContainer">
+					<item_stack name="0" />
+				</grid>
+			</scrollview>
 		</rect>
 	</window>
 
@@ -884,7 +886,7 @@
 
 	<popupMenu name="popupMenu" />
 	
-	<window name="windowBackpack" width="606" height="349" panel="Center" controller="BackpackWindow" cursor_area="true" >
+	<window name="windowBackpack" width="603" height="349" panel="Center" controller="BackpackWindow" cursor_area="true" >
 		<rect name="header" height="43" depth="1">
 			<headerbg />
 			<sprite depth="3" name="windowIcon" style="icon32px" pivot="center" pos="21,-21" sprite="ui_game_symbol_backpack" />
@@ -915,12 +917,16 @@
 			<sprite depth="4" name="costIcon" sprite="ui_game_symbol_coin" size="24,24" pos="577,-10" color="[white]" foregroundlayer="true" />
 		</rect>
 
-		<rect name="content" height="303" depth="0" pos="0,-46">
-				<!-- <sprite name="background" color="[black]" type="sliced"/> -->
-				<sprite depth="8" name="backgroundMain" sprite="menu_empty3px" pos="0,0" width="606" height="336" color="[black]" type="sliced" fillcenter="false" on_press="true" snap="false" gamepad_selectable="false"/>
-				<grid depth="10" name="inventory" rows="5" cols="9" pos="3,-3" cell_width="67" cell_height="67" controller="Backpack" repeat_content="true" >
-					<item_stack name="0" cell_size="67"/>
+		<rect name="content" height="{% is_prefab_editor ? 292 : 365 }" depth="0" pos="0,-46" on_scroll="true">
+			<sprite depth="20" name="sprBorder"     pivot="topleft" type="sliced" fillcenter="false" sprite="menu_empty3px" color="[black]" globalopacitymod="0" ignoreparentpadding="true" />
+			<sprite depth="0" name="sprBackground" pivot="topleft" type="sliced" fillcenter="true"  sprite="menu_empty"   color="[darkGrey]"   globalopacitymod="0" ignoreparentpadding="true" />
+		
+			<defaultscrollbar thumb_color_hover="[hoverColor]" thumb_color_active="[white]" thumb_color_inactive="[darkGrey]" border_color_active="[black]" border_color_inactive="[black]" background_color_active="[mediumGrey]" background_color_inactive="[mediumGrey]" /> />
+			<scrollview pos="3,-3" width="${parentinnerwidth-16}" height="${parentinnerheight-6}" depth="2" showcondition="always" resetpositiononopen="false" maxboundsdepth="3">
+				<grid depth="1" name="inventory" rows="12" cols="8" cell_width="73" cell_height="73" controller="Backpack" repeat_content="true" >
+					<item_stack name="0" cell_size="73"/>
 				</grid>
+			</scrollview>
 		</rect>
 	</window>
 
@@ -1156,14 +1162,34 @@
 			<sprite depth="8" name="backgroundMain" sprite="menu_empty3px" color="[black]" type="sliced" fillcenter="false" on_press="true" snap="false" gamepad_selectable="false"/>
 			
 			<rect pos="3,-3" controller="Toolbelt">
-				<grid depth="10" name="inventory" rows="1" cols="10" pos="0,0" cell_width="75" cell_height="75" repeat_content="true">
-					<item_stack name="0"/>
-				</grid>
-				<button depth="3" name="btnClearInventory1" sprite="ui_game_symbol_trash" tooltip_key="lblClearInventory" pos="800, -32" style="icon32px, press, hover" pivot="center" sound="[paging_click]" visible="{creativewindowopen}" />
-				<grid depth="10" name="inventory2" rows="1" cols="10" pos="0,82" cell_width="75" cell_height="75" repeat_content="true" visible="{secondrow}">
-					<item_stack name="0"/>
-				</grid>
-				<button depth="3" name="btnClearInventory2" sprite="ui_game_symbol_trash" tooltip_key="lblClearInventory" pos="800, 50" style="icon32px, press, hover" pivot="center" sound="[paging_click]" visible="{# creativewindowopen and secondrow}" />
+				<rect name="toolbeltPager" pos="{%'375, ' + (beltCount * 82 - 60)}" width="160" height="36" pivot="center" visible="{showpager}">
+					<button depth="3" name="btnToolbeltPrev"
+							pos="-60, 0" pivot="center"
+							sprite="ui_game_symbol_arrow_left"
+							style="icon32px, press, hover"
+							sound="[paging_click]"
+							tooltip_key="lblToolbeltPrev" />
+
+					<label depth="3" name="toolbeltPageLabel"
+							pos="0, 0" width="40" height="30"
+							pivot="center" justify="center"
+							text="{toolbeltpage}" font_size="22" />
+
+					<button depth="3" name="btnToolbeltNext"
+							pos="60, 0" pivot="center"
+							sprite="ui_game_symbol_arrow_right"
+							style="icon32px, press, hover"
+							sound="[paging_click]"
+							tooltip_key="lblToolbeltNext" />
+				</rect>
+				<rect name="bars" repeat_content="true" repeat_count="{%beltCount}">
+					<rect name="bar${repeat_i}" pos="0, ${repeat_i * 82}">
+						<button depth="3" name="btnClearInventory${repeat_i}" sprite="ui_game_symbol_trash" tooltip_key="lblClearInventory" pos="800,-32" style="icon32px, press, hover" pivot="center" sound="[paging_click]" visible="{creativewindowopen}" />
+						<grid depth="10" name="inventory${repeat_i}" rows="1" cols="{%beltslots}" pos="0,0" cell_width="75" cell_height="75" repeat_content="true">
+							<item_stack name="0"/>
+						</grid>
+					</rect>
+				</rect>				
 			</rect>
 
 			<sprite depth="1" pos="0,8" height="10" color="[mediumGrey]" sprite="menu_empty2px" globalopacitymod="0" type="sliced" visible="{showxp}" />
@@ -1187,17 +1213,17 @@
 		</rect>
 	</window>
 
-	<window name="CharacterFrameWindow" width="327" height="704" panel="Left" controller="CharacterFrameWindow" defaultcolor="[white]" hoveredcolor="[selectedColor]" cursor_area="true" >
+	<window name="CharacterFrameWindow" width="340" height="704" panel="Left" controller="CharacterFrameWindow" defaultcolor="[white]" hoveredcolor="[selectedColor]" cursor_area="true" >
 		<rect name="header" height="43" depth="1">
 			<headerbg />
 			<sprite depth="2" name="windowIcon" style="icon32px" pos="5,-5" sprite="ui_game_symbol_character"/>
-			<label depth="2" name="characterName" pos="42,-6" width="150" height="32" text="" font_size="32" />
-			<sprite depth="2" name="windowIcon" width="26" height="26" pos="200,-8" sprite="ui_game_symbol_trophy" foregroundlayer="true" globalopacitymod="0" />
-			<label depth="2" name="levelNumber" pos="240,-10" width="80" height="28" text="" />
+			<label depth="2" name="characterName" pos="42,-6" width="${parentinnerwidth-183}" height="32" text="" font_size="32" />
+			<sprite depth="2" name="windowIcon" width="26" height="26" pos="${parentinnerwidth-133},-9" sprite="ui_game_symbol_trophy" foregroundlayer="true" globalopacitymod="0" />
+			<label depth="2" name="levelNumber" pos="${parentinnerwidth-98},-10" width="90" height="28" text="" />
 		</rect>
 
 
-		<rect name="tabs" controller="TabSelector" pos="0,-46" width="327" height="704" select_tab_contents_on_open="true" use_page_buttons="true">
+		<rect name="tabs" controller="TabSelector" pos="0,-46" select_tab_contents_on_open="true" use_page_buttons="true">
 			<rect name="tabsHeader" height="43" depth="0">
 				<boxbg backcolor="[mediumGrey]" />
 				
@@ -1211,63 +1237,74 @@
 					<rect controller="TabSelectorButton" pos="102,0">
 						<button depth="2" pos="0,0" style="icon30px, press" sprite="{tab_sprite}" pivot="center" tooltip="{tab_name_localized}" sound="[paging_click]" selected="{tab_selected}" snap="false" gamepad_selectable="false" visible="{gear_visible}" />
 					</rect>
-					
-					<rect controller="TabSelectorButton" pos="162,0">
+					<rect controller="TabSelectorButton" pos="142,0">
 						<button depth="2" pos="0,0" style="icon30px, press" sprite="{tab_sprite}" pivot="center" tooltip="{tab_name_localized}" sound="[paging_click]" selected="{tab_selected}" snap="false" gamepad_selectable="false" />
 					</rect>
-					<rect controller="TabSelectorButton" pos="202,0">
+					
+					<rect controller="TabSelectorButton" pos="${parentinnerwidth-145},0">
+						<button depth="2" pos="0,0" style="icon30px, press" sprite="{tab_sprite}" pivot="center" tooltip="{tab_name_localized}" sound="[paging_click]" selected="{tab_selected}" snap="false" gamepad_selectable="false" />
+					</rect>
+					<rect controller="TabSelectorButton" pos="${parentinnerwidth-105},0">
 						<button depth="2" pos="0,0" style="icon30px, press" sprite="{tab_sprite}" pivot="center" tooltip="{tab_name_localized}" sound="[paging_click]" selected="{tab_selected}" snap="false" gamepad_selectable="false" />
 					</rect>
 
-					<button depth="4" name="coreStatsMovementModeToggle" style="icon30px, press" pos="242,0" pivot="center" sound="[paging_click]" controller="SimpleButton"
+					<button depth="4" name="coreStatsMovementModeToggle" style="icon30px, press" pos="${parentinnerwidth-65},0" pivot="center" sound="[paging_click]" controller="SimpleButton"
 							sprite="{# movementmode=='Idle' ? 'ui_game_symbol_player' : (movementmode=='Walking' ? 'server_z_never_run' : 'server_z_always_run' ) }"
 							tooltip_key="{# movementmode=='Idle' ? 'lblCharacterStatsMovementIdle' : (movementmode=='Walking' ? 'lblCharacterStatsMovementWalking' : 'lblCharacterStatsMovementRunning' ) }"
 							visible="{# selected_tab == 'stats2'}" />
 
-					<rect name="btnCosmetics" depth="24" pos="327,0" width="43" height="43" controller="SimpleButton">
-						<sprite depth="2" name="border" sprite="menu_empty3px" color="[black]" type="sliced" fillcenter="false" foregroundlayer="true" pivot="right" />	
-						<button depth="1" name="clickable" sprite="menu_empty" defaultcolor="[mediumGrey]" disabledcolor="[darkGrey]" hoversprite="ui_game_select_row" hovercolor="[white]" foregroundlayer="true" type="sliced" hoverscale="1.0" pivot="right" tooltip_key="xuiCosmetics" sound_play_on_hover="[default_hover]" sound="[paging_click]" /> 
-						<sprite depth="3" name="btnLabel" style="icon30px" pos="-7,0" sprite="ui_game_symbol_wardrobe" pivot="right" color="[white]"  />
+					<rect name="btnCosmetics" depth="24" pos="${parentinnerwidth},22" width="43" height="43" controller="SimpleButton">
+						<sprite depth="2" name="border" sprite="menu_empty3px" color="[black]" type="sliced" fillcenter="false" foregroundlayer="true" pivot="TopRight" />	
+						<button depth="1" name="clickable" sprite="menu_empty" defaultcolor="[mediumGrey]" disabledcolor="[darkGrey]" hoversprite="ui_game_select_row" hovercolor="[white]" foregroundlayer="true" type="sliced" hoverscale="1.0" pivot="TopRight" tooltip_key="xuiCosmetics" sound_play_on_hover="[default_hover]" sound="[paging_click]" /> 
+						<sprite depth="3" name="btnLabel" style="icon30px" pos="-21,-21" sprite="ui_game_symbol_wardrobe" pivot="center" color="[white]"  />
 					</rect>
 				</rect>
 			</rect>
 
-			<rect name="tabsContents" depth="8" pos="0,-41" height="561">
+			<rect name="tabsContents" depth="8" pos="0,-41" height="561" controller="EquipmentStackGrid">
 				<rect controller="TabSelectorTab" tab_key="armor" tab_caption_key="lblCategoryArmor" tab_sprite="ui_game_symbol_armor_iron">
-					<rect name="equipment" height="70">
-						<grid name="inventory" rows="1" cols="4" cell_width="81" cell_height="70" controller="EquipmentStackGrid">
-							<equipment_stack_sdcs slot="Head" empty_sprite="armorRogueHelmet" empty_tooltip="lblHeadgear" />
-							<equipment_stack_sdcs slot="Chest" empty_sprite="armorRogueOutfit" empty_tooltip="lblChestArmor" />
-							<equipment_stack_sdcs slot="Hands" empty_sprite="armorRogueGloves" empty_tooltip="lblGloves" />
-							<equipment_stack_sdcs slot="Feet" empty_sprite="armorRogueBoots" empty_tooltip="lblFootwear" />
+					<rect name="equipment" height="72">
+						<grid name="inventory" pos="3,-2" rows="1" cols="5" cell_width="84" cell_height="84">
+							<equipment_stack_sdcs slot="Head" empty_sprite="armorRogueHelmet" empty_tooltip="lblHeadgear" cell_size="84" />
+							<equipment_stack_sdcs slot="Chest" empty_sprite="armorRogueOutfit" empty_tooltip="lblChestArmor" cell_size="84" />
+							<equipment_stack_sdcs slot="Hands" empty_sprite="armorRogueGloves" empty_tooltip="lblGloves" cell_size="84" />
+							<equipment_stack_sdcs slot="Feet" empty_sprite="armorRogueBoots" empty_tooltip="lblFootwear" cell_size="84" />
 						</grid>
 					</rect>
 				</rect>
 				
 				<rect controller="TabSelectorTab" tab_key="clothing" tab_caption_key="lblCategoryClothing" tab_sprite="ui_game_symbol_shirt">
-					<rect>
-						<grid name="clothingSlots" rows="1" cols="4" cell_width="81" cell_height="41">
-							<equipment_stack_sdcs slot="ClothingHead" empty_sprite="clothingHeadT2" empty_tooltip="lblClothingHead" />
-							<equipment_stack_sdcs slot="ClothingChest" empty_sprite="clothingOutfitT2" empty_tooltip="lblClothingChest" />
-							<equipment_stack_sdcs slot="ClothingHands" empty_sprite="clothingHandsT2" empty_tooltip="lblClothingHand" />
-							<equipment_stack_sdcs slot="ClothingFeet" empty_sprite="clothingFeetT2" empty_tooltip="lblClothingFeet" />
+					<rect height="72">
+						<grid name="clothingSlots" pos="3,-2" rows="1" cols="4" cell_width="84" cell_height="84">
+							<equipment_stack_sdcs slot="ClothingHead" empty_sprite="clothingHeadT2" empty_tooltip="lblClothingHead" cell_size="84" />
+							<equipment_stack_sdcs slot="ClothingChest" empty_sprite="clothingOutfitT2" empty_tooltip="lblClothingChest" cell_size="84" />
+							<equipment_stack_sdcs slot="ClothingHands" empty_sprite="clothingHandsT2" empty_tooltip="lblClothingHand" cell_size="84" />
+							<equipment_stack_sdcs slot="ClothingFeet" empty_sprite="clothingFeetT2" empty_tooltip="lblClothingFeet" cell_size="84" />
 						</grid>
 					</rect>
 				</rect>
 				
-				<rect controller="TabSelectorTab" tab_key="gear" tab_caption_key="lblCategoryGear" tab_sprite="ui_game_symbol_radiation">
-					<rect>
-						<grid name="badgeSlots" rows="1" cols="4" cell_width="81" cell_height="41">
-							<equipment_stack_sdcs slot="BiomeBadge" empty_sprite="biomeWeatherItem1" empty_tooltip="biomeWeatherItem1" />
-							<equipment_stack_sdcs slot="BiomeBadge2" empty_sprite="biomeWeatherItem2" empty_tooltip="biomeWeatherItem2" />
-							<equipment_stack_sdcs slot="BiomeBadge3" empty_sprite="biomeWeatherItem3" empty_tooltip="biomeWeatherItem3" />
-							<equipment_stack_sdcs slot="BiomeBadge4" empty_sprite="biomeWeatherItem4" empty_tooltip="biomeWeatherItem4" />
+				<rect controller="TabSelectorTab" tab_key="biomegear" tab_caption_key="lblCategoryGear" tab_sprite="ui_game_symbol_radiation">
+					<rect height="72">
+						<grid name="badgeSlots" pos="3,-2" rows="1" cols="4" cell_width="84" cell_height="84">
+							<equipment_stack_sdcs slot="BiomeBadge" empty_sprite="biomeWeatherItem1" empty_tooltip="biomeWeatherItem1" cell_size="84" />
+							<equipment_stack_sdcs slot="BiomeBadge2" empty_sprite="biomeWeatherItem2" empty_tooltip="biomeWeatherItem2" cell_size="84" />
+							<equipment_stack_sdcs slot="BiomeBadge3" empty_sprite="biomeWeatherItem3" empty_tooltip="biomeWeatherItem3" cell_size="84" />
+							<equipment_stack_sdcs slot="BiomeBadge4" empty_sprite="biomeWeatherItem4" empty_tooltip="biomeWeatherItem4" cell_size="84" />
+						</grid>
+					</rect>
+				</rect>
+				
+				<rect controller="TabSelectorTab" tab_key="backpack" tab_caption_key="lblCategoryBackpack" tab_sprite="ui_game_symbol_backpack">
+					<rect height="72">
+						<grid name="inventory" pos="13,-12" rows="1" cols="5" cell_width="84" cell_height="84">
+							<equipment_stack_sdcs slot="Backpack" empty_sprite="cntBackpack03" empty_tooltip="lblBackpack" cell_size="84" />
 						</grid>
 					</rect>
 				</rect>
 				
 				<rect controller="TabSelectorTab" tab_key="stats1" tab_caption_key="lblCharacterStats1" tab_sprite="ui_game_symbol_ping">
-					<grid depth="0" pos="0,0" width="327" cols="1" cell_height="30" repeat_content="false" arrangement="vertical">
+					<grid depth="0" pos="0,0" cols="1" cell_height="30" repeat_content="false" arrangement="vertical">
 						<player_stats_entry backgroundcolor="[darkestGrey]" textcontent="{playerhealthtitle}" valuecontent="{playerhealth}/{playermaxhealth}" />
 						<player_stats_entry backgroundcolor="[darkGrey]"    textcontent="{playerstaminatitle}" valuecontent="{playerstamina}/{playermaxstamina}" />
 						<player_stats_entry backgroundcolor="[darkestGrey]" textcontent="{playerfoodtitle}" valuecontent="{playermodifiedcurrentfood}/{playerfoodmax}" />
@@ -1296,19 +1333,19 @@
 				</rect>
 			
 				<rect controller="TabSelectorTab" tab_key="stats2" tab_caption_key="lblCharacterStats2" tab_sprite="ui_game_symbol_trophy">
-					<grid depth="0" pos="0,0" width="327" cols="1" rows="23" cell_height="30" repeat_content="true" arrangement="vertical">
+					<grid depth="0" pos="0,0" cols="1" rows="23" cell_height="30" repeat_content="true" arrangement="vertical">
 						<player_stats_generic_entry backgroundcolor="${ repeat_i % 2 == 0 ? '[darkestGrey]' : '[darkGrey]' }" index="${1 + repeat_i}" />
 					</grid>
 				</rect>
 			</rect>
 			
-			<rect name="previewFrameSDCS" depth="0" pos="0,-121" width="327" height="624" on_press="true" on_hover="true" gamepad_selectable="true" snap="false" visible="{# selected_tab == 'armor' or selected_tab == 'clothing' or selected_tab == 'gear' }">
+			<rect name="previewFrameSDCS" depth="0" pos="0,-41" height="694" on_press="true" on_hover="true" gamepad_selectable="true" snap="false" visible="{# selected_tab == 'armor' or selected_tab == 'clothing' or selected_tab == 'biomegear' or selected_tab == 'backpack' }">
 				<rect>
-					<sprite depth="6" name="backgroundMain" sprite="menu_empty3px" pos="0,0" width="327" height="624" color="[black]" type="sliced" fillcenter="false" />
-					<sprite depth="1" color="[darkGrey]" type="sliced" width="327" height="624"/>
+					<sprite depth="6" name="backgroundMain" sprite="menu_empty3px" pos="0,0" color="[black]" type="sliced" fillcenter="false" />
+					<sprite depth="1" color="[darkGrey]" type="sliced" />
 					<!-- <sprite depth="1" color="[lightGrey]" type="sliced" pos="3,-3" width="381" height="739" />
 					<sprite depth="1" color="[darkGrey]" type="sliced" width="304" height="697" pos="6,-5"/> -->
-					<texture depth="2" name="playerPreviewSDCS" material="Materials/Transparent Colored" size="327,622" globalopacitymod="0"/>
+					<texture depth="2" pos="0,-70" height="${parentinnerheight-70}" name="playerPreviewSDCS" material="Materials/Transparent Colored" globalopacitymod="0"/>
 				</rect>
 			</rect>
 			
@@ -1925,13 +1962,13 @@
 		</rect>
 	</window>
 
-	<window name="windowBagStorage" width="{windowWidth}" height="262" depth="5" controller="BagContainer" panel="Left" backgroundcolor="[black]" cursor_area="true" >
-		<rect name="header" height="43" depth="0" anchor_left="queue,0,-3" anchor_right="queue,1,0" >
-			<sprite depth="1" name="headerbackground" sprite="ui_game_panel_header" anchor_left="queue,0,-3" anchor_right="queue,1,0" />
+	<window name="windowBagStorage" width="{% v2i_x(gridDimensions) * 75 + 16 }" height="262" depth="5" controller="BagContainer" panel="Left" backgroundcolor="[black]" cursor_area="true" >
+		<rect name="header" height="43" depth="0" anchor_left="queue,0,-3" anchor_right="scrollbarborder,1,0" >
+			<sprite depth="1" name="headerbackground" sprite="ui_game_panel_header" anchor_left="queue,0,-3" anchor_right="scrollbarborder,1,0" />
 			<sprite depth="3" name="windowIcon" style="icon32px" pivot="center" pos="21,-21" sprite="ui_game_symbol_loot_sack" />
-			<label depth="2" name="lootName" pos="39,-6" width="172" height="32" text="{lootcontainer_name}" font_size="32" anchor_left="queue,0,39" anchor_right="queue,1,-180" />
+			<label depth="2" name="lootName" pos="39,-6" width="172" height="32" text="{lootcontainer_name}" font_size="32" anchor_left="queue,0,39" anchor_right="scrollbarborder,1,-180" />
 
-			<rect anchor_left="queue,1,-170" anchor_right="queue,1,0" pos="0,0" controller="ContainerStandardControls" visible="{% int(windowWidth) &gt;= 300 }">
+			<rect anchor_left="scrollbarborder,1,-170" anchor_right="scrollbarborder,1,0" pos="0,0" controller="ContainerStandardControls" visible="{% int(windowWidth) &gt;= 300 }">
 				<button   depth="3" name="btnToggleLockMode"   sprite="ui_game_symbol_lock"          tooltip_key="xuiStashLockModeToggle"  pos="20, -22" style="icon32px, press, hover" pivot="center" sound="[paging_click]" selected="{userlockmode}" visible="{hasslotlocks}" />
 				<button   depth="3" name="btnSort"             sprite="ui_game_symbol_sort"          tooltip_key="lblSortContainer"        pos="60, -22" style="icon32px, press, hover" pivot="center" sound="[paging_click]" />
 				<button   depth="3" name="btnMoveFillAndSmart" sprite="ui_game_symbol_store_similar_up" tooltip_key="xuiLootTakeFillAndSmart" pos="100, -22" style="icon32px, press, hover" pivot="center" sound="[paging_click]" />
@@ -1947,9 +1984,14 @@
 			</rect>
 		</rect>
 
-		<grid depth="2" name="queue" rows="11" cols="10" pos="3,-48" cell_width="67" cell_height="67" repeat_content="true">
-			<item_stack name="0" cell_size="67"/>
-		</grid>
+		<rect name="content" height="700" pos="3,-49">
+			<defaultscrollbar pos="{% v2i(v2i_x(gridDimensions) * 75 + 3, 0)}" barheight="{% Min( v2i_y(gridDimensions) * 75 + 3, ${parentinnerheight} ) }" thumbheight="{% Min( v2i_y(gridDimensions) * 75 + 3 - 8, ${parentinnerheight-8} ) }" thumb_color_hover="[hoverColor]" thumb_color_active="[white]" thumb_color_inactive="[darkGrey]" border_color_active="[black]" border_color_inactive="[black]" background_color_active="[mediumGrey]" background_color_inactive="[mediumGrey]" />
+			<scrollview pos="0,0" width="{% v2i_x(gridDimensions) * 75 + 3 }" showcondition="always" maxboundsdepth="3">
+				<grid pos="3,0" depth="2" name="queue" rows="15" cols="10" cell_width="75" cell_height="75" repeat_content="true">
+					<item_stack name="0" cell_size="75"/>
+				</grid>
+			</scrollview>
+		</rect>
 	</window>
 
 	<window name="windowAssemble" width="380" height="745" panel="Left" controller="AssembleWindow" cursor_area="true" >
@@ -3459,7 +3501,7 @@
 		<rect name="header" height="43" depth="1">
 			<headerbg />
 			<sprite pos="4,-5" depth="2" name="windowIcon" style="icon32px" sprite="ui_game_symbol_map_trader"/>
-			<player_name pos="42,0" width="350" height="43" font_size="28" />
+			<player_name pos="42,0" width="350" height="32" />
 			<label depth="2" pos="340,-8" width="300" height="28" text="{restocklabel}: {timeleft}" justify="right" visible="{showrestock}" />
 
 			<label pos="600, -6" depth="2" name="availableMoney" width="64" height="32" text="{availablemoney}" font_size="32" justify="right" pivot="topright" visible="{isowner}"/>
@@ -3935,8 +3977,14 @@
 
 				<rect pos="3,0">
 					<simplebutton name="btnNew" pos="7, -7" height="32" width="138" caption_key="btnSignCreateNew" />
-					<button name="filterDefault" pos="270,-22" style="icon30px, press, hover" sprite="ui_game_symbol_book" defaultcolor="[signGalleryDefaultDisabled]" selectedcolor="[signGalleryDefault]" hovercolor="[signGalleryDefault]" pivot="center" tooltip_key="ttFilterDefault" sound="[paging_click]" />
-					<button name="filterPrefab" pos="305,-22" style="icon30px, press, hover" sprite="ui_game_symbol_book" defaultcolor="[signGalleryPrefabDisabled]" selectedcolor="[signGalleryPrefab]" hovercolor="[signGalleryPrefab]" pivot="center" tooltip_key="ttFilterPrefab" sound="[paging_click]" />
+
+          <grid depth="10" name="filters" rows="1" cols="5" pos="170,-22" width="175" cell_width="35" cell_height="35" repeat_content="false" arrangement="horizontal">
+						<button name="filterDefault" style="icon30px, press, hover" sprite="ui_game_symbol_bundle" defaultcolor="[signGalleryDefaultDisabled]" selectedcolor="[signGalleryDefault]" hovercolor="[signGalleryDefault]" pivot="center" tooltip_key="ttFilterDefault" sound="[paging_click]" />
+						<button name="filterOwn" style="icon30px, press, hover" sprite="ui_game_symbol_player" defaultcolor="[signGalleryOwnDisabled]" selectedcolor="[signGalleryOwn]" hovercolor="[signGalleryOwn]" pivot="center" tooltip_key="ttFilterOwnSigns" sound="[paging_click]" />
+						<button name="filterAllies" style="icon30px, press, hover" sprite="ui_game_symbol_allies" defaultcolor="[signGalleryAlliesDisabled]" selectedcolor="[signGalleryAllies]" hovercolor="[signGalleryAllies]" pivot="center" tooltip_key="ttFilterAllySigns" sound="[paging_click]" />
+						<button name="filterPrefab" style="icon30px, press, hover" sprite="ui_game_symbol_map_house" defaultcolor="[signGalleryPrefabDisabled]" selectedcolor="[signGalleryPrefab]" hovercolor="[signGalleryPrefab]" pivot="center" tooltip_key="ttFilterPrefab" sound="[paging_click]" />
+						<button name="filterAllPrefabs" style="icon30px, press, hover" sprite="ui_game_symbol_map_town" defaultcolor="[signGalleryAllPrefabsDisabled]" selectedcolor="[signGalleryAllPrefabs]" hovercolor="[signGalleryAllPrefabs]" pivot="center" tooltip_key="ttFilterAllPrefabSigns" sound="[paging_click]" />
+          </grid>
 				</rect>
 
 				<rect pos="355,0" width="295">
@@ -3955,8 +4003,10 @@
 			<grid depth="10" name="queue" rows="5" cols="5" pos="3,-97" cell_width="130" cell_height="130" repeat_content="true" controller="SignStackGrid" >
 				<sign_stack name="0"/>
 			</grid>
-			
+
 		</rect>
+
+		<confirmation_prompt pos="373,-250" width="400" height="220" />
 	</window>
 
 	<window name="windowSignInfo" depth="10" width="480" height="274" panel="Right" normal_color="[iconColor]" cursor_area="true" controller="SignInfoWindow">
@@ -3971,33 +4021,61 @@
 				<sprite depth="1" name="background" color="[mediumGrey]" type="sliced" pos="2,1" width="478" height="222" />
 				<sprite depth="8" name="backgroundMain" pos="0,3" width="480" height="224" sprite="menu_empty3px" color="[black]" type="sliced" fillcenter="false" />
 
-				<rect depth="10" height="200" width="200" pos="12,-12">
+				<rect depth="10" height="160" width="160" pos="12,-12">
 					<sprite depth="10" name="backgroundMain" pos="0,3" sprite="menu_empty3px" color="[black]" type="sliced" fillcenter="false" />
-					<texture depth="9" name="signMaterial" pos="3, 0" height="194" width="194" material="Materials/SignUI" size="194,194" globalopacitymod="0"/>
+					<texture depth="9" name="signMaterial" pos="3, 0" height="154" width="154" material="Materials/SignUI" size="154,154" globalopacitymod="0"/>
 				</rect>
 
-				<rect depth="10" height="120" width="244" pos="224,-12">
+				<rect depth="10" height="120" width="284" pos="184,-12">
 					<rect depth="10" height="40" pos="0,-0">
 						<sprite depth="1" name="windowIcon" style="icon30px" pos="0,2" sprite="ui_game_symbol_map_cursor"/> <!-- Or: ui_game_symbol_computer, ui_game_symbol_bundle -->
-						<label depth="1" width="205" pos="40,-2" font_size="26" text="{libraryname}" max_line_count="1" />
+						<label depth="1" width="244" pos="40,-2" font_size="26" text="{libraryname}" max_line_count="1" />
 					</rect>
 					<rect depth="10" height="40" pos="0,-40">
 						<sprite depth="1" name="windowIcon" style="icon30px" pos="0,2" sprite="ui_game_symbol_save_indicator"/>
-						<label depth="1" width="205" pos="40,-2" font_size="26" text="{lastmodified}" />
+						<label depth="1" width="244" pos="40,-2" font_size="26" text="{lastmodified}" />
 					</rect>
 				</rect>
 
-				<rect depth="10" height="80" width="120" pos="224,-137">
-					<simplebutton name="btnEdit" depth="3" pos="0, 0" height="32" width="118" caption_key="btnSignEdit" />
-					<simplebutton name="btnDuplicate" depth="3" pos="126, 0" height="32" width="118" caption_key="btnSignDuplicate" />
-					<simplebutton name="btnDelete" depth="3" pos="126, -40" height="32" width="118" caption_key="btnSignDelete" />
-					<simplebutton name="btnExport" depth="3" pos="0, -40" height="32" width="118" caption_key="btnSignSavePNG" />
+				<rect depth="10" height="80" width="284" pos="184,-97">
+					<simplebutton name="btnEdit" depth="3" pos="0, 0" height="32" width="138" caption_key="btnSignEdit" />
+					<simplebutton name="btnDuplicate" depth="3" pos="146, 0" height="32" width="138" caption_key="btnSignDuplicate" />
+					<simplebutton name="btnDelete" depth="3" pos="146, -40" height="32" width="138" caption_key="btnSignDelete" />
+					<simplebutton name="btnExport" depth="3" pos="0, -40" height="32" width="138" caption_key="btnSignSavePNG" />
+				</rect>
+
+				<rect depth="10" name="sharingRow" height="40" width="456" pos="12,-177" visible="{showsharing}">
+					<label height="28" width="160" pos="0,-3" text="{sharinglevel}" justify="center" tooltip_key="ttSignSharing" />
+					<simplebutton name="btnSharing" depth="3" height="32" pos="172,0" width="284" caption_key="btnSignSharingSettings" tooltip_key="ttSignSharing" />
 				</rect>
 
 			</rect>
 		</rect>
 
 		<confirmation_prompt pos="-290,-250" width="400" height="220" />
+
+		<panel name="sharingPrompt" pos="-320,-200" width="460" height="320" depth="50" on_hover="true" controller="SignSharingPrompt">
+			<fullscreencollider_new color="0,0,0,240" />
+			<boxshadow_new color="0,0,0,255" />
+
+			<rect name="header" pos="0,0" height="43" depth="2">
+				<headerbg />
+				<label style="header.name" name="headerText" pos="6,-6" width="460" text_key="lblSignSharing" globalopacitymod="0" />
+			</rect>
+
+			<rect name="body" pos="0,-50" height="270" depth="2">
+				<sprite depth="10" name="border" sprite="menu_empty2px" color="[black]" type="sliced" fillcenter="false" globalopacitymod="0" />
+				<sprite depth="0" name="backgroundMain" sprite="menu_empty3px" color="[mediumGrey]" type="sliced" fillcenter="true" globalopacitymod="0" />
+
+				<combobox name="cbxSharing" depth="3" height="38" pos="10,-8" width="440" type="ComboBoxEnum`1[SignData+SignSharing]" localization_prefix="lblSignSharing" value_wrap="false" />
+				<label name="descriptionText" pos="10,-60" width="440" height="142" pivot="topleft" justify="left" depth="2" text="{sharingdescription}" globalopacitymod="0" />
+
+				<rect name="buttons" pos="0,-212" height="48" depth="2">
+					<labeledbutton name="btnPromptCancel" depth="3" pos="10,0" width="180" height="48" font_size="32" caption_key="xuiCancel" upper_case="true" globalopacitymod="0" />
+					<labeledbutton name="btnPromptSave" depth="3" pos="270,0" width="180" height="48" font_size="32" caption_key="xuiSave" upper_case="true" globalopacitymod="0" />
+				</rect>
+			</rect>
+		</panel>
 	</window>
 
 	<window name="windowSignInstance" width="480" height="375" panel="Right" normal_color="[iconColor]" cursor_area="true" controller="SignInstanceWindow">

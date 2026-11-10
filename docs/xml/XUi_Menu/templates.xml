@@ -133,9 +133,9 @@
 	</options_buttons>
 	
 	<options_scrollbar>
-		<scrollbar pos="${parentinnerwidth},0" width="16" depth="5">
-			<sprite name="thumb" depth="1" pos="4,-4" width="8" sprite="menu_empty" type="sliced" color="179, 11, 11, 255" fillcenter="true" on_press="true" on_scroll="true" gamepad_selectable="false" snap="false" anchor_top="#parent,1,-4" anchor_bottom="buttons,1,14" />
-			<sprite name="background" depth="0" sprite="menu_empty2px" type="sliced" color="[darkGrey]" fillcenter="false" on_press="true" on_scroll="true" gamepad_selectable="false" snap="false" anchor_top="#parent,1,0" anchor_bottom="buttons,1,10" />
+		<scrollbar name="${defined(name) ? name : 'scrollbar' }" pos="${parentinnerwidth},0" width="16" depth="5" thumb_color_hover="179, 11, 11, 255" thumb_color_active="179, 11, 11, 255" thumb_color_inactive="179, 11, 11, 255" border_color_active="[darkGrey]" border_color_inactive="[darkGrey]">
+			<sprite name="scrollbarthumb" depth="1" pos="4,-4" width="8" sprite="menu_empty" type="sliced" fillcenter="true" auto_resize_collider="true" on_press="true" on_hover="true" on_scroll="true" gamepad_selectable="false" snap="false" anchor_top="#parent,1,-4" anchor_bottom="buttons,1,14" />
+			<sprite name="scrollbarborder" depth="0" sprite="menu_empty2px" type="sliced" fillcenter="false" on_press="true" on_hover="true" on_scroll="true" gamepad_selectable="false" snap="false" anchor_top="#parent,1,0" anchor_bottom="buttons,1,10" />
 		</scrollbar>
 	</options_scrollbar>
 	

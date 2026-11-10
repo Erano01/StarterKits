@@ -13,7 +13,7 @@
 
 
 
-## docs/ içeriği (V 3.2.0 b10.a göre)
+## docs/ içeriği (V 3.3.0'a göre)
 
 - `docs/xml/` → oyunun `Data/Config/` klasörünün birebir kopyası (XUi_Common / XUi_InGame / XUi_Menu dahil).
   `XML.txt` = TFP'nin resmi XML modding dokümanı. `Localization.csv` (16MB) repo'yu şişirmesin diye kopyalanmadı,

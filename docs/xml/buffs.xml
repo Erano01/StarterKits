@@ -59,7 +59,7 @@
 			<!-- <passive_effect name="StaminaChangeOT" operation="perc_add" value="25000"/> --> <!-- NOT_USED -->
 			<!-- <passive_effect name="HealthMaxModifierOT" operation="base_add" value="100"/> -->
 			<!-- <passive_effect name="StaminaMaxModifierOT" operation="base_add" value="100"/> -->
-			<passive_effect name="CarryCapacity" operation="base_set" value="45"/>
+			<passive_effect name="CarryCapacity" operation="base_set" value="96"/>
 			<passive_effect name="ElementalDamageResist" operation="base_add" value="200" tags="cold,heat,electrical"/>
 			<passive_effect name="PhysicalDamageResist" operation="base_add" value="200"/>
 			<passive_effect name="PhysicalDamageResist" operation="base_add" value="200" tags="coredamageresist"/>
@@ -8850,7 +8850,7 @@
 			<!-- Blinks the display -->
 			<passive_effect name="BuffBlink" operation="base_set" value="2" duration="0,3" tags="buffEncumberedInv"/>
 			<triggered_effect trigger="onSelfBuffUpdate" action="ModifyCVar" cvar="$encumbranceEffect" operation="set" value="@_encumberedslots"/>
-			<triggered_effect trigger="onSelfBuffUpdate" action="ModifyCVar" cvar="$encumbranceEffect" operation="multiply" value="0.026"/> <!--0.026% X 27 = 0.70-->
+			<triggered_effect trigger="onSelfBuffUpdate" action="ModifyCVar" cvar="$encumbranceEffect" operation="multiply" value="0.011"/> <!--0.026% X 27 = 0.70--> <!--for 64 slots 0.011% X 64 = 0.70--> 
 			<passive_effect name="Mobility" operation="perc_subtract" value="@$encumbranceEffect"/>
 			<!--<passive_effect name="JumpStrength" operation="perc_subtract" value="@$encumbranceEffect"/>
 			<triggered_effect trigger="onSelfBuffUpdate" action="CVarLogValue" cvar="_encumbrance"/>
@@ -9620,7 +9620,7 @@
 		</effect_group>
 
 		<effect_group>
-			<passive_effect name="CarryCapacity" operation="base_add" value="27"/>
+			<passive_effect name="CarryCapacity" operation="base_add" value="48"/>
 		</effect_group>
 	</buff>
 
@@ -9678,7 +9678,7 @@
 		</effect_group>
 
 		<effect_group>
-			<passive_effect name="CarryCapacity" operation="base_set" value="50"/>
+			<passive_effect name="CarryCapacity" operation="base_set" value="96"/>
 			<passive_effect name="RunSpeed" operation="perc_add" value=".1"/>
 			<passive_effect name="WaterChangeOT" operation="base_subtract" value=".04"/> <!-- 30/720 -->
 		</effect_group>

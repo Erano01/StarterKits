@@ -120,14 +120,16 @@
 				width="${3+cell_size}" height="${3+cell_size}" />
 			<sprite depth="3" name="background" sprite="menu_empty3px" color="{selectionbordercolor}" type="sliced" fillcenter="false"
 				width="${-2+cell_size}" height="${-2+cell_size}" />
-			<sprite depth="2" name="highlightOverlay" color="{backgroundcolor}" pos="0,0" type="sliced"
+			<sprite depth="2" name="highlightOverlay" color="{backgroundcolor}" type="sliced"
 				width="${-3+cell_size}" height="${-3+cell_size}" />
 
 			<texture depth="3" name="backgroundTexture" material="Materials/Transparent Colored"
 				size="${-2+cell_size},${-2+cell_size}" />
 			<sprite depth="8" name="favoriteIcon" width="24" height="24" sprite="server_favorite" pos="2,-2" foregroundlayer="true" visible="{isfavorite}"/>
-			<sprite depth="7" name="itemIcon" width="${-11+cell_size}" height="${-11+cell_size}" atlas="ItemIconAtlas" sprite="{itemicon}" pivot="center" foregroundlayer="true" color="{iconcolor}" globalopacitymod="0"
-				pos="${Floor(cell_size/2)},${-Floor(cell_size/2)}" />
+			<rect name="itemIconHoverEnlargeEncapsulation"> <!-- Required so scrollareas can ignore the hover enlarged sprite when updating bounds! -->
+				<sprite depth="7" name="itemIcon" width="${-11+cell_size}" height="${-11+cell_size}" atlas="ItemIconAtlas" sprite="{itemicon}" pivot="center" foregroundlayer="true" color="{iconcolor}" globalopacitymod="0"
+					pos="${Floor(cell_size/2)},${-Floor(cell_size/2)}" />
+			</rect>
 			<sprite depth="8" name="lockTypeIcon" width="24" height="24" sprite="{locktypeicon}" pos="2,-2" foregroundlayer="true"/>
 			<sprite depth="8" name="itemtypeicon" width="24" height="24" sprite="ui_game_symbol_{itemtypeicon}" pos="2,-2" foregroundlayer="true" visible="{hasitemtypeicon}" color="{itemtypeicontint}" />
 
@@ -178,25 +180,33 @@
 		</rect>
 	</equipment_stack>
 	
-	<equipment_stack_sdcs slot="" empty_sprite="" empty_tooltip="">
-		<rect depth="1" controller="EquipmentStack" style="itemStack, hover" tooltip="test" width="83" height="83" slot="${slot}" empty_sprite="${empty_sprite}" empty_tooltip="${empty_tooltip}">
-			<sprite depth="2" name="backgroundMain" sprite="menu_empty3px" color="[black]" type="sliced" fillcenter="false" />
-			<sprite depth="3" name="background" sprite="menu_empty3px" pos="3,-3" width="77" height="77" color="{selectionbordercolor}" type="sliced" fillcenter="false"/>
-			<sprite depth="1" name="highlightOverlay" color="[mediumGrey]" type="sliced"/>
+	<equipment_stack_sdcs slot="" empty_sprite="" empty_tooltip="" cell_size="[itemStack:width]">
+		<rect depth="1" controller="EquipmentStack" style="itemStack, hover" tooltip="test" width="${cell_size}" height="${cell_size}" slot="${slot}" empty_sprite="${empty_sprite}" empty_tooltip="${empty_tooltip}">
+			<sprite depth="2" name="backgroundMain" sprite="menu_empty3px" pos="-3,3" color="[black]" type="sliced" fillcenter="false"
+				width="${3+cell_size}" height="${3+cell_size}" />
+			<sprite depth="3" name="background" sprite="menu_empty3px" color="{selectionbordercolor}" type="sliced" fillcenter="false"
+				width="${-2+cell_size}" height="${-2+cell_size}" />
+			<sprite depth="2" name="highlightOverlay" color="[mediumGrey]" type="sliced"
+				width="${-3+cell_size}" height="${-3+cell_size}" />
 
 
 
-			<sprite depth="7" name="itemIcon" width="74" height="74" atlas="ItemIconAtlas" sprite="campfire" pos="41,-41" pivot="center" foregroundlayer="true"/>
+			<sprite depth="7" name="itemIcon" width="${-11+cell_size}" height="${-11+cell_size}" atlas="ItemIconAtlas" sprite="campfire" pivot="center" foregroundlayer="true" globalopacitymod="0"
+				pos="${Floor(cell_size/2)},${-Floor(cell_size/2)}" />
 			<sprite depth="8" name="lockTypeIcon" width="34" height="34" sprite="" pos="2,-12" foregroundlayer="true"/>
 
 
-			<sprite depth="3" name="durabilityBackground" width="77" height="10" color="185,0,0,255" type="sliced" pos="3, -66" globalopacitymod="0" />
-			<filledsprite depth="4" name="durabilityRemoveBackground" width="77" height="10" color="[darkGrey]" type="filled" pos="3, -66" globalopacitymod="0" />
-			<filledsprite depth="5" name="durability" width="77" height="10" color="[transparent]" type="filled" pos="3, -66" globalopacitymod="0" />
+			<sprite depth="2" name="durabilityBackground" sprite="menu_empty3px" color="185,0,0,255" type="sliced" globalopacitymod="0"
+				width="${-5+cell_size}" height="10" pos="1,${-Floor(4*cell_size/5)}" />
+			<filledsprite depth="4" name="durabilityRemoveBackground" sprite="menu_empty2px" color="[darkGrey]" type="filled" globalopacitymod="0"
+				width="${-5+cell_size}" height="10" pos="1,${-Floor(4*cell_size/5)}" />
+			<filledsprite depth="5" name="durability" sprite="menu_empty2px" color="[transparent]" type="filled" globalopacitymod="0"
+				width="${-5+cell_size}" height="10" pos="1,${-Floor(4*cell_size/5)}" />
 
 
 
-			<label depth="8" name="stackValue" pos="0,-50" width="78" height="28" text="" font_size="26" justify="center"/>
+			<label depth="8" name="stackValue" height="28" text="" font_size="26" justify="center"
+				pos="-2,${-Floor(3*cell_size/5)}" width="${-5+cell_size}" />
 		</rect>
 	</equipment_stack_sdcs>
 
@@ -308,8 +318,9 @@
 	</material_stack>
 	
 	<sign_stack>
-		<rect controller="SignStack" style="signStack, hover, scroll" sound="[recipe_click]" sound_play_on_hover="[default_hover]" 
-				lib_marker_color_default="151,47,187,255" lib_marker_color_prefab="52,88,189,255">
+		<rect controller="SignStack" style="signStack, hover, scroll" sound="[recipe_click]" sound_play_on_hover="[default_hover]"
+				lib_marker_color_default="[signGalleryDefault]" lib_marker_color_own="[signGalleryOwn]" lib_marker_color_allies="[signGalleryAllies]"
+				lib_marker_color_prefab="[signGalleryPrefab]" lib_marker_color_all_prefabs="[signGalleryAllPrefabs]">
 			<sprite depth="2" name="backgroundMain" sprite="menu_empty3px" pos="-3,3" width="133" height="133" color="[black]" type="sliced" fillcenter="false" />
 			<sprite depth="5" name="background" sprite="menu_empty3px" width="128" height="128" color="[darkGrey]" type="sliced" fillcenter="false"/>
 			<sprite depth="2" name="highlightOverlay" width="127" height="127" color="[mediumGrey]" pos="0,0" type="sliced"/>
@@ -1081,8 +1092,8 @@
 		<rect height="33">
 			<sprite depth="8" sprite="menu_empty3px" height="33" color="[black]" type="sliced" fillcenter="false" />
 			<sprite depth="1" color="${backgroundcolor}" type="sliced" />
-			<label depth="3" pos="10,-17" width="200" height="27" font_size="26" text="${textcontent}" pivot="left" justify="left" color="[white]" />
-			<label depth="3" pos="320,-17" width="105" height="27" font_size="26" text="${valuecontent}" justify="right" color="[selectedColor]" pivot="right" />
+			<label depth="3" pos="10,-17" width="${parentinnerwidth-127}" height="27" font_size="26" text="${textcontent}" pivot="left" justify="left" color="[white]" />
+			<label depth="3" pos="${parentinnerwidth-7},-17" width="105" height="27" font_size="26" text="${valuecontent}" justify="right" color="[selectedColor]" pivot="right" />
 		</rect>
 	</player_stats_entry>
 

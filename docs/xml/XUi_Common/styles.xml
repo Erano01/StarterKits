@@ -43,12 +43,18 @@
 
 		<style_entry name="statBoostedColor"					value="255,175,11,255" />
 		
-		<style_entry name="signGalleryDefault" 				value="151,47,187,255"/>
-		<style_entry name="signGalleryDefaultDisabled" 		value="151,47,187,180"/>
-		<style_entry name="signGalleryPrefab" 				value="52,88,189,255"/>
-		<style_entry name="signGalleryPrefabDisabled" 		value="52,88,189,180"/>
-		<style_entry name="signEditorLayerSelected" 		value="57,208,223,255"/>
-		<style_entry name="signEditorLayerMultiSelected" 	value="35,144,155,255"/>
+		<style_entry name="signGalleryDefault" 						value="210, 75, 255, 255"/>
+		<style_entry name="signGalleryDefaultDisabled" 		value="210, 75, 255, 180"/>
+		<style_entry name="signGalleryOwn" 								value="132, 227, 69, 255"/>
+		<style_entry name="signGalleryOwnDisabled" 				value="132, 227, 69, 180"/>
+		<style_entry name="signGalleryAllies" 						value="46, 166, 230, 255"/>
+		<style_entry name="signGalleryAlliesDisabled" 		value="46, 166, 230, 180"/>
+		<style_entry name="signGalleryPrefab" 						value="247, 182, 27, 255"/>
+		<style_entry name="signGalleryPrefabDisabled" 		value="247, 182, 27, 180"/>
+		<style_entry name="signGalleryAllPrefabs" 				value="245, 116, 48, 255"/>
+		<style_entry name="signGalleryAllPrefabsDisabled"	value="245, 116, 48, 180"/>
+		<style_entry name="signEditorLayerSelected" 			value="57, 208, 223, 255"/>
+		<style_entry name="signEditorLayerMultiSelected" 	value="35, 144, 155, 255"/>
 		
 		<!--NAMED SPRITES-->
 		<style_entry name="default_sprite" value="menu_empty"/>

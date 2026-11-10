@@ -1,6 +1,5 @@
 using System;
 using System.Collections.Generic;
-using System.IO;
 
 public class ItemStack
 {
@@ -12,11 +11,70 @@ public class ItemStack
 		DragTypeOther
 	}
 
-	public ItemValue itemValue;
+	[PublicizedFrom(EAccessModifier.Private)]
+	public ItemStackGrid owner;
 
-	public int count;
+	[PublicizedFrom(EAccessModifier.Private)]
+	public int ownerSlot = -1;
+
+	[PublicizedFrom(EAccessModifier.Private)]
+	public ItemValue itemValueField;
+
+	[PublicizedFrom(EAccessModifier.Private)]
+	public int countField;
 
 	public static ItemStack Empty => new ItemStack(ItemValue.None, 0);
+
+	public ItemValue itemValue
+	{
+		get
+		{
+			return itemValueField;
+		}
+		set
+		{
+			if (itemValueField != value)
+			{
+				itemValueField?.BindItemStack(null);
+				itemValueField = value;
+				itemValueField?.BindItemStack(this);
+				NotifyChanged();
+			}
+		}
+	}
+
+	public int count
+	{
+		get
+		{
+			return countField;
+		}
+		set
+		{
+			if (countField != value)
+			{
+				countField = value;
+				NotifyChanged();
+			}
+		}
+	}
+
+	public void BindGridSlot(ItemStackGrid _owner, int _slot = -1)
+	{
+		owner = _owner;
+		ownerSlot = _slot;
+	}
+
+	public void OnValueChanged()
+	{
+		NotifyChanged();
+	}
+
+	[PublicizedFrom(EAccessModifier.Private)]
+	public void NotifyChanged()
+	{
+		owner?.OnSlotChanged(ownerSlot);
+	}
 
 	public ItemStack()
 	{
@@ -60,8 +118,29 @@ public class ItemStack
 
 	public void Clear()
 	{
+		countField = 0;
 		itemValue.Clear();
-		count = 0;
+	}
+
+	public void Set(ItemValue _itemValue, int _count)
+	{
+		countField = _count;
+		itemValue = _itemValue;
+		NotifyChanged();
+	}
+
+	public void SwapWith(ItemStack _other)
+	{
+		ItemValue itemValue = itemValueField;
+		int num = countField;
+		itemValueField = _other.itemValueField;
+		countField = _other.countField;
+		_other.itemValueField = itemValue;
+		_other.countField = num;
+		itemValueField?.BindItemStack(this);
+		_other.itemValueField?.BindItemStack(_other);
+		NotifyChanged();
+		_other.NotifyChanged();
 	}
 
 	public static int AddToItemStackArray(ItemStack[] _itemStackArr, ItemStack _itemStack, int maxItemCount = -1)
@@ -83,7 +162,7 @@ public class ItemStack
 		{
 			if (_itemStackArr[num3].IsEmpty())
 			{
-				_itemStackArr[num3] = _itemStack;
+				_itemStackArr[num3].Set(_itemStack.itemValue.Clone(), _itemStack.count);
 				num = num3;
 			}
 			num3++;
@@ -91,17 +170,17 @@ public class ItemStack
 		return num;
 	}
 
-	public ItemStack ReadOld(BinaryReader _br)
+	public ItemStack ReadOld(PooledBinaryReader _br)
 	{
 		itemValue.ReadOld(_br);
 		count = _br.ReadInt16();
 		return this;
 	}
 
-	public ItemStack Read(BinaryReader _br)
+	public ItemStack Read(PooledBinaryReader _br)
 	{
-		count = _br.ReadUInt16();
-		if (count > 0)
+		countField = _br.ReadUInt16();
+		if (countField > 0)
 		{
 			itemValue.Read(_br);
 		}
@@ -112,7 +191,7 @@ public class ItemStack
 		return this;
 	}
 
-	public ItemStack ReadDelta(BinaryReader _br, ItemStack _last)
+	public ItemStack ReadDelta(PooledBinaryReader _br, ItemStack _last)
 	{
 		itemValue.Read(_br);
 		int num = _br.ReadInt16();
@@ -120,7 +199,7 @@ public class ItemStack
 		return this;
 	}
 
-	public void Write(BinaryWriter _bw)
+	public void Write(PooledBinaryWriter _bw)
 	{
 		int num = count;
 		if (num > 65535)
@@ -134,14 +213,14 @@ public class ItemStack
 		}
 	}
 
-	public void WriteDelta(BinaryWriter _bw, ItemStack _last)
+	public void WriteDelta(PooledBinaryWriter _bw, ItemStack _last)
 	{
 		itemValue.Write(_bw);
 		_bw.Write((short)(count - _last.count));
 		_last.count += count - _last.count;
 	}
 
-	public static ItemStack[] ReadArray(BinaryReader _br)
+	public static ItemStack[] ReadArray(PooledBinaryReader _br)
 	{
 		int num = _br.ReadInt16();
 		if (num == -1)
@@ -156,7 +235,7 @@ public class ItemStack
 		return array;
 	}
 
-	public static void WriteArray(BinaryWriter _bw, ItemStack[] _items)
+	public static void WriteArray(PooledBinaryWriter _bw, ItemStack[] _items)
 	{
 		if (_items == null)
 		{

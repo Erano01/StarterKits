@@ -315,12 +315,7 @@
 		<window name="windowNonPagingHeader" />
 	</window_group>
 
-	<window_group name="signEditor" close_compass_on_open="true" defaultselected="searchControls">
-		<window name="windowSignEditor" />
-		<window name="windowNonPagingHeader" />
-	</window_group>
-
-	<window_group name="signEditor" close_compass_on_open="true" defaultselected="searchControls">
+	<window_group name="signEditor" close_compass_on_open="true" defaultselected="canvasArea">
 		<window name="windowSignEditor" />
 		<window name="windowNonPagingHeader" />
 	</window_group>

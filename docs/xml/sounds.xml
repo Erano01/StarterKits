@@ -9647,6 +9647,30 @@
 	<AudioClip ClipName="@:Sounds/Items/axe_stone_place.wav"/>
 	<LocalCrouchVolumeScale value="1.0"/> <CrouchNoiseScale value="0.5"/> <NoiseScale value="1"/> <MaxVoices value="3"/> <MaxRepeatRate value="0.1"/> </SoundDataNode>
 
+<SoundDataNode name="backpack_sm_grab"> <AudioSource name="@:Sounds/Prefabs/AudioSource_UI_Item.prefab"/>
+	<AudioClip ClipName="@:Sounds/Items/backpack_sm_grab.wav"/>
+	<LocalCrouchVolumeScale value="1.0"/> <CrouchNoiseScale value="0.5"/> <NoiseScale value="1"/> <MaxVoices value="3"/> <MaxRepeatRate value="0.1"/> </SoundDataNode>
+
+<SoundDataNode name="backpack_sm_place"> <AudioSource name="@:Sounds/Prefabs/AudioSource_UI_Item.prefab"/>
+	<AudioClip ClipName="@:Sounds/Items/backpack_sm_place.wav"/>
+	<LocalCrouchVolumeScale value="1.0"/> <CrouchNoiseScale value="0.5"/> <NoiseScale value="1"/> <MaxVoices value="3"/> <MaxRepeatRate value="0.1"/> </SoundDataNode>
+
+<SoundDataNode name="backpack_md_grab"> <AudioSource name="@:Sounds/Prefabs/AudioSource_UI_Item.prefab"/>
+	<AudioClip ClipName="@:Sounds/Items/backpack_md_grab.wav"/>
+	<LocalCrouchVolumeScale value="1.0"/> <CrouchNoiseScale value="0.5"/> <NoiseScale value="1"/> <MaxVoices value="3"/> <MaxRepeatRate value="0.1"/> </SoundDataNode>
+
+<SoundDataNode name="backpack_md_place"> <AudioSource name="@:Sounds/Prefabs/AudioSource_UI_Item.prefab"/>
+	<AudioClip ClipName="@:Sounds/Items/backpack_md_place.wav"/>
+	<LocalCrouchVolumeScale value="1.0"/> <CrouchNoiseScale value="0.5"/> <NoiseScale value="1"/> <MaxVoices value="3"/> <MaxRepeatRate value="0.1"/> </SoundDataNode>
+
+<SoundDataNode name="backpack_lrg_grab"> <AudioSource name="@:Sounds/Prefabs/AudioSource_UI_Item.prefab"/>
+	<AudioClip ClipName="@:Sounds/Items/backpack_lrg_grab.wav"/>
+	<LocalCrouchVolumeScale value="1.0"/> <CrouchNoiseScale value="0.5"/> <NoiseScale value="1"/> <MaxVoices value="3"/> <MaxRepeatRate value="0.1"/> </SoundDataNode>
+
+<SoundDataNode name="backpack_lrg_place"> <AudioSource name="@:Sounds/Prefabs/AudioSource_UI_Item.prefab"/>
+	<AudioClip ClipName="@:Sounds/Items/backpack_lrg_place.wav"/>
+	<LocalCrouchVolumeScale value="1.0"/> <CrouchNoiseScale value="0.5"/> <NoiseScale value="1"/> <MaxVoices value="3"/> <MaxRepeatRate value="0.1"/> </SoundDataNode>
+
 <SoundDataNode name="baconeggs_grab"> <AudioSource name="@:Sounds/Prefabs/AudioSource_UI_Item.prefab"/>
 	<AudioClip ClipName="@:Sounds/Items/baconeggs_grab.wav"/>
 	<LocalCrouchVolumeScale value="1.0"/> <CrouchNoiseScale value="0.5"/> <NoiseScale value="1"/> <MaxVoices value="3"/> <MaxRepeatRate value="0.1"/> </SoundDataNode>

@@ -239,6 +239,8 @@
 	<property name="HeadExplosionDamageMultiplier" value=".41"/>
 	<property name="ChestExplosionDamageMultiplier" value=".41"/>
 	<property name="Buffs" value="buffStatusCheck01,buffStatusCheck02"/>
+	
+	<property name="MaxBagSize" value="96" />
 
 	<array name="TokenManager">
 		<item type="MeleeAttack" max="2"/>
@@ -367,7 +369,7 @@
 		</triggered_effect>
 -->
 		
-		<triggered_effect trigger="onSelfEnteredGame" action="ModifyCVar" cvar=".carryCapacityBase" operation="set" value="27"/>
+		<triggered_effect trigger="onSelfEnteredGame" action="ModifyCVar" cvar=".carryCapacityBase" operation="set" value="32"/>
 		<triggered_effect trigger="onSelfEnteredGame" action="ModifyCVar" cvar=".carryCapacityBase" operation="multiply" value="@_carrySandboxModifier"/>
 
 		<triggered_effect trigger="onSelfSecondaryActionStart" action="AddBuff" buff="buffPowerAttackStaminaStunt">
@@ -392,8 +394,23 @@
 		<passive_effect name="IncrementalSpreadMultiplier" operation="base_set" value="1"/>
 
 		<passive_effect name="CraftingTier" operation="base_set" value="1"/>
+		
 		<passive_effect name="CarryCapacity" operation="base_set" value="@.carryCapacityBase"/>
-		<passive_effect name="BagSize" operation="base_set" value="45"/> <!-- number of slots on the inventory UI -->
+
+		<!-- <triggered_effect trigger="onSelfEnteredGame" action="ModifyCVar" cvar="backpackSandboxModifier" operation="set" value=".25"/> -->
+
+		<triggered_effect trigger="onSelfEnteredGame" action="ModifyCVar" cvar=".packmuleCapacityL1" operation="set" value="4"/>
+		<!-- <triggered_effect trigger="onSelfEnteredGame" action="ModifyCVar" cvar=".packmuleCapacityL1" operation="multiply" value="@backpackSandboxModifier"/> -->
+		<triggered_effect trigger="onSelfEnteredGame" action="ModifyCVar" cvar=".packmuleCapacityL2" operation="set" value="8"/>
+		<!-- <triggered_effect trigger="onSelfEnteredGame" action="ModifyCVar" cvar=".packmuleCapacityL2" operation="multiply" value="@backpackSandboxModifier"/> -->
+		<triggered_effect trigger="onSelfEnteredGame" action="ModifyCVar" cvar=".packmuleCapacityL3" operation="set" value="12"/>
+		<!-- <triggered_effect trigger="onSelfEnteredGame" action="ModifyCVar" cvar=".packmuleCapacityL3" operation="multiply" value="@backpackSandboxModifier"/> -->
+		<triggered_effect trigger="onSelfEnteredGame" action="ModifyCVar" cvar=".packmuleCapacityL4" operation="set" value="16"/>
+		<!-- <triggered_effect trigger="onSelfEnteredGame" action="ModifyCVar" cvar=".packmuleCapacityL4" operation="multiply" value="@backpackSandboxModifier"/> -->
+		<triggered_effect trigger="onSelfEnteredGame" action="ModifyCVar" cvar=".packmuleCapacityL5" operation="set" value="16"/>
+		<!-- <triggered_effect trigger="onSelfEnteredGame" action="ModifyCVar" cvar=".packmuleCapacityL5" operation="multiply" value="@backpackSandboxModifier"/> -->
+
+		<passive_effect name="BagSize" operation="base_set" value="48"/> <!-- number of slots on the inventory UI -->
 
 		<passive_effect name="ProjectileStickChance" operation="base_set" value=".5"/>
 		<passive_effect name="ProjectileStickChance" operation="perc_add" value="-2" tags="glass"/>
@@ -1749,7 +1766,7 @@
 	<property name="SoundHurt" value="plaguepain"/>
 	<property name="SoundDeath" value="plaguedeath"/>
 	<property name="SoundSense" value="plaguesense"/>
-	<property name="SoundStepType" value="barestep"/>
+	<property name="SoundStepType" value="step"/>
 	<property name="ExperienceGain" value="^xpStrong01"/><!-- zombieRancher -->
 	<property name="LootDropProb" value=".05"/>
 	<property name="LootDropEntityClass" value="EntityLootContainerRegular,1,EntityLootContainerPlague,1"/>

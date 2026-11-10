@@ -1,6 +1,5 @@
 using System;
 using System.Collections.Generic;
-using System.IO;
 using System.Runtime.CompilerServices;
 using Platform;
 using Twitch;
@@ -660,7 +659,7 @@ public class EntityBuffs
 		_buffValue.Remove = true;
 	}
 
-	public void Write(BinaryWriter _bw, bool _netSync = false)
+	public void Write(PooledBinaryWriter _bw, bool _netSync = false)
 	{
 		_bw.Write(Version);
 		_bw.Write((ushort)ActiveBuffs.Count);
@@ -692,7 +691,7 @@ public class EntityBuffs
 		}
 	}
 
-	public void Read(BinaryReader _br)
+	public void Read(PooledBinaryReader _br)
 	{
 		int num = _br.ReadByte();
 		int num2 = _br.ReadUInt16();
