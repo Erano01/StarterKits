@@ -1042,18 +1042,24 @@ namespace StarterKits
                     continue;
                 }
 
-                ItemValue itemValue = ItemClass.GetItem(kvp.Key, true);
-                if (itemValue == null || itemValue.IsEmpty())
+                ItemClass itemClass = ItemClass.GetItemClass(kvp.Key, true);
+                if (itemClass == null)
                 {
                     Log.Warning($"[StarterKits] Item reward skipped for '{kitName}': unknown item '{kvp.Key}'.");
                     continue;
                 }
 
-                ushort quality = this.GetArmorRewardQuality(kitName, kvp.Key);
-                if (quality > 0)
+                // V3.4: new ItemValue(id) rolls a random quality 1-6 and sizes mod slots for it.
+                // Create the item at the intended quality up front so quality and mod slots match.
+                int quality = this.GetArmorRewardQuality(kitName, kvp.Key);
+                if (quality <= 0)
                 {
-                    itemValue.Quality = quality;
+                    quality = 1;
                 }
+
+                ItemValue itemValue = itemClass.HasQuality
+                    ? new ItemValue(itemClass.Id, quality, quality)
+                    : new ItemValue(itemClass.Id);
 
                 var stack = new ItemStack(itemValue, kvp.Value);
                 
