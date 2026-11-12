@@ -5,6 +5,29 @@ In vanilla 7 Days to Die, committing to a roleplay build usually means a long de
 
 Kit selection is tracked per world and per save slot, once chosen, it's locked in for that save (reconnecting won't reopen the selection, even for admins), and picks are made through a custom in-game UI built on 7DTD's XUi system.
 
+## Custom Kits (Kit Editor)
+
+Since 1.3 kits are no longer hard-coded. Open **Starter Kits** in the main menu (above Quit) to:
+
+- edit the 14 built-in kits or create, duplicate and delete your own,
+- grant any attribute, perk (grouped Attribute > Category > Perk), book, whole book set or magazine, with a level,
+- give any item, item mod or player-placeable block, with live search suggestions, count and quality,
+- pick a kit picture from the built-in portraits, any icon, or **Import** your own .png/.jpg and crop it to the portrait size,
+- let the "Kit Stats" lines be generated automatically or keep hand-written ones.
+
+Files:
+
+```text
+Mods/StarterKits/Kits/defaults.xml     built-in kits (shipped, read-only)
+Mods/StarterKits/Kits/kits.xml         your kits (created on first Save, safe across mod updates)
+Mods/StarterKits/Kits/Images/          imported kit pictures (200x200 png)
+Mods/StarterKits/Kits/ImageImport/     drop pictures here to import them
+```
+
+`kits.xml` can also be edited by hand. Changes apply the next time the kit window opens; no restart needed.
+
+**Multiplayer:** the server sends its own `kits.xml` and the pictures those kits use to every player when they join. Players only need the mod installed (same version as the server); they never copy kit files. To set up a server, build the kits in your own game and copy `Kits/kits.xml` and `Kits/Images/` to the server's `Mods/StarterKits/Kits/`.
+
 ## Notes for the Contributers
 
 ## VSCode Instructions

@@ -33,6 +33,11 @@ fi
 cp -a "${ROOT_DIR}/Config/." "${DEPLOY_DIR}/Config/"
 cp -a "${ROOT_DIR}/UIAtlases/." "${DEPLOY_DIR}/UIAtlases/"
 
+# Ship only the default kits. Kits/kits.xml is the player's own file (written by the
+# main menu Kit Editor) and must never be overwritten by an update.
+mkdir -p "${DEPLOY_DIR}/Kits"
+cp -a "${ROOT_DIR}/Kits/defaults.xml" "${DEPLOY_DIR}/Kits/"
+
 # Recreate archive from deploy folder.
 rm -f "${ZIP_PATH}"
 (

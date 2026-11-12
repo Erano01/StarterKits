@@ -26,6 +26,13 @@ bld/
 # StarterKits runtime data (per-save db files)
 Data/saves/
 
+# Player-edited kits written by the main menu Kit Editor (defaults.xml is tracked)
+Kits/kits.xml
+Kits/kits.xml.bak
+Kits/kits.xml.tmp
+Kits/Images/
+Kits/ImageImport/
+
 # MSBuild Binary and Structured Log
 *.binlog
 

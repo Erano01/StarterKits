@@ -6,6 +6,8 @@ namespace StarterKits
     {
         public void InitMod(Mod _modInstance)
         {
+            Kits.KitRepository.ModPath = _modInstance.Path;
+
             var harmony = new HarmonyLib.Harmony(_modInstance.Name);
             harmony.PatchAll(Assembly.GetExecutingAssembly());
             Harmony.StarterKitProgressionFloorPatch.Register(harmony);
@@ -14,6 +16,7 @@ namespace StarterKits
             StarterKitSelectionStore.InitializeOnModLoad();
 
             PlayerJoinedGameHandler.Init();
+            Network.KitSync.Init();
             // XUi controller tipimizin assembly'yi yüklerken canlı olduğundan emin olalım
             var t = typeof(XUiC_KitSelectionMenu);
             Log.Out($"[StarterKits] XUiC_KitSelectionMenu type loaded: {t.Assembly.FullName}");

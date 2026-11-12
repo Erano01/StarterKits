@@ -64,6 +64,14 @@
       <HintPath>..\..\7DaysToDie_Data\Managed\UnityEngine.CoreModule.dll</HintPath>
       <Private>False</Private>
     </Reference>
+    <Reference Include="UnityEngine.ImageConversionModule">
+      <HintPath>..\..\7DaysToDie_Data\Managed\UnityEngine.ImageConversionModule.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="NGUI">
+      <HintPath>..\..\7DaysToDie_Data\Managed\NGUI.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
     <Reference Include="System.Xml">
       <HintPath>..\..\7DaysToDie_Data\Managed\System.Xml.dll</HintPath>
       <Private>False</Private>
@@ -80,6 +88,9 @@
     <Content Include="Config\XUi_InGame\windows.xml" />
     <Content Include="Config\XUi_InGame\styles.xml" />
     <Content Include="Config\XUi_InGame\xui.xml" />
+    <Content Include="Config\XUi_Menu\windows.xml" />
+    <Content Include="Config\XUi_Menu\xui.xml" />
+    <Content Include="Kits\defaults.xml" />
     <Content Include="ModInfo.xml" />
     <Content Include="README.md" />
   </ItemGroup>

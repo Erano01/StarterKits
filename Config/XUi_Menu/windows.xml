@@ -1,0 +1,254 @@
+<configs>
+  <append xpath="/windows">
+    <!-- Main menu Starter Kit Editor. Controller: Src/Editor/XUiC_KitEditorWindow.cs -->
+    <window name="starterKitEditor" controller="StarterKits.Editor.XUiC_KitEditorWindow, StarterKits" anchor="CenterCenter" pos="-800,480" width="1600" height="960" depth="2" cursor_area="true">
+      <fullscreencollider_new color="0,0,0,250" />
+      <sprite depth="1" pos="0,0" width="1600" height="50" sprite="menu_empty3px" color="[black]" type="sliced" fillcenter="true" globalopacitymod="0" />
+      <sprite depth="2" pos="0,0" width="1600" height="50" sprite="menu_empty3px" color="[mediumGrey]" type="sliced" fillcenter="false" />
+      <label depth="3" pos="20,-12" width="600" font_size="28" color="[white]" justify="left" text="Starter Kit Editor" />
+      <label name="lblStatus" depth="4" pos="520,-15" width="1060" font_size="20" color="170,170,170,255" justify="right" max_line_count="1" text="" />
+      <sprite depth="1" pos="0,-60" width="300" height="840" sprite="menu_empty3px" color="[black]" type="sliced" fillcenter="true" globalopacitymod="0" />
+      <sprite depth="2" pos="0,-60" width="300" height="840" sprite="menu_empty3px" color="[mediumGrey]" type="sliced" fillcenter="false" />
+      <label depth="3" pos="0,-70" width="300" font_size="26" color="222,206,163,255" justify="center" text="Kits" />
+      <simplebutton name="kitSlot0" depth="4" pos="10,-110" width="280" height="38" caption="" font_size="20" justify="center" upper_case="false" />
+      <simplebutton name="kitSlot1" depth="4" pos="10,-154" width="280" height="38" caption="" font_size="20" justify="center" upper_case="false" />
+      <simplebutton name="kitSlot2" depth="4" pos="10,-198" width="280" height="38" caption="" font_size="20" justify="center" upper_case="false" />
+      <simplebutton name="kitSlot3" depth="4" pos="10,-242" width="280" height="38" caption="" font_size="20" justify="center" upper_case="false" />
+      <simplebutton name="kitSlot4" depth="4" pos="10,-286" width="280" height="38" caption="" font_size="20" justify="center" upper_case="false" />
+      <simplebutton name="kitSlot5" depth="4" pos="10,-330" width="280" height="38" caption="" font_size="20" justify="center" upper_case="false" />
+      <simplebutton name="kitSlot6" depth="4" pos="10,-374" width="280" height="38" caption="" font_size="20" justify="center" upper_case="false" />
+      <simplebutton name="kitSlot7" depth="4" pos="10,-418" width="280" height="38" caption="" font_size="20" justify="center" upper_case="false" />
+      <simplebutton name="kitSlot8" depth="4" pos="10,-462" width="280" height="38" caption="" font_size="20" justify="center" upper_case="false" />
+      <simplebutton name="kitSlot9" depth="4" pos="10,-506" width="280" height="38" caption="" font_size="20" justify="center" upper_case="false" />
+      <simplebutton name="kitSlot10" depth="4" pos="10,-550" width="280" height="38" caption="" font_size="20" justify="center" upper_case="false" />
+      <simplebutton name="kitSlot11" depth="4" pos="10,-594" width="280" height="38" caption="" font_size="20" justify="center" upper_case="false" />
+      <simplebutton name="kitSlot12" depth="4" pos="10,-638" width="280" height="38" caption="" font_size="20" justify="center" upper_case="false" />
+      <simplebutton name="kitSlot13" depth="4" pos="10,-682" width="280" height="38" caption="" font_size="20" justify="center" upper_case="false" />
+      <simplebutton name="btnKitPrev" depth="4" pos="10,-732" width="50" height="32" caption="&lt;" font_size="20" justify="center" upper_case="false" />
+      <label name="lblKitPage" depth="4" pos="60,-738" width="180" font_size="20" color="170,170,170,255" justify="center" max_line_count="1" text="" />
+      <simplebutton name="btnKitNext" depth="4" pos="240,-732" width="50" height="32" caption="&gt;" font_size="20" justify="center" upper_case="false" />
+      <simplebutton name="btnNewKit" depth="4" pos="10,-776" width="135" height="34" caption="New" font_size="20" justify="center" upper_case="false" />
+      <simplebutton name="btnDuplicateKit" depth="4" pos="155,-776" width="135" height="34" caption="Duplicate" font_size="20" justify="center" upper_case="false" />
+      <simplebutton name="btnDeleteKit" depth="4" pos="10,-818" width="135" height="34" caption="Delete" font_size="20" justify="center" upper_case="false" />
+      <simplebutton name="btnResetDefaults" depth="4" pos="155,-818" width="135" height="34" caption="Reset All" font_size="20" justify="center" upper_case="false" />
+      <sprite depth="1" pos="310,-60" width="660" height="840" sprite="menu_empty3px" color="[black]" type="sliced" fillcenter="true" globalopacitymod="0" />
+      <sprite depth="2" pos="310,-60" width="660" height="840" sprite="menu_empty3px" color="[mediumGrey]" type="sliced" fillcenter="false" />
+      <label depth="3" pos="310,-70" width="660" font_size="26" color="222,206,163,255" justify="center" text="Kit Details" />
+      <label depth="4" pos="325,-116" width="120" font_size="20" color="222,206,163,255" justify="left" max_line_count="1" text="ID" />
+      <textfield name="txtKitId" depth="4" pos="445,-110" width="510" height="32" font_size="20" justify="left" character_limit="40" backgroundcolor="40,40,40,255" on_return="submit" />
+      <label depth="4" pos="325,-156" width="120" font_size="20" color="222,206,163,255" justify="left" max_line_count="1" text="Name" />
+      <textfield name="txtKitName" depth="4" pos="445,-150" width="510" height="32" font_size="20" justify="left" character_limit="40" backgroundcolor="40,40,40,255" on_return="submit" />
+      <label depth="4" pos="325,-196" width="120" font_size="20" color="222,206,163,255" justify="left" max_line_count="1" text="Title" />
+      <textfield name="txtKitTitle" depth="4" pos="445,-190" width="510" height="32" font_size="20" justify="left" character_limit="60" backgroundcolor="40,40,40,255" on_return="submit" />
+      <label depth="4" pos="325,-236" width="120" font_size="20" color="222,206,163,255" justify="left" max_line_count="1" text="Description" />
+      <textfield name="txtKitDesc" depth="4" pos="445,-230" width="510" height="32" font_size="18" justify="left" character_limit="300" backgroundcolor="40,40,40,255" on_return="submit" />
+      <sprite depth="3" pos="325,-275" width="120" height="120" sprite="menu_empty3px" color="[mediumGrey]" type="sliced" fillcenter="false" />
+      <sprite name="sprKitImage" depth="5" pos="385,-335" width="110" height="110" pivot="center" atlas="ItemIconAtlas" sprite="" color="[white]" foregroundlayer="true" globalopacitymod="0" />
+      <texture name="texKitImageFile" depth="5" pos="385,-335" width="110" height="110" pivot="center" color="[white]" visible="false" />
+      <label depth="4" pos="460,-281" width="120" font_size="20" color="222,206,163,255" justify="left" max_line_count="1" text="Image" />
+      <textfield name="txtKitImage" depth="4" pos="545,-275" width="260" height="32" font_size="20" justify="left" character_limit="80" backgroundcolor="40,40,40,255" on_return="submit" />
+      <simplebutton name="btnImageAtlas" depth="4" pos="815,-275" width="140" height="32" caption="" font_size="18" justify="center" upper_case="false" />
+      <simplebutton name="btnImagePrev" depth="4" pos="460,-319" width="50" height="32" caption="&lt;" font_size="20" justify="center" upper_case="false" />
+      <label name="lblImageInfo" depth="4" pos="515,-325" width="290" font_size="18" color="170,170,170,255" justify="center" max_line_count="1" text="" />
+      <simplebutton name="btnImageNext" depth="4" pos="810,-319" width="50" height="32" caption="&gt;" font_size="20" justify="center" upper_case="false" />
+      <simplebutton name="btnImportImage" depth="4" pos="865,-319" width="90" height="32" caption="Import" font_size="18" justify="center" upper_case="false" />
+      <label depth="4" pos="460,-365" width="495" font_size="16" color="170,170,170,255" justify="left" max_line_count="1" text="Cycle portraits with &lt; &gt;, type any icon name, or Import your own picture." />
+      <label name="lblProgHeader" depth="4" pos="325,-410" width="360" font_size="22" color="222,206,163,255" justify="left" max_line_count="1" text="Granted progressions" />
+      <simplebutton name="btnProgPrev" depth="4" pos="740,-406" width="50" height="30" caption="&lt;" font_size="20" justify="center" upper_case="false" />
+      <label name="lblProgPage" depth="4" pos="790,-412" width="115" font_size="18" color="170,170,170,255" justify="center" max_line_count="1" text="" />
+      <simplebutton name="btnProgNext" depth="4" pos="905,-406" width="50" height="30" caption="&gt;" font_size="20" justify="center" upper_case="false" />
+      <sprite name="progIcon0" depth="5" pos="325,-448" width="28" height="28" atlas="UIAtlas" sprite="" color="[white]" visible="false" foregroundlayer="true" globalopacitymod="0" />
+      <label name="progName0" depth="4" pos="360,-452" width="300" font_size="18" color="[white]" justify="left" max_line_count="1" text="" />
+      <label name="progLevel0" depth="4" pos="660,-452" width="80" font_size="18" color="[white]" justify="center" max_line_count="1" text="" />
+      <simplebutton name="progMinus0" depth="4" pos="745,-446" width="34" height="30" caption="-" font_size="20" justify="center" upper_case="false" />
+      <simplebutton name="progPlus0" depth="4" pos="782,-446" width="34" height="30" caption="+" font_size="20" justify="center" upper_case="false" />
+      <simplebutton name="progMax0" depth="4" pos="819,-446" width="60" height="30" caption="Max" font_size="18" justify="center" upper_case="false" />
+      <simplebutton name="progRemove0" depth="4" pos="882,-446" width="73" height="30" caption="Remove" font_size="16" justify="center" upper_case="false" />
+      <sprite name="progIcon1" depth="5" pos="325,-484" width="28" height="28" atlas="UIAtlas" sprite="" color="[white]" visible="false" foregroundlayer="true" globalopacitymod="0" />
+      <label name="progName1" depth="4" pos="360,-488" width="300" font_size="18" color="[white]" justify="left" max_line_count="1" text="" />
+      <label name="progLevel1" depth="4" pos="660,-488" width="80" font_size="18" color="[white]" justify="center" max_line_count="1" text="" />
+      <simplebutton name="progMinus1" depth="4" pos="745,-482" width="34" height="30" caption="-" font_size="20" justify="center" upper_case="false" />
+      <simplebutton name="progPlus1" depth="4" pos="782,-482" width="34" height="30" caption="+" font_size="20" justify="center" upper_case="false" />
+      <simplebutton name="progMax1" depth="4" pos="819,-482" width="60" height="30" caption="Max" font_size="18" justify="center" upper_case="false" />
+      <simplebutton name="progRemove1" depth="4" pos="882,-482" width="73" height="30" caption="Remove" font_size="16" justify="center" upper_case="false" />
+      <sprite name="progIcon2" depth="5" pos="325,-520" width="28" height="28" atlas="UIAtlas" sprite="" color="[white]" visible="false" foregroundlayer="true" globalopacitymod="0" />
+      <label name="progName2" depth="4" pos="360,-524" width="300" font_size="18" color="[white]" justify="left" max_line_count="1" text="" />
+      <label name="progLevel2" depth="4" pos="660,-524" width="80" font_size="18" color="[white]" justify="center" max_line_count="1" text="" />
+      <simplebutton name="progMinus2" depth="4" pos="745,-518" width="34" height="30" caption="-" font_size="20" justify="center" upper_case="false" />
+      <simplebutton name="progPlus2" depth="4" pos="782,-518" width="34" height="30" caption="+" font_size="20" justify="center" upper_case="false" />
+      <simplebutton name="progMax2" depth="4" pos="819,-518" width="60" height="30" caption="Max" font_size="18" justify="center" upper_case="false" />
+      <simplebutton name="progRemove2" depth="4" pos="882,-518" width="73" height="30" caption="Remove" font_size="16" justify="center" upper_case="false" />
+      <sprite name="progIcon3" depth="5" pos="325,-556" width="28" height="28" atlas="UIAtlas" sprite="" color="[white]" visible="false" foregroundlayer="true" globalopacitymod="0" />
+      <label name="progName3" depth="4" pos="360,-560" width="300" font_size="18" color="[white]" justify="left" max_line_count="1" text="" />
+      <label name="progLevel3" depth="4" pos="660,-560" width="80" font_size="18" color="[white]" justify="center" max_line_count="1" text="" />
+      <simplebutton name="progMinus3" depth="4" pos="745,-554" width="34" height="30" caption="-" font_size="20" justify="center" upper_case="false" />
+      <simplebutton name="progPlus3" depth="4" pos="782,-554" width="34" height="30" caption="+" font_size="20" justify="center" upper_case="false" />
+      <simplebutton name="progMax3" depth="4" pos="819,-554" width="60" height="30" caption="Max" font_size="18" justify="center" upper_case="false" />
+      <simplebutton name="progRemove3" depth="4" pos="882,-554" width="73" height="30" caption="Remove" font_size="16" justify="center" upper_case="false" />
+      <sprite name="progIcon4" depth="5" pos="325,-592" width="28" height="28" atlas="UIAtlas" sprite="" color="[white]" visible="false" foregroundlayer="true" globalopacitymod="0" />
+      <label name="progName4" depth="4" pos="360,-596" width="300" font_size="18" color="[white]" justify="left" max_line_count="1" text="" />
+      <label name="progLevel4" depth="4" pos="660,-596" width="80" font_size="18" color="[white]" justify="center" max_line_count="1" text="" />
+      <simplebutton name="progMinus4" depth="4" pos="745,-590" width="34" height="30" caption="-" font_size="20" justify="center" upper_case="false" />
+      <simplebutton name="progPlus4" depth="4" pos="782,-590" width="34" height="30" caption="+" font_size="20" justify="center" upper_case="false" />
+      <simplebutton name="progMax4" depth="4" pos="819,-590" width="60" height="30" caption="Max" font_size="18" justify="center" upper_case="false" />
+      <simplebutton name="progRemove4" depth="4" pos="882,-590" width="73" height="30" caption="Remove" font_size="16" justify="center" upper_case="false" />
+      <sprite name="progIcon5" depth="5" pos="325,-628" width="28" height="28" atlas="UIAtlas" sprite="" color="[white]" visible="false" foregroundlayer="true" globalopacitymod="0" />
+      <label name="progName5" depth="4" pos="360,-632" width="300" font_size="18" color="[white]" justify="left" max_line_count="1" text="" />
+      <label name="progLevel5" depth="4" pos="660,-632" width="80" font_size="18" color="[white]" justify="center" max_line_count="1" text="" />
+      <simplebutton name="progMinus5" depth="4" pos="745,-626" width="34" height="30" caption="-" font_size="20" justify="center" upper_case="false" />
+      <simplebutton name="progPlus5" depth="4" pos="782,-626" width="34" height="30" caption="+" font_size="20" justify="center" upper_case="false" />
+      <simplebutton name="progMax5" depth="4" pos="819,-626" width="60" height="30" caption="Max" font_size="18" justify="center" upper_case="false" />
+      <simplebutton name="progRemove5" depth="4" pos="882,-626" width="73" height="30" caption="Remove" font_size="16" justify="center" upper_case="false" />
+      <sprite name="progIcon6" depth="5" pos="325,-664" width="28" height="28" atlas="UIAtlas" sprite="" color="[white]" visible="false" foregroundlayer="true" globalopacitymod="0" />
+      <label name="progName6" depth="4" pos="360,-668" width="300" font_size="18" color="[white]" justify="left" max_line_count="1" text="" />
+      <label name="progLevel6" depth="4" pos="660,-668" width="80" font_size="18" color="[white]" justify="center" max_line_count="1" text="" />
+      <simplebutton name="progMinus6" depth="4" pos="745,-662" width="34" height="30" caption="-" font_size="20" justify="center" upper_case="false" />
+      <simplebutton name="progPlus6" depth="4" pos="782,-662" width="34" height="30" caption="+" font_size="20" justify="center" upper_case="false" />
+      <simplebutton name="progMax6" depth="4" pos="819,-662" width="60" height="30" caption="Max" font_size="18" justify="center" upper_case="false" />
+      <simplebutton name="progRemove6" depth="4" pos="882,-662" width="73" height="30" caption="Remove" font_size="16" justify="center" upper_case="false" />
+      <sprite name="progIcon7" depth="5" pos="325,-700" width="28" height="28" atlas="UIAtlas" sprite="" color="[white]" visible="false" foregroundlayer="true" globalopacitymod="0" />
+      <label name="progName7" depth="4" pos="360,-704" width="300" font_size="18" color="[white]" justify="left" max_line_count="1" text="" />
+      <label name="progLevel7" depth="4" pos="660,-704" width="80" font_size="18" color="[white]" justify="center" max_line_count="1" text="" />
+      <simplebutton name="progMinus7" depth="4" pos="745,-698" width="34" height="30" caption="-" font_size="20" justify="center" upper_case="false" />
+      <simplebutton name="progPlus7" depth="4" pos="782,-698" width="34" height="30" caption="+" font_size="20" justify="center" upper_case="false" />
+      <simplebutton name="progMax7" depth="4" pos="819,-698" width="60" height="30" caption="Max" font_size="18" justify="center" upper_case="false" />
+      <simplebutton name="progRemove7" depth="4" pos="882,-698" width="73" height="30" caption="Remove" font_size="16" justify="center" upper_case="false" />
+      <simplebutton name="btnStatsMode" depth="4" pos="325,-744" width="300" height="34" caption="" font_size="18" justify="center" upper_case="false" />
+      <label name="lblStatsInfo" depth="4" pos="635,-751" width="320" font_size="18" color="170,170,170,255" justify="left" max_line_count="1" text="" />
+      <sprite depth="1" pos="980,-60" width="620" height="840" sprite="menu_empty3px" color="[black]" type="sliced" fillcenter="true" globalopacitymod="0" />
+      <sprite depth="2" pos="980,-60" width="620" height="840" sprite="menu_empty3px" color="[mediumGrey]" type="sliced" fillcenter="false" />
+      <label depth="3" pos="980,-70" width="620" font_size="26" color="222,206,163,255" justify="center" text="Catalog" />
+      <simplebutton name="catTab0" depth="4" pos="990,-105" width="83" height="32" caption="All" font_size="15" justify="center" upper_case="false" />
+      <simplebutton name="catTab1" depth="4" pos="1076,-105" width="83" height="32" caption="Attributes" font_size="15" justify="center" upper_case="false" />
+      <simplebutton name="catTab2" depth="4" pos="1162,-105" width="83" height="32" caption="Perks" font_size="15" justify="center" upper_case="false" />
+      <simplebutton name="catTab3" depth="4" pos="1248,-105" width="83" height="32" caption="Book Sets" font_size="15" justify="center" upper_case="false" />
+      <simplebutton name="catTab4" depth="4" pos="1334,-105" width="83" height="32" caption="Books" font_size="15" justify="center" upper_case="false" />
+      <simplebutton name="catTab5" depth="4" pos="1420,-105" width="83" height="32" caption="Magazines" font_size="15" justify="center" upper_case="false" />
+      <simplebutton name="catTab6" depth="4" pos="1506,-105" width="83" height="32" caption="Items" font_size="15" justify="center" upper_case="false" />
+      <simplebutton name="catSub0" depth="4" pos="990,-141" width="97" height="30" caption="Perception" font_size="15" justify="center" upper_case="false" />
+      <simplebutton name="catSub1" depth="4" pos="1090,-141" width="97" height="30" caption="Strength" font_size="15" justify="center" upper_case="false" />
+      <simplebutton name="catSub2" depth="4" pos="1190,-141" width="97" height="30" caption="Fortitude" font_size="15" justify="center" upper_case="false" />
+      <simplebutton name="catSub3" depth="4" pos="1290,-141" width="97" height="30" caption="Agility" font_size="15" justify="center" upper_case="false" />
+      <simplebutton name="catSub4" depth="4" pos="1390,-141" width="97" height="30" caption="Intellect" font_size="15" justify="center" upper_case="false" />
+      <simplebutton name="catSub5" depth="4" pos="1490,-141" width="97" height="30" caption="General" font_size="15" justify="center" upper_case="false" />
+      <label name="lblCatSearch" depth="4" pos="990,-184" width="80" font_size="20" color="222,206,163,255" justify="left" max_line_count="1" text="Search" />
+      <textfield name="txtCatSearch" depth="4" pos="1070,-178" width="520" height="32" font_size="20" justify="left" character_limit="40" backgroundcolor="40,40,40,255" on_return="submit" />
+      <simplebutton name="catRow0" depth="4" pos="990,-218" width="600" height="32" caption="" font_size="17" justify="left" upper_case="false" />
+      <sprite name="catIcon0" depth="5" pos="994,-221" width="26" height="26" atlas="UIAtlas" sprite="" color="[white]" visible="false" foregroundlayer="true" globalopacitymod="0" />
+      <simplebutton name="catRow1" depth="4" pos="990,-252" width="600" height="32" caption="" font_size="17" justify="left" upper_case="false" />
+      <sprite name="catIcon1" depth="5" pos="994,-255" width="26" height="26" atlas="UIAtlas" sprite="" color="[white]" visible="false" foregroundlayer="true" globalopacitymod="0" />
+      <simplebutton name="catRow2" depth="4" pos="990,-286" width="600" height="32" caption="" font_size="17" justify="left" upper_case="false" />
+      <sprite name="catIcon2" depth="5" pos="994,-289" width="26" height="26" atlas="UIAtlas" sprite="" color="[white]" visible="false" foregroundlayer="true" globalopacitymod="0" />
+      <simplebutton name="catRow3" depth="4" pos="990,-320" width="600" height="32" caption="" font_size="17" justify="left" upper_case="false" />
+      <sprite name="catIcon3" depth="5" pos="994,-323" width="26" height="26" atlas="UIAtlas" sprite="" color="[white]" visible="false" foregroundlayer="true" globalopacitymod="0" />
+      <simplebutton name="catRow4" depth="4" pos="990,-354" width="600" height="32" caption="" font_size="17" justify="left" upper_case="false" />
+      <sprite name="catIcon4" depth="5" pos="994,-357" width="26" height="26" atlas="UIAtlas" sprite="" color="[white]" visible="false" foregroundlayer="true" globalopacitymod="0" />
+      <simplebutton name="catRow5" depth="4" pos="990,-388" width="600" height="32" caption="" font_size="17" justify="left" upper_case="false" />
+      <sprite name="catIcon5" depth="5" pos="994,-391" width="26" height="26" atlas="UIAtlas" sprite="" color="[white]" visible="false" foregroundlayer="true" globalopacitymod="0" />
+      <simplebutton name="catRow6" depth="4" pos="990,-422" width="600" height="32" caption="" font_size="17" justify="left" upper_case="false" />
+      <sprite name="catIcon6" depth="5" pos="994,-425" width="26" height="26" atlas="UIAtlas" sprite="" color="[white]" visible="false" foregroundlayer="true" globalopacitymod="0" />
+      <simplebutton name="catRow7" depth="4" pos="990,-456" width="600" height="32" caption="" font_size="17" justify="left" upper_case="false" />
+      <sprite name="catIcon7" depth="5" pos="994,-459" width="26" height="26" atlas="UIAtlas" sprite="" color="[white]" visible="false" foregroundlayer="true" globalopacitymod="0" />
+      <simplebutton name="catRow8" depth="4" pos="990,-490" width="600" height="32" caption="" font_size="17" justify="left" upper_case="false" />
+      <sprite name="catIcon8" depth="5" pos="994,-493" width="26" height="26" atlas="UIAtlas" sprite="" color="[white]" visible="false" foregroundlayer="true" globalopacitymod="0" />
+      <simplebutton name="catRow9" depth="4" pos="990,-524" width="600" height="32" caption="" font_size="17" justify="left" upper_case="false" />
+      <sprite name="catIcon9" depth="5" pos="994,-527" width="26" height="26" atlas="UIAtlas" sprite="" color="[white]" visible="false" foregroundlayer="true" globalopacitymod="0" />
+      <simplebutton name="catRow10" depth="4" pos="990,-558" width="600" height="32" caption="" font_size="17" justify="left" upper_case="false" />
+      <sprite name="catIcon10" depth="5" pos="994,-561" width="26" height="26" atlas="UIAtlas" sprite="" color="[white]" visible="false" foregroundlayer="true" globalopacitymod="0" />
+      <simplebutton name="btnCatPrev" depth="4" pos="990,-594" width="50" height="30" caption="&lt;" font_size="20" justify="center" upper_case="false" />
+      <label name="lblCatPage" depth="4" pos="1040,-599" width="500" font_size="18" color="170,170,170,255" justify="center" max_line_count="1" text="" />
+      <simplebutton name="btnCatNext" depth="4" pos="1540,-594" width="50" height="30" caption="&gt;" font_size="20" justify="center" upper_case="false" />
+      <label name="lblItemsHeader" depth="4" pos="990,-638" width="170" font_size="20" color="222,206,163,255" justify="left" max_line_count="1" text="Items" />
+      <textfield name="txtItemName" depth="4" pos="1130,-632" width="270" height="32" font_size="20" justify="left" character_limit="80" backgroundcolor="40,40,40,255" on_return="submit" />
+      <simplebutton name="btnAddItem" depth="4" pos="1405,-632" width="80" height="32" caption="Add" font_size="18" justify="center" upper_case="false" />
+      <simplebutton name="btnItemPrev" depth="4" pos="1490,-632" width="47" height="32" caption="&lt;" font_size="20" justify="center" upper_case="false" />
+      <simplebutton name="btnItemNext" depth="4" pos="1543,-632" width="47" height="32" caption="&gt;" font_size="20" justify="center" upper_case="false" />
+      <sprite name="itemIcon0" depth="5" pos="990,-674" width="28" height="28" atlas="ItemIconAtlas" sprite="" color="[white]" visible="false" foregroundlayer="true" globalopacitymod="0" />
+      <label name="itemName0" depth="4" pos="1024,-678" width="250" font_size="18" color="[white]" justify="left" max_line_count="1" text="" />
+      <label name="itemCount0" depth="4" pos="1274,-678" width="60" font_size="18" color="[white]" justify="center" max_line_count="1" text="" />
+      <simplebutton name="itemMinus0" depth="4" pos="1336,-672" width="34" height="30" caption="-" font_size="20" justify="center" upper_case="false" />
+      <simplebutton name="itemPlus0" depth="4" pos="1373,-672" width="34" height="30" caption="+" font_size="20" justify="center" upper_case="false" />
+      <simplebutton name="itemQuality0" depth="4" pos="1410,-672" width="100" height="30" caption="" font_size="16" justify="center" upper_case="false" />
+      <simplebutton name="itemRemove0" depth="4" pos="1513,-672" width="77" height="30" caption="Remove" font_size="16" justify="center" upper_case="false" />
+      <sprite name="itemIcon1" depth="5" pos="990,-710" width="28" height="28" atlas="ItemIconAtlas" sprite="" color="[white]" visible="false" foregroundlayer="true" globalopacitymod="0" />
+      <label name="itemName1" depth="4" pos="1024,-714" width="250" font_size="18" color="[white]" justify="left" max_line_count="1" text="" />
+      <label name="itemCount1" depth="4" pos="1274,-714" width="60" font_size="18" color="[white]" justify="center" max_line_count="1" text="" />
+      <simplebutton name="itemMinus1" depth="4" pos="1336,-708" width="34" height="30" caption="-" font_size="20" justify="center" upper_case="false" />
+      <simplebutton name="itemPlus1" depth="4" pos="1373,-708" width="34" height="30" caption="+" font_size="20" justify="center" upper_case="false" />
+      <simplebutton name="itemQuality1" depth="4" pos="1410,-708" width="100" height="30" caption="" font_size="16" justify="center" upper_case="false" />
+      <simplebutton name="itemRemove1" depth="4" pos="1513,-708" width="77" height="30" caption="Remove" font_size="16" justify="center" upper_case="false" />
+      <sprite name="itemIcon2" depth="5" pos="990,-746" width="28" height="28" atlas="ItemIconAtlas" sprite="" color="[white]" visible="false" foregroundlayer="true" globalopacitymod="0" />
+      <label name="itemName2" depth="4" pos="1024,-750" width="250" font_size="18" color="[white]" justify="left" max_line_count="1" text="" />
+      <label name="itemCount2" depth="4" pos="1274,-750" width="60" font_size="18" color="[white]" justify="center" max_line_count="1" text="" />
+      <simplebutton name="itemMinus2" depth="4" pos="1336,-744" width="34" height="30" caption="-" font_size="20" justify="center" upper_case="false" />
+      <simplebutton name="itemPlus2" depth="4" pos="1373,-744" width="34" height="30" caption="+" font_size="20" justify="center" upper_case="false" />
+      <simplebutton name="itemQuality2" depth="4" pos="1410,-744" width="100" height="30" caption="" font_size="16" justify="center" upper_case="false" />
+      <simplebutton name="itemRemove2" depth="4" pos="1513,-744" width="77" height="30" caption="Remove" font_size="16" justify="center" upper_case="false" />
+      <sprite name="itemIcon3" depth="5" pos="990,-782" width="28" height="28" atlas="ItemIconAtlas" sprite="" color="[white]" visible="false" foregroundlayer="true" globalopacitymod="0" />
+      <label name="itemName3" depth="4" pos="1024,-786" width="250" font_size="18" color="[white]" justify="left" max_line_count="1" text="" />
+      <label name="itemCount3" depth="4" pos="1274,-786" width="60" font_size="18" color="[white]" justify="center" max_line_count="1" text="" />
+      <simplebutton name="itemMinus3" depth="4" pos="1336,-780" width="34" height="30" caption="-" font_size="20" justify="center" upper_case="false" />
+      <simplebutton name="itemPlus3" depth="4" pos="1373,-780" width="34" height="30" caption="+" font_size="20" justify="center" upper_case="false" />
+      <simplebutton name="itemQuality3" depth="4" pos="1410,-780" width="100" height="30" caption="" font_size="16" justify="center" upper_case="false" />
+      <simplebutton name="itemRemove3" depth="4" pos="1513,-780" width="77" height="30" caption="Remove" font_size="16" justify="center" upper_case="false" />
+      <sprite depth="1" pos="0,-910" width="1600" height="50" sprite="menu_empty3px" color="[black]" type="sliced" fillcenter="true" globalopacitymod="0" />
+      <sprite depth="2" pos="0,-910" width="1600" height="50" sprite="menu_empty3px" color="[mediumGrey]" type="sliced" fillcenter="false" />
+      <simplebutton name="btnBack" depth="4" pos="10,-918" width="200" height="34" caption="Back" font_size="22" justify="center" upper_case="false" />
+      <simplebutton name="btnRevert" depth="4" pos="1180,-918" width="200" height="34" caption="Revert" font_size="22" justify="center" upper_case="false" />
+      <simplebutton name="btnSave" depth="4" pos="1390,-918" width="200" height="34" caption="Save" font_size="22" justify="center" upper_case="false" />
+      <label depth="4" pos="230,-926" width="930" font_size="18" color="170,170,170,255" justify="center" max_line_count="1" text="Changes apply to new characters. Saved to Mods/StarterKits/Kits/kits.xml" />
+      <rect name="importPopup" depth="40" pos="0,0" width="1600" height="960" visible="false">
+        <sprite name="importBlocker" depth="40" pos="0,0" width="1600" height="960" sprite="menu_empty" color="0,0,0,190" type="sliced" fillcenter="true" globalopacitymod="0" on_press="true" on_scroll="true" />
+        <sprite depth="41" pos="260,-90" width="1080" height="780" sprite="menu_empty3px" color="[black]" type="sliced" fillcenter="true" globalopacitymod="0" />
+        <sprite depth="42" pos="260,-90" width="1080" height="780" sprite="menu_empty3px" color="222,206,163,255" type="sliced" fillcenter="false" />
+        <label depth="43" pos="260,-102" width="1080" font_size="28" color="[white]" justify="center" text="Import Kit Image" />
+        <label depth="44" pos="280,-150" width="420" font_size="22" color="222,206,163,255" justify="left" max_line_count="1" text="1. Choose a picture" />
+        <label name="lblImportFolder" depth="44" pos="280,-178" width="420" font_size="14" color="170,170,170,255" justify="left" max_line_count="2" text="" />
+        <simplebutton name="importFile0" depth="44" pos="280,-220" width="420" height="34" caption="" font_size="17" justify="left" upper_case="false" />
+        <simplebutton name="importFile1" depth="44" pos="280,-258" width="420" height="34" caption="" font_size="17" justify="left" upper_case="false" />
+        <simplebutton name="importFile2" depth="44" pos="280,-296" width="420" height="34" caption="" font_size="17" justify="left" upper_case="false" />
+        <simplebutton name="importFile3" depth="44" pos="280,-334" width="420" height="34" caption="" font_size="17" justify="left" upper_case="false" />
+        <simplebutton name="importFile4" depth="44" pos="280,-372" width="420" height="34" caption="" font_size="17" justify="left" upper_case="false" />
+        <simplebutton name="importFile5" depth="44" pos="280,-410" width="420" height="34" caption="" font_size="17" justify="left" upper_case="false" />
+        <simplebutton name="importFile6" depth="44" pos="280,-448" width="420" height="34" caption="" font_size="17" justify="left" upper_case="false" />
+        <simplebutton name="importFile7" depth="44" pos="280,-486" width="420" height="34" caption="" font_size="17" justify="left" upper_case="false" />
+        <simplebutton name="btnImportFilePrev" depth="44" pos="280,-528" width="50" height="30" caption="&lt;" font_size="18" justify="center" upper_case="false" />
+        <label name="lblImportFilePage" depth="44" pos="330,-533" width="320" font_size="16" color="170,170,170,255" justify="center" max_line_count="1" text="" />
+        <simplebutton name="btnImportFileNext" depth="44" pos="650,-528" width="50" height="30" caption="&gt;" font_size="18" justify="center" upper_case="false" />
+        <simplebutton name="btnOpenImportFolder" depth="44" pos="280,-570" width="205" height="34" caption="Open folder" font_size="18" justify="center" upper_case="false" />
+        <simplebutton name="btnRefreshImportFiles" depth="44" pos="495,-570" width="205" height="34" caption="Refresh" font_size="18" justify="center" upper_case="false" />
+        <label depth="44" pos="280,-622" width="420" font_size="16" color="170,170,170,255" justify="left" max_line_count="1" text="...or paste a full file path (.png / .jpg):" />
+        <textfield name="txtImportPath" depth="44" pos="280,-646" width="330" height="32" font_size="18" justify="left" character_limit="400" backgroundcolor="40,40,40,255" on_return="submit" />
+        <simplebutton name="btnLoadImportPath" depth="44" pos="620,-646" width="80" height="32" caption="Load" font_size="18" justify="center" upper_case="false" />
+        <label depth="44" pos="730,-150" width="400" font_size="22" color="222,206,163,255" justify="left" max_line_count="1" text="2. Crop  (drag to move, mouse wheel to zoom)" />
+        <sprite depth="42" pos="730,-180" width="408" height="408" sprite="menu_empty" color="25,25,25,255" type="sliced" fillcenter="true" globalopacitymod="0" />
+        <texture name="texCropView" depth="43" pos="734,-184" width="400" height="400" color="[white]" visible="false" on_drag="true" on_scroll="true" on_press="true" />
+        <sprite depth="45" pos="730,-180" width="408" height="408" sprite="menu_empty3px" color="222,206,163,255" type="sliced" fillcenter="false" />
+        <label name="lblCropHint" depth="44" pos="730,-370" width="408" font_size="20" color="170,170,170,255" justify="center" max_line_count="1" text="Pick a picture on the left" />
+        <label depth="44" pos="1160,-180" width="170" font_size="18" color="222,206,163,255" justify="left" max_line_count="1" text="In-game size" />
+        <sprite depth="42" pos="1160,-205" width="170" height="170" sprite="menu_empty3px" color="[mediumGrey]" type="sliced" fillcenter="false" />
+        <texture name="texCropPreview" depth="43" pos="1165,-210" width="160" height="160" color="[white]" visible="false" />
+        <label name="lblCropInfo" depth="44" pos="1160,-390" width="170" font_size="15" color="170,170,170,255" justify="left" max_line_count="6" text="" />
+        <simplebutton name="btnCropZoomOut" depth="44" pos="730,-600" width="50" height="34" caption="-" font_size="22" justify="center" upper_case="false" />
+        <simplebutton name="btnCropZoomIn" depth="44" pos="785,-600" width="50" height="34" caption="+" font_size="22" justify="center" upper_case="false" />
+        <simplebutton name="btnCropLeft" depth="44" pos="855,-600" width="50" height="34" caption="&lt;" font_size="20" justify="center" upper_case="false" />
+        <simplebutton name="btnCropUp" depth="44" pos="910,-600" width="50" height="34" caption="^" font_size="20" justify="center" upper_case="false" />
+        <simplebutton name="btnCropDown" depth="44" pos="965,-600" width="50" height="34" caption="v" font_size="20" justify="center" upper_case="false" />
+        <simplebutton name="btnCropRight" depth="44" pos="1020,-600" width="50" height="34" caption="&gt;" font_size="20" justify="center" upper_case="false" />
+        <simplebutton name="btnCropFit" depth="44" pos="1085,-600" width="90" height="34" caption="Fit" font_size="18" justify="center" upper_case="false" />
+        <simplebutton name="btnCropFill" depth="44" pos="1180,-600" width="90" height="34" caption="Center" font_size="18" justify="center" upper_case="false" />
+        <label depth="44" pos="730,-660" width="120" font_size="22" color="222,206,163,255" justify="left" max_line_count="1" text="3. Name" />
+        <textfield name="txtImportName" depth="44" pos="840,-654" width="300" height="32" font_size="18" justify="left" character_limit="40" backgroundcolor="40,40,40,255" on_return="submit" />
+        <label depth="44" pos="1150,-660" width="180" font_size="15" color="170,170,170,255" justify="left" max_line_count="1" text="saved as 200x200 PNG" />
+        <simplebutton name="btnImportCancel" depth="44" pos="280,-810" width="200" height="40" caption="Cancel" font_size="22" justify="center" upper_case="false" />
+        <label name="lblImportStatus" depth="44" pos="495,-820" width="610" font_size="17" color="170,170,170,255" justify="center" max_line_count="1" text="" />
+        <simplebutton name="btnImportSave" depth="44" pos="1120,-810" width="200" height="40" caption="Use for this kit" font_size="20" justify="center" upper_case="false" />
+      </rect>
+    </window>
+  </append>
+
+  <!-- Main menu entry, right above "Quit". Handled by Harmony/MainMenuKitEditorPatch.cs -->
+  <insertBefore xpath="//window[@name='mainMenu']//mainmenubutton[@name='btnQuit']">
+    <mainmenubutton name="btnStarterKitEditor" width="400" height="50" caption="Starter Kits" />
+  </insertBefore>
+</configs>

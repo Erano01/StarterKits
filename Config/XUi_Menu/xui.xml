@@ -1,0 +1,7 @@
+<configs>
+	<append xpath="/xui">
+		<window_group name="starterKitEditor">
+			<window name="starterKitEditor" />
+		</window_group>
+	</append>
+</configs>

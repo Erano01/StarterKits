@@ -40,3 +40,16 @@ GitHub Release: CI/CD şart değil, `gh release create <tag> <zip> --target <bra
 ## Branch kuralı
 
 Sadece **v3.1** branch'inde çalışılır (v3.1-Staging kullanıcı tarafından silindi). v2.5/v2.6 sadece referans/karşılaştırma için okunur, hiçbir zaman yazılmaz.
+
+## Kit verisi artık XML'de (feature/main-menu-kit-editor)
+
+- Kitler C#'ta değil: `Kits/defaults.xml` (modla gelir, salt okunur) + `Kits/kits.xml` (oyuncunun dosyası, ilk Save'de oluşur, deploy'a girmez, .gitignore'da).
+- Ana menü "Starter Kits" butonu → `Src/Editor/XUiC_KitEditorWindow.cs` + `Config/XUi_Menu/windows.xml` (bu XML `gen_editor_xml.py` tarzı script ile üretildi; slot sayıları C# sabitleriyle eşleşmeli: KitRows 14, ProgRows 8, CatRows 11, ItemRows 4).
+- Oyun içi seçim penceresi (`XUiC_KitSelectionMenu`) her açılışta `KitRepository.LoadKits()` ile okur → editör değişiklikleri restart gerektirmez. 14 genel slot (`btnKitSlot0..13`) + 14'ten fazla kitte sayfalama, tek önizleme sprite'ı `texKitPreview`.
+- Ana menüde `progression.xml` / `items.xml` henüz yüklenmemiş olur (StartGame'de yüklenir; atlas + localization boot'ta hazır). `GameDataCatalog` bu yüzden vanilla `Data/Config` dosyalarını kendisi okur; başka modların eklediği perk/item'lar katalogda yok.
+- Hiyerarşi: perk.parent = skill kategorisi (ör. skillAgilityCombat), skill.parent = attribute. 5 attribute'ün hepsinde "Combat Perks" var. General perkler: attGeneralPerks → skillGeneralPerks. Kitap setleri `book_group`, kitaplar `book` (parent = set).
+- Item kataloğu: `items.xml` + `item_modifiers.xml` (mod'lar; şemalar items.xml'de) + `blocks.xml` (yalnız CreativeMode=Player). `Extends` param1 = miras ALINMAYACAK özellikler (ör. mod'larda CustomIcon).
+- Kit görseli import: atlas'lar boot'ta paketlendiği için yeni PNG atlas'a eklenemez. Import edilen portreler `Kits/Images/<ad>.png` (200x200), kit'te `image_atlas="File"`; UI'da `<texture>` ile gösterilir (`KitImageStore`). Kaynak resimler `Kits/ImageImport/`. NGUI.dll + UnityEngine.ImageConversionModule.dll referansları bunun için eklendi.
+- Multiplayer senkronu (`Src/Network/`): sunucu `PlayerSpawning`'de (yedek: `PlayerSpawnedInWorld`) kendi `kits.xml`'ini diskten taze okuyup `NetPackageStarterKitsData` (XML metni, sıkıştırılmış) + kullanılan her `Kits/Images` resmi için 32 KB'lık `NetPackageStarterKitsImage` parçaları gönderir. Uzak istemci (`IsClient && !IsServer`) bunları sadece bellekte tutar, kendi `Kits/` dosyalarını yok sayar; `WorldShuttingDown`'da temizlenir. Host'un kendi oyuncusu (ClientInfo null) dosyaları direkt okur.
+- V3.4 NetPackage: `GetLength()` yok. `PooledBinaryWriter`'ın Span overload'ları net48'de derlenmez → `(BinaryWriter)` cast ile yaz.
+- Oyun içi seçim penceresi (1.3 redesign): `gen_ingame_xml.py` tarzı script ile üretildi. Slotlar C# sabitleriyle eşleşmeli: KitCardCount 8 (dikey kart listesi, tekerlekle 1'er kayar, kaydırma çubuğu `kitListThumb` Position/Size ile), MaxStatRows 16 (2 sütun, tekerlek = sayfa), ItemSlotCount 10 (quality rengi `QualityInfo.GetQualityColor`). Kartlar `rect` + `on_press/on_hover/on_scroll`; controller'da `OnPress/OnHover/OnScroll` event'leri. Arka plan `fullscreencollider_new` (sadece tıklamayı bloklar, kapatmaz).

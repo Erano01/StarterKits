@@ -1,0 +1,355 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- StarterKits default kit definitions. Shipped with the mod; do not edit.
+     Your edits are saved to Kits/kits.xml (created on first run from this file). -->
+<starterkits version="1">
+  <kit id="Scavenger" name="Scavenger" title="Urban Scavenger" image="Scavenger" image_atlas="ItemIconAtlas">
+    <description>One man's trash is another man's entire inventory. You built a life out of what others stepped over.</description>
+    <progression name="perkSalvageOperations" level="5" />
+    <progression name="perkPerceptionMastery" level="2" />
+    <progression name="craftingSalvageTools" level="4" />
+    <stat text="Salvage Operations 5/5" icon="ui_game_symbol_scrap" />
+    <stat text="Perception Mastery 2/5" icon="ui_game_symbol_perception_mastery" />
+    <stat text="Salvage Tools 4/75" icon="ui_game_symbol_wrench" />
+  </kit>
+  <kit id="Huntsman" name="Huntsman" title="Field Tracker" image="Huntsman" image_atlas="ItemIconAtlas">
+    <description>The wasteland is your hunting ground. You don't miss. You don't get hungry. They never hear you coming.</description>
+    <progression name="perkDeadEye" level="5" />
+    <progression name="perkAnimalTracker" level="5" />
+    <progression name="perkPenetrator" level="5" />
+    <progression name="perkTheHuntsman" level="5" />
+    <progression name="perkSlowMetabolism" level="5" />
+    <progression name="perkHiddenStrike" level="2" />
+    <progression name="craftingRifles" level="26" />
+    <progression name="perkSniperDamage" level="1" />
+    <progression name="perkSniperCripplingShot" level="1" />
+    <progression name="perkSniperHeadShot" level="1" />
+    <progression name="perkSniperReload" level="1" />
+    <progression name="perkSniperControlledBreathing" level="1" />
+    <progression name="perkSniperAPAmmo" level="1" />
+    <progression name="perkSniperHPAmmo" level="1" />
+    <progression name="perkSniperComplete" level="1" />
+    <stat text="Dead Eye 5/5" icon="ui_game_symbol_map_cursor" />
+    <stat text="Animal Tracker 5/5" icon="ui_game_symbol_animal_tracker" />
+    <stat text="The Penetrator 5/5" icon="ui_game_symbol_paint_copy_block" />
+    <stat text="The Huntsman 5/5" icon="ui_game_symbol_archery" />
+    <stat text="Iron Gut 5/5" icon="ui_game_symbol_stomach" />
+    <stat text="Hidden Strike 2/5" icon="ui_game_symbol_sneak_attack" />
+    <stat text="Sniper Perk Book 7/7" icon="ui_game_symbol_long_shot" />
+    <stat text="Rifles 26/100" icon="ui_game_symbol_long_shot" />
+  </kit>
+  <kit id="Athlete" name="Athlete" title="Mobility Focus" image="Athlete" image_atlas="ItemIconAtlas">
+    <description>You're not running away. You're tactically relocating. Very fast. Every single time.</description>
+    <progression name="perkParkour" level="5" />
+    <progression name="perkHardTarget" level="5" />
+    <progression name="perkRunAndGun" level="3" />
+    <progression name="craftingArmor" level="11" />
+    <progression name="perkRuleOneCardio" level="5" />
+    <stat text="Parkour 5/5" icon="ui_game_symbol_parkour" />
+    <stat text="Hard Target 5/5" icon="ui_game_symbol_hard_target" />
+    <stat text="Run and Gun 3/5" icon="ui_game_symbol_run_and_gun" />
+    <stat text="Armor Skill 11/100" icon="ui_game_symbol_armor_iron" />
+    <stat text="Rule 1: Cardio 5/5" icon="ui_game_symbol_cardio" />
+  </kit>
+  <kit id="Tyson" name="Tyson" title="Close Quarters" image="Tyson" image_atlas="ItemIconAtlas">
+    <description>No guns. No problem. Your fists are the only weapon the apocalypse couldn't rust.</description>
+    <progression name="perkBrawler" level="5" />
+    <progression name="perkFlurryOfFortitude" level="5" />
+    <progression name="perkPainTolerance" level="5" />
+    <progression name="perkFortitudeMastery" level="5" />
+    <progression name="perkSiphoningStrikes" level="5" />
+    <progression name="perkHealingFactor" level="5" />
+    <progression name="perkSlowMetabolism" level="5" />
+    <progression name="craftingKnuckles" level="11" />
+    <progression name="perkBarBrawling1BasicMoves" level="1" />
+    <progression name="perkBarBrawling2DropABomb" level="1" />
+    <progression name="perkBarBrawling3KillerInstinct" level="1" />
+    <progression name="perkBarBrawling4FinishingMoves" level="1" />
+    <progression name="perkBarBrawling5AdrenalineHealing" level="1" />
+    <progression name="perkBarBrawling6RageMode" level="1" />
+    <progression name="perkBarBrawling7BoozedUp" level="1" />
+    <progression name="perkBarBrawling8Complete" level="1" />
+    <stat text="The Brawler 5/5" icon="ui_game_symbol_boxer" />
+    <stat text="Lightning Hands 5/5" icon="ui_game_symbol_knunchuck" />
+    <stat text="Pain Tolerance 5/5" icon="ui_game_symbol_character" />
+    <stat text="Fortitude Mastery 5/5" icon="ui_game_symbol_fortitude_mastery" />
+    <stat text="Siphoning Strikes 5/5" icon="ui_game_symbol_siphoning_strikes" />
+    <stat text="Healing Factor 5/5" icon="ui_game_symbol_healing_factor" />
+    <stat text="Iron Gut 5/5" icon="ui_game_symbol_stomach" />
+    <stat text="Bar Brawling 7/7" icon="ui_game_symbol_boxer" />
+    <stat text="Knuckles 11/75" icon="ui_game_symbol_boxer" />
+  </kit>
+  <kit id="Archer" name="Archer" title="Precision Hunter" image="Archer" image_atlas="ItemIconAtlas">
+    <description>Silent. Precise. Deeply judged by everyone until the horde drops. Then suddenly everyone loves the bow guy.</description>
+    <progression name="perkArchery" level="5" />
+    <progression name="perkFromTheShadows" level="2" />
+    <progression name="perkHiddenStrike" level="3" />
+    <progression name="craftingBows" level="11" />
+    <progression name="perkRangersArrowRecovery" level="1" />
+    <progression name="perkRangersExplodingBolts" level="1" />
+    <progression name="perkRangersCripplingShot" level="1" />
+    <progression name="perkRangersAPAmmo" level="1" />
+    <progression name="perkRangersFlamingArrows" level="1" />
+    <progression name="perkRangersForestGuide" level="1" />
+    <progression name="perkRangersKnockdown" level="1" />
+    <progression name="perkRangersComplete" level="1" />
+    <stat text="Archery 5/5" icon="ui_game_symbol_archery" />
+    <stat text="From the Shadows 2/5" icon="ui_game_symbol_bat" />
+    <stat text="Hidden Strike 3/5" icon="ui_game_symbol_sneak_attack" />
+    <stat text="Ranger's Guide 7/7" icon="ui_game_symbol_archery" />
+    <stat text="Bows 11/75" icon="ui_game_symbol_archery" />
+  </kit>
+  <kit id="Farmer" name="Farmer" title="Sustain Specialist" image="Farmer" image_atlas="ItemIconAtlas">
+    <description>While others loot, you grow. Dirt under your nails, spear in your hand, food on everyone's table.</description>
+    <progression name="perkLivingOffTheLand" level="3" />
+    <progression name="craftingArmor" level="11" />
+    <progression name="perkMediumArmor" level="4" />
+    <progression name="craftingSeeds" level="20" />
+    <progression name="craftingFood" level="100" />
+    <progression name="perkJavelinMaster" level="5" />
+    <progression name="perkFlurryOfPerception" level="5" />
+    <progression name="craftingSpears" level="11" />
+    <progression name="perkSpearHunter1Damage" level="1" />
+    <progression name="perkSpearHunter2Maintenance" level="1" />
+    <progression name="perkSpearHunter3Bleed" level="1" />
+    <progression name="perkSpearHunter4KillMove" level="1" />
+    <progression name="perkSpearHunter5RapidStrike" level="1" />
+    <progression name="perkSpearHunter6PenetratingShaft" level="1" />
+    <progression name="perkSpearHunter7QuickStrike" level="1" />
+    <progression name="perkSpearHunter8Complete" level="1" />
+    <item name="armorFarmerHelmet" count="1" quality="1" />
+    <item name="armorFarmerOutfit" count="1" quality="1" />
+    <item name="armorFarmerGloves" count="1" quality="1" />
+    <item name="armorFarmerBoots" count="1" quality="1" />
+    <cvar name="plantedGraceCorn1" value="1" />
+    <stat text="Living off The Land 3/3" icon="ui_game_symbol_tree" />
+    <stat text="Armor Skill 11/100" icon="ui_game_symbol_armor_iron" />
+    <stat text="Seeds Skill 20/20" icon="ui_game_symbol_crops" />
+    <stat text="Food Skill 100/100" icon="ui_game_symbol_fork" />
+    <stat text="Super Corn Crafting" icon="plantedCorn1" atlas="ItemIconAtlas" color="ff9f9f" />
+    <stat text="Medium Armor 4/4" icon="ui_game_symbol_light_armor2" />
+    <stat text="Fullset Farmer Outfit" icon="ui_game_symbol_armor_iron" />
+    <stat text="Spear Master 5/5" icon="ui_game_symbol_spear" />
+    <stat text="Quick and Perceptive 5/5" icon="ui_game_symbol_knunchuck" />
+    <stat text="Spear Hunter 7/7" icon="ui_game_symbol_spear" />
+    <stat text="Spear Skill 11/75" icon="ui_game_symbol_spear" />
+  </kit>
+  <kit id="Engineer" name="Engineer" title="Tech Builder" image="Engineer" image_atlas="ItemIconAtlas">
+    <description>Turrets, vehicles, electricity - if it runs on volts or wheels, you built it. The apocalypse has a power grid now. Yours.</description>
+    <progression name="craftingElectrician" level="55" />
+    <progression name="craftingVehicles" level="20" />
+    <progression name="craftingRobotics" level="76" />
+    <progression name="craftingWorkstations" level="34" />
+    <progression name="perkAdvancedEngineering" level="5" />
+    <progression name="perkGreaseMonkey" level="5" />
+    <progression name="perkTechJunkie1Damage" level="1" />
+    <progression name="perkTechJunkie2Maintenance" level="1" />
+    <progression name="perkTechJunkie3APAmmo" level="1" />
+    <progression name="perkTechJunkie4Shells" level="1" />
+    <progression name="perkTechJunkie5Repulsor" level="1" />
+    <progression name="perkTechJunkie6BatonCharge" level="1" />
+    <progression name="perkTechJunkie7Hydraulics" level="1" />
+    <progression name="perkTechJunkie8Complete" level="1" />
+    <stat text="Electrician Skill 55/100" icon="ui_game_symbol_electric_generator" />
+    <stat text="Vehicles Skill 20/100" icon="ui_game_symbol_4x4" />
+    <stat text="Robotics 76/100" icon="ui_game_symbol_junk_turret" />
+    <stat text="Tech Junkie 7/7" icon="ui_game_symbol_electric_turret" />
+    <stat text="Workstations 34/75" icon="ui_game_symbol_workbench" />
+    <stat text="Advanced Engineering 5/5" icon="ui_game_symbol_workbench" />
+    <stat text="Grease Monkey 5/5" icon="ui_game_symbol_service" />
+  </kit>
+  <kit id="Ex-Soldier" name="Ex-Soldier" title="Combat Veteran" image="ExSoldier" image_atlas="ItemIconAtlas">
+    <description>Old rank, new rules. Keep moving, keep firing. Discipline is the last thing that survived.</description>
+    <progression name="perkMachineGunner" level="5" />
+    <progression name="perkRunAndGun" level="5" />
+    <progression name="craftingArmor" level="11" />
+    <progression name="perkMediumArmor" level="4" />
+    <progression name="craftingMachineGuns" level="11" />
+    <progression name="perkUrbanCombatLanding" level="1" />
+    <progression name="perkUrbanCombatCigar" level="1" />
+    <progression name="perkUrbanCombatSneaking" level="1" />
+    <progression name="perkUrbanCombatJumping" level="1" />
+    <progression name="perkUrbanCombatLandMines" level="1" />
+    <progression name="perkUrbanCombatAdrenalineRush" level="1" />
+    <progression name="perkUrbanCombatRoomClearing" level="1" />
+    <progression name="perkUrbanCombatComplete" level="1" />
+    <progression name="perkAutoWeaponsDamage" level="1" />
+    <progression name="perkAutoWeaponsUncontrolledBurst" level="1" />
+    <progression name="perkAutoWeaponsMaintenance" level="1" />
+    <progression name="perkAutoWeaponsDrumMag" level="1" />
+    <progression name="perkAutoWeaponsRecoil" level="1" />
+    <progression name="perkAutoWeaponsRagdoll" level="1" />
+    <progression name="perkAutoWeaponsMachineGuns" level="1" />
+    <progression name="perkAutoWeaponsComplete" level="1" />
+    <item name="armorCommandoHelmet" count="1" quality="1" />
+    <item name="armorCommandoOutfit" count="1" quality="1" />
+    <item name="armorCommandoGloves" count="1" quality="1" />
+    <item name="armorCommandoBoots" count="1" quality="1" />
+    <stat text="Machine Gunner 5/5" icon="ui_game_symbol_rifle" />
+    <stat text="Run and Gun 5/5" icon="ui_game_symbol_run_and_gun" />
+    <stat text="Commando Armor Fullset" icon="ui_game_symbol_armor_iron" />
+    <stat text="Armor Skill 11/100" icon="ui_game_symbol_armor_iron" />
+    <stat text="Medium Armor 4/4" icon="ui_game_symbol_light_armor2" />
+    <stat text="Urban Combat 7/7" icon="ui_game_symbol_light_armor2" />
+    <stat text="Auto Weapon Handbook 7/7" icon="ui_game_symbol_rifle" />
+    <stat text="Machine Guns 11/100" icon="ui_game_symbol_rifle" />
+  </kit>
+  <kit id="Doctor" name="Doctor" title="Field Medic" image="Doctor" image_atlas="ItemIconAtlas">
+    <description>Someone has to keep the idiots alive. Might as well be you.</description>
+    <progression name="perkPhysician" level="5" />
+    <progression name="perkCharismaticNature" level="3" />
+    <progression name="craftingMedical" level="75" />
+    <progression name="craftingArmor" level="27" />
+    <stat text="Physician 5/5" icon="ui_game_symbol_medical" />
+    <stat text="Charismatic Nature 3/5" icon="ui_game_symbol_talk" />
+    <stat text="Medical 75/75" icon="ui_game_symbol_medical" />
+    <stat text="Foot 27/100" icon="ui_game_symbol_armor_iron" />
+  </kit>
+  <kit id="Miner" name="Miner" title="Resource Breaker" image="Miner" image_atlas="ItemIconAtlas">
+    <description>You hit rocks for a living. Zombies are just rocks that bleed.</description>
+    <progression name="perkSkullCrusher" level="5" />
+    <progression name="perkGrandSlam" level="5" />
+    <progression name="perkStrengthMastery" level="5" />
+    <progression name="perkPackMule" level="5" />
+    <progression name="perkMiner69r" level="5" />
+    <progression name="perkMotherLode" level="5" />
+    <progression name="craftingHarvestingTools" level="11" />
+    <progression name="craftingSledgehammers" level="11" />
+    <progression name="craftingWorkstations" level="34" />
+    <progression name="perkSledgeSagaKnockdown" level="1" />
+    <progression name="perkSledgeSagaDegradation" level="1" />
+    <progression name="perkSledgeSagaCrippledMorale" level="1" />
+    <progression name="perkSledgeSagaPulverizingFinishers" level="1" />
+    <progression name="perkSledgeSagaSavageReaper" level="1" />
+    <progression name="perkSledgeSagaConcussiveStrike" level="1" />
+    <progression name="perkSledgeSagaArmorCrusher" level="1" />
+    <progression name="perkSledgeSagaComplete" level="1" />
+    <stat text="Skull Crusher 5/5" icon="ui_game_symbol_sledge" />
+    <stat text="Grand Slam 5/5" icon="ui_game_symbol_grand_slam" />
+    <stat text="Strength Master 5/5" icon="ui_game_symbol_strength_mastery" />
+    <stat text="Pack Mule 5/5" icon="ui_game_symbol_pack_mule" />
+    <stat text="Miner 69'er 5/5" icon="ui_game_symbol_mining" />
+    <stat text="Mother Lode 5/5" icon="ui_game_symbol_mother_load" />
+    <stat text="Sledge Saga 7/7" icon="ui_game_symbol_sledge" />
+    <stat text="Harvesting Tools 11/100" icon="ui_game_symbol_tool" />
+    <stat text="Sledge Hammer 11/75" icon="ui_game_symbol_sledge" />
+    <stat text="Workstations 34/75" icon="ui_game_symbol_workbench" />
+  </kit>
+  <kit id="Demoman" name="Demoman" title="Explosive Expert" image="Demoman" image_atlas="ItemIconAtlas">
+    <description>Collateral damage is just a fancy word for fun. If it's still standing, use a bigger one.</description>
+    <progression name="perkDemolitionsExpert" level="5" />
+    <progression name="perkInfiltrator" level="5" />
+    <progression name="craftingExplosives" level="50" />
+    <stat text="Demolition Expert 5/5" icon="ui_game_symbol_explosion" />
+    <stat text="The Infiltrator 5/5" icon="ui_game_symbol_stealth" />
+    <stat text="Explosives 50/100" icon="ui_game_symbol_explosion" />
+  </kit>
+  <kit id="Hitman" name="Hitman" title="Silent Elimination" image="Hitman" image_atlas="ItemIconAtlas">
+    <description>Clean. Quiet. Gone before they hit the floor. Getting paid in cans these days, but the craft stays the same.</description>
+    <progression name="perkGunslinger" level="5" />
+    <progression name="perkRunAndGun" level="5" />
+    <progression name="perkAgilityMastery" level="2" />
+    <progression name="perkHiddenStrike" level="5" />
+    <progression name="perkFromTheShadows" level="5" />
+    <progression name="craftingHandguns" level="26" />
+    <progression name="perkPistolPeteTakeAim" level="1" />
+    <progression name="perkPistolPeteSwissKnees" level="1" />
+    <progression name="perkPistolPeteSteadyHand" level="1" />
+    <progression name="perkPistolPeteMaintenance" level="1" />
+    <progression name="perkPistolPeteHPAmmo" level="1" />
+    <progression name="perkPistolPeteAPAmmo" level="1" />
+    <progression name="perkPistolPeteDamage" level="1" />
+    <progression name="perkPistolPeteComplete" level="1" />
+    <progression name="perkEnforcerDamage" level="1" />
+    <progression name="perkEnforcerApparel" level="1" />
+    <progression name="perkEnforcerPunks" level="1" />
+    <progression name="perkEnforcerIntimidation" level="1" />
+    <progression name="perkEnforcerAPAmmo" level="1" />
+    <progression name="perkEnforcerHPAmmo" level="1" />
+    <progression name="perkEnforcerCriminalPursuit" level="1" />
+    <progression name="perkEnforcerComplete" level="1" />
+    <stat text="Gunslinger 5/5" icon="ui_game_symbol_gunslinger" />
+    <stat text="Run and Gun 5/5" icon="ui_game_symbol_run_and_gun" />
+    <stat text="Agility Mastery 2/5" icon="ui_game_symbol_agility_mastery" />
+    <stat text="Hidden Strike 5/5" icon="ui_game_symbol_sneak_attack" />
+    <stat text="From the Shadows 5/5" icon="ui_game_symbol_bat" />
+    <stat text="Pistol Pete 7/7" icon="ui_game_symbol_pistol" />
+    <stat text="Magnum Enforcer 7/7" icon="ui_game_symbol_gunslinger" />
+    <stat text="Handguns 26/100" icon="ui_game_symbol_pistol" />
+  </kit>
+  <kit id="Dumb Luck" name="Dumb Luck" title="Risk Reward" image="DumbLuck" image_atlas="ItemIconAtlas">
+    <description>You're not skilled. You're not smart. But somehow you always find the good stuff. Don't question it.</description>
+    <progression name="perkLuckyLooter" level="5" />
+    <progression name="perkLuckyLooterDukes" level="1" />
+    <progression name="perkLuckyLooterAmmunition" level="1" />
+    <progression name="perkLuckyLooterBrass" level="1" />
+    <progression name="perkLuckyLooterLead" level="1" />
+    <progression name="perkLuckyLooterBooks" level="1" />
+    <progression name="perkLuckyLooterFood" level="1" />
+    <progression name="perkLuckyLooterMedical" level="1" />
+    <progression name="perkLuckyLooterComplete" level="1" />
+    <progression name="perkWasteTreasuresHoney" level="1" />
+    <progression name="perkWasteTreasuresCoffins" level="1" />
+    <progression name="perkWasteTreasuresAcid" level="1" />
+    <progression name="perkWasteTreasuresWater" level="1" />
+    <progression name="perkWasteTreasuresDoors" level="1" />
+    <progression name="perkWasteTreasuresCloth" level="1" />
+    <progression name="perkWasteTreasuresSinks" level="1" />
+    <progression name="perkWasteTreasuresComplete" level="1" />
+    <progression name="perkDaringAdventurer" level="5" />
+    <progression name="perkTreasureHunter" level="5" />
+    <stat text="Lucky Looter (Skill) 5/5" icon="ui_game_symbol_shopping_cart" />
+    <stat text="Lucky Looter Book 7/7" icon="ui_game_symbol_shopping_cart" />
+    <stat text="Wasteland Treasures 7/7" icon="ui_game_symbol_treasure" />
+    <stat text="Daring Adventurer 5/5" icon="ui_game_symbol_adventure" />
+    <stat text="Treasure Hunter 5/5" icon="ui_game_symbol_treasure" />
+  </kit>
+  <kit id="Burglar" name="Burglar" title="Infiltration" image="Burglar" image_atlas="ItemIconAtlas">
+    <description>Why fight when you can just... take it? Locks open, shadows hide, blades finish the conversation.</description>
+    <progression name="perkBetterBarter" level="5" />
+    <progression name="perkLockPicking" level="3" />
+    <progression name="craftingWorkstations" level="12" />
+    <progression name="craftingBlades" level="36" />
+    <progression name="perkDeepCuts" level="5" />
+    <progression name="perkFlurryOfAgility" level="5" />
+    <progression name="perkHiddenStrike" level="3" />
+    <progression name="perkFromTheShadows" level="3" />
+    <stat text="Better Barter 5/5" icon="ui_game_symbol_barter" />
+    <stat text="Lock Picking 3/3" icon="ui_game_symbol_unlock" />
+    <stat text="Workstations 12/75" icon="ui_game_symbol_workbench" />
+    <stat text="Blades 36/75" icon="ui_game_symbol_knife" />
+    <stat text="Deep Cuts 5/5" icon="ui_game_symbol_deep_cuts" />
+    <stat text="Hidden Strike 3/5" icon="ui_game_symbol_sneak_attack" />
+    <stat text="From the Shadows 3/5" icon="ui_game_symbol_bat" />
+    <stat text="Whirlwind 5/5" icon="ui_game_symbol_knunchuck" />
+  </kit>
+  <kit id="NEGAN" name="NEGAN" title="Slugger" image="meleeWpnClubT1BaseballBat" image_atlas="ItemIconAtlas" auto_stats="true">
+    <description>One bat, a roll of barbed wire and a very persuasive attitude. Everybody gets a turn.</description>
+    <progression name="craftingClubs" level="75" />
+    <progression name="perkBatterUpBigHits" level="1" />
+    <progression name="perkBatterUpStealingBases" level="1" />
+    <progression name="perkBatterUpSlowPitch" level="1" />
+    <progression name="perkBatterUpKnockdown" level="1" />
+    <progression name="perkBatterUpMaintenance" level="1" />
+    <progression name="perkBatterUpFoulBalls" level="1" />
+    <progression name="perkBatterUpMetalChain" level="1" />
+    <progression name="perkBatterUpComplete" level="1" />
+    <progression name="perkPummelPete" level="5" />
+    <progression name="perkFlurryOfStrength" level="5" />
+    <progression name="perkStrengthMastery" level="5" />
+    <progression name="attStrength" level="10" />
+    <item name="meleeWpnClubT1BaseballBat" count="1" quality="6" />
+    <item name="modMeleeWeightedHead" count="1" quality="6" />
+    <item name="modMeleeErgonomicGrip" count="1" quality="6" />
+    <item name="modMeleeClubBarbedWire" count="1" quality="6" />
+    <stat text="Clubs 75/75" icon="ui_game_symbol_club" />
+    <stat text="Batter Up! 7/7" icon="ui_game_symbol_club" />
+    <stat text="Pummel Pete 5/5" icon="ui_game_symbol_stunned" />
+    <stat text="Big and Fast 5/5" icon="ui_game_symbol_knunchuck" />
+    <stat text="Strength Mastery 5/5" icon="ui_game_symbol_strength_mastery" />
+    <stat text="Attribute: Strength 10/10" icon="ui_game_symbol_muscle" />
+    <stat text="Baseball Bat" icon="meleeWpnClubT1BaseballBat" atlas="ItemIconAtlas" />
+    <stat text="Weighted Head Mod" icon="modMeleeWeightedHead" atlas="ItemIconAtlas" />
+    <stat text="Ergonomic Grip Mod" icon="modMeleeErgonomicGrip" atlas="ItemIconAtlas" />
+    <stat text="Barbed Wire Mod" icon="modMeleeClubBarbedWire" atlas="ItemIconAtlas" />
+  </kit>
+</starterkits>

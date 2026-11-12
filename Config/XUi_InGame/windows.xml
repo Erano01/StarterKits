@@ -22,254 +22,276 @@ anchor="CenterCenter" ise tam ortaya almak istiyorsan ve width 1024 ise -512 ver
 pivot -> pivot, child elementin kendi içindeki referans noktasını belirler.
 anchor -> parent'a göre konumlandırma
 -->
-		<window name="starterKitWindow"
-			controller="StarterKits.XUiC_KitSelectionMenu, StarterKits"
-			is_modal="true"
-			allow_escape="true"
-			anchor="CenterCenter"
-			pos="-512,400"
-			width="1024" 
-			height="800"
-			cursor_area="true">
-
-			<panel name="rootPanel" width="1024" height="800">
-                <!-- HEADER -->
-                <!-- panel height - label font_size = label pos y value  -->
-				<panel name="header" pos="0,0" width="1024" height="50" depth="1">
-					<sprite depth="1" pos="0,0" width="1024" height="50" sprite="menu_empty3px" color="[black]" type="sliced" fillcenter="true" />
-					<sprite depth="1" pos="0,0" width="1024" height="50" sprite="menu_empty3px" color="0,0,0,40" type="sliced" fillcenter="true" globalopacitymod="0" />
-					<label depth="2" pos="0,-12" width="1024" font_size="28" color="[white]" justify="center" text="Starter Kits" />
-				</panel>
-
-                <panel name="selection_panel" pos="0,-55" width="509" height="745" depth="1">
-                    <sprite depth="1" pos="0,0" width="509" height="745" sprite="menu_empty3px" color="[black]" type="sliced" fillcenter="true" />
-                    <sprite depth="1" pos="0,0" width="509" height="745" sprite="menu_empty3px" color="0,0,0,40" type="sliced" fillcenter="true" globalopacitymod="0" />
-                    <!-- SELECTION TITLE -->
-                    <label depth="2" pos="0,-12" width="509" font_size="28" color="[white]" justify="center" text="Choose one of these: " />
-                    
-                    <!-- SELECTION GRID -->
-                    <grid name="kitOptions"
-                        pos="60,-65"
-                        width="390"
-                        height="525"
-                        rows="7"
-                        cols="2"
-                        cell_width="190"
-                        cell_height="75"
-                        arrangement="horizontal"
-                        repeat_content="false">
-
-                        <rect name="Scavenger" depth="1">
-                            <sprite depth="0" pos="0,0" width="190" height="75" sprite="menu_empty3px" color="[darkGrey]" type="sliced" fillcenter="true" />
-                            <sprite depth="0" pos="0,0" width="190" height="75" sprite="menu_empty3px" color="0,0,0,40" type="sliced" fillcenter="true" globalopacitymod="0" />
-                            <simplebutton name="btnScavenger" style="press, hover" width="190" height="75" pos="0,0" caption="Scavenger" font_size="20" />
-                            <rect name="selScavenger" depth="2" pos="0,0" width="190" height="75" visible="false" gamepad_selectable="false">
-                                <sprite depth="3" pos="0,0" width="190" height="75" sprite="menu_empty" color="222,206,163,48" type="sliced" />
-                                <sprite depth="4" pos="0,0" width="190" height="75" sprite="menu_empty3px" color="[selectedColor]" type="sliced" fillcenter="false" />
-                            </rect>
-                        </rect>
-
-                        <rect name="Huntsman" depth="1">
-                            <sprite depth="0" pos="0,0" width="190" height="75" sprite="menu_empty3px" color="[darkGrey]" type="sliced" fillcenter="true" />
-                            <sprite depth="0" pos="0,0" width="190" height="75" sprite="menu_empty3px" color="0,0,0,40" type="sliced" fillcenter="true" globalopacitymod="0" />
-                            <simplebutton name="btnHuntsman" style="press, hover" width="190" height="75" pos="0,0" caption="Huntsman" font_size="20" />
-                            <rect name="selHuntsman" depth="2" pos="0,0" width="190" height="75" visible="false" gamepad_selectable="false">
-                                <sprite depth="3" pos="0,0" width="190" height="75" sprite="menu_empty" color="222,206,163,48" type="sliced" />
-                                <sprite depth="4" pos="0,0" width="190" height="75" sprite="menu_empty3px" color="[selectedColor]" type="sliced" fillcenter="false" />
-                            </rect>
-                        </rect>
-
-                        <rect name="Athlete" depth="1">
-                            <sprite depth="0" pos="0,0" width="190" height="75" sprite="menu_empty3px" color="[darkGrey]" type="sliced" fillcenter="true" />
-                            <sprite depth="0" pos="0,0" width="190" height="75" sprite="menu_empty3px" color="0,0,0,40" type="sliced" fillcenter="true" globalopacitymod="0" />
-                            <simplebutton name="btnAthlete" style="press, hover" width="190" height="75" pos="0,0" caption="Athlete" font_size="20" />
-                            <rect name="selAthlete" depth="2" pos="0,0" width="190" height="75" visible="false" gamepad_selectable="false">
-                                <sprite depth="3" pos="0,0" width="190" height="75" sprite="menu_empty" color="222,206,163,48" type="sliced" />
-                                <sprite depth="4" pos="0,0" width="190" height="75" sprite="menu_empty3px" color="[selectedColor]" type="sliced" fillcenter="false" />
-                            </rect>
-                        </rect>
-
-                        <rect name="Tyson" depth="1">
-                            <sprite depth="0" pos="0,0" width="190" height="75" sprite="menu_empty3px" color="[darkGrey]" type="sliced" fillcenter="true" />
-                            <sprite depth="0" pos="0,0" width="190" height="75" sprite="menu_empty3px" color="0,0,0,40" type="sliced" fillcenter="true" globalopacitymod="0" />
-                            <simplebutton name="btnTyson" style="press, hover" width="190" height="75" pos="0,0" caption="Tyson" font_size="20" />
-                            <rect name="selTyson" depth="2" pos="0,0" width="190" height="75" visible="false" gamepad_selectable="false">
-                                <sprite depth="3" pos="0,0" width="190" height="75" sprite="menu_empty" color="222,206,163,48" type="sliced" />
-                                <sprite depth="4" pos="0,0" width="190" height="75" sprite="menu_empty3px" color="[selectedColor]" type="sliced" fillcenter="false" />
-                            </rect>
-                        </rect>
-
-                        <rect name="Archer" depth="1">
-                            <sprite depth="0" pos="0,0" width="190" height="75" sprite="menu_empty3px" color="[darkGrey]" type="sliced" fillcenter="true" />
-                            <sprite depth="0" pos="0,0" width="190" height="75" sprite="menu_empty3px" color="0,0,0,40" type="sliced" fillcenter="true" globalopacitymod="0" />
-                            <simplebutton name="btnArcher" style="press, hover" width="190" height="75" pos="0,0" caption="Archer" font_size="20" />
-                            <rect name="selArcher" depth="2" pos="0,0" width="190" height="75" visible="false" gamepad_selectable="false">
-                                <sprite depth="3" pos="0,0" width="190" height="75" sprite="menu_empty" color="222,206,163,48" type="sliced" />
-                                <sprite depth="4" pos="0,0" width="190" height="75" sprite="menu_empty3px" color="[selectedColor]" type="sliced" fillcenter="false" />
-                            </rect>
-                        </rect>
-
-                        <rect name="Farmer" depth="1">
-                            <sprite depth="0" pos="0,0" width="190" height="75" sprite="menu_empty3px" color="[darkGrey]" type="sliced" fillcenter="true" />
-                            <sprite depth="0" pos="0,0" width="190" height="75" sprite="menu_empty3px" color="0,0,0,40" type="sliced" fillcenter="true" globalopacitymod="0" />
-                            <simplebutton name="btnFarmer" style="press, hover" width="190" height="75" pos="0,0" caption="Farmer" font_size="20" />
-                            <rect name="selFarmer" depth="2" pos="0,0" width="190" height="75" visible="false" gamepad_selectable="false">
-                                <sprite depth="3" pos="0,0" width="190" height="75" sprite="menu_empty" color="222,206,163,48" type="sliced" />
-                                <sprite depth="4" pos="0,0" width="190" height="75" sprite="menu_empty3px" color="[selectedColor]" type="sliced" fillcenter="false" />
-                            </rect>
-                        </rect>
-
-                        <rect name="Engineer" depth="1">
-                            <sprite depth="0" pos="0,0" width="190" height="75" sprite="menu_empty3px" color="[darkGrey]" type="sliced" fillcenter="true" />
-                            <sprite depth="0" pos="0,0" width="190" height="75" sprite="menu_empty3px" color="0,0,0,40" type="sliced" fillcenter="true" globalopacitymod="0" />
-                            <simplebutton name="btnEngineer" style="press, hover" width="190" height="75" pos="0,0" caption="Engineer" font_size="20" />
-                            <rect name="selEngineer" depth="2" pos="0,0" width="190" height="75" visible="false" gamepad_selectable="false">
-                                <sprite depth="3" pos="0,0" width="190" height="75" sprite="menu_empty" color="222,206,163,48" type="sliced" />
-                                <sprite depth="4" pos="0,0" width="190" height="75" sprite="menu_empty3px" color="[selectedColor]" type="sliced" fillcenter="false" />
-                            </rect>
-                        </rect>
-
-                        <rect name="ExSoldier" depth="1">
-                            <sprite depth="0" pos="0,0" width="190" height="75" sprite="menu_empty3px" color="[darkGrey]" type="sliced" fillcenter="true" />
-                            <sprite depth="0" pos="0,0" width="190" height="75" sprite="menu_empty3px" color="0,0,0,40" type="sliced" fillcenter="true" globalopacitymod="0" />
-                            <simplebutton name="btnExSoldier" style="press, hover" width="190" height="75" pos="0,0" caption="Ex-Soldier" font_size="20" />
-                            <rect name="selExSoldier" depth="2" pos="0,0" width="190" height="75" visible="false" gamepad_selectable="false">
-                                <sprite depth="3" pos="0,0" width="190" height="75" sprite="menu_empty" color="222,206,163,48" type="sliced" />
-                                <sprite depth="4" pos="0,0" width="190" height="75" sprite="menu_empty3px" color="[selectedColor]" type="sliced" fillcenter="false" />
-                            </rect>
-                        </rect>
-
-                        <rect name="Doctor" depth="1">
-                            <sprite depth="0" pos="0,0" width="190" height="75" sprite="menu_empty3px" color="[darkGrey]" type="sliced" fillcenter="true" />
-                            <sprite depth="0" pos="0,0" width="190" height="75" sprite="menu_empty3px" color="0,0,0,40" type="sliced" fillcenter="true" globalopacitymod="0" />
-                            <simplebutton name="btnDoctor" style="press, hover" width="190" height="75" pos="0,0" caption="Doctor" font_size="20" />
-                            <rect name="selDoctor" depth="2" pos="0,0" width="190" height="75" visible="false" gamepad_selectable="false">
-                                <sprite depth="3" pos="0,0" width="190" height="75" sprite="menu_empty" color="222,206,163,48" type="sliced" />
-                                <sprite depth="4" pos="0,0" width="190" height="75" sprite="menu_empty3px" color="[selectedColor]" type="sliced" fillcenter="false" />
-                            </rect>
-                        </rect>
-
-                        <rect name="Miner" depth="1">
-                            <sprite depth="0" pos="0,0" width="190" height="75" sprite="menu_empty3px" color="[darkGrey]" type="sliced" fillcenter="true" />
-                            <sprite depth="0" pos="0,0" width="190" height="75" sprite="menu_empty3px" color="0,0,0,40" type="sliced" fillcenter="true" globalopacitymod="0" />
-                            <simplebutton name="btnMiner" style="press, hover" width="190" height="75" pos="0,0" caption="Miner" font_size="20" />
-                            <rect name="selMiner" depth="2" pos="0,0" width="190" height="75" visible="false" gamepad_selectable="false">
-                                <sprite depth="3" pos="0,0" width="190" height="75" sprite="menu_empty" color="222,206,163,48" type="sliced" />
-                                <sprite depth="4" pos="0,0" width="190" height="75" sprite="menu_empty3px" color="[selectedColor]" type="sliced" fillcenter="false" />
-                            </rect>
-                        </rect>
-
-                        <rect name="Demoman" depth="1">
-                            <sprite depth="0" pos="0,0" width="190" height="75" sprite="menu_empty3px" color="[darkGrey]" type="sliced" fillcenter="true" />
-                            <sprite depth="0" pos="0,0" width="190" height="75" sprite="menu_empty3px" color="0,0,0,40" type="sliced" fillcenter="true" globalopacitymod="0" />
-                            <simplebutton name="btnDemoman" style="press, hover" width="190" height="75" pos="0,0" caption="Demoman" font_size="20" />
-                            <rect name="selDemoman" depth="2" pos="0,0" width="190" height="75" visible="false" gamepad_selectable="false">
-                                <sprite depth="3" pos="0,0" width="190" height="75" sprite="menu_empty" color="222,206,163,48" type="sliced" />
-                                <sprite depth="4" pos="0,0" width="190" height="75" sprite="menu_empty3px" color="[selectedColor]" type="sliced" fillcenter="false" />
-                            </rect>
-                        </rect>
-
-                        <rect name="Hitman" depth="1">
-                            <sprite depth="0" pos="0,0" width="190" height="75" sprite="menu_empty3px" color="[darkGrey]" type="sliced" fillcenter="true" />
-                            <sprite depth="0" pos="0,0" width="190" height="75" sprite="menu_empty3px" color="0,0,0,40" type="sliced" fillcenter="true" globalopacitymod="0" />
-                            <simplebutton name="btnHitman" style="press, hover" width="190" height="75" pos="0,0" caption="Hitman" font_size="20" />
-                            <rect name="selHitman" depth="2" pos="0,0" width="190" height="75" visible="false" gamepad_selectable="false">
-                                <sprite depth="3" pos="0,0" width="190" height="75" sprite="menu_empty" color="222,206,163,48" type="sliced" />
-                                <sprite depth="4" pos="0,0" width="190" height="75" sprite="menu_empty3px" color="[selectedColor]" type="sliced" fillcenter="false" />
-                            </rect>
-                        </rect>
-
-                        <rect name="DumbLuck" depth="1">
-                            <sprite depth="0" pos="0,0" width="190" height="75" sprite="menu_empty3px" color="[darkGrey]" type="sliced" fillcenter="true" />
-                            <sprite depth="0" pos="0,0" width="190" height="75" sprite="menu_empty3px" color="0,0,0,40" type="sliced" fillcenter="true" globalopacitymod="0" />
-                            <simplebutton name="btnDumbLuck" style="press, hover" width="190" height="75" pos="0,0" caption="Dumb Luck" font_size="20" />
-                            <rect name="selDumbLuck" depth="2" pos="0,0" width="190" height="75" visible="false" gamepad_selectable="false">
-                                <sprite depth="3" pos="0,0" width="190" height="75" sprite="menu_empty" color="222,206,163,48" type="sliced" />
-                                <sprite depth="4" pos="0,0" width="190" height="75" sprite="menu_empty3px" color="[selectedColor]" type="sliced" fillcenter="false" />
-                            </rect>
-                        </rect>
-
-                        <rect name="Burglar" depth="1">
-                            <sprite depth="0" pos="0,0" width="190" height="75" sprite="menu_empty3px" color="[darkGrey]" type="sliced" fillcenter="true" />
-                            <sprite depth="0" pos="0,0" width="190" height="75" sprite="menu_empty3px" color="0,0,0,40" type="sliced" fillcenter="true" globalopacitymod="0" />
-                            <simplebutton name="btnBurglar" style="press, hover" width="190" height="75" pos="0,0" caption="Burglar" font_size="20" />
-                            <rect name="selBurglar" depth="2" pos="0,0" width="190" height="75" visible="false" gamepad_selectable="false">
-                                <sprite depth="3" pos="0,0" width="190" height="75" sprite="menu_empty" color="222,206,163,48" type="sliced" />
-                                <sprite depth="4" pos="0,0" width="190" height="75" sprite="menu_empty3px" color="[selectedColor]" type="sliced" fillcenter="false" />
-                            </rect>
-                        </rect>
-
-                    </grid>
-                </panel>
-
-                <panel name="overview_panel" pos="514,-55" width="510" height="745" depth="1">
-                    <sprite depth="1" pos="0,0" width="510" height="745" sprite="menu_empty3px" color="[black]" type="sliced" fillcenter="true" />
-                    <sprite depth="1" pos="0,0" width="510" height="745" sprite="menu_empty3px" color="0,0,0,40" type="sliced" fillcenter="true" globalopacitymod="0" />
-                    <!-- TITLE FOR OVERVİEW -->
-                    <label depth="2" pos="0,-12" width="510" font_size="28" color="[white]" justify="center" text="Selection Overview" />
-
-                    <rect name="overviewFrame" depth="2" pos="35,-55" width="440" height="655">
-                        <sprite depth="3" pos="0,0" width="440" height="655" sprite="menu_empty3px" color="[mediumGrey]" type="sliced" fillcenter="false" />
-
-                        <label name="lblSelectedKitName" depth="4" pos="0,-18" width="440" font_size="26" color="[white]" justify="center" text="No Kit Selected" />
-                        <label name="lblOverviewHint" depth="4" pos="30,-52" width="380" font_size="18" color="180,180,180,255" justify="center" text="Pick a starter kit on the left to preview its description and perk stats." />
-
-                        <rect name="imgContainer" depth="3" pos="120,-95" width="200" height="200">
-                            <sprite depth="4" pos="0,0" width="200" height="200" sprite="menu_empty3px" color="[white]" type="sliced" fillcenter="false" />
-                            <sprite depth="3" pos="20,-20" width="160" height="160" sprite="menu_empty" color="255,255,255,12" type="sliced" />
-                            <sprite name="texScavenger" depth="6" pos="100,-100" width="180" height="180" pivot="center" atlas="ItemIconAtlas" sprite="Scavenger" color="[white]" visible="false" />
-                            <sprite name="texHuntsman" depth="6" pos="100,-100" width="180" height="180" pivot="center" atlas="ItemIconAtlas" sprite="Huntsman" color="[white]" visible="false" />
-                            <sprite name="texAthlete" depth="6" pos="100,-100" width="180" height="180" pivot="center" atlas="ItemIconAtlas" sprite="Athlete" color="[white]" visible="false" />
-                            <sprite name="texTyson" depth="6" pos="100,-100" width="180" height="180" pivot="center" atlas="ItemIconAtlas" sprite="Tyson" color="[white]" visible="false" />
-                            <sprite name="texArcher" depth="6" pos="100,-100" width="180" height="180" pivot="center" atlas="ItemIconAtlas" sprite="Archer" color="[white]" visible="false" />
-                            <sprite name="texFarmer" depth="6" pos="100,-100" width="180" height="180" pivot="center" atlas="ItemIconAtlas" sprite="Farmer" color="[white]" visible="false" />
-                            <sprite name="texEngineer" depth="6" pos="100,-100" width="180" height="180" pivot="center" atlas="ItemIconAtlas" sprite="Engineer" color="[white]" visible="false" />
-                            <sprite name="texExSoldier" depth="6" pos="100,-100" width="180" height="180" pivot="center" atlas="ItemIconAtlas" sprite="ExSoldier" color="[white]" visible="false" />
-                            <sprite name="texDoctor" depth="6" pos="100,-100" width="180" height="180" pivot="center" atlas="ItemIconAtlas" sprite="Doctor" color="[white]" visible="false" />
-                            <sprite name="texMiner" depth="6" pos="100,-100" width="180" height="180" pivot="center" atlas="ItemIconAtlas" sprite="Miner" color="[white]" visible="false" />
-                            <sprite name="texDemoman" depth="6" pos="100,-100" width="180" height="180" pivot="center" atlas="ItemIconAtlas" sprite="Demoman" color="[white]" visible="false" />
-                            <sprite name="texHitman" depth="6" pos="100,-100" width="180" height="180" pivot="center" atlas="ItemIconAtlas" sprite="Hitman" color="[white]" visible="false" />
-                            <sprite name="texDumbLuck" depth="6" pos="100,-100" width="180" height="180" pivot="center" atlas="ItemIconAtlas" sprite="DumbLuck" color="[white]" visible="false" />
-                            <sprite name="texBurglar" depth="6" pos="100,-100" width="180" height="180" pivot="center" atlas="ItemIconAtlas" sprite="Burglar" color="[white]" visible="false" />
-                            <label name="lblKitImagePlaceholder" depth="5" pos="0,-75" width="200" font_size="24" color="[white]" justify="center" text="Select A Kit" />
-                            <label name="lblKitImageHint" depth="5" pos="0,-105" width="200" font_size="16" color="170,170,170,255" justify="center" text="200 x 200 preview area" />
-                        </rect>
-
-                        <label depth="4" pos="20,-320" width="180" font_size="20" color="222,206,163,255" justify="left" text="Description" />
-                        <label name="lblKitAttributes" depth="4" pos="20,-350" width="400" font_size="18" color="[white]" justify="left" text="Select a kit to inspect its description." max_line_count="4" />
-
-                        <label depth="4" pos="20,-390" width="220" font_size="20" color="222,206,163,255" justify="left" text="Kit Stats" />
-                        <sprite name="statIcon0" depth="4" atlas="UIAtlas" pos="20,-415" width="24" height="24" color="[white]" visible="false" foregroundlayer="true" globalopacitymod="0" />
-                        <label name="statLabel0" depth="4" pos="46,-417" width="187" font_size="18" color="[white]" justify="left" max_line_count="1" text="" />
-                        <sprite name="statIcon1" depth="4" atlas="UIAtlas" pos="20,-441" width="24" height="24" color="[white]" visible="false" foregroundlayer="true" globalopacitymod="0" />
-                        <label name="statLabel1" depth="4" pos="46,-443" width="187" font_size="18" color="[white]" justify="left" max_line_count="1" text="" />
-                        <sprite name="statIcon2" depth="4" atlas="UIAtlas" pos="20,-467" width="24" height="24" color="[white]" visible="false" foregroundlayer="true" globalopacitymod="0" />
-                        <label name="statLabel2" depth="4" pos="46,-469" width="187" font_size="18" color="[white]" justify="left" max_line_count="1" text="" />
-                        <sprite name="statIcon3" depth="4" atlas="UIAtlas" pos="20,-493" width="24" height="24" color="[white]" visible="false" foregroundlayer="true" globalopacitymod="0" />
-                        <label name="statLabel3" depth="4" pos="46,-495" width="187" font_size="18" color="[white]" justify="left" max_line_count="1" text="" />
-                        <sprite name="statIcon4" depth="4" atlas="UIAtlas" pos="20,-519" width="24" height="24" color="[white]" visible="false" foregroundlayer="true" globalopacitymod="0" />
-                        <label name="statLabel4" depth="4" pos="46,-521" width="187" font_size="18" color="[white]" justify="left" max_line_count="1" text="" />
-                        <sprite name="statIcon5" depth="4" atlas="UIAtlas" pos="20,-545" width="24" height="24" color="[white]" visible="false" foregroundlayer="true" globalopacitymod="0" />
-                        <label name="statLabel5" depth="4" pos="46,-547" width="187" font_size="18" color="[white]" justify="left" max_line_count="1" text="" />
-                        <sprite name="statIcon6" depth="4" atlas="UIAtlas" pos="245,-415" width="24" height="24" color="[white]" visible="false" foregroundlayer="true" globalopacitymod="0" />
-                        <label name="statLabel6" depth="4" pos="271,-417" width="162" font_size="18" color="[white]" justify="left" max_line_count="1" text="" />
-                        <sprite name="statIcon7" depth="4" atlas="UIAtlas" pos="245,-441" width="24" height="24" color="[white]" visible="false" foregroundlayer="true" globalopacitymod="0" />
-                        <label name="statLabel7" depth="4" pos="271,-443" width="162" font_size="18" color="[white]" justify="left" max_line_count="1" text="" />
-                        <sprite name="statIcon8" depth="4" atlas="UIAtlas" pos="245,-467" width="24" height="24" color="[white]" visible="false" foregroundlayer="true" globalopacitymod="0" />
-                        <label name="statLabel8" depth="4" pos="271,-469" width="162" font_size="18" color="[white]" justify="left" max_line_count="1" text="" />
-                        <sprite name="statIcon9" depth="4" atlas="UIAtlas" pos="245,-493" width="24" height="24" color="[white]" visible="false" foregroundlayer="true" globalopacitymod="0" />
-                        <label name="statLabel9" depth="4" pos="271,-495" width="162" font_size="18" color="[white]" justify="left" max_line_count="1" text="" />
-                        <sprite name="statIcon10" depth="4" atlas="UIAtlas" pos="245,-519" width="24" height="24" color="[white]" visible="false" foregroundlayer="true" globalopacitymod="0" />
-                        <label name="statLabel10" depth="4" pos="271,-521" width="162" font_size="18" color="[white]" justify="left" max_line_count="1" text="" />
-                        <sprite name="statIcon11" depth="4" atlas="UIAtlas" pos="245,-545" width="24" height="24" color="[white]" visible="false" foregroundlayer="true" globalopacitymod="0" />
-                        <label name="statLabel11" depth="4" pos="271,-547" width="162" font_size="18" color="[white]" justify="left" max_line_count="1" text="" />
-
-                    </rect>
-
-                    <simplebutton name="btnConfirmKit" depth="3" pos="55,-630" width="400" height="52" font_size="28" caption="Select &amp; Confirm" upper_case="false" event_onclick="eventConfirmKit" />
-                </panel>
-			</panel>
+		<!-- Starter kit selection window (1.3 redesign). Generated layout; controller: Src/XUiC_KitSelectionMenu.cs -->
+		<window name="starterKitWindow" controller="StarterKits.XUiC_KitSelectionMenu, StarterKits" is_modal="true" allow_escape="true" anchor="CenterCenter" pos="-640,410" width="1280" height="820" cursor_area="true">
+			<fullscreencollider_new color="0,0,0,215" />
+			<sprite depth="1" pos="0,0" width="1280" height="56" sprite="menu_empty" color="12,12,12,252" type="sliced" fillcenter="true" globalopacitymod="0" />
+			<sprite depth="2" pos="0,-54" width="1280" height="2" sprite="menu_empty" color="222,206,163,255" type="sliced" globalopacitymod="0" />
+			<label depth="4" pos="24,-12" width="600" font_size="30" color="[white]" justify="left" max_line_count="1" text="STARTER KITS" upper_case="true"/>
+			<label name="lblKitCount" depth="4" pos="856,-18" width="400" font_size="18" color="160,160,160,255" justify="right" max_line_count="1" text="" />
+			<sprite depth="1" pos="0,-64" width="380" height="692" sprite="menu_empty" color="22,22,22,250" type="sliced" fillcenter="true" globalopacitymod="0" />
+			<label depth="4" pos="16,-76" width="300" font_size="18" color="222,206,163,255" justify="left" max_line_count="1" text="CHOOSE YOUR KIT" />
+			<rect name="kitListArea" depth="1" pos="8,-104" width="364" height="644" on_scroll="true" />
+			<rect name="kitCard0" depth="2" pos="12,-108" width="344" height="76" on_press="true" on_hover="true" on_scroll="true" sound="[recipe_click]" sound_play_on_hover="[default_hover]">
+				<sprite depth="2" pos="0,0" width="344" height="76" sprite="menu_empty" color="38,38,38,255" type="sliced" fillcenter="true" globalopacitymod="0" />
+				<sprite name="kitCardHover0" depth="3" pos="0,0" width="344" height="76" sprite="menu_empty" color="255,255,255,16" type="sliced" fillcenter="true" globalopacitymod="0" visible="false" />
+				<rect name="kitCardSel0" depth="4" pos="0,0" width="344" height="76" visible="false">
+					<sprite depth="4" pos="0,0" width="344" height="76" sprite="menu_empty" color="222,206,163,28" type="sliced" fillcenter="true" globalopacitymod="0" />
+					<sprite depth="6" pos="0,0" width="344" height="76" sprite="menu_empty3px" color="[selectedColor]" type="sliced" fillcenter="false" globalopacitymod="0" />
+					<sprite depth="6" pos="0,0" width="5" height="76" sprite="menu_empty" color="222,206,163,255" type="sliced" fillcenter="true" globalopacitymod="0" />
+				</rect>
+				<sprite name="kitCardLock0" depth="7" pos="0,0" width="344" height="76" sprite="menu_empty3px" color="220,64,64,255" type="sliced" fillcenter="false" globalopacitymod="0" visible="false" />
+				<sprite depth="4" pos="10,-6" width="64" height="64" sprite="menu_empty" color="16,16,16,255" type="sliced" fillcenter="true" globalopacitymod="0" />
+				<sprite name="kitCardImg0" depth="5" pos="42,-38" width="60" height="60" pivot="center" atlas="ItemIconAtlas" sprite="" color="[white]" visible="false" globalopacitymod="0" />
+				<texture name="kitCardTex0" depth="5" pos="42,-38" width="60" height="60" pivot="center" color="[white]" visible="false" />
+				<label name="kitCardName0" depth="5" pos="86,-12" width="248" font_size="24" color="[white]" justify="left" max_line_count="1" text="" />
+				<label name="kitCardTitle0" depth="5" pos="86,-44" width="248" font_size="16" color="160,160,160,255" justify="left" max_line_count="1" text="" />
+			</rect>
+			<rect name="kitCard1" depth="2" pos="12,-188" width="344" height="76" on_press="true" on_hover="true" on_scroll="true" sound="[recipe_click]" sound_play_on_hover="[default_hover]">
+				<sprite depth="2" pos="0,0" width="344" height="76" sprite="menu_empty" color="38,38,38,255" type="sliced" fillcenter="true" globalopacitymod="0" />
+				<sprite name="kitCardHover1" depth="3" pos="0,0" width="344" height="76" sprite="menu_empty" color="255,255,255,16" type="sliced" fillcenter="true" globalopacitymod="0" visible="false" />
+				<rect name="kitCardSel1" depth="4" pos="0,0" width="344" height="76" visible="false">
+					<sprite depth="4" pos="0,0" width="344" height="76" sprite="menu_empty" color="222,206,163,28" type="sliced" fillcenter="true" globalopacitymod="0" />
+					<sprite depth="6" pos="0,0" width="344" height="76" sprite="menu_empty3px" color="[selectedColor]" type="sliced" fillcenter="false" globalopacitymod="0" />
+					<sprite depth="6" pos="0,0" width="5" height="76" sprite="menu_empty" color="222,206,163,255" type="sliced" fillcenter="true" globalopacitymod="0" />
+				</rect>
+				<sprite name="kitCardLock1" depth="7" pos="0,0" width="344" height="76" sprite="menu_empty3px" color="220,64,64,255" type="sliced" fillcenter="false" globalopacitymod="0" visible="false" />
+				<sprite depth="4" pos="10,-6" width="64" height="64" sprite="menu_empty" color="16,16,16,255" type="sliced" fillcenter="true" globalopacitymod="0" />
+				<sprite name="kitCardImg1" depth="5" pos="42,-38" width="60" height="60" pivot="center" atlas="ItemIconAtlas" sprite="" color="[white]" visible="false" globalopacitymod="0" />
+				<texture name="kitCardTex1" depth="5" pos="42,-38" width="60" height="60" pivot="center" color="[white]" visible="false" />
+				<label name="kitCardName1" depth="5" pos="86,-12" width="248" font_size="24" color="[white]" justify="left" max_line_count="1" text="" />
+				<label name="kitCardTitle1" depth="5" pos="86,-44" width="248" font_size="16" color="160,160,160,255" justify="left" max_line_count="1" text="" />
+			</rect>
+			<rect name="kitCard2" depth="2" pos="12,-268" width="344" height="76" on_press="true" on_hover="true" on_scroll="true" sound="[recipe_click]" sound_play_on_hover="[default_hover]">
+				<sprite depth="2" pos="0,0" width="344" height="76" sprite="menu_empty" color="38,38,38,255" type="sliced" fillcenter="true" globalopacitymod="0" />
+				<sprite name="kitCardHover2" depth="3" pos="0,0" width="344" height="76" sprite="menu_empty" color="255,255,255,16" type="sliced" fillcenter="true" globalopacitymod="0" visible="false" />
+				<rect name="kitCardSel2" depth="4" pos="0,0" width="344" height="76" visible="false">
+					<sprite depth="4" pos="0,0" width="344" height="76" sprite="menu_empty" color="222,206,163,28" type="sliced" fillcenter="true" globalopacitymod="0" />
+					<sprite depth="6" pos="0,0" width="344" height="76" sprite="menu_empty3px" color="[selectedColor]" type="sliced" fillcenter="false" globalopacitymod="0" />
+					<sprite depth="6" pos="0,0" width="5" height="76" sprite="menu_empty" color="222,206,163,255" type="sliced" fillcenter="true" globalopacitymod="0" />
+				</rect>
+				<sprite name="kitCardLock2" depth="7" pos="0,0" width="344" height="76" sprite="menu_empty3px" color="220,64,64,255" type="sliced" fillcenter="false" globalopacitymod="0" visible="false" />
+				<sprite depth="4" pos="10,-6" width="64" height="64" sprite="menu_empty" color="16,16,16,255" type="sliced" fillcenter="true" globalopacitymod="0" />
+				<sprite name="kitCardImg2" depth="5" pos="42,-38" width="60" height="60" pivot="center" atlas="ItemIconAtlas" sprite="" color="[white]" visible="false" globalopacitymod="0" />
+				<texture name="kitCardTex2" depth="5" pos="42,-38" width="60" height="60" pivot="center" color="[white]" visible="false" />
+				<label name="kitCardName2" depth="5" pos="86,-12" width="248" font_size="24" color="[white]" justify="left" max_line_count="1" text="" />
+				<label name="kitCardTitle2" depth="5" pos="86,-44" width="248" font_size="16" color="160,160,160,255" justify="left" max_line_count="1" text="" />
+			</rect>
+			<rect name="kitCard3" depth="2" pos="12,-348" width="344" height="76" on_press="true" on_hover="true" on_scroll="true" sound="[recipe_click]" sound_play_on_hover="[default_hover]">
+				<sprite depth="2" pos="0,0" width="344" height="76" sprite="menu_empty" color="38,38,38,255" type="sliced" fillcenter="true" globalopacitymod="0" />
+				<sprite name="kitCardHover3" depth="3" pos="0,0" width="344" height="76" sprite="menu_empty" color="255,255,255,16" type="sliced" fillcenter="true" globalopacitymod="0" visible="false" />
+				<rect name="kitCardSel3" depth="4" pos="0,0" width="344" height="76" visible="false">
+					<sprite depth="4" pos="0,0" width="344" height="76" sprite="menu_empty" color="222,206,163,28" type="sliced" fillcenter="true" globalopacitymod="0" />
+					<sprite depth="6" pos="0,0" width="344" height="76" sprite="menu_empty3px" color="[selectedColor]" type="sliced" fillcenter="false" globalopacitymod="0" />
+					<sprite depth="6" pos="0,0" width="5" height="76" sprite="menu_empty" color="222,206,163,255" type="sliced" fillcenter="true" globalopacitymod="0" />
+				</rect>
+				<sprite name="kitCardLock3" depth="7" pos="0,0" width="344" height="76" sprite="menu_empty3px" color="220,64,64,255" type="sliced" fillcenter="false" globalopacitymod="0" visible="false" />
+				<sprite depth="4" pos="10,-6" width="64" height="64" sprite="menu_empty" color="16,16,16,255" type="sliced" fillcenter="true" globalopacitymod="0" />
+				<sprite name="kitCardImg3" depth="5" pos="42,-38" width="60" height="60" pivot="center" atlas="ItemIconAtlas" sprite="" color="[white]" visible="false" globalopacitymod="0" />
+				<texture name="kitCardTex3" depth="5" pos="42,-38" width="60" height="60" pivot="center" color="[white]" visible="false" />
+				<label name="kitCardName3" depth="5" pos="86,-12" width="248" font_size="24" color="[white]" justify="left" max_line_count="1" text="" />
+				<label name="kitCardTitle3" depth="5" pos="86,-44" width="248" font_size="16" color="160,160,160,255" justify="left" max_line_count="1" text="" />
+			</rect>
+			<rect name="kitCard4" depth="2" pos="12,-428" width="344" height="76" on_press="true" on_hover="true" on_scroll="true" sound="[recipe_click]" sound_play_on_hover="[default_hover]">
+				<sprite depth="2" pos="0,0" width="344" height="76" sprite="menu_empty" color="38,38,38,255" type="sliced" fillcenter="true" globalopacitymod="0" />
+				<sprite name="kitCardHover4" depth="3" pos="0,0" width="344" height="76" sprite="menu_empty" color="255,255,255,16" type="sliced" fillcenter="true" globalopacitymod="0" visible="false" />
+				<rect name="kitCardSel4" depth="4" pos="0,0" width="344" height="76" visible="false">
+					<sprite depth="4" pos="0,0" width="344" height="76" sprite="menu_empty" color="222,206,163,28" type="sliced" fillcenter="true" globalopacitymod="0" />
+					<sprite depth="6" pos="0,0" width="344" height="76" sprite="menu_empty3px" color="[selectedColor]" type="sliced" fillcenter="false" globalopacitymod="0" />
+					<sprite depth="6" pos="0,0" width="5" height="76" sprite="menu_empty" color="222,206,163,255" type="sliced" fillcenter="true" globalopacitymod="0" />
+				</rect>
+				<sprite name="kitCardLock4" depth="7" pos="0,0" width="344" height="76" sprite="menu_empty3px" color="220,64,64,255" type="sliced" fillcenter="false" globalopacitymod="0" visible="false" />
+				<sprite depth="4" pos="10,-6" width="64" height="64" sprite="menu_empty" color="16,16,16,255" type="sliced" fillcenter="true" globalopacitymod="0" />
+				<sprite name="kitCardImg4" depth="5" pos="42,-38" width="60" height="60" pivot="center" atlas="ItemIconAtlas" sprite="" color="[white]" visible="false" globalopacitymod="0" />
+				<texture name="kitCardTex4" depth="5" pos="42,-38" width="60" height="60" pivot="center" color="[white]" visible="false" />
+				<label name="kitCardName4" depth="5" pos="86,-12" width="248" font_size="24" color="[white]" justify="left" max_line_count="1" text="" />
+				<label name="kitCardTitle4" depth="5" pos="86,-44" width="248" font_size="16" color="160,160,160,255" justify="left" max_line_count="1" text="" />
+			</rect>
+			<rect name="kitCard5" depth="2" pos="12,-508" width="344" height="76" on_press="true" on_hover="true" on_scroll="true" sound="[recipe_click]" sound_play_on_hover="[default_hover]">
+				<sprite depth="2" pos="0,0" width="344" height="76" sprite="menu_empty" color="38,38,38,255" type="sliced" fillcenter="true" globalopacitymod="0" />
+				<sprite name="kitCardHover5" depth="3" pos="0,0" width="344" height="76" sprite="menu_empty" color="255,255,255,16" type="sliced" fillcenter="true" globalopacitymod="0" visible="false" />
+				<rect name="kitCardSel5" depth="4" pos="0,0" width="344" height="76" visible="false">
+					<sprite depth="4" pos="0,0" width="344" height="76" sprite="menu_empty" color="222,206,163,28" type="sliced" fillcenter="true" globalopacitymod="0" />
+					<sprite depth="6" pos="0,0" width="344" height="76" sprite="menu_empty3px" color="[selectedColor]" type="sliced" fillcenter="false" globalopacitymod="0" />
+					<sprite depth="6" pos="0,0" width="5" height="76" sprite="menu_empty" color="222,206,163,255" type="sliced" fillcenter="true" globalopacitymod="0" />
+				</rect>
+				<sprite name="kitCardLock5" depth="7" pos="0,0" width="344" height="76" sprite="menu_empty3px" color="220,64,64,255" type="sliced" fillcenter="false" globalopacitymod="0" visible="false" />
+				<sprite depth="4" pos="10,-6" width="64" height="64" sprite="menu_empty" color="16,16,16,255" type="sliced" fillcenter="true" globalopacitymod="0" />
+				<sprite name="kitCardImg5" depth="5" pos="42,-38" width="60" height="60" pivot="center" atlas="ItemIconAtlas" sprite="" color="[white]" visible="false" globalopacitymod="0" />
+				<texture name="kitCardTex5" depth="5" pos="42,-38" width="60" height="60" pivot="center" color="[white]" visible="false" />
+				<label name="kitCardName5" depth="5" pos="86,-12" width="248" font_size="24" color="[white]" justify="left" max_line_count="1" text="" />
+				<label name="kitCardTitle5" depth="5" pos="86,-44" width="248" font_size="16" color="160,160,160,255" justify="left" max_line_count="1" text="" />
+			</rect>
+			<rect name="kitCard6" depth="2" pos="12,-588" width="344" height="76" on_press="true" on_hover="true" on_scroll="true" sound="[recipe_click]" sound_play_on_hover="[default_hover]">
+				<sprite depth="2" pos="0,0" width="344" height="76" sprite="menu_empty" color="38,38,38,255" type="sliced" fillcenter="true" globalopacitymod="0" />
+				<sprite name="kitCardHover6" depth="3" pos="0,0" width="344" height="76" sprite="menu_empty" color="255,255,255,16" type="sliced" fillcenter="true" globalopacitymod="0" visible="false" />
+				<rect name="kitCardSel6" depth="4" pos="0,0" width="344" height="76" visible="false">
+					<sprite depth="4" pos="0,0" width="344" height="76" sprite="menu_empty" color="222,206,163,28" type="sliced" fillcenter="true" globalopacitymod="0" />
+					<sprite depth="6" pos="0,0" width="344" height="76" sprite="menu_empty3px" color="[selectedColor]" type="sliced" fillcenter="false" globalopacitymod="0" />
+					<sprite depth="6" pos="0,0" width="5" height="76" sprite="menu_empty" color="222,206,163,255" type="sliced" fillcenter="true" globalopacitymod="0" />
+				</rect>
+				<sprite name="kitCardLock6" depth="7" pos="0,0" width="344" height="76" sprite="menu_empty3px" color="220,64,64,255" type="sliced" fillcenter="false" globalopacitymod="0" visible="false" />
+				<sprite depth="4" pos="10,-6" width="64" height="64" sprite="menu_empty" color="16,16,16,255" type="sliced" fillcenter="true" globalopacitymod="0" />
+				<sprite name="kitCardImg6" depth="5" pos="42,-38" width="60" height="60" pivot="center" atlas="ItemIconAtlas" sprite="" color="[white]" visible="false" globalopacitymod="0" />
+				<texture name="kitCardTex6" depth="5" pos="42,-38" width="60" height="60" pivot="center" color="[white]" visible="false" />
+				<label name="kitCardName6" depth="5" pos="86,-12" width="248" font_size="24" color="[white]" justify="left" max_line_count="1" text="" />
+				<label name="kitCardTitle6" depth="5" pos="86,-44" width="248" font_size="16" color="160,160,160,255" justify="left" max_line_count="1" text="" />
+			</rect>
+			<rect name="kitCard7" depth="2" pos="12,-668" width="344" height="76" on_press="true" on_hover="true" on_scroll="true" sound="[recipe_click]" sound_play_on_hover="[default_hover]">
+				<sprite depth="2" pos="0,0" width="344" height="76" sprite="menu_empty" color="38,38,38,255" type="sliced" fillcenter="true" globalopacitymod="0" />
+				<sprite name="kitCardHover7" depth="3" pos="0,0" width="344" height="76" sprite="menu_empty" color="255,255,255,16" type="sliced" fillcenter="true" globalopacitymod="0" visible="false" />
+				<rect name="kitCardSel7" depth="4" pos="0,0" width="344" height="76" visible="false">
+					<sprite depth="4" pos="0,0" width="344" height="76" sprite="menu_empty" color="222,206,163,28" type="sliced" fillcenter="true" globalopacitymod="0" />
+					<sprite depth="6" pos="0,0" width="344" height="76" sprite="menu_empty3px" color="[selectedColor]" type="sliced" fillcenter="false" globalopacitymod="0" />
+					<sprite depth="6" pos="0,0" width="5" height="76" sprite="menu_empty" color="222,206,163,255" type="sliced" fillcenter="true" globalopacitymod="0" />
+				</rect>
+				<sprite name="kitCardLock7" depth="7" pos="0,0" width="344" height="76" sprite="menu_empty3px" color="220,64,64,255" type="sliced" fillcenter="false" globalopacitymod="0" visible="false" />
+				<sprite depth="4" pos="10,-6" width="64" height="64" sprite="menu_empty" color="16,16,16,255" type="sliced" fillcenter="true" globalopacitymod="0" />
+				<sprite name="kitCardImg7" depth="5" pos="42,-38" width="60" height="60" pivot="center" atlas="ItemIconAtlas" sprite="" color="[white]" visible="false" globalopacitymod="0" />
+				<texture name="kitCardTex7" depth="5" pos="42,-38" width="60" height="60" pivot="center" color="[white]" visible="false" />
+				<label name="kitCardName7" depth="5" pos="86,-12" width="248" font_size="24" color="[white]" justify="left" max_line_count="1" text="" />
+				<label name="kitCardTitle7" depth="5" pos="86,-44" width="248" font_size="16" color="160,160,160,255" justify="left" max_line_count="1" text="" />
+			</rect>
+			<sprite name="kitListTrack" depth="2" pos="364,-108" width="6" height="636" sprite="menu_empty" color="50,50,50,255" type="sliced" fillcenter="true" globalopacitymod="0" visible="false" />
+			<sprite name="kitListThumb" depth="3" pos="364,-108" width="6" height="100" sprite="menu_empty" color="222,206,163,255" type="sliced" fillcenter="true" globalopacitymod="0" visible="false" />
+			<sprite depth="1" pos="388,-64" width="892" height="236" sprite="menu_empty" color="22,22,22,250" type="sliced" fillcenter="true" globalopacitymod="0" />
+			<sprite depth="2" pos="400,-76" width="212" height="212" sprite="menu_empty" color="14,14,14,255" type="sliced" fillcenter="true" globalopacitymod="0" />
+			<sprite depth="6" pos="400,-76" width="212" height="212" sprite="menu_empty3px" color="[mediumGrey]" type="sliced" fillcenter="false" globalopacitymod="0" />
+			<sprite name="texKitPreview" depth="5" pos="506,-182" width="200" height="200" pivot="center" atlas="ItemIconAtlas" sprite="" color="[white]" visible="false" />
+			<texture name="texKitPreviewFile" depth="5" pos="506,-182" width="200" height="200" pivot="center" color="[white]" visible="false" />
+			<label name="lblKitImagePlaceholder" depth="4" pos="400,-170" width="212" font_size="20" color="160,160,160,255" justify="center" max_line_count="1" text="Select a kit" />
+			<label name="lblSelectedKitName" depth="4" pos="632,-82" width="628" font_size="38" color="[white]" justify="left" max_line_count="1" text="No Kit Selected" />
+			<label name="lblKitTitle" depth="4" pos="632,-130" width="628" font_size="22" color="222,206,163,255" justify="left" max_line_count="1" text="" />
+			<label name="lblKitAttributes" depth="4" pos="632,-168" width="628" font_size="19" color="[white]" justify="left" max_line_count="4" text="" />
+			<label name="lblOverviewHint" depth="4" pos="632,-264" width="628" font_size="16" color="160,160,160,255" justify="left" max_line_count="1" text="" />
+			<sprite depth="1" pos="388,-308" width="892" height="288" sprite="menu_empty" color="22,22,22,250" type="sliced" fillcenter="true" globalopacitymod="0" />
+			<label depth="4" pos="404,-320" width="400" font_size="18" color="222,206,163,255" justify="left" max_line_count="1" text="PERKS &amp; SKILLS" />
+			<label name="lblStatsPage" depth="4" pos="964,-322" width="300" font_size="15" color="160,160,160,255" justify="right" max_line_count="1" text="" />
+			<sprite depth="2" pos="404,-346" width="860" height="1" sprite="menu_empty" color="70,70,70,255" type="sliced" globalopacitymod="0" />
+			<rect name="statsArea" depth="1" pos="392,-350" width="884" height="242" on_scroll="true" />
+			<sprite name="statIcon0" depth="5" pos="408,-356" width="24" height="24" atlas="UIAtlas" sprite="" color="[white]" visible="false" foregroundlayer="true" globalopacitymod="0" />
+			<label name="statLabel0" depth="4" pos="440,-357" width="396" font_size="18" color="[white]" justify="left" max_line_count="1" text="" />
+			<sprite name="statIcon1" depth="5" pos="408,-385" width="24" height="24" atlas="UIAtlas" sprite="" color="[white]" visible="false" foregroundlayer="true" globalopacitymod="0" />
+			<label name="statLabel1" depth="4" pos="440,-386" width="396" font_size="18" color="[white]" justify="left" max_line_count="1" text="" />
+			<sprite name="statIcon2" depth="5" pos="408,-414" width="24" height="24" atlas="UIAtlas" sprite="" color="[white]" visible="false" foregroundlayer="true" globalopacitymod="0" />
+			<label name="statLabel2" depth="4" pos="440,-415" width="396" font_size="18" color="[white]" justify="left" max_line_count="1" text="" />
+			<sprite name="statIcon3" depth="5" pos="408,-443" width="24" height="24" atlas="UIAtlas" sprite="" color="[white]" visible="false" foregroundlayer="true" globalopacitymod="0" />
+			<label name="statLabel3" depth="4" pos="440,-444" width="396" font_size="18" color="[white]" justify="left" max_line_count="1" text="" />
+			<sprite name="statIcon4" depth="5" pos="408,-472" width="24" height="24" atlas="UIAtlas" sprite="" color="[white]" visible="false" foregroundlayer="true" globalopacitymod="0" />
+			<label name="statLabel4" depth="4" pos="440,-473" width="396" font_size="18" color="[white]" justify="left" max_line_count="1" text="" />
+			<sprite name="statIcon5" depth="5" pos="408,-501" width="24" height="24" atlas="UIAtlas" sprite="" color="[white]" visible="false" foregroundlayer="true" globalopacitymod="0" />
+			<label name="statLabel5" depth="4" pos="440,-502" width="396" font_size="18" color="[white]" justify="left" max_line_count="1" text="" />
+			<sprite name="statIcon6" depth="5" pos="408,-530" width="24" height="24" atlas="UIAtlas" sprite="" color="[white]" visible="false" foregroundlayer="true" globalopacitymod="0" />
+			<label name="statLabel6" depth="4" pos="440,-531" width="396" font_size="18" color="[white]" justify="left" max_line_count="1" text="" />
+			<sprite name="statIcon7" depth="5" pos="408,-559" width="24" height="24" atlas="UIAtlas" sprite="" color="[white]" visible="false" foregroundlayer="true" globalopacitymod="0" />
+			<label name="statLabel7" depth="4" pos="440,-560" width="396" font_size="18" color="[white]" justify="left" max_line_count="1" text="" />
+			<sprite name="statIcon8" depth="5" pos="848,-356" width="24" height="24" atlas="UIAtlas" sprite="" color="[white]" visible="false" foregroundlayer="true" globalopacitymod="0" />
+			<label name="statLabel8" depth="4" pos="880,-357" width="396" font_size="18" color="[white]" justify="left" max_line_count="1" text="" />
+			<sprite name="statIcon9" depth="5" pos="848,-385" width="24" height="24" atlas="UIAtlas" sprite="" color="[white]" visible="false" foregroundlayer="true" globalopacitymod="0" />
+			<label name="statLabel9" depth="4" pos="880,-386" width="396" font_size="18" color="[white]" justify="left" max_line_count="1" text="" />
+			<sprite name="statIcon10" depth="5" pos="848,-414" width="24" height="24" atlas="UIAtlas" sprite="" color="[white]" visible="false" foregroundlayer="true" globalopacitymod="0" />
+			<label name="statLabel10" depth="4" pos="880,-415" width="396" font_size="18" color="[white]" justify="left" max_line_count="1" text="" />
+			<sprite name="statIcon11" depth="5" pos="848,-443" width="24" height="24" atlas="UIAtlas" sprite="" color="[white]" visible="false" foregroundlayer="true" globalopacitymod="0" />
+			<label name="statLabel11" depth="4" pos="880,-444" width="396" font_size="18" color="[white]" justify="left" max_line_count="1" text="" />
+			<sprite name="statIcon12" depth="5" pos="848,-472" width="24" height="24" atlas="UIAtlas" sprite="" color="[white]" visible="false" foregroundlayer="true" globalopacitymod="0" />
+			<label name="statLabel12" depth="4" pos="880,-473" width="396" font_size="18" color="[white]" justify="left" max_line_count="1" text="" />
+			<sprite name="statIcon13" depth="5" pos="848,-501" width="24" height="24" atlas="UIAtlas" sprite="" color="[white]" visible="false" foregroundlayer="true" globalopacitymod="0" />
+			<label name="statLabel13" depth="4" pos="880,-502" width="396" font_size="18" color="[white]" justify="left" max_line_count="1" text="" />
+			<sprite name="statIcon14" depth="5" pos="848,-530" width="24" height="24" atlas="UIAtlas" sprite="" color="[white]" visible="false" foregroundlayer="true" globalopacitymod="0" />
+			<label name="statLabel14" depth="4" pos="880,-531" width="396" font_size="18" color="[white]" justify="left" max_line_count="1" text="" />
+			<sprite name="statIcon15" depth="5" pos="848,-559" width="24" height="24" atlas="UIAtlas" sprite="" color="[white]" visible="false" foregroundlayer="true" globalopacitymod="0" />
+			<label name="statLabel15" depth="4" pos="880,-560" width="396" font_size="18" color="[white]" justify="left" max_line_count="1" text="" />
+			<sprite depth="1" pos="388,-604" width="892" height="152" sprite="menu_empty" color="22,22,22,250" type="sliced" fillcenter="true" globalopacitymod="0" />
+			<label depth="4" pos="404,-614" width="400" font_size="18" color="222,206,163,255" justify="left" max_line_count="1" text="ITEMS" />
+			<label name="lblItemsPage" depth="4" pos="964,-616" width="300" font_size="15" color="160,160,160,255" justify="right" max_line_count="1" text="" />
+			<rect name="itemsArea" depth="1" pos="392,-636" width="884" height="116" on_scroll="true" />
+			<label name="lblNoItems" depth="4" pos="404,-674" width="860" font_size="18" color="160,160,160,255" justify="center" max_line_count="1" text="This kit gives no items." />
+			<rect name="itemSlot0" depth="2" pos="404,-638" width="80" height="112" visible="false">
+				<sprite depth="2" pos="0,0" width="80" height="80" sprite="menu_empty" color="30,30,30,255" type="sliced" fillcenter="true" globalopacitymod="0" />
+				<sprite name="itemSlotQ0" depth="3" pos="0,0" width="80" height="80" sprite="menu_empty2px" color="90,90,90,255" type="sliced" fillcenter="false" globalopacitymod="0" />
+				<sprite name="itemSlotIcon0" depth="4" pos="40,-40" width="64" height="64" pivot="center" atlas="ItemIconAtlas" sprite="" color="[white]" globalopacitymod="0" />
+				<label name="itemSlotQLabel0" depth="5" pos="5,-3" width="40" font_size="14" color="[white]" justify="left" max_line_count="1" text="" />
+				<label name="itemSlotCount0" depth="5" pos="4,-58" width="72" font_size="16" color="[white]" justify="right" max_line_count="1" text="" effect="outline" />
+				<label name="itemSlotName0" depth="5" pos="-2,-84" width="84" font_size="12" color="160,160,160,255" justify="center" max_line_count="2" text="" />
+			</rect>
+			<rect name="itemSlot1" depth="2" pos="491,-638" width="80" height="112" visible="false">
+				<sprite depth="2" pos="0,0" width="80" height="80" sprite="menu_empty" color="30,30,30,255" type="sliced" fillcenter="true" globalopacitymod="0" />
+				<sprite name="itemSlotQ1" depth="3" pos="0,0" width="80" height="80" sprite="menu_empty2px" color="90,90,90,255" type="sliced" fillcenter="false" globalopacitymod="0" />
+				<sprite name="itemSlotIcon1" depth="4" pos="40,-40" width="64" height="64" pivot="center" atlas="ItemIconAtlas" sprite="" color="[white]" globalopacitymod="0" />
+				<label name="itemSlotQLabel1" depth="5" pos="5,-3" width="40" font_size="14" color="[white]" justify="left" max_line_count="1" text="" />
+				<label name="itemSlotCount1" depth="5" pos="4,-58" width="72" font_size="16" color="[white]" justify="right" max_line_count="1" text="" effect="outline" />
+				<label name="itemSlotName1" depth="5" pos="-2,-84" width="84" font_size="12" color="160,160,160,255" justify="center" max_line_count="2" text="" />
+			</rect>
+			<rect name="itemSlot2" depth="2" pos="578,-638" width="80" height="112" visible="false">
+				<sprite depth="2" pos="0,0" width="80" height="80" sprite="menu_empty" color="30,30,30,255" type="sliced" fillcenter="true" globalopacitymod="0" />
+				<sprite name="itemSlotQ2" depth="3" pos="0,0" width="80" height="80" sprite="menu_empty2px" color="90,90,90,255" type="sliced" fillcenter="false" globalopacitymod="0" />
+				<sprite name="itemSlotIcon2" depth="4" pos="40,-40" width="64" height="64" pivot="center" atlas="ItemIconAtlas" sprite="" color="[white]" globalopacitymod="0" />
+				<label name="itemSlotQLabel2" depth="5" pos="5,-3" width="40" font_size="14" color="[white]" justify="left" max_line_count="1" text="" />
+				<label name="itemSlotCount2" depth="5" pos="4,-58" width="72" font_size="16" color="[white]" justify="right" max_line_count="1" text="" effect="outline" />
+				<label name="itemSlotName2" depth="5" pos="-2,-84" width="84" font_size="12" color="160,160,160,255" justify="center" max_line_count="2" text="" />
+			</rect>
+			<rect name="itemSlot3" depth="2" pos="665,-638" width="80" height="112" visible="false">
+				<sprite depth="2" pos="0,0" width="80" height="80" sprite="menu_empty" color="30,30,30,255" type="sliced" fillcenter="true" globalopacitymod="0" />
+				<sprite name="itemSlotQ3" depth="3" pos="0,0" width="80" height="80" sprite="menu_empty2px" color="90,90,90,255" type="sliced" fillcenter="false" globalopacitymod="0" />
+				<sprite name="itemSlotIcon3" depth="4" pos="40,-40" width="64" height="64" pivot="center" atlas="ItemIconAtlas" sprite="" color="[white]" globalopacitymod="0" />
+				<label name="itemSlotQLabel3" depth="5" pos="5,-3" width="40" font_size="14" color="[white]" justify="left" max_line_count="1" text="" />
+				<label name="itemSlotCount3" depth="5" pos="4,-58" width="72" font_size="16" color="[white]" justify="right" max_line_count="1" text="" effect="outline" />
+				<label name="itemSlotName3" depth="5" pos="-2,-84" width="84" font_size="12" color="160,160,160,255" justify="center" max_line_count="2" text="" />
+			</rect>
+			<rect name="itemSlot4" depth="2" pos="752,-638" width="80" height="112" visible="false">
+				<sprite depth="2" pos="0,0" width="80" height="80" sprite="menu_empty" color="30,30,30,255" type="sliced" fillcenter="true" globalopacitymod="0" />
+				<sprite name="itemSlotQ4" depth="3" pos="0,0" width="80" height="80" sprite="menu_empty2px" color="90,90,90,255" type="sliced" fillcenter="false" globalopacitymod="0" />
+				<sprite name="itemSlotIcon4" depth="4" pos="40,-40" width="64" height="64" pivot="center" atlas="ItemIconAtlas" sprite="" color="[white]" globalopacitymod="0" />
+				<label name="itemSlotQLabel4" depth="5" pos="5,-3" width="40" font_size="14" color="[white]" justify="left" max_line_count="1" text="" />
+				<label name="itemSlotCount4" depth="5" pos="4,-58" width="72" font_size="16" color="[white]" justify="right" max_line_count="1" text="" effect="outline" />
+				<label name="itemSlotName4" depth="5" pos="-2,-84" width="84" font_size="12" color="160,160,160,255" justify="center" max_line_count="2" text="" />
+			</rect>
+			<rect name="itemSlot5" depth="2" pos="839,-638" width="80" height="112" visible="false">
+				<sprite depth="2" pos="0,0" width="80" height="80" sprite="menu_empty" color="30,30,30,255" type="sliced" fillcenter="true" globalopacitymod="0" />
+				<sprite name="itemSlotQ5" depth="3" pos="0,0" width="80" height="80" sprite="menu_empty2px" color="90,90,90,255" type="sliced" fillcenter="false" globalopacitymod="0" />
+				<sprite name="itemSlotIcon5" depth="4" pos="40,-40" width="64" height="64" pivot="center" atlas="ItemIconAtlas" sprite="" color="[white]" globalopacitymod="0" />
+				<label name="itemSlotQLabel5" depth="5" pos="5,-3" width="40" font_size="14" color="[white]" justify="left" max_line_count="1" text="" />
+				<label name="itemSlotCount5" depth="5" pos="4,-58" width="72" font_size="16" color="[white]" justify="right" max_line_count="1" text="" effect="outline" />
+				<label name="itemSlotName5" depth="5" pos="-2,-84" width="84" font_size="12" color="160,160,160,255" justify="center" max_line_count="2" text="" />
+			</rect>
+			<rect name="itemSlot6" depth="2" pos="926,-638" width="80" height="112" visible="false">
+				<sprite depth="2" pos="0,0" width="80" height="80" sprite="menu_empty" color="30,30,30,255" type="sliced" fillcenter="true" globalopacitymod="0" />
+				<sprite name="itemSlotQ6" depth="3" pos="0,0" width="80" height="80" sprite="menu_empty2px" color="90,90,90,255" type="sliced" fillcenter="false" globalopacitymod="0" />
+				<sprite name="itemSlotIcon6" depth="4" pos="40,-40" width="64" height="64" pivot="center" atlas="ItemIconAtlas" sprite="" color="[white]" globalopacitymod="0" />
+				<label name="itemSlotQLabel6" depth="5" pos="5,-3" width="40" font_size="14" color="[white]" justify="left" max_line_count="1" text="" />
+				<label name="itemSlotCount6" depth="5" pos="4,-58" width="72" font_size="16" color="[white]" justify="right" max_line_count="1" text="" effect="outline" />
+				<label name="itemSlotName6" depth="5" pos="-2,-84" width="84" font_size="12" color="160,160,160,255" justify="center" max_line_count="2" text="" />
+			</rect>
+			<rect name="itemSlot7" depth="2" pos="1013,-638" width="80" height="112" visible="false">
+				<sprite depth="2" pos="0,0" width="80" height="80" sprite="menu_empty" color="30,30,30,255" type="sliced" fillcenter="true" globalopacitymod="0" />
+				<sprite name="itemSlotQ7" depth="3" pos="0,0" width="80" height="80" sprite="menu_empty2px" color="90,90,90,255" type="sliced" fillcenter="false" globalopacitymod="0" />
+				<sprite name="itemSlotIcon7" depth="4" pos="40,-40" width="64" height="64" pivot="center" atlas="ItemIconAtlas" sprite="" color="[white]" globalopacitymod="0" />
+				<label name="itemSlotQLabel7" depth="5" pos="5,-3" width="40" font_size="14" color="[white]" justify="left" max_line_count="1" text="" />
+				<label name="itemSlotCount7" depth="5" pos="4,-58" width="72" font_size="16" color="[white]" justify="right" max_line_count="1" text="" effect="outline" />
+				<label name="itemSlotName7" depth="5" pos="-2,-84" width="84" font_size="12" color="160,160,160,255" justify="center" max_line_count="2" text="" />
+			</rect>
+			<rect name="itemSlot8" depth="2" pos="1100,-638" width="80" height="112" visible="false">
+				<sprite depth="2" pos="0,0" width="80" height="80" sprite="menu_empty" color="30,30,30,255" type="sliced" fillcenter="true" globalopacitymod="0" />
+				<sprite name="itemSlotQ8" depth="3" pos="0,0" width="80" height="80" sprite="menu_empty2px" color="90,90,90,255" type="sliced" fillcenter="false" globalopacitymod="0" />
+				<sprite name="itemSlotIcon8" depth="4" pos="40,-40" width="64" height="64" pivot="center" atlas="ItemIconAtlas" sprite="" color="[white]" globalopacitymod="0" />
+				<label name="itemSlotQLabel8" depth="5" pos="5,-3" width="40" font_size="14" color="[white]" justify="left" max_line_count="1" text="" />
+				<label name="itemSlotCount8" depth="5" pos="4,-58" width="72" font_size="16" color="[white]" justify="right" max_line_count="1" text="" effect="outline" />
+				<label name="itemSlotName8" depth="5" pos="-2,-84" width="84" font_size="12" color="160,160,160,255" justify="center" max_line_count="2" text="" />
+			</rect>
+			<rect name="itemSlot9" depth="2" pos="1187,-638" width="80" height="112" visible="false">
+				<sprite depth="2" pos="0,0" width="80" height="80" sprite="menu_empty" color="30,30,30,255" type="sliced" fillcenter="true" globalopacitymod="0" />
+				<sprite name="itemSlotQ9" depth="3" pos="0,0" width="80" height="80" sprite="menu_empty2px" color="90,90,90,255" type="sliced" fillcenter="false" globalopacitymod="0" />
+				<sprite name="itemSlotIcon9" depth="4" pos="40,-40" width="64" height="64" pivot="center" atlas="ItemIconAtlas" sprite="" color="[white]" globalopacitymod="0" />
+				<label name="itemSlotQLabel9" depth="5" pos="5,-3" width="40" font_size="14" color="[white]" justify="left" max_line_count="1" text="" />
+				<label name="itemSlotCount9" depth="5" pos="4,-58" width="72" font_size="16" color="[white]" justify="right" max_line_count="1" text="" effect="outline" />
+				<label name="itemSlotName9" depth="5" pos="-2,-84" width="84" font_size="12" color="160,160,160,255" justify="center" max_line_count="2" text="" />
+			</rect>
+			<sprite depth="1" pos="0,-764" width="1280" height="56" sprite="menu_empty" color="12,12,12,252" type="sliced" fillcenter="true" globalopacitymod="0" />
+			<sprite depth="2" pos="0,-764" width="1280" height="2" sprite="menu_empty" color="60,60,60,255" type="sliced" globalopacitymod="0" />
+			<label name="lblLockedKit" depth="4" pos="24,-782" width="820" font_size="20" color="230,90,90,255" justify="left" max_line_count="1" text="" />
+			<simplebutton name="btnConfirmKit" depth="3" pos="896,-770" width="368" height="44" font_size="26" caption="Select &amp; Confirm" upper_case="false" />
 		</window>
+
 	</append>
 
 	<!-- ESC menusune starter kit butonu ekle -->
