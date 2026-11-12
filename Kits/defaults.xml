@@ -198,11 +198,11 @@
     <progression name="perkPhysician" level="5" />
     <progression name="perkCharismaticNature" level="3" />
     <progression name="craftingMedical" level="75" />
-    <progression name="craftingArmor" level="27" />
+    <progression name="craftingFood" level="27" />
     <stat text="Physician 5/5" icon="ui_game_symbol_medical" />
     <stat text="Charismatic Nature 3/5" icon="ui_game_symbol_talk" />
     <stat text="Medical 75/75" icon="ui_game_symbol_medical" />
-    <stat text="Foot 27/100" icon="ui_game_symbol_armor_iron" />
+    <stat text="Food 27/100" icon="ui_game_symbol_fork" />
   </kit>
   <kit id="Miner" name="Miner" title="Resource Breaker" image="Miner" image_atlas="ItemIconAtlas">
     <description>You hit rocks for a living. Zombies are just rocks that bleed.</description>
