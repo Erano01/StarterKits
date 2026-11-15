@@ -635,6 +635,20 @@ namespace StarterKits.Editor
             RefreshStatsInfo();
         }
 
+        /// <summary>Custom stat lines are hand-written; tell the user what removing an entry did to them.</summary>
+        private void ReportCustomStatSync(KitDefinition kit, int changed)
+        {
+            if (kit.AutoStats)
+            {
+                return;
+            }
+
+            RefreshStatsInfo();
+            SetStatus(changed > 0
+                ? $"Updated {changed} custom stat line(s) to match."
+                : "Removed. Custom stat lines unchanged - if one still mentions it, switch Stat lines to Auto.");
+        }
+
         private static void RegenerateStats(KitDefinition kit)
         {
             kit.Stats.Clear();
@@ -669,8 +683,10 @@ namespace StarterKits.Editor
                 return;
             }
 
+            string removed = kit.Progressions[index].Name;
             kit.Progressions.RemoveAt(index);
             OnKitContentChanged();
+            ReportCustomStatSync(kit, kit.AutoStats ? 0 : KitStatBuilder.SyncCustomStatsAfterRemoval(kit, removed));
         }
 
         private void OnCatalogRow(int row)
@@ -846,8 +862,10 @@ namespace StarterKits.Editor
                 return;
             }
 
+            string removed = kit.Items[index].Name;
             kit.Items.RemoveAt(index);
             OnKitContentChanged();
+            ReportCustomStatSync(kit, kit.AutoStats ? 0 : KitStatBuilder.SyncCustomStatsAfterItemRemoval(kit, removed));
         }
 
         private KitItem ItemAt(int row)

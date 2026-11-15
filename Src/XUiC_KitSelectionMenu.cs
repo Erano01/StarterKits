@@ -717,12 +717,13 @@ namespace StarterKits
                     int count = Math.Min(remaining, stackSize);
                     remaining -= count;
                     var stack = new ItemStack(itemValue.Clone(), count);
-                    if (this.TryAddItemToInventory(player, stack))
+                    if (this.TryAddItemToInventory(player, stack) || stack.IsEmpty() || stack.count <= 0)
                     {
                         delivered += count;
                     }
                     else
                     {
+                        delivered += count - stack.count;
                         overflow.Add(stack);
                     }
                 }
@@ -765,6 +766,19 @@ namespace StarterKits
 
             try
             {
+                // Toolbelt + backpack (and empty armor slots), like picking an item up.
+                // On a partial fit the stack keeps the remainder, which then goes to the loot bag.
+                XUiM_PlayerInventory playerInventory = this.xui?.PlayerInventory;
+                if (playerInventory != null && player is EntityPlayerLocal)
+                {
+                    return playerInventory.AddItem(stack, true);
+                }
+
+                if (player.bag != null && player.bag.AddItem(stack))
+                {
+                    return true;
+                }
+
                 int slot;
                 if (player.inventory.AddItem(stack, out slot))
                 {
