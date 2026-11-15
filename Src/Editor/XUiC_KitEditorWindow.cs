@@ -489,12 +489,13 @@ namespace StarterKits.Editor
 
         private void OnResetDefaults()
         {
-            if (!Confirm("reset", "Replace ALL kits with the 14 defaults? Press Reset All again to confirm."))
+            List<KitDefinition> defaults = KitRepository.LoadDefaults(out string _);
+            if (!Confirm("reset", $"Replace ALL kits with the {defaults.Count} defaults? Press Reset All again to confirm."))
             {
                 return;
             }
 
-            kits = KitRepository.LoadDefaults(out string _);
+            kits = defaults;
             MarkDirty();
             kitPage = 0;
             SelectKit(kits.Count > 0 ? 0 : -1);
