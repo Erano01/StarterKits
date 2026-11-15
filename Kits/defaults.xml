@@ -7,6 +7,15 @@
     <progression name="perkSalvageOperations" level="5" />
     <progression name="perkPerceptionMastery" level="2" />
     <progression name="craftingSalvageTools" level="4" />
+    <item name="armorScavengerBoots" count="1" quality="6" />
+    <item name="armorScavengerGloves" count="1" quality="6" />
+    <item name="armorScavengerHelmet" count="1" quality="6" />
+    <item name="armorScavengerOutfit" count="1" quality="6" />
+    <item name="meleeToolSalvageT2Ratchet" count="1" quality="6" />
+    <item name="clothingHeadT2" count="1" quality="2" />
+    <item name="clothingHandsT2" count="1" quality="2" />
+    <item name="clothingOutfitT2" count="1" quality="2" />
+    <item name="clothingFeetT2" count="1" quality="2" />
     <stat text="Salvage Operations 5/5" icon="ui_game_symbol_scrap" />
     <stat text="Perception Mastery 2/5" icon="ui_game_symbol_perception_mastery" />
     <stat text="Salvage Tools 4/75" icon="ui_game_symbol_wrench" />
@@ -28,6 +37,18 @@
     <progression name="perkSniperAPAmmo" level="1" />
     <progression name="perkSniperHPAmmo" level="1" />
     <progression name="perkSniperComplete" level="1" />
+    <item name="clothingHeadT1" count="1" quality="4" />
+    <item name="clothingHandsT1" count="1" quality="4" />
+    <item name="clothingFeetT1" count="1" quality="4" />
+    <item name="clothingOutfitT1" count="1" quality="4" />
+    <item name="gunRifleT1HuntingRifle" count="1" quality="6" />
+    <item name="ammo762mmBulletBall" count="60" />
+    <item name="modGunScopeSmall" count="1" />
+    <item name="modGunSoundSuppressorSilencer" count="1" quality="6" />
+    <item name="armorRangerBoots" count="1" quality="6" />
+    <item name="armorRangerGloves" count="1" quality="6" />
+    <item name="armorRangerHelmet" count="1" quality="6" />
+    <item name="armorRangerOutfit" count="1" quality="6" />
     <stat text="Dead Eye 5/5" icon="ui_game_symbol_map_cursor" />
     <stat text="Animal Tracker 5/5" icon="ui_game_symbol_animal_tracker" />
     <stat text="The Penetrator 5/5" icon="ui_game_symbol_paint_copy_block" />
@@ -44,6 +65,15 @@
     <progression name="perkRunAndGun" level="3" />
     <progression name="craftingArmor" level="11" />
     <progression name="perkRuleOneCardio" level="5" />
+    <item name="armorAthleticGloves" count="1" quality="6" />
+    <item name="armorAthleticHelmet" count="1" quality="6" />
+    <item name="armorAthleticOutfit" count="1" quality="6" />
+    <item name="armorAthleticBoots" count="1" quality="6" />
+    <item name="clothingHeadT3" count="1" quality="1" />
+    <item name="clothingOutfitT3" count="1" quality="1" />
+    <item name="clothingHandsT3" count="1" quality="1" />
+    <item name="clothingFeetT3" count="1" quality="1" />
+    <item name="drugSteroids" count="10" />
     <stat text="Parkour 5/5" icon="ui_game_symbol_parkour" />
     <stat text="Hard Target 5/5" icon="ui_game_symbol_hard_target" />
     <stat text="Run and Gun 3/5" icon="ui_game_symbol_run_and_gun" />
@@ -68,6 +98,11 @@
     <progression name="perkBarBrawling6RageMode" level="1" />
     <progression name="perkBarBrawling7BoozedUp" level="1" />
     <progression name="perkBarBrawling8Complete" level="1" />
+    <item name="clothingHeadT2" count="1" quality="2" />
+    <item name="clothingHandsT2" count="1" quality="2" />
+    <item name="clothingOutfitT2" count="1" quality="2" />
+    <item name="clothingFeetT2" count="1" quality="2" />
+    <item name="meleeWpnKnucklesT1IronKnuckles" count="1" quality="6" />
     <stat text="The Brawler 5/5" icon="ui_game_symbol_boxer" />
     <stat text="Lightning Hands 5/5" icon="ui_game_symbol_knunchuck" />
     <stat text="Pain Tolerance 5/5" icon="ui_game_symbol_character" />
@@ -83,7 +118,7 @@
     <progression name="perkArchery" level="5" />
     <progression name="perkFromTheShadows" level="2" />
     <progression name="perkHiddenStrike" level="3" />
-    <progression name="craftingBows" level="11" />
+    <progression name="craftingBows" level="75" />
     <progression name="perkRangersArrowRecovery" level="1" />
     <progression name="perkRangersExplodingBolts" level="1" />
     <progression name="perkRangersCripplingShot" level="1" />
@@ -92,6 +127,14 @@
     <progression name="perkRangersForestGuide" level="1" />
     <progression name="perkRangersKnockdown" level="1" />
     <progression name="perkRangersComplete" level="1" />
+    <item name="modGunBowPolymerString" count="1" />
+    <item name="gunBowT3CompoundBow" count="1" />
+    <item name="ammoBundleArrowIron" count="2" />
+    <item name="modGunBowArrowRest" count="1" />
+    <item name="clothingHeadT2" count="1" quality="1" />
+    <item name="clothingHandsT2" count="1" quality="1" />
+    <item name="clothingOutfitT2" count="1" quality="1" />
+    <item name="clothingFeetT2" count="1" quality="1" />
     <stat text="Archery 5/5" icon="ui_game_symbol_archery" />
     <stat text="From the Shadows 2/5" icon="ui_game_symbol_bat" />
     <stat text="Hidden Strike 3/5" icon="ui_game_symbol_sneak_attack" />
@@ -105,21 +148,25 @@
     <progression name="perkMediumArmor" level="4" />
     <progression name="craftingSeeds" level="20" />
     <progression name="craftingFood" level="100" />
-    <progression name="perkJavelinMaster" level="5" />
-    <progression name="perkFlurryOfPerception" level="5" />
-    <progression name="craftingSpears" level="11" />
-    <progression name="perkSpearHunter1Damage" level="1" />
-    <progression name="perkSpearHunter2Maintenance" level="1" />
-    <progression name="perkSpearHunter3Bleed" level="1" />
-    <progression name="perkSpearHunter4KillMove" level="1" />
-    <progression name="perkSpearHunter5RapidStrike" level="1" />
-    <progression name="perkSpearHunter6PenetratingShaft" level="1" />
-    <progression name="perkSpearHunter7QuickStrike" level="1" />
-    <progression name="perkSpearHunter8Complete" level="1" />
-    <item name="armorFarmerHelmet" count="1" quality="1" />
-    <item name="armorFarmerOutfit" count="1" quality="1" />
-    <item name="armorFarmerGloves" count="1" quality="1" />
-    <item name="armorFarmerBoots" count="1" quality="1" />
+    <item name="armorFarmerHelmet" count="1" quality="6" />
+    <item name="armorFarmerOutfit" count="1" quality="6" />
+    <item name="armorFarmerGloves" count="1" quality="6" />
+    <item name="armorFarmerBoots" count="1" quality="6" />
+    <item name="toolCookingPot" count="1" quality="6" />
+    <item name="toolCookingGrill" count="1" quality="6" />
+    <item name="farmPlotBlockPlayer" count="40" />
+    <item name="plantedAloe1" count="1" />
+    <item name="plantedCoffee1" count="1" />
+    <item name="plantedCorn1" count="1" />
+    <item name="plantedHop1" count="1" />
+    <item name="plantedMushroom1" count="1" />
+    <item name="plantedPotato1" count="1" />
+    <item name="plantedGraceCorn1" count="1" />
+    <item name="plantedYucca1" count="1" />
+    <item name="clothingHeadT2" count="1" />
+    <item name="clothingHandsT2" count="1" />
+    <item name="clothingOutfitT2" count="1" />
+    <item name="clothingFeetT2" count="1" />
     <cvar name="plantedGraceCorn1" value="1" />
     <stat text="Living off The Land 3/3" icon="ui_game_symbol_tree" />
     <stat text="Armor Skill 11/100" icon="ui_game_symbol_armor_iron" />
@@ -128,10 +175,6 @@
     <stat text="Super Corn Crafting" icon="plantedCorn1" atlas="ItemIconAtlas" color="ff9f9f" />
     <stat text="Medium Armor 4/4" icon="ui_game_symbol_light_armor2" />
     <stat text="Fullset Farmer Outfit" icon="ui_game_symbol_armor_iron" />
-    <stat text="Spear Master 5/5" icon="ui_game_symbol_spear" />
-    <stat text="Quick and Perceptive 5/5" icon="ui_game_symbol_knunchuck" />
-    <stat text="Spear Hunter 7/7" icon="ui_game_symbol_spear" />
-    <stat text="Spear Skill 11/75" icon="ui_game_symbol_spear" />
   </kit>
   <kit id="Engineer" name="Engineer" title="Tech Builder" image="Engineer" image_atlas="ItemIconAtlas">
     <description>Turrets, vehicles, electricity - if it runs on volts or wheels, you built it. The apocalypse has a power grid now. Yours.</description>
@@ -149,6 +192,15 @@
     <progression name="perkTechJunkie6BatonCharge" level="1" />
     <progression name="perkTechJunkie7Hydraulics" level="1" />
     <progression name="perkTechJunkie8Complete" level="1" />
+    <item name="armorNerdHelmet" count="1" quality="6" />
+    <item name="clothingHeadT2" count="1" />
+    <item name="clothingHandsT2" count="1" />
+    <item name="clothingOutfitT2" count="1" />
+    <item name="clothingFeetT2" count="1" />
+    <item name="gunBotT2JunkTurret" count="2" quality="6" />
+    <item name="ammoBundleJunkTurretRegular" count="1" />
+    <item name="meleeWpnBatonT2StunBaton" count="1" />
+    <item name="modMeleeStunBatonRepulsor" count="1" quality="6" />
     <stat text="Electrician Skill 55/100" icon="ui_game_symbol_electric_generator" />
     <stat text="Vehicles Skill 20/100" icon="ui_game_symbol_4x4" />
     <stat text="Robotics 76/100" icon="ui_game_symbol_junk_turret" />
@@ -180,10 +232,12 @@
     <progression name="perkAutoWeaponsRagdoll" level="1" />
     <progression name="perkAutoWeaponsMachineGuns" level="1" />
     <progression name="perkAutoWeaponsComplete" level="1" />
-    <item name="armorCommandoHelmet" count="1" quality="1" />
-    <item name="armorCommandoOutfit" count="1" quality="1" />
-    <item name="armorCommandoGloves" count="1" quality="1" />
-    <item name="armorCommandoBoots" count="1" quality="1" />
+    <item name="armorCommandoHelmet" count="1" quality="6" />
+    <item name="armorCommandoOutfit" count="1" quality="6" />
+    <item name="armorCommandoGloves" count="1" quality="6" />
+    <item name="armorCommandoBoots" count="1" quality="6" />
+    <item name="ammoBundle762mmBulletBall" count="3" />
+    <item name="gunMGT1AK47" count="1" quality="6" />
     <stat text="Machine Gunner 5/5" icon="ui_game_symbol_rifle" />
     <stat text="Run and Gun 5/5" icon="ui_game_symbol_run_and_gun" />
     <stat text="Commando Armor Fullset" icon="ui_game_symbol_armor_iron" />
@@ -199,6 +253,19 @@
     <progression name="perkCharismaticNature" level="3" />
     <progression name="craftingMedical" level="75" />
     <progression name="craftingFood" level="27" />
+    <item name="medicalFirstAidKit" count="10" />
+    <item name="medicalFirstAidBandage" count="10" />
+    <item name="medicalSplint" count="10" />
+    <item name="medicalPlasterCast" count="10" />
+    <item name="clothingHeadT1" count="1" />
+    <item name="clothingHandsT1" count="1" />
+    <item name="clothingFeetT1" count="1" />
+    <item name="clothingOutfitT1" count="1" />
+    <item name="armorPreacherBoots" count="1" />
+    <item name="armorPreacherGloves" count="1" />
+    <item name="armorPreacherHelmet" count="1" />
+    <item name="armorPreacherOutfit" count="1" />
+    <item name="drugAntibiotics" count="10" />
     <stat text="Physician 5/5" icon="ui_game_symbol_medical" />
     <stat text="Charismatic Nature 3/5" icon="ui_game_symbol_talk" />
     <stat text="Medical 75/75" icon="ui_game_symbol_medical" />
@@ -223,6 +290,22 @@
     <progression name="perkSledgeSagaConcussiveStrike" level="1" />
     <progression name="perkSledgeSagaArmorCrusher" level="1" />
     <progression name="perkSledgeSagaComplete" level="1" />
+    <item name="meleeToolPickT2SteelPickaxe" count="1" quality="6" />
+    <item name="meleeToolAxeT2SteelAxe" count="1" quality="6" />
+    <item name="clothingHeadT1" count="1" quality="6" />
+    <item name="clothingHandsT1" count="1" quality="6" />
+    <item name="clothingFeetT1" count="1" quality="6" />
+    <item name="clothingOutfitT1" count="1" quality="6" />
+    <item name="armorMinerHelmet" count="1" quality="1" />
+    <item name="armorMinerGloves" count="1" quality="1" />
+    <item name="armorMinerBoots" count="1" quality="1" />
+    <item name="armorMinerOutfit" count="1" quality="1" />
+    <item name="meleeWpnSledgeT1IronSledgehammer" count="1" quality="6" />
+    <item name="modMeleeErgonomicGrip" count="1" />
+    <item name="modMeleeGraveDigger" count="1" />
+    <item name="modMeleeFiremansAxeMod" count="1" />
+    <item name="modArmorHelmetLight" count="1" />
+    <item name="modMeleeIronBreaker" count="1" />
     <stat text="Skull Crusher 5/5" icon="ui_game_symbol_sledge" />
     <stat text="Grand Slam 5/5" icon="ui_game_symbol_grand_slam" />
     <stat text="Strength Master 5/5" icon="ui_game_symbol_strength_mastery" />
@@ -239,6 +322,12 @@
     <progression name="perkDemolitionsExpert" level="5" />
     <progression name="perkInfiltrator" level="5" />
     <progression name="craftingExplosives" level="50" />
+    <item name="gunExplosivesT3RocketLauncher" count="1" quality="6" />
+    <item name="ammoRocketFrag" count="30" />
+    <item name="clothingHeadT1" count="1" quality="2" />
+    <item name="clothingHandsT1" count="1" quality="2" />
+    <item name="clothingFeetT1" count="1" quality="2" />
+    <item name="clothingOutfitT1" count="1" quality="2" />
     <stat text="Demolition Expert 5/5" icon="ui_game_symbol_explosion" />
     <stat text="The Infiltrator 5/5" icon="ui_game_symbol_stealth" />
     <stat text="Explosives 50/100" icon="ui_game_symbol_explosion" />
@@ -267,6 +356,17 @@
     <progression name="perkEnforcerHPAmmo" level="1" />
     <progression name="perkEnforcerCriminalPursuit" level="1" />
     <progression name="perkEnforcerComplete" level="1" />
+    <item name="modGunSoundSuppressorSilencer" count="1" quality="6" />
+    <item name="gunHandgunT3DesertVulture" count="1" quality="1" />
+    <item name="ammo44MagnumBulletBall" count="35" />
+    <item name="armorAssassinOutfit" count="1" quality="6" />
+    <item name="armorAssassinBoots" count="1" quality="6" />
+    <item name="armorAssassinGloves" count="1" quality="6" />
+    <item name="armorAssassinHelmet" count="1" quality="6" />
+    <item name="clothingOutfitT2" count="1" quality="1" />
+    <item name="clothingHandsT2" count="1" quality="1" />
+    <item name="clothingFeetT2" count="1" quality="1" />
+    <item name="clothingHeadT2" count="1" quality="1" />
     <stat text="Gunslinger 5/5" icon="ui_game_symbol_gunslinger" />
     <stat text="Run and Gun 5/5" icon="ui_game_symbol_run_and_gun" />
     <stat text="Agility Mastery 2/5" icon="ui_game_symbol_agility_mastery" />
@@ -297,6 +397,12 @@
     <progression name="perkWasteTreasuresComplete" level="1" />
     <progression name="perkDaringAdventurer" level="5" />
     <progression name="perkTreasureHunter" level="5" />
+    <progression name="perkPackMule" level="5" />
+    <item name="clothingOutfitT2" count="1" quality="1" />
+    <item name="clothingFeetT2" count="1" quality="1" />
+    <item name="clothingHeadT2" count="1" quality="1" />
+    <item name="clothingHandsT2" count="1" />
+    <item name="backpackLarge" count="1" quality="1" />
     <stat text="Lucky Looter (Skill) 5/5" icon="ui_game_symbol_shopping_cart" />
     <stat text="Lucky Looter Book 7/7" icon="ui_game_symbol_shopping_cart" />
     <stat text="Wasteland Treasures 7/7" icon="ui_game_symbol_treasure" />
@@ -313,6 +419,12 @@
     <progression name="perkFlurryOfAgility" level="5" />
     <progression name="perkHiddenStrike" level="3" />
     <progression name="perkFromTheShadows" level="3" />
+    <item name="armorRogueBoots" count="1" quality="6" />
+    <item name="armorRogueGloves" count="1" quality="6" />
+    <item name="armorRogueHelmet" count="1" quality="6" />
+    <item name="armorRogueOutfit" count="1" quality="6" />
+    <item name="meleeWpnBladeT1HuntingKnife" count="1" quality="6" />
+    <item name="resourceLockPick" count="30" />
     <stat text="Better Barter 5/5" icon="ui_game_symbol_barter" />
     <stat text="Lock Picking 3/3" icon="ui_game_symbol_unlock" />
     <stat text="Workstations 12/75" icon="ui_game_symbol_workbench" />
@@ -322,8 +434,8 @@
     <stat text="From the Shadows 3/5" icon="ui_game_symbol_bat" />
     <stat text="Whirlwind 5/5" icon="ui_game_symbol_knunchuck" />
   </kit>
-  <kit id="NEGAN" name="NEGAN" title="Slugger" image="meleeWpnClubT1BaseballBat" image_atlas="ItemIconAtlas" auto_stats="true">
-    <description>One bat, a roll of barbed wire and a very persuasive attitude. Everybody gets a turn.</description>
+  <kit id="NEGAN" name="NEGAN" title="Slugger" image="1n59es" image_atlas="File" auto_stats="true">
+    <description>NEGAN From TWD, test</description>
     <progression name="craftingClubs" level="75" />
     <progression name="perkBatterUpBigHits" level="1" />
     <progression name="perkBatterUpStealingBases" level="1" />
@@ -341,6 +453,10 @@
     <item name="modMeleeWeightedHead" count="1" quality="6" />
     <item name="modMeleeErgonomicGrip" count="1" quality="6" />
     <item name="modMeleeClubBarbedWire" count="1" quality="6" />
+    <item name="clothingOutfitT2" count="1" quality="2" />
+    <item name="clothingHandsT2" count="1" quality="2" />
+    <item name="clothingFeetT2" count="1" quality="2" />
+    <item name="clothingHeadT2" count="1" quality="2" />
     <stat text="Clubs 75/75" icon="ui_game_symbol_club" />
     <stat text="Batter Up! 7/7" icon="ui_game_symbol_club" />
     <stat text="Pummel Pete 5/5" icon="ui_game_symbol_stunned" />
@@ -351,5 +467,22 @@
     <stat text="Weighted Head Mod" icon="modMeleeWeightedHead" atlas="ItemIconAtlas" />
     <stat text="Ergonomic Grip Mod" icon="modMeleeErgonomicGrip" atlas="ItemIconAtlas" />
     <stat text="Barbed Wire Mod" icon="modMeleeClubBarbedWire" atlas="ItemIconAtlas" />
+    <stat text="Patchwork Long Underwear" icon="clothingOutfitT2" atlas="ItemIconAtlas" />
+    <stat text="Patchwork Glove Liners" icon="clothingHandsT2" atlas="ItemIconAtlas" />
+    <stat text="Patchwork Socks" icon="clothingFeetT2" atlas="ItemIconAtlas" />
+    <stat text="Patchwork Cap Liner" icon="clothingHeadT2" atlas="ItemIconAtlas" />
+  </kit>
+  <kit id="Obesite" name="Obesite" title="Obesite" image="Athlete" image_atlas="ItemIconAtlas" auto_stats="true">
+    <description>Eat whatever he finds</description>
+    <progression name="craftingFood" level="100" />
+    <item name="foodBlueberryPie" count="10" />
+    <item name="foodChickenNuggets" count="10" />
+    <item name="drinkYuccaJuiceSmoothie" count="10" />
+    <item name="backpackSmall" count="1" quality="6" />
+    <stat text="Food 100/100" icon="ui_game_symbol_fork" />
+    <stat text="Blueberry Pie x10" icon="foodBlueberryPie" atlas="ItemIconAtlas" />
+    <stat text="Chicken Nuggets x10" icon="foodChickenNuggets" atlas="ItemIconAtlas" />
+    <stat text="Yucca Juice Smoothie x10" icon="drinkYuccaJuiceSmoothie" atlas="ItemIconAtlas" />
+    <stat text="Small Backpack" icon="backpackSmall" atlas="ItemIconAtlas" />
   </kit>
 </starterkits>
