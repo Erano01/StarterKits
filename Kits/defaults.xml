@@ -356,6 +356,7 @@
     <progression name="perkEnforcerHPAmmo" level="1" />
     <progression name="perkEnforcerCriminalPursuit" level="1" />
     <progression name="perkEnforcerComplete" level="1" />
+    <progression name="perkMediumArmor" level="4" />
     <item name="modGunSoundSuppressorSilencer" count="1" quality="6" />
     <item name="gunHandgunT3DesertVulture" count="1" quality="1" />
     <item name="ammo44MagnumBulletBall" count="35" />
@@ -403,6 +404,7 @@
     <item name="clothingHeadT2" count="1" quality="1" />
     <item name="clothingHandsT2" count="1" />
     <item name="backpackLarge" count="1" quality="1" />
+    <item name="modArmorTreasureHunter" count="1" />
     <stat text="Lucky Looter (Skill) 5/5" icon="ui_game_symbol_shopping_cart" />
     <stat text="Lucky Looter Book 7/7" icon="ui_game_symbol_shopping_cart" />
     <stat text="Wasteland Treasures 7/7" icon="ui_game_symbol_treasure" />
@@ -435,7 +437,7 @@
     <stat text="Whirlwind 5/5" icon="ui_game_symbol_knunchuck" />
   </kit>
   <kit id="NEGAN" name="NEGAN" title="Slugger" image="1n59es" image_atlas="File" auto_stats="true">
-    <description>NEGAN From TWD, test</description>
+    <description>NEGAN From TWD</description>
     <progression name="craftingClubs" level="75" />
     <progression name="perkBatterUpBigHits" level="1" />
     <progression name="perkBatterUpStealingBases" level="1" />
@@ -484,5 +486,73 @@
     <stat text="Chicken Nuggets x10" icon="foodChickenNuggets" atlas="ItemIconAtlas" />
     <stat text="Yucca Juice Smoothie x10" icon="drinkYuccaJuiceSmoothie" atlas="ItemIconAtlas" />
     <stat text="Small Backpack" icon="backpackSmall" atlas="ItemIconAtlas" />
+  </kit>
+  <kit id="PILOT" name="PILOT" title="PILOT" image="Engineer" image_atlas="ItemIconAtlas" auto_stats="true">
+    <description>Start with Gyrocopter &amp; Equipments</description>
+    <progression name="craftingVehicles" level="100" />
+    <progression name="perkGreaseMonkey" level="5" />
+    <item name="vehicleGyrocopterPlaceable" count="1" />
+    <item name="modVehicleFuelSaver" count="1" />
+    <item name="modVehicleReserveFuelTank" count="1" />
+    <item name="modVehicleArmor" count="1" />
+    <item name="ammoGasCanBundle" count="5" />
+    <item name="resourceRepairKit" count="15" />
+    <item name="clothingHeadT2" count="1" />
+    <item name="clothingHandsT2" count="1" />
+    <item name="clothingOutfitT2" count="1" />
+    <item name="clothingFeetT2" count="1" />
+    <stat text="Vehicles 100/100" icon="ui_game_symbol_4x4" />
+    <stat text="Grease Monkey 5/5" icon="ui_game_symbol_service" />
+    <stat text="Gyrocopter" icon="vehicleGyrocopterPlaceable" atlas="ItemIconAtlas" />
+    <stat text="Vehicle Fuel Saver Mod" icon="modVehicleFuelSaver" atlas="ItemIconAtlas" />
+    <stat text="Vehicle Reserve Fuel Tank Mod" icon="modVehicleReserveFuelTank" atlas="ItemIconAtlas" />
+    <stat text="Vehicle Armor Mod" icon="modVehicleArmor" atlas="ItemIconAtlas" />
+    <stat text="Stack of Gas Cans (5000) x5" icon="ammoGasCan" atlas="ItemIconAtlas" />
+    <stat text="Repair Kit x15" icon="resourceRepairKit" atlas="ItemIconAtlas" />
+    <stat text="Patchwork Cap Liner" icon="clothingHeadT2" atlas="ItemIconAtlas" />
+    <stat text="Patchwork Glove Liners" icon="clothingHandsT2" atlas="ItemIconAtlas" />
+    <stat text="Patchwork Long Underwear" icon="clothingOutfitT2" atlas="ItemIconAtlas" />
+    <stat text="Patchwork Socks" icon="clothingFeetT2" atlas="ItemIconAtlas" />
+  </kit>
+  <kit id="Daryl" name="Daryl" title="Daryl" image="Scavenger" image_atlas="ItemIconAtlas" auto_stats="true">
+    <description>Daryl from TWD</description>
+    <progression name="perkArchery" level="5" />
+    <progression name="perkHiddenStrike" level="2" />
+    <progression name="perkFromTheShadows" level="2" />
+    <progression name="attAgility" level="10" />
+    <progression name="perkHeavyArmor" level="4" />
+    <item name="vehicleMotorcyclePlaceable" count="1" />
+    <item name="gunBowT3CompoundCrossbow" count="1" />
+    <item name="ammoBundleCrossbowBoltStone" count="5" />
+    <item name="gunHandgunT1Pistol" count="1" />
+    <item name="ammoBundle9mmBulletBall" count="1" />
+    <item name="armorBikerOutfit" count="1" />
+    <item name="armorBikerHelmet" count="1" />
+    <item name="armorBikerGloves" count="1" />
+    <item name="armorBikerBoots" count="1" />
+    <item name="ammoGasCanBundle" count="2" />
+    <item name="clothingHeadT1" count="1" quality="6" />
+    <item name="clothingHandsT1" count="1" quality="6" />
+    <item name="clothingFeetT1" count="1" quality="6" />
+    <item name="clothingOutfitT1" count="1" quality="6" />
+    <stat text="Archery 5/5" icon="ui_game_symbol_archery" />
+    <stat text="Hidden Strike 2/5" icon="ui_game_symbol_sneak_attack" />
+    <stat text="From The Shadows 2/5" icon="ui_game_symbol_bat" />
+    <stat text="Attribute: Agility 10/10" icon="ui_game_symbol_agility" />
+    <stat text="Heavy Armor 4/4" icon="ui_game_symbol_armor_iron" />
+    <stat text="Motorcycle" icon="vehicleMotorcyclePlaceable" atlas="ItemIconAtlas" />
+    <stat text="Compound Crossbow" icon="gunBowT3CompoundCrossbow" atlas="ItemIconAtlas" />
+    <stat text="Box of Stone Crossbow Bolts (100) x5" icon="ammoCrossbowBoltStone" atlas="ItemIconAtlas" />
+    <stat text="Pistol" icon="gunHandgunT1Pistol" atlas="ItemIconAtlas" />
+    <stat text="Box of 9mm Ammo (100)" icon="ammo9mmBulletBall" atlas="ItemIconAtlas" />
+    <stat text="Biker Outfit" icon="armorBikerOutfit" atlas="ItemIconAtlas" />
+    <stat text="Biker Helmet" icon="armorBikerHelmet" atlas="ItemIconAtlas" />
+    <stat text="Biker Gloves" icon="armorBikerGloves" atlas="ItemIconAtlas" />
+    <stat text="Biker Boots" icon="armorBikerBoots" atlas="ItemIconAtlas" />
+    <stat text="Stack of Gas Cans (5000) x2" icon="ammoGasCan" atlas="ItemIconAtlas" />
+    <stat text="Tattered Cap Liner" icon="clothingHeadT1" atlas="ItemIconAtlas" />
+    <stat text="Tattered Glove Liners" icon="clothingHandsT1" atlas="ItemIconAtlas" />
+    <stat text="Tattered Socks" icon="clothingFeetT1" atlas="ItemIconAtlas" />
+    <stat text="Tattered Undergarments" icon="clothingOutfitT1" atlas="ItemIconAtlas" />
   </kit>
 </starterkits>
