@@ -474,20 +474,7 @@
     <stat text="Patchwork Socks" icon="clothingFeetT2" atlas="ItemIconAtlas" />
     <stat text="Patchwork Cap Liner" icon="clothingHeadT2" atlas="ItemIconAtlas" />
   </kit>
-  <kit id="Obesite" name="Obesite" title="Obesite" image="Athlete" image_atlas="ItemIconAtlas" auto_stats="true">
-    <description>Eat whatever he finds</description>
-    <progression name="craftingFood" level="100" />
-    <item name="foodBlueberryPie" count="10" />
-    <item name="foodChickenNuggets" count="10" />
-    <item name="drinkYuccaJuiceSmoothie" count="10" />
-    <item name="backpackSmall" count="1" quality="6" />
-    <stat text="Food 100/100" icon="ui_game_symbol_fork" />
-    <stat text="Blueberry Pie x10" icon="foodBlueberryPie" atlas="ItemIconAtlas" />
-    <stat text="Chicken Nuggets x10" icon="foodChickenNuggets" atlas="ItemIconAtlas" />
-    <stat text="Yucca Juice Smoothie x10" icon="drinkYuccaJuiceSmoothie" atlas="ItemIconAtlas" />
-    <stat text="Small Backpack" icon="backpackSmall" atlas="ItemIconAtlas" />
-  </kit>
-  <kit id="PILOT" name="PILOT" title="PILOT" image="Engineer" image_atlas="ItemIconAtlas" auto_stats="true">
+  <kit id="PILOT" name="PILOT" title="PILOT" image="pilot-5518490_640" image_atlas="File" auto_stats="true">
     <description>Start with Gyrocopter &amp; Equipments</description>
     <progression name="craftingVehicles" level="100" />
     <progression name="perkGreaseMonkey" level="5" />
@@ -514,7 +501,7 @@
     <stat text="Patchwork Long Underwear" icon="clothingOutfitT2" atlas="ItemIconAtlas" />
     <stat text="Patchwork Socks" icon="clothingFeetT2" atlas="ItemIconAtlas" />
   </kit>
-  <kit id="Daryl" name="Daryl" title="Daryl" image="Scavenger" image_atlas="ItemIconAtlas" auto_stats="true">
+  <kit id="Daryl" name="Daryl" title="Daryl" image="twd-daryl" image_atlas="File" auto_stats="true">
     <description>Daryl from TWD</description>
     <progression name="perkArchery" level="5" />
     <progression name="perkHiddenStrike" level="2" />
@@ -550,6 +537,48 @@
     <stat text="Biker Gloves" icon="armorBikerGloves" atlas="ItemIconAtlas" />
     <stat text="Biker Boots" icon="armorBikerBoots" atlas="ItemIconAtlas" />
     <stat text="Stack of Gas Cans (5000) x2" icon="ammoGasCan" atlas="ItemIconAtlas" />
+    <stat text="Tattered Cap Liner" icon="clothingHeadT1" atlas="ItemIconAtlas" />
+    <stat text="Tattered Glove Liners" icon="clothingHandsT1" atlas="ItemIconAtlas" />
+    <stat text="Tattered Socks" icon="clothingFeetT1" atlas="ItemIconAtlas" />
+    <stat text="Tattered Undergarments" icon="clothingOutfitT1" atlas="ItemIconAtlas" />
+  </kit>
+  <kit id="Morgan" name="Morgan" title="Morgan" image="morgan" image_atlas="File" auto_stats="true">
+    <description>Morgan from TWD</description>
+    <progression name="perkJavelinMaster" level="5" />
+    <progression name="perkFlurryOfPerception" level="5" />
+    <progression name="attPerception" level="7" />
+    <progression name="perkHardTarget" level="3" />
+    <progression name="perkHeavyArmor" level="4" />
+    <progression name="craftingSpears" level="75" />
+    <progression name="perkSpearHunter1Damage" level="1" />
+    <progression name="perkSpearHunter2Maintenance" level="1" />
+    <progression name="perkSpearHunter3Bleed" level="1" />
+    <progression name="perkSpearHunter4KillMove" level="1" />
+    <progression name="perkSpearHunter5RapidStrike" level="1" />
+    <progression name="perkSpearHunter6PenetratingShaft" level="1" />
+    <progression name="perkSpearHunter7QuickStrike" level="1" />
+    <progression name="perkSpearHunter8Complete" level="1" />
+    <item name="armorNomadHelmet" count="1" quality="3" />
+    <item name="armorNomadGloves" count="1" quality="3" />
+    <item name="armorNomadBoots" count="1" quality="3" />
+    <item name="armorNomadOutfit" count="1" quality="3" />
+    <item name="meleeWpnSpearT1IronSpear" count="1" quality="6" />
+    <item name="clothingHeadT1" count="1" quality="2" />
+    <item name="clothingHandsT1" count="1" quality="2" />
+    <item name="clothingFeetT1" count="1" quality="2" />
+    <item name="clothingOutfitT1" count="1" quality="2" />
+    <stat text="Spear Master 5/5" icon="ui_game_symbol_spear" />
+    <stat text="Quick and Perceptive 5/5" icon="ui_game_symbol_knunchuck" />
+    <stat text="Attribute: Perception 7/10" icon="ui_game_symbol_stealth" />
+    <stat text="Hard Target 3/5" icon="ui_game_symbol_hard_target" />
+    <stat text="Heavy Armor 4/4" icon="ui_game_symbol_armor_iron" />
+    <stat text="Spears 75/75" icon="ui_game_symbol_spear" />
+    <stat text="Spear Hunter 7/7" icon="ui_game_symbol_spear" />
+    <stat text="Nomad Headgear" icon="armorNomadHelmet" atlas="ItemIconAtlas" />
+    <stat text="Nomad Gloves" icon="armorNomadGloves" atlas="ItemIconAtlas" />
+    <stat text="Nomad Boots" icon="armorNomadBoots" atlas="ItemIconAtlas" />
+    <stat text="Nomad Outfit" icon="armorNomadOutfit" atlas="ItemIconAtlas" />
+    <stat text="Iron Spear" icon="meleeWpnSpearT1IronSpear" atlas="ItemIconAtlas" />
     <stat text="Tattered Cap Liner" icon="clothingHeadT1" atlas="ItemIconAtlas" />
     <stat text="Tattered Glove Liners" icon="clothingHandsT1" atlas="ItemIconAtlas" />
     <stat text="Tattered Socks" icon="clothingFeetT1" atlas="ItemIconAtlas" />
